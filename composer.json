@@ -1,0 +1,15 @@
+{
+    "name": "user/nuturelife",
+    "autoload": {
+        "psr-4": {
+            "User\\Nuturelife\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dhananjayaaps",
+            "email": "dhananjayaaps@gmail.com"
+        }
+    ],
+    "require": {}
+}
