@@ -2,7 +2,7 @@
     "name": "user/nuturelife",
     "autoload": {
         "psr-4": {
-            "User\\Nuturelife\\": "src/"
+            "app\\": "."
         }
     },
     "authors": [
@@ -11,5 +11,7 @@
             "email": "dhananjayaaps@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^2.4"
+    }
 }
