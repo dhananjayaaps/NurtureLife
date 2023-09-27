@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./assets/styles/styles.css">
 </head>
 <body>
 <div class="headbar">
-    <img src="../images/nuturelife_logo.png" alt="nuturelife_logo">
+    <img src="../assets/images/nuturelife_logo.png" alt="nuturelife_logo">
 
     <div class="largeIcons">
-        <img src="../images/Group 188.svg" alt="phone">
+        <img src="../assets/images/Group 188.svg" alt="phone">
         <div class="emrgency">Emergency<br/>+94 71 307 8728</div>
-        <img src="../images/Group 177.svg" alt="clock">24x7 Service
+        <img src="../assets/images/Group 177.svg" alt="clock">24x7 Service
     </div>
 </div>
 
@@ -30,14 +30,6 @@
 
     <a href="#login">Login</a>
     <a href="#signup">Signup</a>
-</div>
-
-<div class="image-container">
-    <div class="BackgroundText">
-        <div class="small-content">Caring for Life</div>
-        <div class="large-content">Leading the Way <br>in Medical Excellence</div>
-        <div class="services-button"><a href="#services">Our Services</a></div>
-    </div>
 </div>
 
 {{content}}
