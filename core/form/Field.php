@@ -10,6 +10,7 @@ class Field
     public const TYPE_PASSWORD = 'password';
     public const TYPE_NUMBER = 'number';
     public string $type;
+    public string $name;
     public Model $model;
     public string $attribute;
 
@@ -17,11 +18,12 @@ class Field
      * @param Model $model
      * @param string $attribute
      */
-    public function __construct(Model $model, string $attribute)
+    public function __construct(Model $model, string $attribute, $name)
     {
         $this->type = self::TYPE_TEXT;
         $this->model = $model;
         $this->attribute = $attribute;
+        $this->name = $name;
     }
 
     public function __toString()
@@ -34,18 +36,17 @@ class Field
             '
         <div class="form-group">
             <label>%s</label>
-            <input type="%s" name="%s" value="%s" class="form-control%s">
+            <input type="text" name="%s" value="%s" class="form-control%s">
             <div class="invalid-feedback">
                 %s
             </div>
         </div>
         ',
-            $this->type,
+            $this->name,
             $this->attribute,
-            $this->attribute,
-            $value,
-            $class,
-            $hasError ? $this->model->getFirstError($this->attribute) : ''
+            $this->model->{$this->attribute},
+            $this->model->hasError($this->attribute) ? ' is-invalid' : '',
+            $this->model->getFirstError($this->attribute)
         );
     }
 

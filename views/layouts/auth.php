@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./assets/styles/styles.css">
+    <link rel="stylesheet" href="./assets/styles/Form.css">
 </head>
 <body>
 <div class="headbar">
@@ -18,10 +19,10 @@
 </div>
 
 <div class="navbar">
-    <a href="#home">Home</a>
+    <a href=" ">Home</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+    <a href="contact">Contact</a>
 
     <div class="search-container">
         <input type="text" placeholder="Search...">
@@ -29,7 +30,29 @@
     </div>
 
     <a href="#login">Login</a>
-    <a href="#signup">Signup</a>
+    <a href="register">Signup</a>
 </div>
 
 {{content}}
+
+<div class="footer">
+    <div class="leftmost">
+        <div class="name-title">NUTURELIFE</div>
+        <div class="smalltext">SUSTAINING LIFE THROUGH<br>MOTHERHOOD</div>
+    </div>
+    <div class="important-links">
+        <div class="footer-heading">Important Links</div>
+        <div class="footer-content">
+            <a href="#Appointment"> Resources and Books</a><br/>
+            Doctors<br/>
+            Services<br/>
+            About Us
+        </div>
+    </div>
+    <div class="Contact-us">
+        <div class="footer-heading">Contact Us</div>
+        <div class="footer-content">
+            Call: (+94) 713078918
+        </div>
+    </div>
+</div>

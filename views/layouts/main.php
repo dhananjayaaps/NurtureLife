@@ -18,10 +18,10 @@
 </div>
 
 <div class="navbar">
-    <a href="#home">Home</a>
+    <a href=" ">Home</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+    <a href="contact">Contact</a>
 
     <div class="search-container">
         <input type="text" placeholder="Search...">
@@ -29,7 +29,7 @@
     </div>
 
     <a href="#login">Login</a>
-    <a href="#signup">Signup</a>
+    <a href="register">Signup</a>
 </div>
 
 {{content}}
