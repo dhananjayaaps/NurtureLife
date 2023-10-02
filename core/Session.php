@@ -18,21 +18,35 @@ class Session
     public function setFlash($key, $message)
     {
         $_SESSION[self::FLASH_KEY][$key] = [
-            'removed' => false,
+            'remove' => false,
             'value' => $message
         ];
     }
 
     public function getFlash($key)
     {
-        return $_SESSION[self::FLASH_KEY[$key]['value']] ?? false;
+        $flash = $_SESSION[self::FLASH_KEY][$key]['value'] ?? false;
+        if ($flash){
+            $_SESSION[self::FLASH_KEY][$key]['remove'] = true;
+        }
+        return $flash;
+    }
+
+    public function set($key, $value)
+    {
+        $_SESSION[$key] = $value;
+    }
+
+    public function get($key)
+    {
+        return $_SESSION[$key] ?? false;
     }
 
     public function __destruct()
     {
         $flashMessages = $_SESSION[self::FLASH_KEY] ?? [];
         foreach ($flashMessages as $key => $flashMessage) {
-            if ($flashMessage['removed']){
+            if ($flashMessage['remove']){
                 unset($flashMessages[$key]);
             }
         }
@@ -41,4 +55,8 @@ class Session
         var_dump($_SESSION[self::FLASH_KEY]);
     }
 
+    public function remove($key)
+    {
+        unset($_SESSION[$key]);
+    }
 }

@@ -21,6 +21,7 @@ abstract class Model
     }
 
     abstract public function rules(): array;
+
     public array $errors = [];
     public function validate()
     {
@@ -69,6 +70,11 @@ abstract class Model
         foreach ($params as $key => $value){
             $message = str_replace("{{$key}}",$value,$message);
         }
+        $this->errors[$attribute][] = $message;
+    }
+
+    public function addError(string $attribute,string $message)
+    {
         $this->errors[$attribute][] = $message;
     }
 

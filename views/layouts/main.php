@@ -1,5 +1,7 @@
 <?php use app\core\Application; ?>
 
+var_dump(Application::$app->user);
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,8 +32,19 @@
         <button type="submit">Search</button>
     </div>
 
+    <?php if (Application::isGuest()): ?>
+
     <a href="#login">Login</a>
     <a href="register">Signup</a>
+
+    <?php else: ?>
+
+    <a href="/logout">Welcome <?php echo Application::$app->user->getDisplayName() ?>
+        (Logout)
+    </a>
+
+    <?php endif; ?>
+
 </div>
 
 <div class="container">

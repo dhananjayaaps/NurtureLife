@@ -53,7 +53,7 @@ class Router
             if (method_exists($controllerClass, $controllerMethod)) {
                 Application::$app->controller = new $callback[0]();
                 $controllerInstance = Application::$app->controller;
-                return call_user_func([$controllerInstance, $controllerMethod], $this->request, $this->request);
+                return call_user_func([$controllerInstance, $controllerMethod], $this->request, $this->response);
             }
         }
 

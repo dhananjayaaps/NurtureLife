@@ -1,11 +1,19 @@
 <?php
 
+/**
+ * Class Register
+ *
+ * @author  Sineth Dhananjaya <dhananjayaaps@gmail.com>
+ * @package app\models
+ */
+
 namespace app\models;
 
 use app\core\DbModel;
 use app\core\Model;
+use app\core\UserModel;
 
-class User extends DbModel
+class User extends UserModel
 {
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
@@ -23,9 +31,14 @@ class User extends DbModel
         return 'users';
     }
 
+    public function primaryKey(): string
+    {
+        return 'id';
+    }
     public function save(): bool
     {
         $this->status = self::STATUS_ACTIVE;
+        $old = $this->password;
         $this->password = password_hash($this->password,PASSWORD_DEFAULT);
         return parent::save();
     }
@@ -46,6 +59,11 @@ class User extends DbModel
     public function attributes(): array
     {
         return ['firstname','lastname','email','password', 'status'];
+    }
+
+    public function getDisplayName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
     }
 
 }

@@ -5,12 +5,14 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Response;
+use app\core\Session;
 use app\models\LoginModel;
 use app\models\User;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function login(Request $request, Response $response)
     {
         $loginModel = new LoginModel();
         if ($request->isPost()) {
@@ -19,7 +21,8 @@ class AuthController extends Controller
             $loginModel->loadData($request->getBody());
 
             if ($loginModel->validate() && $loginModel->login()) {
-                return 'Success';
+                $response->redirect('/');
+                return;
             }
             return $this->render('login',[
                 'model' => $loginModel
