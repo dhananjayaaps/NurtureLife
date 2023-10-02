@@ -1,13 +1,11 @@
 <?php use app\core\Application; ?>
 
-var_dump(Application::$app->user);
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo $this->title ?></title>
     <link rel="stylesheet" href="./assets/styles/styles.css">
 </head>
 <body>
@@ -34,14 +32,16 @@ var_dump(Application::$app->user);
 
     <?php if (Application::isGuest()): ?>
 
-    <a href="#login">Login</a>
-    <a href="register">Signup</a>
+    <a href="/login">Login</a>
+    <a href="/register">Signup</a>
 
     <?php else: ?>
 
     <a href="/logout">Welcome <?php echo Application::$app->user->getDisplayName() ?>
         (Logout)
     </a>
+
+    <a href="/profile">Profile</a>
 
     <?php endif; ?>
 
