@@ -2,17 +2,27 @@
 
 namespace app\core;
 
-use Couchbase\DateRangeSearchFacet;
 
 class Application
 {
     public static string $ROOT_DIR;
+    public string $layout = 'main';
+    public string $userClass;
     public Router $router;
     public Request $request;
     public Response $response;
+
     public static Application $app;
-    public Controller $controller;
+    public Session $session;
     public Database $db;
+    public ?DbModel $user;
+    public ? Controller $controller = null;
+    public View $view;
+
+    public static function isGuest()
+    {
+        return !self::$app->user;
+    }
 
     public function getController(): Controller
     {
@@ -26,19 +36,55 @@ class Application
 
     public function __construct($rootPath, array $config)
     {
+        $this->userClass = $config['userClass'];
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
+        $this->session = new Session();
+        $this->view = new View();
 
         $this->db = new Database($config['db']);
+
+        $primaryValue = $this->session->get('user');
+        var_dump($primaryValue);
+        if($primaryValue)
+        {
+            $userModel = new $this->userClass();
+            $primaryKey = $userModel->primaryKey();
+            $this->user = $this->userClass::findOne([$primaryKey => $primaryValue]);
+        }
+        else{
+            $this->user = null;
+        }
     }
 
     public function Run()
     {
-        $content = $this->router->resolve();
-        echo $content;
+        try{
+            $content = $this->router->resolve();
+            echo $content;
+        } catch (\Exception $e){
+            $this->response->setStatusCode($e->getCode());
+            echo $this->view->renderView('_error',[
+                'exception' => $e
+            ]);
+        }
     }
 
+    public function login(DbModel $user)
+    {
+        $this->user = $user;
+        $primaryKey = $user->primaryKey();
+        $primaryKeyValue = $user->{$primaryKey};
+        $this->session->set('user',$primaryKeyValue);
+
+    }
+
+    public function logout()
+    {
+        $this->user = null;
+        $this->session->remove('user');
+    }
 }

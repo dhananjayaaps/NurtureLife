@@ -1,9 +1,11 @@
+<?php use app\core\Application; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo $this->title ?></title>
     <link rel="stylesheet" href="./assets/styles/styles.css">
 </head>
 <body>
@@ -28,11 +30,32 @@
         <button type="submit">Search</button>
     </div>
 
-    <a href="#login">Login</a>
-    <a href="register">Signup</a>
+    <?php if (Application::isGuest()): ?>
+
+    <a href="/login">Login</a>
+    <a href="/register">Signup</a>
+
+    <?php else: ?>
+
+    <a href="/logout">Welcome <?php echo Application::$app->user->getDisplayName() ?>
+        (Logout)
+    </a>
+
+    <a href="/profile">Profile</a>
+
+    <?php endif; ?>
+
 </div>
 
-{{content}}
+<div class="container">
+    <?php if (Application::$app->session->getFlash('success')): ?>
+        <div class="alert alert-success">
+           <?php echo Application::$app->session->getFlash('success')?>
+        </div>
+    <?php endif ?>
+    {{content}}
+</div>
+
 
 <div class="footer">
     <div class="leftmost">
