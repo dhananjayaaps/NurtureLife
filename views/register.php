@@ -14,6 +14,3 @@
 <?php echo \app\core\form\Form::end()?>
 </div>
 
-<div>
-    <canvas id="myChart"></canvas>
-</div>

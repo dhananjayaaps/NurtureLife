@@ -36,13 +36,14 @@ class Field
             '
         <div class="form-group">
             <label>%s</label>
-            <input type="text" name="%s" value="%s" class="form-control%s">
+            <input type="%s" name="%s" value="%s" class="form-control %s">
             <div class="invalid-feedback">
                 %s
             </div>
         </div>
         ',
             $this->name,
+            $this->type,
             $this->attribute,
             $this->model->{$this->attribute},
             $this->model->hasError($this->attribute) ? ' is-invalid' : '',
@@ -50,7 +51,7 @@ class Field
         );
     }
 
-    public function passwordField()
+    public function passwordField(): Field
     {
         $this->type = self::TYPE_PASSWORD;
         return $this;

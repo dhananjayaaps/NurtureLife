@@ -66,4 +66,16 @@ class User extends UserModel
         return $this->firstname . ' ' . $this->lastname;
     }
 
+    public function getUserData($id)
+    {
+        return (new User)->findOne(['id' => $id]);
+    }
+
+    public function update()
+    {
+        $this->status = self::STATUS_ACTIVE;
+        return parent::update();
+    }
+
+
 }
