@@ -1,17 +1,12 @@
-<h1>Contact Us</h1>
+<?php
+/** @var $model \app\models\User **/
+?>
 
-<form action="" method="post">
-    <label for="subject">Subject:</label>
-    <input type="text" id="subject" name="subject">
-    <br>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email">
-    <br>
-
-    <label for="body">Message Body:</label>
-    <textarea id="body" name="body" rows="4"></textarea>
-    <br>
-
-    <input type="submit" value="Submit">
-</form>
+<div class="form-container">
+    <h2>Registration Form</h2>
+    <?php $form = \app\core\form\Form::begin('', "post")?>
+    <?php echo $form->field($model, 'firstname', 'First Name')?>
+    <?php echo new \app\core\form\TextArea($model, 'firstname', 'First Name')?>
+    <button type="submit" class="btn-submit">Submit</button>
+    <?php echo \app\core\form\Form::end()?>
+</div>

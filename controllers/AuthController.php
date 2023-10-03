@@ -9,6 +9,7 @@ use app\core\Response;
 use app\core\Session;
 use app\models\LoginModel;
 use app\models\User;
+use app\models\UserRole;
 
 class AuthController extends Controller
 {
@@ -21,20 +22,18 @@ class AuthController extends Controller
     public function login(Request $request, Response $response)
     {
         $loginModel = new LoginModel();
+        $this->setLayout('auth');
         if ($request->isPost()) {
-            $this->setLayout('auth');
             $loginModel = new LoginModel();
             $loginModel->loadData($request->getBody());
 
             if ($loginModel->validate() && $loginModel->login()) {
                 $response->redirect('/');
-                return;
+                Application::$app->session->setFlash('success', 'You are successfully logged in');
+                return true;
             }
-            return $this->render('login',[
-                'model' => $loginModel
-            ]);
         }
-        $this->setLayout('auth');
+
         return $this->render('login',[
             'model' => $loginModel
         ]);
@@ -69,8 +68,28 @@ class AuthController extends Controller
         $response->redirect('/');
     }
 
-    public function profile()
+    public function profile(Request $request, Response $response)
     {
-        return $this->render('profile');
+        $this->setLayout('main');
+        $user = new User();
+
+        if ($request->isPost()) {
+            $user = new User();
+            $user->loadData($request->getBody());
+
+            if ($user->validate() && $user->update()) {
+                Application::$app->session->setFlash('success', 'Account updated successfully');
+                Application::$app->response->redirect('profile');
+                exit;
+            }
+            return $this->render('register',[
+                'model' => $user
+            ]);
+        }
+
+        $user->loadData($user->findOne(['id' => Application::$app->user->getId()]));
+        return $this->render('profile',[
+        'model' => $user
+        ]);
     }
 }

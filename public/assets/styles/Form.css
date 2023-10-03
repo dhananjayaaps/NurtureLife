@@ -1,7 +1,3 @@
-.form-control:focus {
-    border: 1px solid #007BFF;
-}
-
 .form-container {
     background-image: url("../images/mother-care-flip.png");
     background-size: cover;
@@ -17,6 +13,7 @@
 .form-container {
     background-color: rgba(255, 255, 255, 0.2);
 }
+
 
 .form-group {
     margin-right: 20px;
@@ -42,8 +39,12 @@
 
 .invalid-feedback {
     color: #f44336;
-    margin-top: 5px;
-    font-size: 15px;
+    align-items: flex-start;
+    display: flex;
+    font-size: 16px;
+    line-height: normal;
+    margin-top: 2px;
+    gap: 10px;
 }
 
 .btn-submit {
@@ -58,4 +59,12 @@
 
 .btn-submit:hover {
     background-color: #357ae8;
+}
+
+.form-control:focus {
+    border: 1px solid #007BFF;
+}
+
+.form-control.is-invalid {
+    border: 1px solid #f44336; /* Red border for validation error */
 }

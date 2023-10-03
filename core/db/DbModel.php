@@ -1,6 +1,9 @@
 <?php
 
-namespace app\core;
+namespace app\core\db;
+
+use app\core\Application;
+use app\core\Model;
 
 abstract class DbModel extends Model
 {
@@ -23,6 +26,29 @@ abstract class DbModel extends Model
         return true;
    }
 
+   public function update(): bool
+   {
+         $tableName = $this->tableName();
+         $attributes = $this->attributes();
+         $params = array_map(fn($attr) => "$attr = :$attr",$attributes);
+         $statement = self::prepare("UPDATE $tableName SET ".implode(',',$params)." WHERE ".$this->primaryKey()." = :id");
+         foreach ($attributes as $attribute){
+              $statement->bindValue(":$attribute",$this->{$attribute});
+         }
+         $statement->bindValue(":id",$this->getId());
+         $statement->execute();
+         return true;
+   }
+
+    public function delete(): bool
+    {
+            $tableName = $this->tableName();
+            $statement = self::prepare("DELETE FROM $tableName WHERE ".$this->primaryKey()." = :id");
+            $statement->bindValue(":id",$this->getId());
+            $statement->execute();
+            return true;
+    }
+
    static public function findOne($where)
    {
        $tableName = (new \app\models\User)->tableName();
@@ -41,6 +67,16 @@ abstract class DbModel extends Model
     public static function prepare($sql)
     {
         return Application::$app->db->pdo->prepare($sql);
+    }
+
+    public function getId()
+    {
+        return $this->{$this->primaryKey()};
+    }
+
+    public function getRole(): int
+    {
+        return $this->role_id;
     }
 
 }

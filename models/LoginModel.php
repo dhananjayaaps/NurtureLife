@@ -28,8 +28,6 @@ class LoginModel extends Model
             return false;
         }
 
-        var_dump($this->password, $user->password ,password_verify($this->password, $user->password));
-
         if (!password_verify($this->password, $user->password)) {
             $this->addError('password', 'Password is incorrect');
             return false;

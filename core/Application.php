@@ -3,6 +3,9 @@
 namespace app\core;
 
 
+use app\core\db\Database;
+use app\core\db\DbModel;
+
 class Application
 {
     public static string $ROOT_DIR;
@@ -36,7 +39,7 @@ class Application
 
     public function __construct($rootPath, array $config)
     {
-        $this->userClass = $config['userClass'];
+        $this->userClass = $config['userClass'] ?? '';
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
@@ -48,7 +51,6 @@ class Application
         $this->db = new Database($config['db']);
 
         $primaryValue = $this->session->get('user');
-        var_dump($primaryValue);
         if($primaryValue)
         {
             $userModel = new $this->userClass();

@@ -9,10 +9,28 @@ class SiteController extends \app\core\Controller
 {
     public function home()
     {
-        $params = [
-            'name' => 'Sineth Dhananjaya'
-        ];
-        return $this->render('home', $params);
+        if (!Application::isGuest()) {
+            $userRole = Application::$app->user->getRole();
+            if ($userRole == 1) {
+                return $this->render('home');
+            }
+            else if($userRole == 2){
+                return $this->render('admin');
+            }
+            else if ($userRole == 3){
+                return $this->render('doctor');
+            }
+            else if ($userRole == 4){
+                return $this->render('preMother');
+            }
+            else if ($userRole == 5){
+                return $this->render('postMother');
+            }
+            else if ($userRole == 6){
+                return $this->render('midwife');
+            }
+        }
+        return $this->render('home');
     }
 
     public function contact()
