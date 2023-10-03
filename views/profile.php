@@ -11,12 +11,19 @@ $this->title = 'Profile';
 /** @var $model User **/
 ?>
 
-<div class="form-container">
-    <h2>Edit Profile</h2>
-    <?php $form = \app\core\form\Form::begin('', "post")?>
-    <?php echo $form->field($model, 'firstname', 'First Name')?>
-    <?php echo $form->field($model, 'lastname', 'Last Name')?>
-    <?php echo $form->field($model, 'email', 'Email')?>
-    <button type="submit" class="btn-submit">Submit</button>
-    <?php echo \app\core\form\Form::end()?>
+<div class="column-container">
+    <div class="left-container">
+        <div class="profile-image">
+            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar" style="height: 100px">
+        </div>
+
+    </div>
+    <div class="right-container">
+        <div class="profile-details">
+            <h3>First Name: <?php echo $model->firstname?></h3>
+            <h3>Last Name: <?php echo $model->lastname?></h3>
+            <h3>Email: <?php echo $model->email?></h3>
+        </div>
+    </div>
 </div>
+

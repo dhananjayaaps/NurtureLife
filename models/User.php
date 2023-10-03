@@ -9,8 +9,6 @@
 
 namespace app\models;
 
-use app\core\DbModel;
-use app\core\Model;
 use app\core\UserModel;
 
 class User extends UserModel
@@ -18,12 +16,19 @@ class User extends UserModel
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_DELETED = 2;
+    const ROLE_USER = 1;
+    const ROLE_ADMIN = 2;
+    const ROLE_DOCTOR = 3;
+    const ROLE_PRE_MOTHER = 4;
+    const ROLE_POST_MOTHER = 5;
+    const ROLE_MIDWIFE = 6;
 
     public string $firstname = '';
     public string $lastname ='';
     public string $email = '';
     public int $status = self::STATUS_INACTIVE;
     public string $password = '';
+    public int $role_id;
     public string $confirm_password = '';
 
     public function tableName(): string
@@ -38,7 +43,7 @@ class User extends UserModel
     public function save(): bool
     {
         $this->status = self::STATUS_ACTIVE;
-        $old = $this->password;
+        $this->role_id = self::ROLE_USER;
         $this->password = password_hash($this->password,PASSWORD_DEFAULT);
         return parent::save();
     }
@@ -58,7 +63,7 @@ class User extends UserModel
 
     public function attributes(): array
     {
-        return ['firstname','lastname','email','password', 'status'];
+        return ['firstname','lastname','email','password', 'status', 'role_id'];
     }
 
     public function getDisplayName(): string
@@ -71,10 +76,16 @@ class User extends UserModel
         return (new User)->findOne(['id' => $id]);
     }
 
-    public function update()
+    public function update() : bool
     {
         $this->status = self::STATUS_ACTIVE;
         return parent::update();
+    }
+
+    public function getUserRole($userId)
+    {
+        $user = $this->findOne(['id' => $userId]);
+        return $user->role;
     }
 
 

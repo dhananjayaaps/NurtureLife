@@ -1,6 +1,9 @@
 <?php
 
-namespace app\core;
+namespace app\core\db;
+
+use app\core\Application;
+use app\core\Model;
 
 abstract class DbModel extends Model
 {
@@ -69,6 +72,11 @@ abstract class DbModel extends Model
     public function getId()
     {
         return $this->{$this->primaryKey()};
+    }
+
+    public function getRole(): int
+    {
+        return $this->role_id;
     }
 
 }

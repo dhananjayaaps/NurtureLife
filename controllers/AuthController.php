@@ -9,6 +9,7 @@ use app\core\Response;
 use app\core\Session;
 use app\models\LoginModel;
 use app\models\User;
+use app\models\UserRole;
 
 class AuthController extends Controller
 {

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $this->title ?></title>
     <link rel="stylesheet" href="./assets/styles/styles.css">
+    <link rel="stylesheet" href="./assets/styles/Form.css">
 </head>
 <body>
 <div class="headbar">

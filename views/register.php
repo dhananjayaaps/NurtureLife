@@ -1,6 +1,15 @@
 <?php
-/** @var $model \app\models\User **/
+/** @var $this app\core\view */
+
+use app\models\User;
+
+$this->title = 'Register';
 ?>
+
+<?php
+/** @var $model User **/
+?>
+
 
 <div class="form-container">
     <h2>Registration Form</h2>
