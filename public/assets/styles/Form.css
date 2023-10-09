@@ -8,18 +8,27 @@
     font-size: large;
     position: relative;
     padding-left: 30px;
+    min-height: 400px;
 }
 
 .form-container {
     background-color: rgba(255, 255, 255, 0.2);
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the content */
+    align-items: center; /* Horizontally center the content */
 }
-
 
 .form-group {
     margin-right: 20px;
     margin-bottom: 20px;
     width: 100%;
     max-width: 300px;
+}
+
+.form-content{
+    margin-left: 500px;
 }
 
 .label {
@@ -67,4 +76,7 @@
 
 .form-control.is-invalid {
     border: 1px solid #f44336; /* Red border for validation error */
+}
+html{
+    margin: 0;
 }

@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Request;
+use app\models\AddDoctor;
+use app\models\User;
 
 class SiteController extends \app\core\Controller
 {
@@ -15,6 +17,7 @@ class SiteController extends \app\core\Controller
                 return $this->render('home');
             }
             else if($userRole == 2){
+                $this->layout = 'admin';
                 return $this->render('admin');
             }
             else if ($userRole == 3){
@@ -40,9 +43,13 @@ class SiteController extends \app\core\Controller
     public function handleContact(Request $request)
     {
         $body = $request->getBody();
-        echo '<pre>';
-        var_dump($body);
-        echo '</pre>';
         return 'handling submitted data';
+    }
+
+    public function addDoctor(){
+        $addDoctorModel = new AddDoctor();
+        return $this->render('addDoctor',[
+            'model' => $addDoctorModel
+        ]);
     }
 }

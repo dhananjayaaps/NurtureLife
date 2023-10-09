@@ -34,4 +34,6 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 
 $app->router->get('/profile', [AuthController::class, 'profile']);
 
+$app->router->get('/addDoctor', [SiteController::class, 'addDoctor']);
+
 $app->run();

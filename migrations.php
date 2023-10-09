@@ -1,15 +1,18 @@
 <?php
+/**
+ * User: TheCodeholic
+ * Date: 7/10/2020
+ * Time: 8:21 AM
+ */
 
-require_once __DIR__ . '/vendor/autoload.php';
+use app\core\Application;
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+require_once __DIR__.'/vendor/autoload.php';
+$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-use app\controllers\AuthController;
-use app\core\Application;
-use app\controllers\SiteController;
-
 $config = [
+    'userClass' => \app\models\User::class,
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
@@ -19,5 +22,4 @@ $config = [
 
 $app = new Application(__DIR__, $config);
 
-$app->db->applyMigration();
-
+$app->db->applyMigrations();

@@ -1,0 +1,263 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--Primary, #1F2B6C);
+}
+
+.navbar a {
+    float: left;
+    display: flex;
+    text-align: center;
+    padding: 25px 25px;
+    text-decoration: none;
+    color: white;
+    font-family: Work Sans, serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.search-container {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    float: right;
+    justify-content: center;
+}
+
+.search-container input[type="text"] {
+    margin-top: 8px;
+    margin-right: 16px;
+    border: 1px solid black;
+    font-size: 17px;
+}
+
+.search-container button {
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background: #ddd;
+    color: black;
+}
+
+/* for the page */
+
+.content-navbar{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.left-navbar{
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+}
+
+.left-navbar img{
+    width: 200px;
+}
+
+.navigations{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.navigations img {
+    height: 40px;
+    width: auto;
+    filter: invert(90%);
+}
+
+.navigations .column a{
+    gap: 15px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    background-color: #1F2B6C;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    color: #ddd;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+ .content{
+    display: flex;
+    flex-direction: column;
+}
+
+.content .column{
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    gap: 30px;
+    padding-top: 30px;
+}
+
+.content canvas{
+    height: 200px;
+    width: auto;
+}
+
+.content .myPieChart{
+    height: 10px;
+}
+
+.quick-access{
+    display: flex;
+    flex-direction: row;
+    padding-top: 15px;
+    gap: 30px;
+    min-width: min-content;
+}
+
+.content .second-column .user-control{
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.user-control{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-control button{
+    background-color: #1F2B6C;
+    color: #FFFFFF;
+    padding: 30px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.notificaions{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.notificaions .notificaion{
+    display: flex;
+    flex-direction: row;
+    background-color: #4ef07c;
+    border-radius: 10px;
+    padding: 8px;
+    justify-content: center;
+}
+
+.notificaion .message-box{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.notificaion .title{
+    color: #870606;
+    font-weight: bold;
+}
+
+.notificaion img{
+    height: 60px;
+}
+
+.notificaion.warning{
+    background-color: #d9d61f;
+}
+
+.notificaion .message{
+    background-color: #4ef07c;
+}
+
+.notificaion.emergency{
+    background-color: #f0ad4e;
+}
+/* clinic module */
+.content .left-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.content .search-container{
+    padding-top: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px auto;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+/* Header row styles */
+th {
+    background-color: #1F2B6C;
+    color: #FFFFFF;
+    font-weight: 100;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    gap : 10px;
+}
+
+.action-button {
+    background-color: #0074D9;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: row;
+    gap : 10px;
+    min-width: 70px;
+    text-align: center;
+}
+
+.view-button {
+    background-color: #5cb85c;
+}
+
+.update-button {
+    background-color: #f0ad4e;
+}
+
+.remove-button {
+    background-color: #870606;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.page-button {
+    background-color: #0074D9;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 0 5px;
+}
