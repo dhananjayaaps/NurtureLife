@@ -52,4 +52,8 @@ class SiteController extends \app\core\Controller
             'model' => $addDoctorModel
         ]);
     }
+    public function clinics(){
+        $this->layout = 'admin';
+        return $this->render('clinics');
+    }
 }

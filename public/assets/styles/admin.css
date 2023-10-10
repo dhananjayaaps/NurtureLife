@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--Primary, #1F2B6C);
+    background: #1F2B6C;
 }
 
 .navbar a {

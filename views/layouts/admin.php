@@ -37,10 +37,10 @@
         <img src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
         <div class="navigations">
             <div class="column">
-                <a href="#"><img src="assets/images/icons/home.png" alt=""> Home</a>
+                <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
             </div>
             <div class="column">
-                <a href="#"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
+                <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
             </div>
             <div class="column">
                 <a href="#"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
