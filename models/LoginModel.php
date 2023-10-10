@@ -36,13 +36,4 @@ class LoginModel extends Model
         Application::$app->login($user);
         return true;
     }
-
-    public function labels(): array
-    {
-        return [
-            'email' => 'Your Email',
-            'password' => 'Password',
-        ];
-    }
-
 }

@@ -3,12 +3,166 @@
 
 use app\models\User;
 
-$this->title = 'Login';
+$this->title = 'Admin Dashboard';
 ?>
 
-<?php
-/** @var $model User **/
-?>
+    <div class="content">
+        <div class="column first-column">
+            <div class="lineChart">
+                Total Mothers: 450
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="lineChart">
+                Total Borns: 450
+                <canvas id="lineChart2"></canvas>
+            </div>
+            <div class="lineChart">
+                Total Registrations: 450
+                <canvas id="lineChart3"></canvas>
+            </div>
+        </div>
+        <div class="column second-column">
+            <div class="user-control">
+                User Distribution
+                <canvas id="myPieChart" width="300" height="300"></canvas>
+            </div>
+            <div class="quick-access">
+                <div class="user-control addButtons">
+                    <button class="addButton">Add a Clinic</button>
+                    <button class="addButton">Transfer a Doctor</button>
+                    <button class="addButton">Add a Doctor</button>
+                    <button class="addButton">Add a Midwife</button>
+                </div>
+                <div class="user-control addButtons">
+                    <button class="addButton">Restrict a User</button>
+                    <button class="addButton">Add an Admin</button>
+                    <button class="addButton">Transfer a Midwife</button>
+                    <button class="addButton">Add a Midwife</button>
+                </div>
+            </div>
 
+            <div class="notificaions">
+                <span style="font-size: 20px; font-weight: bold;">Notifications</span>
+                <div class="notificaion emergency">
+                    <div class="picture"><img src="assets/images/icons/user-colored.svg.png" alt=""></div>
+                    <div class="message-box">
+                        <div class="title">Emergency Allert</div>
+                        <div class="notification-content">
+                            Pressed the Emergency Elarm by Kamala Wijethunga
+                        </div>
+                    </div>
+                </div>
 
-<h1>Admin View</h1>
+                <div class="notificaion">
+                    <div class="picture"><img src="assets/images/icons/user-colored.svg.png" alt=""></div>
+                    <div class="message-box">
+                        <div class="title">Emergency Allert</div>
+                        <div class="notification-content">
+                            Pressed the Emergency Elarm by Kamala Wijethunga
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notificaion warning">
+                    <div class="picture"><img src="assets/images/icons/user-colored.svg.png" alt=""></div>
+                    <div class="message-box">
+                        <div class="title">Emergency Allert</div>
+                        <div class="notification-content">
+                            Pressed the Emergency Elarm by Kamala Wijethunga
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notificaion">
+                    <div class="picture"><img src="assets/images/icons/user-colored.svg.png" alt=""></div>
+                    <div class="message-box">
+                        <div class="title">Emergency Allert</div>
+                        <div class="notification-content">
+                            Pressed the Emergency Elarm by Kamala Wijethunga
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--Scripts for the chart development. That is hardcoded-->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // Sample data for the line chart
+    var data = {
+        labels: ["January", "February", "March", "April", "May"],
+        datasets: [{
+            label: "Daily New Borns",
+            borderColor: "#1F2B6C",
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            data: [65, 59, 80, 81, 56]
+        }]
+    };
+
+    var options = {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    };
+
+    var ctx = document.getElementById('lineChart').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: options
+    });
+
+    var ctx = document.getElementById('lineChart2').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: options
+    });
+
+    var ctx = document.getElementById('lineChart3').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: options
+    });
+
+    var ctxDoughnut = document.getElementById('myPieChart').getContext('2d');
+
+    var dataDoughnut = {
+        labels: ['Volunteers', 'Doctors', 'Midwives', 'Prenatal Mothers', 'Postnatal Mothers'],
+        datasets: [{
+            data: [20, 15, 10, 30, 25],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    var optionsDoughnut = {
+        responsive: false,
+    };
+
+    var myDoughnutChart = new Chart(ctxDoughnut, {
+        type: 'pie', //
+        data: dataDoughnut,
+        options: optionsDoughnut
+    });
+
+</script>

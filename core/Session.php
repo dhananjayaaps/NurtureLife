@@ -51,8 +51,6 @@ class Session
             }
         }
         $_SESSION[self::FLASH_KEY] = $flashMessages;
-
-        var_dump($_SESSION[self::FLASH_KEY]);
     }
 
     public function remove($key)
