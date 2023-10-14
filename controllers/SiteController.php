@@ -18,19 +18,19 @@ class SiteController extends \app\core\Controller
             }
             else if($userRole == 2){
                 $this->layout = 'admin';
-                return $this->render('admin');
+                return $this->render('admin/admin');
             }
             else if ($userRole == 3){
-                return $this->render('doctor');
+                return $this->render('doctor/doctor');
             }
             else if ($userRole == 4){
-                return $this->render('preMother');
+                return $this->render('preMother/preMother');
             }
             else if ($userRole == 5){
-                return $this->render('postMother');
+                return $this->render('postMother/postMother');
             }
             else if ($userRole == 6){
-                return $this->render('midwife');
+                return $this->render('midwife/midwife');
             }
         }
         return $this->render('home');
@@ -48,12 +48,12 @@ class SiteController extends \app\core\Controller
 
     public function addDoctor(){
         $addDoctorModel = new AddDoctor();
-        return $this->render('addDoctor',[
+        return $this->render('admin/addDoctor',[
             'model' => $addDoctorModel
         ]);
     }
     public function clinics(){
         $this->layout = 'admin';
-        return $this->render('clinics');
+        return $this->render('admin/clinics');
     }
 }
