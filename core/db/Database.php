@@ -19,7 +19,7 @@ class Database
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-    public function applyMigration()
+    public function applyMigrations()
     {
         $this->createMigrationsTable();
         $appliedMigrations = $this->getAppliedMigrations();
@@ -83,4 +83,5 @@ class Database
     {
         return $this->pdo->prepare($sql);
     }
+
 }

@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Request;
+use app\models\AddDoctor;
+use app\models\User;
 
 class SiteController extends \app\core\Controller
 {
@@ -15,19 +17,20 @@ class SiteController extends \app\core\Controller
                 return $this->render('home');
             }
             else if($userRole == 2){
-                return $this->render('admin');
+                $this->layout = 'admin';
+                return $this->render('admin/admin');
             }
             else if ($userRole == 3){
-                return $this->render('doctor');
+                return $this->render('doctor/doctor');
             }
             else if ($userRole == 4){
-                return $this->render('preMother');
+                return $this->render('preMother/preMother');
             }
             else if ($userRole == 5){
-                return $this->render('postMother');
+                return $this->render('postMother/postMother');
             }
             else if ($userRole == 6){
-                return $this->render('midwife');
+                return $this->render('midwife/midwife');
             }
         }
         return $this->render('home');
@@ -40,9 +43,17 @@ class SiteController extends \app\core\Controller
     public function handleContact(Request $request)
     {
         $body = $request->getBody();
-        echo '<pre>';
-        var_dump($body);
-        echo '</pre>';
         return 'handling submitted data';
+    }
+
+    public function addDoctor(){
+        $addDoctorModel = new AddDoctor();
+        return $this->render('admin/addDoctor',[
+            'model' => $addDoctorModel
+        ]);
+    }
+    public function clinics(){
+        $this->layout = 'admin';
+        return $this->render('admin/clinics');
     }
 }
