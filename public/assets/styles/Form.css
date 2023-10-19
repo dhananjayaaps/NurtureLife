@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .form-container {
     background-image: url("../images/mother-care-flip.png");
     background-size: cover;
@@ -77,6 +83,9 @@
 .form-control.is-invalid {
     border: 1px solid #f44336; /* Red border for validation error */
 }
-html{
-    margin: 0;
+
+.alert .alert-success{
+    background-color: #4ef07c;
+    padding: 20px 0 20px 20px;
+    font-size: 20px;
 }

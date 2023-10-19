@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .navbar{
     display: flex;
     justify-content: center;
@@ -58,6 +64,7 @@
 }
 
 .left-navbar{
+    padding-left: 10px;
     display: flex;
     flex-direction: column;
     width: min-content;
@@ -260,4 +267,9 @@ th {
     padding: 5px 10px;
     cursor: pointer;
     margin: 0 5px;
+}
+.alert .alert-success{
+    background-color: #4ef07c;
+    padding: 20px 0 20px 20px;
+    font-size: 20px;
 }
