@@ -1,3 +1,15 @@
+<?php
+/** @var $this app\core\view */
+
+use app\models\Clinic;
+
+$this->title = 'Clinics';
+?>
+
+<?php
+/** @var $model Clinic **/
+?>
+
 <div class="content">
     <div class="left-content">
         <div class="search-container">
@@ -22,6 +34,16 @@
             <!-- Pagination buttons will be added here -->
         </div>
     </div>
+    <div class="right-content">
+        <?php $form = \app\core\form\Form::begin('', "post")?>
+        <?php echo $form->field($model, 'name', 'Name')?>
+        <?php echo $form->field($model, 'district', 'District')?>
+        <?php echo $form->field($model, 'address', 'Address')?>
+        <?php echo $form->field($model, 'gn_units', 'GN Units')?>
+        <button type="submit" class="btn-submit">Submit</button>
+        <?php echo \app\core\form\Form::end()?>
+    </div>
+
 </div>
 <script>
     // Sample data - Hardcoded values

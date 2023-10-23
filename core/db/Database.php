@@ -11,7 +11,6 @@ class Database
     public \PDO $pdo;
     public function __construct(array $config)
     {
-        var_dump(config);
         $dsn = $config['dsn'] ?? '';
         $user = $config['user'] ?? '';
         $password = $config['password'] ?? '';
