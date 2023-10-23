@@ -39,6 +39,15 @@ class m0001_initial
             ";
         $db->pdo->exec($SQL);
 
+        $SQL3 = "INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
+                INSERT INTO roles (id, name) VALUES (2, 'ROLE_ADMIN');
+                INSERT INTO roles (id, name) VALUES (3, 'ROLE_DOCTOR');
+                INSERT INTO roles (id, name) VALUES (4, 'ROLE_PRE_MOTHER');
+                INSERT INTO roles (id, name) VALUES (5, 'ROLE_POST_MOTHER');
+                INSERT INTO roles (id, name) VALUES (6, 'ROLE_MIDWIFE');
+            ";
+        $db->pdo->exec($SQL3);
+
     }
 
     public function down()
