@@ -4,6 +4,7 @@ namespace app\core\db;
 
 use app\core\Application;
 use app\core\Model;
+use PDO;
 
 abstract class DbModel extends Model
 {
@@ -63,6 +64,30 @@ abstract class DbModel extends Model
        $statement->execute();
        return $statement->fetchObject(static::class);
    }
+
+    static public function findAll($modelClass, $where = [])
+    {
+        $tableName = (new $modelClass())->tableName();
+
+        $whereClause = '';
+
+        if (!empty($where)) {
+            $attributes = array_keys($where);
+            $whereClause = "WHERE " . implode(" AND ", array_map(fn($attr) => "$attr = :$attr", $attributes));
+        }
+
+        $sql = "SELECT * FROM $tableName $whereClause";
+
+        $statement = self::prepare($sql);
+
+        foreach ($where as $key => $item) {
+            $statement->bindValue(":$key", $item);
+        }
+
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_OBJ);
+    }
+
 
     public static function prepare($sql)
     {

@@ -9,6 +9,7 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\db\DbModel;
 
 class Clinic extends DbModel
@@ -51,6 +52,22 @@ class Clinic extends DbModel
             'gn_units' => [self::RULE_REQUIRED]
 
         ];
+    }
+
+    public function getClinics(): string
+    {
+        $clinicData = (new Clinic())->findAll(self::class);
+        $data = [];
+
+        foreach ($clinicData as $clinic) {
+            $data[] = [
+                'clinicID' => $clinic->id,
+                'name' => $clinic->name,
+                'totalMothers' => 150,
+                'totalMidwives' => 23
+            ];
+        }
+        return json_encode($data);
     }
 
     public function attributes(): array

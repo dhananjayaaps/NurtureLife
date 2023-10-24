@@ -1,6 +1,7 @@
 <?php
 /** @var $this app\core\view */
 
+use app\core\Application;
 use app\core\form\Form;
 use app\core\Model;
 use app\models\Clinic;
@@ -51,34 +52,7 @@ $this->title = 'Clinics';
 </div>
 <script>
     // Sample data - Hardcoded values
-    var data = [
-        { clinicID: 1, name: 'Maharagama', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 2, name: 'Nugegoda', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 2, name: 'Nugegoda', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 3, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 8, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 9, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 10, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        { clinicID: 11, name: 'Pannipitiya', totalMothers: 150, totalMidwives: 23 },
-        // Add more data objects
-    ];
+    var data = <?php echo $model->getClinics()?>;
 
     var itemsPerPage = 10;
     var currentPage = 1;
@@ -98,10 +72,10 @@ $this->title = 'Clinics';
                     <td>${row.totalMothers}</td>
                     <td>${row.totalMidwives}</td>
                     <td class="action-buttons">
-                        <button class="action-button view-button">View</button>
-                        <button class="action-button update-button">Update</button>
-                        <button class="action-button remove-button">Remove</button>
-                    </td>
+                    <button class="action-button view-button">View</button>
+                    <button class="action-button update-button">Update</button>
+                    <button class="action-button remove-button">Remove</button>
+      </td>
                 `;
             tableBody.appendChild(newRow);
         }
