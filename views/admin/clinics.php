@@ -1,16 +1,20 @@
 <?php
 /** @var $this app\core\view */
 
+use app\core\form\Form;
+use app\core\Model;
 use app\models\Clinic;
 
 $this->title = 'Clinics';
 ?>
-
+<!---->
 <?php
 /** @var $model Clinic **/
-?>
+//?>
 
-<div class="content">
+<link rel="stylesheet" href="./assets/styles/Form.css">
+
+<div class="clinics content">
     <div class="left-content">
         <div class="search-container">
             <input type="text" placeholder="Search Clinic...">
@@ -35,13 +39,13 @@ $this->title = 'Clinics';
         </div>
     </div>
     <div class="right-content">
-        <?php $form = \app\core\form\Form::begin('', "post")?>
+        <?php $form = Form::begin('', "post")?>
         <?php echo $form->field($model, 'name', 'Name')?>
         <?php echo $form->field($model, 'district', 'District')?>
         <?php echo $form->field($model, 'address', 'Address')?>
         <?php echo $form->field($model, 'gn_units', 'GN Units')?>
         <button type="submit" class="btn-submit">Submit</button>
-        <?php echo \app\core\form\Form::end()?>
+        <?php echo Form::end()?>
     </div>
 
 </div>
