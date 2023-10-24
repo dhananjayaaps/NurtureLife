@@ -192,7 +192,15 @@
 .notificaion.emergency{
     background-color: #f0ad4e;
 }
+
+
 /* clinic module */
+.clinics.content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .content .left-content{
     display: flex;
     flex-direction: column;
@@ -274,6 +282,68 @@ th {
     padding: 20px 0 20px 20px;
     font-size: 20px;
 }
+
+.clinics .right-content{
+    margin: auto;
+}
+
+/*reports page*/
+
+.report-types{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.content .second-column .report-type{
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.report-type{
+    display: flex;
+    flex-direction: column;
+}
+
+.report-type button{
+    background-color: #6652a4;
+    color: #FFFFFF;
+    padding: 30px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.side-window {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-window .date-fields{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.side-window .buttons{
+    display: flex;
+    flex-direction: row;
+    gap : 20px;
+}
+
+.side-window button{
+    width: 100px;
+    background-color: #1F2B6C;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+/*Media queries*/
 
 @media (max-width: 768px) {
     .left-navbar{

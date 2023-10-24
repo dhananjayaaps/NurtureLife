@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Register
+ * Class Clinic
  *
  * @author  Sineth Dhananjaya <dhananjayaaps@gmail.com>
  * @package app\models
@@ -10,14 +10,12 @@
 namespace app\models;
 
 use app\core\db\DbModel;
-use app\core\UserModel;
 
 class Clinic extends DbModel
 {
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_DELETED = 2;
-
 
     public string $name = '';
     public string $district ='';
@@ -35,6 +33,7 @@ class Clinic extends DbModel
     {
         return 'id';
     }
+
     public function save(): bool
     {
         $this->status = self::STATUS_ACTIVE;

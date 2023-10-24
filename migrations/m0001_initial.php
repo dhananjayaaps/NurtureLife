@@ -48,6 +48,15 @@ class m0001_initial
             ";
         $db->pdo->exec($SQL3);
 
+        $SQL4 = "CREATE TABLE your_table_name (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    name VARCHAR(255) NOT NULL,
+                    district VARCHAR(255),
+                    address VARCHAR(255),
+                    gn_units INT);
+                ";
+        $db->pdo->exec($SQL4);
+
     }
 
     public function down()
