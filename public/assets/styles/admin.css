@@ -401,7 +401,7 @@ th {
     }
 }
 
-/*for check*/
+/*for drop down profile*/
 
 .action {
     position: fixed;
@@ -448,7 +448,6 @@ th {
     opacity: 1;
 }
 
-
 .action .menu::before {
     content: "";
     position: absolute;
@@ -467,18 +466,19 @@ th {
     padding: 20px 0;
     font-weight: 500;
     color: #555;
+    text-transform: capitalize;
     line-height: 1.5em;
 }
 
 .action .menu h3 span {
     font-size: 14px;
     color: #cecece;
+    text-transform: capitalize;
     font-weight: 300;
 }
 
 .action .menu ul li {
     list-style: none;
-    padding: 16px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
