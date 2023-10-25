@@ -11,6 +11,7 @@ use app\core\Application;
 use app\core\Request;
 use app\models\AddDoctor;
 use app\models\Clinic;
+use app\models\UserRoles;
 
 class AdminController extends \app\core\Controller
 {
@@ -36,7 +37,6 @@ class AdminController extends \app\core\Controller
             }
         }
         else if ($request->isGet()) {
-            $clinic = new Clinic();
             $this->layout = 'admin';
         }
         return $this->render('admin/clinics', [

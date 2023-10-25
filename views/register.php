@@ -25,6 +25,3 @@ $this->title = 'Register';
         <?php echo \app\core\form\Form::end()?>
     </div>
 </div>
-
-
-

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Request;
+use app\core\Response;
 use app\models\AddDoctor;
 use app\models\User;
 
@@ -51,6 +52,21 @@ class SiteController extends \app\core\Controller
         return $this->render('admin/addDoctor',[
             'model' => $addDoctorModel
         ]);
+    }
+
+    public function changeRole(Request $request, Response $response): void
+    {
+        var_dump($request->getBody());
+        return;
+        $userModel = new User();
+        $userModel->loadData($request->getBody());
+        if($userModel->changeRole()){
+            Application::$app->session->setFlash('success', 'Role changed successfully');
+            $response->redirect('/');
+        }
+        else{
+            $response->redirect('/logout');
+        }
     }
 
 }

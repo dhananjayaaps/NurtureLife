@@ -80,17 +80,30 @@ class User extends UserModel
         return (new User)->findOne(['id' => $id]);
     }
 
-    public function update() : bool
-    {
-        $this->status = self::STATUS_ACTIVE;
-        return parent::update();
-    }
-
     public function getUserRole($userId)
     {
         $user = $this->findOne(['id' => $userId]);
         return $user->role;
     }
 
+    public function getRole(): int
+    {
+        return $this->role_id;
+    }
+
+    public function getRoleName(): string
+    {
+        $roleNames = ['Volunteer','Admin','Doctor','Pre Mother','Post Mother','Midwife'];
+        return $roleNames[$this->role_id-1];
+    }
+
+    public function changeRole()
+    {
+        $validRole = (new UserRoles)->findOne(['user_id' => $this->getId(), '$role_id' => $this->getRole()]);
+        if($validRole && $this->update()){
+            return true;
+        }
+        return false;
+    }
 
 }

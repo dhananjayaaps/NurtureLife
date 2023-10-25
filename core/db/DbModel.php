@@ -99,9 +99,4 @@ abstract class DbModel extends Model
         return $this->{$this->primaryKey()};
     }
 
-    public function getRole(): int
-    {
-        return $this->role_id;
-    }
-
 }
