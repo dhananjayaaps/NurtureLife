@@ -42,4 +42,6 @@ $app->router->post('/clinics', [\app\controllers\AdminController\AdminController
 $app->router->get('/reports', [\app\controllers\AdminController\AdminController::class, 'reports']);
 $app->router->post('/reports', [\app\controllers\AdminController\AdminController::class, 'reports']);
 
+$app->router->post('/changeRole', [\app\controllers\SiteController::class, 'changeRole']);
+
 $app->run();
