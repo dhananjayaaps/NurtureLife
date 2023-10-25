@@ -34,4 +34,14 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 
 $app->router->get('/profile', [AuthController::class, 'profile']);
 
+$app->router->get('/addDoctor', [SiteController::class, 'addDoctor']);
+
+$app->router->get('/clinics', [\app\controllers\AdminController\AdminController::class, 'clinics']);
+$app->router->post('/clinics', [\app\controllers\AdminController\AdminController::class, 'clinics']);
+
+$app->router->get('/reports', [\app\controllers\AdminController\AdminController::class, 'reports']);
+$app->router->post('/reports', [\app\controllers\AdminController\AdminController::class, 'reports']);
+
+$app->router->post('/changeRole', [\app\controllers\SiteController::class, 'changeRole']);
+
 $app->run();

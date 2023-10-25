@@ -5,6 +5,7 @@ namespace app\core;
 
 use app\core\db\Database;
 use app\core\db\DbModel;
+use app\models\UserRoles;
 
 class Application
 {
@@ -21,6 +22,7 @@ class Application
     public ?DbModel $user;
     public ? Controller $controller = null;
     public View $view;
+    public UserRoles $userRoles;
 
     public static function isGuest()
     {
@@ -47,6 +49,7 @@ class Application
         $this->router = new Router($this->request, $this->response);
         $this->session = new Session();
         $this->view = new View();
+        $this->userRoles = new UserRoles();
 
         $this->db = new Database($config['db']);
 
@@ -68,7 +71,7 @@ class Application
             $content = $this->router->resolve();
             echo $content;
         } catch (\Exception $e){
-            $this->response->setStatusCode($e->getCode());
+//            $this->response->setStatusCode($e->getCode());
             echo $this->view->renderView('_error',[
                 'exception' => $e
             ]);

@@ -26,6 +26,7 @@ class User extends UserModel
     public string $firstname = '';
     public string $lastname ='';
     public string $email = '';
+    public string $nic = '';
     public int $status = self::STATUS_INACTIVE;
     public string $password = '';
     public int $role_id;
@@ -56,6 +57,9 @@ class User extends UserModel
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [
                 self::RULE_UNIQUE ,'class' => self::class
             ]],
+            'nic' => [self::RULE_REQUIRED,[self::RULE_MIN,'min' => 10],[self::RULE_MAX,'max' => 12],[
+                self::RULE_UNIQUE ,'class' => self::class
+            ]],
             'password' => [self::RULE_REQUIRED,[self::RULE_MIN,'min' => 8],[self::RULE_MAX,'max' => 24]],
             'confirm_password' => [self::RULE_REQUIRED,[self::RULE_MATCH,'match' => 'password']]
         ];
@@ -63,7 +67,7 @@ class User extends UserModel
 
     public function attributes(): array
     {
-        return ['firstname','lastname','email','password', 'status', 'role_id'];
+        return ['firstname','lastname','email','password','nic', 'status', 'role_id'];
     }
 
     public function getDisplayName(): string
@@ -76,17 +80,30 @@ class User extends UserModel
         return (new User)->findOne(['id' => $id]);
     }
 
-    public function update() : bool
-    {
-        $this->status = self::STATUS_ACTIVE;
-        return parent::update();
-    }
-
     public function getUserRole($userId)
     {
         $user = $this->findOne(['id' => $userId]);
         return $user->role;
     }
 
+    public function getRole(): int
+    {
+        return $this->role_id;
+    }
+
+    public function getRoleName(): string
+    {
+        $roleNames = ['Volunteer','Admin','Doctor','Pre Mother','Post Mother','Midwife'];
+        return $roleNames[$this->role_id-1];
+    }
+
+    public function changeRole()
+    {
+        $validRole = (new UserRoles)->findOne(['user_id' => $this->getId(), '$role_id' => $this->getRole()]);
+        if($validRole && $this->update()){
+            return true;
+        }
+        return false;
+    }
 
 }
