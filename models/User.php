@@ -9,6 +9,7 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\UserModel;
 
 class User extends UserModel
@@ -77,12 +78,12 @@ class User extends UserModel
 
     public function getUserData($id)
     {
-        return (new User)->findOne(['id' => $id]);
+        return (new User)->findOne(User::class, ['id' => $id]);
     }
 
     public function getUserRole($userId)
     {
-        $user = $this->findOne(['id' => $userId]);
+        $user = $this->findOne(User::class, ['id' => $userId]);
         return $user->role;
     }
 
@@ -97,11 +98,12 @@ class User extends UserModel
         return $roleNames[$this->role_id-1];
     }
 
-    public function changeRole()
+    public function changeRole($newRoleId): bool
     {
-        $validRole = (new UserRoles)->findOne(['user_id' => $this->getId(), '$role_id' => $this->getRole()]);
-        if($validRole && $this->update()){
-            return true;
+        $validRole = (new UserRoles)->findOne(UserRoles::class, ['user_id' => $this->getId(), 'role_id' => $newRoleId]);
+        if($validRole){
+            $this->role_id = $newRoleId;
+            return($this->update());
         }
         return false;
     }

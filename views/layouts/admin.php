@@ -30,6 +30,9 @@
             <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
                 <i class="fa fa-caret-down"></i>
             </button>
+            <form id="roleChangeForm" method="POST" action="/changeRole">
+                <input type="hidden" name="role_id" id="selectedRoleInput" value="">
+            </form>
             <div class="dropdown-content" id="dropdown-content">
                 <!-- Roles will be displayed here -->
             </div>
@@ -118,12 +121,13 @@
     }
 </script>
 
-<!-- Update the roles display code as follows -->
 <script>
     const userRoles = <?php echo Application::$app->userRoles->getRoles()?>;
     const rolesNames = ["Normal User", "Volunteer", "Admin", "Doctor", "Midwife", "Mother"];
 
     const userRolesList = document.getElementById('dropdown-content');
+    const roleChangeForm = document.getElementById('roleChangeForm');
+    const selectedRoleInput = document.getElementById('selectedRoleInput');
 
     userRoles.forEach((role) => {
         const anchor = document.createElement('a');
@@ -135,29 +139,12 @@
         anchor.addEventListener('click', (event) => {
             event.preventDefault();
             const selectedRole = event.target.getAttribute('data-role');
-            console.log("Role is", selectedRole)
-            sendRoleChangeRequest(selectedRole);
+            console.log("Role is", selectedRole);
+
+            selectedRoleInput.value = selectedRole;
+
+            roleChangeForm.submit();
         });
     });
-
-    function sendRoleChangeRequest(selectedRole) {
-        fetch('/changeRole', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ role_id: selectedRole }),
-        })
-            .then((response) => {
-                if (response.ok) {
-                    console.log('Role change successful');
-                } else {
-                    console.error('Role change failed');
-                }
-            })
-            .catch((error) => {
-                console.error('Network error:', error);
-            });
-    }
 </script>
 

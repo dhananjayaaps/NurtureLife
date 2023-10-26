@@ -87,7 +87,7 @@ class AuthController extends Controller
             ]);
         }
 
-        $user->loadData($user->findOne(['id' => Application::$app->user->getId()]));
+        $user->loadData($user->findOne(User::class , ['id' => Application::$app->user->getId()]));
         return $this->render('profile',[
         'model' => $user
         ]);

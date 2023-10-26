@@ -6,6 +6,7 @@ namespace app\core;
 use app\core\db\Database;
 use app\core\db\DbModel;
 use app\models\UserRoles;
+use app\models\User;
 
 class Application
 {
@@ -58,7 +59,7 @@ class Application
         {
             $userModel = new $this->userClass();
             $primaryKey = $userModel->primaryKey();
-            $this->user = $this->userClass::findOne([$primaryKey => $primaryValue]);
+            $this->user = $this->userClass::findOne(User::class, [$primaryKey => $primaryValue]);
         }
         else{
             $this->user = null;
