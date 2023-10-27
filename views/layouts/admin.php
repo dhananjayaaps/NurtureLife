@@ -131,7 +131,6 @@
 
     userRoles.forEach((role) => {
         const anchor = document.createElement('a');
-        anchor.href = '#';
         anchor.textContent = rolesNames[role];
         anchor.setAttribute('data-role', role);
         userRolesList.appendChild(anchor);
@@ -147,4 +146,3 @@
         });
     });
 </script>
-

@@ -41,48 +41,51 @@ $this->title = 'Admin Dashboard';
                 </div>
             </div>
 
-            <div class="notificaions">
-                <span style="font-size: 20px; font-weight: bold;">Notifications</span>
-                <div class="notificaion emergency">
-                    <div class="picture"><img src="assets/images/icons/user-colored.svg.png" alt=""></div>
-                    <div class="message-box">
-                        <div class="title">Emergency Allert</div>
-                        <div class="notification-content">
-                            Pressed the Emergency Elarm by Kamala Wijethunga
-                        </div>
+            <div class="shadowBox">
+                <div class="notification-bar">
+                    <div class="notifications">
+                        <span style="font-size: 20px; font-weight: bold;">Notifications</span>
                     </div>
-                </div>
-
-                <div class="notificaion">
-                    <div class="picture"><img src="assets/images/icons/user-colored.svg.png" alt=""></div>
-                    <div class="message-box">
-                        <div class="title">Emergency Allert</div>
-                        <div class="notification-content">
-                            Pressed the Emergency Elarm by Kamala Wijethunga
+                    <div class="myBox">
+                        <div class="notification emergency">
+                            <div class="message-box">
+                                <div class="title">Emergency Allert</div>
+                                <div class="notification-content">
+                                    Pressed the Emergency Elarm by Kamala Wijethunga
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="notificaion warning">
-                    <div class="picture"><img src="assets/images/icons/user-colored.svg.png" alt=""></div>
-                    <div class="message-box">
-                        <div class="title">Emergency Allert</div>
-                        <div class="notification-content">
-                            Pressed the Emergency Elarm by Kamala Wijethunga
+                        <div class="notification">
+                            <div class="message-box">
+                                <div class="title">Emergency Allert</div>
+                                <div class="notification-content">
+                                    Pressed the Emergency Elarm by Kamala Wijethunga
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="notificaion">
-                    <div class="picture"><img src="assets/images/icons/user-colored.svg.png" alt=""></div>
-                    <div class="message-box">
-                        <div class="title">Emergency Allert</div>
-                        <div class="notification-content">
-                            Pressed the Emergency Elarm by Kamala Wijethunga
+                        <div class="notification warning">
+                            <div class="message-box">
+                                <div class="title">Emergency Allert</div>
+                                <div class="notification-content">
+                                    Pressed the Emergency Elarm by Kamala Wijethunga
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="notification">
+                            <div class="message-box">
+                                <div class="title">Emergency Allert</div>
+                                <div class="notification-content">
+                                    Pressed the Emergency Elarm by Kamala Wijethunga
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 

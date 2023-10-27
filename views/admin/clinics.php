@@ -14,46 +14,52 @@ $this->title = 'Clinics';
 //?>
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
+<link rel="stylesheet" href="./assets/styles/table.css">
 
 <div class="clinics content">
-    <div class="left-content">
-        <div class="search-container">
-            <input type="text" placeholder="Search Clinic...">
-            <button type="submit">Search</button>
-        </div>
-        <table class="table-data">
-            <thead>
-            <tr>
-                <th>Clinic ID</th>
-                <th>Name</th>
-                <th>Total Mothers</th>
-                <th>Total Midwives</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody id="tableBody">
-            <!-- Displayed rows will be added here -->
-            </tbody>
-        </table>
-        <div class="pagination" id="pagination">
-            <!-- Pagination buttons will be added here -->
+    <div class="shadowBox">
+        <div class="left-content">
+            <div class="search-container">
+                <input type="text" placeholder="Search Clinic...">
+                <button type="submit">Search</button>
+            </div>
+            <table class="table-data">
+                <thead>
+                <tr>
+                    <th>Clinic ID</th>
+                    <th>Name</th>
+                    <th>Total Mothers</th>
+                    <th>Total Midwives</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody">
+                <!-- Displayed rows will be added here -->
+                </tbody>
+            </table>
+            <div class="pagination" id="pagination">
+                <!-- Pagination buttons will be added here -->
+            </div>
         </div>
     </div>
     <div class="right-content">
-        <?php $form = Form::begin('', "post")?>
-        <?php echo $form->field($model, 'name', 'Name')?>
-        <?php echo $form->field($model, 'district', 'District')?>
-        <?php echo $form->field($model, 'address', 'Address')?>
-        <?php echo $form->field($model, 'gn_units', 'GN Units')?>
-        <button type="submit" class="btn-submit">Submit</button>
-        <?php echo Form::end()?>
+        <div class="shadowBox">
+            <h2>Add a New Clinic <br/><br/></h2>
+            <?php $form = Form::begin('', "post")?>
+            <?php echo $form->field($model, 'name', 'Name')?>
+            <?php echo $form->field($model, 'district', 'District')?>
+            <?php echo $form->field($model, 'address', 'Address')?>
+            <?php echo $form->field($model, 'gn_units', 'GN Units')?>
+            <button type="submit" class="btn-submit">Submit</button>
+            <?php echo Form::end()?>
+        </div>
     </div>
 
 </div>
-<script>
-    // Sample data - Hardcoded values
-    var data = <?php echo $model->getClinics()?>;
 
+
+<script>
+    var data = <?php echo $model->getClinics()?>;
     var itemsPerPage = 10;
     var currentPage = 1;
 
@@ -72,10 +78,8 @@ $this->title = 'Clinics';
                     <td>${row.totalMothers}</td>
                     <td>${row.totalMidwives}</td>
                     <td class="action-buttons">
-                    <button class="action-button view-button">View</button>
                     <button class="action-button update-button">Update</button>
                     <button class="action-button remove-button">Remove</button>
-      </td>
                 `;
             tableBody.appendChild(newRow);
         }

@@ -18,6 +18,7 @@ body{
     justify-content: center;
     align-items: center;
     background: #1F2B6C;
+    width: 100%;
 }
 
 .navbar a {
@@ -317,7 +318,7 @@ body{
     transition: 0.5s;
     visibility: hidden;
     opacity: 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add the box-shadow property here */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .action .menu.active {
@@ -384,3 +385,27 @@ body{
 .action .menu ul li:hover a {
     color: #ff5d94;
 }
+
+/*Form Box Styles*/
+
+.shadowBox {
+    padding: 40px;
+    margin: auto;
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /*height: 100%;*/
+}
+
+.shadowBox form{
+    text-align: left;
+}
+
+.shadowBox .btn-submit{
+    text-align: center !important;
+}
+
