@@ -56,11 +56,12 @@ class SiteController extends \app\core\Controller
 
     public function changeRole(Request $request, Response $response): void
     {
-        var_dump($request->getBody());
-        return;
-        $userModel = new User();
-        $userModel->loadData($request->getBody());
-        if($userModel->changeRole()){
+        var_dump($request->getBody()['role_id']);
+        var_dump(Application::$app->user->getId());
+
+        $userModel = Application::$app->user;
+//        $userModel->loadData($request->getBody());
+        if($userModel->changeRole($request->getBody()['role_id'])){
             Application::$app->session->setFlash('success', 'Role changed successfully');
             $response->redirect('/');
         }
