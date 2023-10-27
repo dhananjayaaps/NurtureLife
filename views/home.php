@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="./assets/styles/UserHome.css">
+
 <div class="image-container">
     <div class="BackgroundText">
         <div class="small-content">Caring for Life</div>

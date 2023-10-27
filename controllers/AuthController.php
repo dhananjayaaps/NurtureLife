@@ -10,6 +10,7 @@ use app\core\Session;
 use app\models\LoginModel;
 use app\models\User;
 use app\models\UserRole;
+use app\models\UserRoles;
 
 class AuthController extends Controller
 {
@@ -48,6 +49,10 @@ class AuthController extends Controller
             $user->loadData($request->getBody());
 
             if ($user->validate() && $user->save()) {
+                if ($user->role_id == User::ROLE_USER) {
+                    $userRole = new UserRoles(User::ROLE_USER);
+                    $userRole->saveByEmail($user->email);
+                }
                 Application::$app->session->setFlash('success', 'Thanks for the registering');
                 Application::$app->response->redirect('/');
                 exit;
