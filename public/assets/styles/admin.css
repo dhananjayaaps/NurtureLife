@@ -1,6 +1,8 @@
 .content{
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
+    min-height: min-content;
 }
 
 .content .column{
@@ -49,46 +51,55 @@
     cursor: pointer;
 }
 
-.notificaions{
+.notification-bar{
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
 }
 
-.notificaions .notificaion{
+.notifications{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notifications .notification{
     display: flex;
     flex-direction: row;
-    background-color: #4ef07c;
+    background-color: #0036a2;
     border-radius: 10px;
     padding: 8px;
     justify-content: center;
 }
 
-.notificaion .message-box{
+.notification .message-box{
     display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #dce6ff;
     flex-direction: column;
     gap: 5px;
 }
 
-.notificaion .title{
+.notification .title{
     color: #870606;
     font-weight: bold;
 }
 
-.notificaion img{
+.notification img{
     height: 60px;
 }
 
-.notificaion.warning{
-    background-color: #d9d61f;
+.notification.warning{
+    /*background-color: #d9d61f;*/
 }
 
-.notificaion .message{
-    background-color: #4ef07c;
+.notification .message{
+    /*background-color: #4ef07c;*/
 }
 
-.notificaion.emergency{
-    background-color: #f0ad4e;
+.notification.emergency{
+    /*background-color: #f0ad4e;*/
 }
 
 
@@ -96,86 +107,30 @@
 .clinics.content{
     display: flex;
     flex-direction: row;
+    gap: 20px;
+    flex: 80%;
     flex-wrap: wrap;
 }
 
 .content .left-content{
     display: flex;
+    flex: 40%;
     flex-direction: column;
     gap: 20px;
+}
+
+.content .right-content{
+    display: flex;
+    flex: 40%;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
 }
 
 .content .search-container{
     padding-top: 20px;
 }
 
-table {
-    border-collapse: collapse;
-    width: 80%;
-    margin: 20px auto;
-}
-
-th, td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-/* Header row styles */
-th {
-    background-color: #1F2B6C;
-    color: #FFFFFF;
-    font-weight: 100;
-}
-
-.action-buttons {
-    display: flex;
-    flex-direction: row;
-    gap : 10px;
-    height: auto;
-}
-
-.action-button {
-    background-color: #0074D9;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-right: 5px;
-    display: flex;
-    flex-direction: row;
-    gap : 10px;
-    min-width: 70px;
-    text-align: center;
-}
-
-.view-button {
-    background-color: #5cb85c;
-}
-
-.update-button {
-    background-color: #f0ad4e;
-}
-
-.remove-button {
-    background-color: #870606;
-}
-
-.pagination {
-    display: flex;
-    justify-content: center;
-}
-
-.page-button {
-    background-color: #0074D9;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin: 0 5px;
-}
 .alert .alert-success{
     background-color: #4ef07c;
     padding: 20px 0 20px 20px;
@@ -240,6 +195,50 @@ th {
     background-color: #1F2B6C;
     color: #FFFFFF;
     border-radius: 10px;
+}
+
+/* scrollable box */
+
+.myBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /*width: 550px;*/
+    height: 200px;
+    overflow:auto;
+    padding:2%;
+    align-items: flex-start;
+    text-align: left;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    border: 1px solid #1F2B6C;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1F2B6C;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1F2B6C;
+}
+
+.clinics.content .shadowBox{
+    height: 100%;
+}
+
+.action {
+    position: absolute;
+    padding-left: 30px;
+    top: 10px;
+    right: 40px;
 }
 
 /*Media queries*/
