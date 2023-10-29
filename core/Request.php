@@ -29,6 +29,11 @@ class Request
         return $this->method() === 'post';
     }
 
+    public function isPut()
+    {
+        return $this->method() === 'put';
+    }
+
     public function getBody(){
         $body = [];
         if($this->method() === 'get'){
@@ -41,6 +46,16 @@ class Request
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
+        if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+            $input = file_get_contents('php://input');
+            $body = json_decode($input, true);
+
+            if ($body === null) {
+                http_response_code(400);
+                echo json_encode(array("message" => "Invalid JSON data"));
+            }
+        }
+
         return $body;
     }
 

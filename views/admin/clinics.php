@@ -11,10 +11,51 @@ $this->title = 'Clinics';
 <!---->
 <?php
 /** @var $model Clinic **/
+/** @var $modelUpdate Clinic **/
 //?>
+
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
+
+
+<div id="myPopup" class="popup">
+    <div class="popup-content">
+        <h1 style="color: rgb(0, 15, 128);">Update Clinic Details<br/><br/></h1>
+        <form action="">
+
+            <div class="form-group">
+                <label>Clinic ID</label>
+                <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control ">
+                <div class="invalid-feedback">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>New Name</label>
+                <input type="text" id="UpdateName" name="UpdateName" value=""  class="form-control ">
+                <div class="invalid-feedback">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>New Address</label>
+                <input type="text" id="UpdateAddress" name="UpdateAddress" value=""  class="form-control ">
+                <div class="invalid-feedback">
+                </div>
+            </div>
+        </form>
+        <div class="buttonRow">
+            <button type="submit" id="updateButton" class="btn-submit">
+                Update
+            </button>
+            <button id="closePopup" class="btn-submit" style="background-color: brown;">
+                Close
+            </button>
+        </div>
+    </div>
+    <br>
+</div>
 
 <div class="clinics content">
     <div class="shadowBox">
@@ -78,7 +119,7 @@ $this->title = 'Clinics';
                     <td>${row.totalMothers}</td>
                     <td>${row.totalMidwives}</td>
                     <td class="action-buttons">
-                    <button class="action-button update-button">Update</button>
+                    <button id="showPopUp" onclick="UpdatePopUp(${row.clinicID})" class="action-button update-button">Update</button>
                     <button class="action-button remove-button">Remove</button>
                 `;
             tableBody.appendChild(newRow);
@@ -107,3 +148,116 @@ $this->title = 'Clinics';
     displayPagination();
 </script>
 
+<script>
+    var myPopup = document.getElementById('myPopup');
+    var closeButton = document.getElementById('closePopup');
+    var popupButtonContainer = document.querySelector('.clinics.content');
+
+    popupButtonContainer.addEventListener("click", function (event) {
+        if (event.target.id === 'showPopUp') {
+            myPopup.classList.add("show");
+        }
+    });
+
+    closeButton.addEventListener("click", function () {
+        myPopup.classList.remove("show");
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target == myPopup) {
+            myPopup.classList.remove("show");
+        }
+    });
+</script>
+
+<script>
+    function getClinicDetails(id) {
+        const url = `/getClinicDetails?id=${id}`;
+
+        return fetch(url)
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            });
+    }
+
+    function UpdatePopUp(ClinicId){
+
+        var labels = document.querySelectorAll('form label');
+
+        getClinicDetails(ClinicId)
+            .then((data) => {
+                var inputFieldId, inputFieldName, inputFieldAddress;
+                for (var i = 0; i < labels.length; i++) {
+                    if (labels[i].textContent === 'Clinic ID') {
+                        inputFieldId = labels[i].nextElementSibling;
+                    }
+                    else if (labels[i].textContent === 'New Name') {
+                        inputFieldName = labels[i].nextElementSibling;
+                    }
+                    else if (labels[i].textContent === 'New Address') {
+                        inputFieldAddress = labels[i].nextElementSibling;
+                        break;
+                    }
+                }
+
+                if (inputFieldId) {
+                    inputFieldId.value = ClinicId;
+                    inputFieldId.disabled = true;
+                }
+                if (inputFieldName) {
+                    inputFieldName.value = data.name;
+                }
+                if (inputFieldName) {
+                    inputFieldAddress.value = data.address;
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+</script>
+
+<script>
+    document.getElementById('updateButton').addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const id = document.querySelector('input[name="UpdateId"]').value;
+        const name = document.querySelector('input[name="UpdateName"]').value;
+        const address = document.querySelector('input[name="UpdateAddress"]').value;
+
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('name', name);
+        formData.append('address', address);
+
+        const url = '/clinicsUpdate';
+
+// Send a POST request using the Fetch API
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Request was successful, handle the response
+                    return response.text();
+                } else {
+                    // Request failed, handle the error
+                    throw new Error('Request failed');
+                }
+            })
+            .then(responseData => {
+                // Handle the response data here
+                console.log(responseData);
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the fetch
+                console.error(error);
+            });
+    });
+
+</script>
