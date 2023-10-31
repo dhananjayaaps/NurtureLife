@@ -54,26 +54,37 @@ class AdminController extends \app\core\Controller
         ]);
     }
 
-    public function clinicsUpdate(Request $request)
+    public function clinicsUpdate(Request $request): false|string
     {
-        $clinic = new Clinic();
+        $clinic = (new Clinic())->getAClinic($request->getBody()['id']);
         $this->setLayout('admin');
         $clinic->loadData($request->getBody());
         $clinic->validate();
         if ($clinic->validate()) {
-            // Data is valid, you can perform further actions here
-
-            // Send a success response
+            $clinic->update();
             header('Content-Type: application/json');
             http_response_code(200);
-            echo json_encode(['message' => 'Data updated successfully']);
+            return json_encode(['message' => 'Data updated successfully']);
         } else {
+            header('Content-Type: application/json');
+            http_response_code(400);
+            return json_encode(['message' => 'Validation failed', 'errors' => $clinic->getErrorMessages()]);
+        }
+    }
 
+    public function clinicDelete(Request $request): false|string
+    {
+        $clinic = new Clinic();
+        $clinic->id = $request->getBody()['id'];
+        if ($clinic->delete()) {
             header('Content-Type: application/json');
             http_response_code(200);
-            echo json_encode(['message' => 'Validation failed', 'errors' => $clinic->errorMessages()]);
+            return json_encode(['message' => 'Data successfully deleted']);
+        } else {
+            header('Content-Type: application/json');
+            http_response_code(400);
+            return json_encode(['message' => 'Request Failed', 'errors' => $clinic->getErrorMessages()]);
         }
-
     }
 
     public function getClinicDetails(Request $request): string

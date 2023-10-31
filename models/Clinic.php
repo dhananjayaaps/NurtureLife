@@ -85,6 +85,11 @@ class Clinic extends DbModel
         return json_encode($data);
     }
 
+    public function getAClinic($id)
+    {
+        return (new Clinic())->findOne(self::class, ['id' => $id]);
+    }
+
     public function attributes(): array
     {
         return ['name','district','address','gn_units'];
@@ -94,6 +99,11 @@ class Clinic extends DbModel
     {
         $this->status = self::STATUS_ACTIVE;
         return parent::update();
+    }
+
+    public function getErrorMessages(): array
+    {
+        return $this->errors;
     }
 
 }
