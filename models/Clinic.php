@@ -22,7 +22,6 @@ class Clinic extends DbModel
     public string $name = '';
     public string $district ='';
     public string $address = '';
-    public int $gn_units = 0;
 
     public int $status = self::STATUS_INACTIVE;
 
@@ -50,8 +49,6 @@ class Clinic extends DbModel
             ]],
             'district' => [self::RULE_REQUIRED],
             'address' => [self::RULE_REQUIRED ],
-            'gn_units' => [self::RULE_REQUIRED]
-
         ];
     }
 
@@ -92,18 +89,13 @@ class Clinic extends DbModel
 
     public function attributes(): array
     {
-        return ['name','district','address','gn_units'];
+        return ['name','district','address'];
     }
 
     public function update() : bool
     {
         $this->status = self::STATUS_ACTIVE;
         return parent::update();
-    }
-
-    public function getErrorMessages(): array
-    {
-        return $this->errors;
     }
 
 }

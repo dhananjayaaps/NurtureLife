@@ -47,13 +47,6 @@ class SiteController extends \app\core\Controller
         return 'handling submitted data';
     }
 
-    public function addDoctor(){
-        $addDoctorModel = new AddDoctor();
-        return $this->render('admin/addDoctor',[
-            'model' => $addDoctorModel
-        ]);
-    }
-
     public function changeRole(Request $request, Response $response): void
     {
         var_dump($request->getBody()['role_id']);

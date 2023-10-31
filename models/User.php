@@ -108,4 +108,9 @@ class User extends UserModel
         return false;
     }
 
+    public function getUserByNIC($nic)
+    {
+        return (new User)->findOne(User::class, ['nic' => $nic]);
+    }
+
 }
