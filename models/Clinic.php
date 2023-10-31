@@ -17,6 +17,7 @@ class Clinic extends DbModel
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_DELETED = 2;
+    public string $id = '';
 
     public string $name = '';
     public string $district ='';
@@ -67,6 +68,20 @@ class Clinic extends DbModel
                 'totalMidwives' => 23
             ];
         }
+        return json_encode($data);
+    }
+
+    public function getClinicById($ClinicId): string
+    {
+        $this->id = $ClinicId;
+        $clinicData = (new Clinic())->findOne(self::class, ['id' => $ClinicId]);
+
+        $data = [
+            'clinicID' => $clinicData->id,
+            'name' => $clinicData->name,
+            'district' => $clinicData->district,
+            'address' => $clinicData->address
+        ];
         return json_encode($data);
     }
 

@@ -25,6 +25,7 @@ class AdminController extends \app\core\Controller
     public function clinics(Request $request): array|false|string
     {
         $clinic = new Clinic();
+        $clinic2 = new Clinic();
         if ($request->isPost()) {
 
             $this->setLayout('admin');
@@ -39,11 +40,48 @@ class AdminController extends \app\core\Controller
         else if ($request->isGet()) {
             $this->layout = 'admin';
         }
+        else if ($request->isPut()){
+            $this->setLayout('admin');
+            $clinic->loadData($request->getBody());
+            if ($clinic->validate() && $clinic->update()) {
+                Application::$app->session->setFlash('success', 'Updated Clinic Successfully');
+                Application::$app->response->redirect('/clinics');
+                exit;
+            }
+        }
         return $this->render('admin/clinics', [
-            'model' => $clinic
+            'model' => $clinic, "modelUpdate" => $clinic2
         ]);
     }
 
+    public function clinicsUpdate(Request $request)
+    {
+        $clinic = new Clinic();
+        $this->setLayout('admin');
+        $clinic->loadData($request->getBody());
+        $clinic->validate();
+        if ($clinic->validate()) {
+            // Data is valid, you can perform further actions here
+
+            // Send a success response
+            header('Content-Type: application/json');
+            http_response_code(200);
+            echo json_encode(['message' => 'Data updated successfully']);
+        } else {
+
+            header('Content-Type: application/json');
+            http_response_code(200);
+            echo json_encode(['message' => 'Validation failed', 'errors' => $clinic->errorMessages()]);
+        }
+
+    }
+
+    public function getClinicDetails(Request $request): string
+    {
+        $clinic = new Clinic();
+        $clinic->loadData($request->getBody());
+        return $clinic->getClinicById($clinic->getId());
+    }
 
     public function reports(): array|false|string
     {

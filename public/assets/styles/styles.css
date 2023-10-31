@@ -448,3 +448,75 @@ body{
     display: none; /* or other hiding styles */
 }
 
+.popup {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none; /* Initially hidden */
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #888888;
+    max-width: 400px;
+    font-weight: bolder;
+}
+
+.popup.show {
+    display: flex; /* Display when the "show" class is added */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonRow{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.show {
+    display: block;
+}
+h1 {
+    text-align: center;
+    color:#0036a2;
+}
+
+.data-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* To push the remove button to the end */
+    padding: 8px;
+    border: 1px solid #ccc;
+    margin: 4px 0;
+    background-color: #f7f7f7;
+}
+
+/* Style for the remove button */
+.data-item .remove-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: red;
+}
+
+/* Style the Font Awesome icon within the remove button */
+.data-item .remove-button i {
+    font-size: inherit;
+    vertical-align: middle;
+}
