@@ -9,14 +9,14 @@ namespace app\controllers\AdminController;
 
 use app\core\Application;
 use app\core\Request;
-use app\models\AddDoctor;
+use app\models\Doctor;
 use app\models\Clinic;
 use app\models\UserRoles;
 
 class AdminController extends \app\core\Controller
 {
     public function addDoctor(){
-        $addDoctorModel = new AddDoctor();
+        $addDoctorModel = new Doctor();
         return $this->render('admin/addDoctor',[
             'model' => $addDoctorModel
         ]);
