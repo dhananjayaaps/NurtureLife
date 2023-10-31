@@ -90,6 +90,10 @@ abstract class Model
         ];
     }
 
+    public function getErrorArray(){
+
+    }
+
     public function hasError($attribute)
     {
         return $this->errors[$attribute] ?? false;

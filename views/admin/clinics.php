@@ -57,6 +57,20 @@ $this->title = 'Clinics';
     <br>
 </div>
 
+<div id="myPopupRemove" class="popup">
+    <div class="popup-content">
+        Do You Really Need to Remove This? That can't be undone
+        <div class="buttonRow" style="display: flex; flex-direction: row; gap: 10px;">
+            <button id="closePopup" class="btn-submit">
+                Close
+            </button>
+            <button id="closePopupRemove" class="btn-submit" style="background-color: brown;">
+                Remove
+            </button>
+        </div>
+    </div>
+</div>
+
 <div class="clinics content">
     <div class="shadowBox">
         <div class="left-content">
@@ -164,7 +178,7 @@ $this->title = 'Clinics';
     });
 
     window.addEventListener("click", function (event) {
-        if (event.target == myPopup) {
+        if (event.target === myPopup) {
             myPopup.classList.remove("show");
         }
     });
@@ -236,28 +250,96 @@ $this->title = 'Clinics';
 
         const url = '/clinicsUpdate';
 
-// Send a POST request using the Fetch API
         fetch(url, {
             method: 'POST',
             body: formData,
         })
             .then(response => {
                 if (response.ok) {
-                    // Request was successful, handle the response
-                    return response.text();
+                    return response.json();
                 } else {
-                    // Request failed, handle the error
-                    throw new Error('Request failed');
+                    return response.json();
                 }
             })
             .then(responseData => {
-                // Handle the response data here
-                console.log(responseData);
+                if (responseData.errors) {
+                    const invalidFeedbackElements = document.querySelectorAll('.invalid-feedback');
+                    for (const key in responseData.errors) {
+                        console.log(key)
+                        if (responseData.errors[key].length > 0) {
+                            const feedbackElement = document.querySelector(`[name="Update${key.charAt(0).toUpperCase() + key.slice(1)}"] + .invalid-feedback`);
+                            if (feedbackElement) {
+                                console.log("found");
+                                feedbackElement.innerHTML = "<svg aria-hidden=\"true\" class=\"stUf5b qpSchb\" fill=\"currentColor\" focusable=\"false\" width=\"16px\" height=\"16px\" viewBox=\"0 0 24 24\" xmlns=\"https://www.w3.org/2000/svg\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z\"></path></svg>" +
+                                    responseData.errors[key][0];
+                            }
+                        }
+                    }
+                } else {
+                    console.log(responseData);
+                }
             })
             .catch(error => {
-                // Handle any errors that occurred during the fetch
                 console.error(error);
             });
     });
 
+</script>
+
+
+<script>
+    document.getElementById('closePopupRemove').addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const id = document.querySelector('input[name="UpdateId"]').value;
+
+        const formData = new FormData();
+        formData.append('id', id);
+
+        const url = '/deleteClinic';
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    return response.json();
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+
+</script>
+
+
+<script>
+    function showRemovePopup() {
+        var myPopupRemove = document.getElementById('myPopupRemove');
+        myPopupRemove.classList.add("show");
+    }
+
+    var popupButtonContainer = document.querySelector('.clinics.content');
+    popupButtonContainer.addEventListener("click", function (event) {
+        if (event.target.classList.contains('remove-button')) {
+            showRemovePopup();
+        }
+    });
+
+    // var closeButtonRemove = document.getElementById('closePopupRemove');
+    // closeButtonRemove.addEventListener("click", function () {
+    //     var myPopupRemove = document.getElementById('myPopupRemove');
+    //     myPopupRemove.classList.remove("show");
+    // });
+
+    window.addEventListener("click", function (event) {
+        var myPopupRemove = document.getElementById('myPopupRemove');
+        if (event.target == myPopupRemove) {
+            myPopupRemove.classList.remove("show");
+        }
+    });
 </script>
