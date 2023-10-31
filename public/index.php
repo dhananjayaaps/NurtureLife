@@ -7,6 +7,7 @@ $dotenv->load();
 
 use app\controllers\AdminController\ClinicsController;
 use app\controllers\AdminController\DoctorController;
+use app\controllers\AdminController\MidwifeController;
 use app\controllers\AuthController;
 use app\core\Application;
 use app\controllers\SiteController;
@@ -47,6 +48,12 @@ $app->router->post('/clinics', [ClinicsController::class, 'clinics']);
 $app->router->post('/clinicsUpdate', [ClinicsController::class, 'clinicsUpdate']);
 $app->router->post('/deleteClinic', [ClinicsController::class, 'clinicDelete']);
 $app->router->get('/getClinicDetails', [ClinicsController::class, 'getClinicDetails']);
+
+$app->router->get('/midwife', [MidwifeController::class, 'Midwife']);
+$app->router->post('/midwife', [MidwifeController::class, 'Midwife']);
+$app->router->post('/midwifeUpdate', [MidwifeController::class, 'MidwifeUpdate']);
+$app->router->post('/deleteMidwife', [MidwifeController::class, 'MidwifeDelete']);
+$app->router->get('/getMidwifeDetails', [MidwifeController::class, 'getMidwifeDetails']);
 
 
 $app->router->get('/reports', [ClinicsController::class, 'reports']);

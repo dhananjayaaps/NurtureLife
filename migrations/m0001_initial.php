@@ -83,6 +83,19 @@ class m0001_initial
 
         $db->pdo->exec($SQL7);
 
+        $SQL8 = "CREATE TABLE midwife (
+                PHM_id INT NOT NULL AUTO_INCREMENT,
+                user_id INT,
+                SLMC_no VARCHAR(255) NOT NULL,
+                clinic_id INT,
+                PRIMARY KEY (PHM_id),
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (clinic_id) REFERENCES clinics(id)
+            ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($SQL8);
+
     }
 
     public function down()
