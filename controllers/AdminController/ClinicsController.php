@@ -13,15 +13,8 @@ use app\models\Doctor;
 use app\models\Clinic;
 use app\models\UserRoles;
 
-class AdminController extends \app\core\Controller
+class ClinicsController extends \app\core\Controller
 {
-    public function addDoctor(){
-        $addDoctorModel = new Doctor();
-        return $this->render('admin/addDoctor',[
-            'model' => $addDoctorModel
-        ]);
-    }
-
     public function clinics(Request $request): array|false|string
     {
         $clinic = new Clinic();
@@ -32,7 +25,7 @@ class AdminController extends \app\core\Controller
             $clinic->loadData($request->getBody());
 
             if ($clinic->validate() && $clinic->save()) {
-                Application::$app->session->setFlash('success', 'Added a new Clinic');
+                Application::$app->session->setFlash('success', 'Added a new Doctor');
                 Application::$app->response->redirect('/clinics');
                 exit;
             }
@@ -40,15 +33,7 @@ class AdminController extends \app\core\Controller
         else if ($request->isGet()) {
             $this->layout = 'admin';
         }
-        else if ($request->isPut()){
-            $this->setLayout('admin');
-            $clinic->loadData($request->getBody());
-            if ($clinic->validate() && $clinic->update()) {
-                Application::$app->session->setFlash('success', 'Updated Clinic Successfully');
-                Application::$app->response->redirect('/clinics');
-                exit;
-            }
-        }
+
         return $this->render('admin/clinics', [
             'model' => $clinic, "modelUpdate" => $clinic2
         ]);

@@ -1,14 +1,20 @@
 <?php
 /** @var $this app\core\view */
 
-use app\models\User;
+use app\core\Application;
+use app\core\form\Form;
+use app\models\Midwife;
 
-$this->title = 'Add Doctor';
+$this->title = 'Midwifes';
 ?>
 
 <?php
-/** @var $model User **/
-?>
+/** @var $model Midwife **/
+/** @var $modelUpdate Midwife **/
+//?>
+
+
+
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
@@ -19,25 +25,26 @@ $this->title = 'Add Doctor';
         <form action="">
 
             <div class="form-group">
-                <label>Clinic ID</label>
+
+                <label>Midwife ID</label>
+                <input type="text" id="MidwifeId" name="MidwifeId" value=""  class="form-control ">
+                <div class="invalid-feedback">
+
+                </div>
+
+                <label>Midwife Name</label>
+                <input type="text" id="MidwifeName" name="MidwifeName" value=""  class="form-control ">
+                <div class="invalid-feedback">
+
+                </div>
+
+                <label>Select new Clinic for transfer</label>
                 <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control ">
                 <div class="invalid-feedback">
+
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>New Name</label>
-                <input type="text" id="UpdateName" name="UpdateName" value=""  class="form-control ">
-                <div class="invalid-feedback">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>New Address</label>
-                <input type="text" id="UpdateAddress" name="UpdateAddress" value=""  class="form-control ">
-                <div class="invalid-feedback">
-                </div>
-            </div>
         </form>
         <div class="buttonRow">
             <button type="submit" id="updateButton" class="btn-submit">
@@ -50,6 +57,7 @@ $this->title = 'Add Doctor';
     </div>
     <br>
 </div>
+
 
 <div id="myPopupRemove" class="popup">
     <div class="popup-content">
@@ -65,20 +73,20 @@ $this->title = 'Add Doctor';
     </div>
 </div>
 
-<div class="clinics content">
+<div class="Midwifes content">
     <div class="shadowBox">
         <div class="left-content">
             <div class="search-container">
-                <input type="text" placeholder="Search Clinic...">
+                <input type="text" placeholder="Search Midwife...">
                 <button type="submit">Search</button>
             </div>
             <table class="table-data">
                 <thead>
                 <tr>
-                    <th>Clinic ID</th>
+                    <th>Midwife ID</th>
                     <th>Name</th>
-                    <th>Total Mothers</th>
-                    <th>Total Midwives</th>
+                    <th>SLMC ID</th>
+                    <th>Clinic</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -93,22 +101,20 @@ $this->title = 'Add Doctor';
     </div>
     <div class="right-content">
         <div class="shadowBox">
-            <h2>Add a New Clinic <br/><br/></h2>
+            <h2>Add a New Midwife <br/><br/></h2>
             <?php $form = Form::begin('', "post")?>
-            <?php echo $form->field($model, 'name', 'Name')?>
-            <?php echo $form->field($model, 'district', 'District')?>
-            <?php echo $form->field($model, 'address', 'Address')?>
-            <?php echo $form->field($model, 'gn_units', 'GN Units')?>
+            <?php echo $form->field($model, 'nic', 'NIC')?>
+            <?php echo $form->field($model, 'SLMC_no', 'SLMC ID')?>
+            <?php echo $form->field($model, 'clinic_id', 'Clinic')?>
             <button type="submit" class="btn-submit">Submit</button>
             <?php echo Form::end()?>
         </div>
     </div>
-
 </div>
 
-
 <script>
-    var data = <?php echo $model->getClinics()?>;
+    var data = <?php echo $model->getMidwifes()?>;
+
     var itemsPerPage = 10;
     var currentPage = 1;
 
@@ -122,16 +128,17 @@ $this->title = 'Add Doctor';
             var row = data[i];
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
-                    <td>${row.clinicID}</td>
-                    <td>${row.name}</td>
-                    <td>${row.totalMothers}</td>
-                    <td>${row.totalMidwives}</td>
-                    <td class="action-buttons">
-                    <button id="showPopUp" onclick="UpdatePopUp(${row.clinicID})" class="action-button update-button">Update</button>
-                    <button class="action-button remove-button">Remove</button>
-                `;
+            <td>${row.PHM_ID}</td>
+            <td>${row.Name}</td>
+            <td>${row.SLMC_no}</td>
+            <td>${row.clinic_id}</td>
+            <td class="action-buttons">
+            <button id="showPopUp" onclick="UpdatePopUp('${row.PHM_ID}', '${row.Name}')" class="action-button update-button">Update</button>
+            <button class="action-button remove-button" onclick="UpdatePopUp('${row.PHM_ID}', '${row.Name}')">Remove</button>
+        `;
             tableBody.appendChild(newRow);
         }
+
     }
 
     function displayPagination() {
@@ -159,7 +166,7 @@ $this->title = 'Add Doctor';
 <script>
     var myPopup = document.getElementById('myPopup');
     var closeButton = document.getElementById('closePopup');
-    var popupButtonContainer = document.querySelector('.clinics.content');
+    var popupButtonContainer = document.querySelector('.content');
 
     popupButtonContainer.addEventListener("click", function (event) {
         if (event.target.id === 'showPopUp') {
@@ -179,49 +186,35 @@ $this->title = 'Add Doctor';
 </script>
 
 <script>
-    function getClinicDetails(id) {
-        const url = `/getClinicDetails?id=${id}`;
 
-        return fetch(url)
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Failed to fetch data');
-                }
-            });
-    }
-
-    function UpdatePopUp(ClinicId){
+    function UpdatePopUp(PHM_ID, Name){
 
         var labels = document.querySelectorAll('form label');
 
-        getClinicDetails(ClinicId)
+        const DocId = document.getElementById('MidwifeId');
+        const DocName = document.getElementById('MidwifeName');
+
+        DocId.value = PHM_ID;
+        DocName.value = Name;
+        DocId.disabled = true;
+        DocName.disabled = true;
+
+        var inputFieldId = getElementById('UpdateId');
+
+        if (inputFieldId) {
+            inputFieldId.value = DocId;
+            inputFieldId.disabled = true;
+        }
+
+        getMidwifeDetails(PHM_Id)
             .then((data) => {
-                var inputFieldId, inputFieldName, inputFieldAddress;
-                for (var i = 0; i < labels.length; i++) {
-                    if (labels[i].textContent === 'Clinic ID') {
-                        inputFieldId = labels[i].nextElementSibling;
-                    }
-                    else if (labels[i].textContent === 'New Name') {
-                        inputFieldName = labels[i].nextElementSibling;
-                    }
-                    else if (labels[i].textContent === 'New Address') {
-                        inputFieldAddress = labels[i].nextElementSibling;
-                        break;
-                    }
-                }
+                var inputFieldId = getElementById('UpdateId');
 
                 if (inputFieldId) {
-                    inputFieldId.value = ClinicId;
+                    inputFieldId.value = DocId;
                     inputFieldId.disabled = true;
                 }
-                if (inputFieldName) {
-                    inputFieldName.value = data.name;
-                }
-                if (inputFieldName) {
-                    inputFieldAddress.value = data.address;
-                }
+
             })
             .catch((error) => {
                 console.error(error);
@@ -233,16 +226,14 @@ $this->title = 'Add Doctor';
     document.getElementById('updateButton').addEventListener('click', function (e) {
         e.preventDefault();
 
-        const id = document.querySelector('input[name="UpdateId"]').value;
-        const name = document.querySelector('input[name="UpdateName"]').value;
-        const address = document.querySelector('input[name="UpdateAddress"]').value;
+        const Clinic_id = document.querySelector('input[name="UpdateId"]').value;
+        const PHM_id = document.querySelector('input[name="MidwifeId"]').value;
 
         const formData = new FormData();
-        formData.append('id', id);
-        formData.append('name', name);
-        formData.append('address', address);
+        formData.append('clinic_id', Clinic_id);
+        formData.append('PHM_id', PHM_id);
 
-        const url = '/clinicsUpdate';
+        const url = '/midwifeUpdate';
 
         fetch(url, {
             method: 'POST',
@@ -250,7 +241,7 @@ $this->title = 'Add Doctor';
         })
             .then(response => {
                 if (response.ok) {
-                    return response.json();
+                    window.location.reload();
                 } else {
                     return response.json();
                 }
@@ -263,7 +254,6 @@ $this->title = 'Add Doctor';
                         if (responseData.errors[key].length > 0) {
                             const feedbackElement = document.querySelector(`[name="Update${key.charAt(0).toUpperCase() + key.slice(1)}"] + .invalid-feedback`);
                             if (feedbackElement) {
-                                console.log("found");
                                 feedbackElement.innerHTML = "<svg aria-hidden=\"true\" class=\"stUf5b qpSchb\" fill=\"currentColor\" focusable=\"false\" width=\"16px\" height=\"16px\" viewBox=\"0 0 24 24\" xmlns=\"https://www.w3.org/2000/svg\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z\"></path></svg>" +
                                     responseData.errors[key][0];
                             }
@@ -280,17 +270,16 @@ $this->title = 'Add Doctor';
 
 </script>
 
-
 <script>
     document.getElementById('closePopupRemove').addEventListener('click', function (e) {
         e.preventDefault();
 
-        const id = document.querySelector('input[name="UpdateId"]').value;
+        const PHM_id = document.querySelector('input[name="MidwifeId"]').value;
 
         const formData = new FormData();
-        formData.append('id', id);
+        formData.append('PHM_id', PHM_id);
 
-        const url = '/deleteClinic';
+        const url = '/deleteMidwife';
 
         fetch(url, {
             method: 'POST',
@@ -298,7 +287,7 @@ $this->title = 'Add Doctor';
         })
             .then(response => {
                 if (response.ok) {
-                    return response.json();
+                    window.location.reload();
                 } else {
                     return response.json();
                 }
@@ -317,22 +306,16 @@ $this->title = 'Add Doctor';
         myPopupRemove.classList.add("show");
     }
 
-    var popupButtonContainer = document.querySelector('.clinics.content');
+    var popupButtonContainer = document.querySelector('.content');
     popupButtonContainer.addEventListener("click", function (event) {
         if (event.target.classList.contains('remove-button')) {
             showRemovePopup();
         }
     });
 
-    // var closeButtonRemove = document.getElementById('closePopupRemove');
-    // closeButtonRemove.addEventListener("click", function () {
-    //     var myPopupRemove = document.getElementById('myPopupRemove');
-    //     myPopupRemove.classList.remove("show");
-    // });
-
     window.addEventListener("click", function (event) {
         var myPopupRemove = document.getElementById('myPopupRemove');
-        if (event.target == myPopupRemove) {
+        if (event.target === myPopupRemove) {
             myPopupRemove.classList.remove("show");
         }
     });

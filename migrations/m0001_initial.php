@@ -30,14 +30,6 @@ class m0001_initial
 
         $db->pdo->exec($SQL);
 
-        $SQL = "INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
-                INSERT INTO roles (id, name) VALUES (2, 'ROLE_ADMIN');
-                INSERT INTO roles (id, name) VALUES (3, 'ROLE_DOCTOR');
-                INSERT INTO roles (id, name) VALUES (4, 'ROLE_PRE_MOTHER');
-                INSERT INTO roles (id, name) VALUES (5, 'ROLE_POST_MOTHER');
-                INSERT INTO roles (id, name) VALUES (6, 'ROLE_MIDWIFE');
-            ";
-        $db->pdo->exec($SQL);
 
         $SQL3 = "INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
                 INSERT INTO roles (id, name) VALUES (2, 'ROLE_ADMIN');
@@ -61,11 +53,48 @@ class m0001_initial
                     user_id INT,
                     role_id INT,
                     PRIMARY KEY (user_id, role_id),
-                    FOREIGN KEY (user_id) REFERENCES users(user_id),
-                    FOREIGN KEY (role_id) REFERENCES roles(role_id));
+                    FOREIGN KEY (user_id) REFERENCES users(id),
+                    FOREIGN KEY (role_id) REFERENCES roles(id));
                     ";
 
         $db->pdo->exec($SQL5);
+
+
+        $SQL6 = "CREATE TABLE clinics (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            district VARCHAR(255) NOT NULL,
+            address VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=INNODB;";
+
+        $db->pdo->exec($SQL6);
+
+        $SQL7 = "CREATE TABLE doctors (
+                MOH_id INT NOT NULL AUTO_INCREMENT,
+                user_id INT,
+                SLMC_no VARCHAR(255) NOT NULL,
+                clinic_id INT,
+                PRIMARY KEY (MOH_id),
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (clinic_id) REFERENCES clinics(id)
+            ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($SQL7);
+
+        $SQL8 = "CREATE TABLE midwife (
+                PHM_id INT NOT NULL AUTO_INCREMENT,
+                user_id INT,
+                SLMC_no VARCHAR(255) NOT NULL,
+                clinic_id INT,
+                PRIMARY KEY (PHM_id),
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (clinic_id) REFERENCES clinics(id)
+            ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($SQL8);
 
     }
 

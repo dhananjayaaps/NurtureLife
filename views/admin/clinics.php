@@ -58,6 +58,7 @@ $this->title = 'Clinics';
 </div>
 
 <div id="myPopupRemove" class="popup">
+    <div class="selectedRow" id="selectedRow" style="display: none"></div>
     <div class="popup-content">
         Do You Really Need to Remove This? That can't be undone
         <div class="buttonRow" style="display: flex; flex-direction: row; gap: 10px;">
@@ -104,7 +105,6 @@ $this->title = 'Clinics';
             <?php echo $form->field($model, 'name', 'Name')?>
             <?php echo $form->field($model, 'district', 'District')?>
             <?php echo $form->field($model, 'address', 'Address')?>
-            <?php echo $form->field($model, 'gn_units', 'GN Units')?>
             <button type="submit" class="btn-submit">Submit</button>
             <?php echo Form::end()?>
         </div>
@@ -134,7 +134,7 @@ $this->title = 'Clinics';
                     <td>${row.totalMidwives}</td>
                     <td class="action-buttons">
                     <button id="showPopUp" onclick="UpdatePopUp(${row.clinicID})" class="action-button update-button">Update</button>
-                    <button class="action-button remove-button">Remove</button>
+                    <button class="action-button remove-button" onclick="UpdatePopUp(${row.clinicID})">Remove</button>
                 `;
             tableBody.appendChild(newRow);
         }
@@ -256,7 +256,7 @@ $this->title = 'Clinics';
         })
             .then(response => {
                 if (response.ok) {
-                    return response.json();
+                    window.location.reload();
                 } else {
                     return response.json();
                 }
@@ -304,7 +304,7 @@ $this->title = 'Clinics';
         })
             .then(response => {
                 if (response.ok) {
-                    return response.json();
+                    window.location.reload();
                 } else {
                     return response.json();
                 }
@@ -313,7 +313,6 @@ $this->title = 'Clinics';
                 console.error(error);
             });
     });
-
 </script>
 
 

@@ -6,11 +6,11 @@ use app\core\Application;
 use app\core\db\DbModel;
 use app\core\Model;
 
-class Doctor extends DbModel
+class Midwife extends DbModel
 {
     public string $nic = '';
     public string $user_id = '';
-    public string $MOH_id = '';
+    public string $PHM_id = '';
     public string $SLMC_no = '';
     public string $clinic_id = '';
 
@@ -24,12 +24,12 @@ class Doctor extends DbModel
 
     public function tableName(): string
     {
-        return 'doctors';
+        return 'midwife';
     }
 
     public function primaryKey(): string
     {
-        return 'MOH_id';
+        return 'PHM_id';
     }
 
     public function save(): bool
@@ -42,12 +42,12 @@ class Doctor extends DbModel
             return false;
         }
         else{
-            $exitUser = (new Doctor())->getUser($ValidateUser->getId());
+            $exitUser = (new Midwife())->getUser($ValidateUser->getId());
             if($exitUser){
-                $this->addError('nic', 'That user is already a Doctor');
+                $this->addError('nic', 'That user is already a Midwife');
                 return false;
             }
-            $exitSLMC = (new Doctor())->findOne(self::class, ["SLMC_no" => $this->SLMC_no]);
+            $exitSLMC = (new Midwife())->findOne(self::class, ["SLMC_no" => $this->SLMC_no]);
             if($exitSLMC){
                 $this->addError('SLMC_no', 'That ID is already using');
                 return false;
@@ -70,45 +70,44 @@ class Doctor extends DbModel
 
     private function getUser($id)
     {
-        return (new Doctor())->findOne(Doctor::class, ['user_id' => $id]);
+        return (new Midwife())->findOne(Midwife::class, ['user_id' => $id]);
     }
 
-    public function getDoctors(): string
+    public function getMidwifes(): string
     {
-        $doctorData = (new Doctor())->findAll(self::class);
+        $MidwifeData = (new Midwife())->findAll(self::class);
 
         $data = [];
 
-        foreach ($doctorData as $doctor) {
-            $user = self::findOne(User::class, ["id" => $doctor->user_id]);
-            $clinic = self::findOne(Clinic::class, ["id" => $doctor->clinic_id]);
+        foreach ($MidwifeData as $Midwife) {
+            $user = self::findOne(User::class, ["id" => $Midwife->user_id]);
+            $clinic = self::findOne(Clinic::class, ["id" => $Midwife->clinic_id]);
             $data[] = [
-                'MOH_ID' => $doctor->MOH_id,
+                'PHM_ID' => $Midwife->PHM_id,
                 'Name' => $user->firstname . " " . $user->lastname,
-                'SLMC_no' => $doctor->SLMC_no,
+                'SLMC_no' => $Midwife->SLMC_no,
                 'clinic_id' => $clinic->name
             ];
         }
         return json_encode($data);
     }
 
-    public function getDoctorById($DoctorId): string
+    public function getMidwifeById($MidwifeId): string
     {
-        var_dump($DoctorId);
-        $this->user_id = $DoctorId;
-        $doctor = (new Doctor())->findOne(self::class, ['MOH_id' => $DoctorId]);
-//        $user = self::findOne(User::class, ["id" => $doctor->user_id]);
-//        $clinic = self::findOne(Clinic::class, ["id" => $doctor->clinic_id]);
+        $this->user_id = $MidwifeId;
+        $Midwife = (new Midwife())->findOne(self::class, ['PHM_id' => $MidwifeId]);
+//        $user = self::findOne(User::class, ["id" => $Midwife->user_id]);
+//        $clinic = self::findOne(Clinic::class, ["id" => $Midwife->clinic_id]);
 
         $data = [
-            'clinic_id' => $doctor->clinic_id
+            'clinic_id' => $Midwife->clinic_id
         ];
         return json_encode($data);
     }
 
-    public function getADoctor($MOH_id)
+    public function getAMidwife($PHM_id)
     {
-        return (new Doctor())->findOne(self::class, ['MOH_id' => $MOH_id]);
+        return (new Midwife())->findOne(self::class, ['PHM_id' => $PHM_id]);
     }
 
     public function update(): bool
@@ -126,4 +125,3 @@ class Doctor extends DbModel
     }
 
 }
-
