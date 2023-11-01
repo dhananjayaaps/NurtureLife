@@ -96,6 +96,29 @@ class m0001_initial
 
         $db->pdo->exec($SQL8);
 
+        $SQL9 = "CREATE TABLE Mothers (
+            MotherId INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT,
+            PHM_ID INT,
+            clinic_id INT,
+            MartialStatus VARCHAR(255),
+            MarriageDate DATE,
+            BloodGroup VARCHAR(10),
+            Occupation VARCHAR(255),
+            Allergies TEXT,
+            Consanguinity VARCHAR(255),
+            history_subfertility TEXT,
+            Hypertension TINYINT(1),
+            diabetes_mellitus TINYINT(1),
+            rubella_immunization TINYINT(1),
+            emergencyNumber VARCHAR(20),
+            FOREIGN KEY (PHM_ID) REFERENCES midwife(PHM_id),
+            FOREIGN KEY (clinic_id) REFERENCES clinics(id),
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($SQL9);
     }
 
     public function down()

@@ -329,12 +329,6 @@ $this->title = 'Clinics';
         }
     });
 
-    // var closeButtonRemove = document.getElementById('closePopupRemove');
-    // closeButtonRemove.addEventListener("click", function () {
-    //     var myPopupRemove = document.getElementById('myPopupRemove');
-    //     myPopupRemove.classList.remove("show");
-    // });
-
     window.addEventListener("click", function (event) {
         var myPopupRemove = document.getElementById('myPopupRemove');
         if (event.target == myPopupRemove) {

@@ -87,7 +87,7 @@
                 <a href="/midwife"><img src="assets/images/icons/nurse.png" alt=""> MidWives</a>
             </div>
             <div class="column">
-                <a href="/preMother"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
+                <a href="preMother"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
             </div>
             <div class="column">
                 <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>

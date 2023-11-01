@@ -78,23 +78,9 @@
                 <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
             </div>
             <div class="column">
-                <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
+                <a href="preMother"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
             </div>
-            <div class="column">
-                <a href="/doctors"><img src="assets/images/icons/doctor.png" alt=""> Doctors</a>
-            </div>
-            <div class="column">
-                <a href="/midwife"><img src="assets/images/icons/nurse.png" alt=""> MidWives</a>
-            </div>
-            <div class="column">
-                <a href="/preMother"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/user.png" alt=""> Users</a>
-            </div>
+
         </div>
     </div>
     {{content}}

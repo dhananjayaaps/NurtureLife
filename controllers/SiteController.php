@@ -22,15 +22,19 @@ class SiteController extends \app\core\Controller
                 return $this->render('admin/admin');
             }
             else if ($userRole == 3){
+                $this->layout = 'doctor';
                 return $this->render('doctor/doctor');
             }
             else if ($userRole == 4){
+                $this->layout = 'mother';
                 return $this->render('preMother/preMother');
             }
             else if ($userRole == 5){
+                $this->layout = 'mother';
                 return $this->render('postMother/postMother');
             }
             else if ($userRole == 6){
+                $this->layout = 'midwife';
                 return $this->render('midwife/midwife');
             }
         }
@@ -61,6 +65,24 @@ class SiteController extends \app\core\Controller
         else{
             $response->redirect('/logout');
         }
+    }
+
+    public function appointments()
+    {
+        $this->layout = 'doctor';
+        return $this->render('doctor/appointments');
+    }
+
+    public function doctorClinics()
+    {
+        $this->layout = 'doctor';
+        return $this->render('doctor/clinics');
+    }
+
+    public function doctorMothers()
+    {
+        $this->layout = 'doctor';
+        return $this->render('doctor/mothers');
     }
 
 }
