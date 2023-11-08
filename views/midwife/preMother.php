@@ -63,7 +63,7 @@ $this->title = 'Mothers';
                 </select>
             </div>
             <br>
-            <?php echo $form->field($model, 'Occupation', 'Occupation')?>
+            <?php echo $form->field($model, 'Occupation','Occupation')?>
             <?php echo $form->field($model, 'Allergies', 'Allergies')?>
         </div>
 
