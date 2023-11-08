@@ -56,6 +56,8 @@ $this->title = 'Mothers';
                     <option value="A-">A-</option>
                     <option value="B+">B+</option>
                     <option value="B-">B-</option>
+                    <option value="B+">AB+</option>
+                    <option value="B+">AB-</option>
                     <option value="B+">O+</option>
                     <option value="B-">O-</option>
                 </select>
