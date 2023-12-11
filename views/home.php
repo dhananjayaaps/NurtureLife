@@ -46,8 +46,8 @@
             (237) 681-812-255<br/>
             (237) 681-812-255
         </div>
-        <div class="contact location">
-            <img src="./assets/images/location.svg" alt="">
+        <div class="contact">
+            <img src="./assets/images/location.svg" style="invert: true;" alt="">
             <div class="contact-name">Location</div>
             0123 Some place<br/>
             9876 Some country

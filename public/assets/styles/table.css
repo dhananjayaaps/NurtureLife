@@ -50,6 +50,8 @@ th, td {
 }
 
 .page-button {
+    /*align to down corner*/
+    text-align: center;
     background-color: #0074D9;
     color: #FFFFFF;
     border: none;

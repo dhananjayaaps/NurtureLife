@@ -126,4 +126,3 @@ class Doctor extends DbModel
     }
 
 }
-
