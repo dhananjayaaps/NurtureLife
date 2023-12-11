@@ -58,6 +58,13 @@ class Midwife extends DbModel
                 return false;
             }
             $this->user_id = $ValidateUser->id;
+
+            // save user role
+            $userRole = new UserRoles();
+            $userRole->user_id = $ValidateUser->id;
+            $userRole->role_id = 6;
+            $userRole->save();
+
             return parent::save();
         }
 
@@ -122,6 +129,12 @@ class Midwife extends DbModel
             return false;
         }
         return parent::update();
+    }
+
+    public function delete(): bool
+    {
+        self::deleteWhere(UserRoles::class, ['user_id' => $this->user_id, 'role_id' => 6]);
+        return parent::delete();
     }
 
 }

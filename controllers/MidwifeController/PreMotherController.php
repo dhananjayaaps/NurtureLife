@@ -35,5 +35,4 @@ class PreMotherController extends Controller
         ]);
     }
 
-
 }
