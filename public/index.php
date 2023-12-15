@@ -61,8 +61,8 @@ $app->router->post('/reports', [ClinicsController::class, 'reports']);
 
 $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'changeRole']);
 
-$app->router->get('/preMother', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
-$app->router->post('/preMother', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
+$app->router->get('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
+$app->router->post('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
 
 $app->router->get('/appointments', [SiteController::class, 'appointments']);
 $app->router->get('/doctorClinics', [SiteController::class, 'doctorClinics']);

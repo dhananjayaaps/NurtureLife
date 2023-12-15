@@ -137,4 +137,17 @@ class Midwife extends DbModel
         return parent::delete();
     }
 
+    public function getClinics()
+    {
+        $clinics = (new Clinic())->findAll(Clinic::class);
+        $data = [];
+        foreach ($clinics as $clinic) {
+            $data[] = [
+                'id' => $clinic->id,
+                'name' => $clinic->name
+            ];
+        }
+        return ($data);
+    }
+
 }

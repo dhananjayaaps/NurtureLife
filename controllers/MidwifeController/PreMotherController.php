@@ -19,9 +19,12 @@ class PreMotherController extends Controller
             $this->layout = 'doctor';
             $mother->loadData($request->getBody());
 
+            var_dump($mother);
+
             if ($mother->validate() && $mother->save()) {
+                var_dump($mother);
                 Application::$app->session->setFlash('success', 'Added a new Midwife');
-                Application::$app->response->redirect('midwife/preMother');
+                Application::$app->response->redirect('midwife/preMotherForm');
                 exit;
             }
         }
@@ -30,7 +33,7 @@ class PreMotherController extends Controller
             $this->layout = 'doctor';
         }
 
-        return $this->render('midwife/preMother', [
+        return $this->render('midwife/preMotherForm', [
             'model' => $mother, "modelUpdate" => $mother2
         ]);
     }

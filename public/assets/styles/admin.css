@@ -241,6 +241,11 @@
     right: 40px;
 }
 
+.select2-container .select2-selection--single .select2-selection__rendered {
+    width: 300px;
+    box-sizing: border-box;
+}
+
 /*Media queries*/
 
 @media (max-width: 768px) {
