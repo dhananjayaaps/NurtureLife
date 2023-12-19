@@ -119,6 +119,20 @@ class m0001_initial
             ";
 
         $db->pdo->exec($SQL9);
+
+        $SQL10 = "create table fetalkick (
+            RecordId  int auto_increment
+            primary key,
+            MotherId  int                                  not null,
+            Time      datetime default current_timestamp() not null,
+            KickCount int(3)                               not null
+        );"
+            ;
+
+
+
+        $db->pdo->exec($SQL10);
+
     }
 
     public function down()

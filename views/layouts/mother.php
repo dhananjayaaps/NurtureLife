@@ -80,6 +80,9 @@
             <div class="column">
                 <a href="preMother"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
             </div>
+            <div class="column">
+                <a href="/fetalkick"><img src="assets/images/icons/pregnant.png" alt=""> Report Fetal kicks</a>
+            </div>
 
         </div>
     </div>

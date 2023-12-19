@@ -9,6 +9,7 @@ use app\controllers\AdminController\ClinicsController;
 use app\controllers\AdminController\DoctorController;
 use app\controllers\AdminController\MidwifeController;
 use app\controllers\AuthController;
+use app\controllers\MotherController\FetalkickController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -63,6 +64,9 @@ $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'chan
 
 $app->router->get('/preMother', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
 $app->router->post('/preMother', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
+
+$app->router->get('/fetalkick', [FetalkickController::class, 'Fetalkick']);
+$app->router->post('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 
 $app->router->get('/appointments', [SiteController::class, 'appointments']);
 $app->router->get('/doctorClinics', [SiteController::class, 'doctorClinics']);
