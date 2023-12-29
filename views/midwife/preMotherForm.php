@@ -2,6 +2,7 @@
 /** @var $this app\core\view */
 
 use app\core\Application;
+use app\core\form\DropDown;
 use app\core\form\Form;
 use app\models\Mother;
 
@@ -50,17 +51,18 @@ $this->title = 'Mothers';
 <!--            <label for="marriageDate">Marriage Date</label>-->
 <!--            <input type="date" id="marriageDate" name="marriageDate">-->
 
-            <?php echo $form->dateField($model, 'MarriageDate', 'Marriage Date')?>
-
-            <label for="bloodGroup">Blood Group</label>
-            <select id="bloodGroup" name="bloodGroup">
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="B+">O+</option>
-                <option value="B-">O-</option>
-            </select>
+            <?php // Example usage in a form
+                $bloodGroupField = new DropDown($model, 'BloodGroup', 'Blood Group');
+                $bloodGroupField->setOptions([
+                    'A+' => 'A+',
+                    'A-' => 'A-',
+                    'B+' => 'B+',
+                    'B-' => 'B-',
+                    'O+' => 'O+',
+                    'O-' => 'O-',
+                ]);
+                echo $bloodGroupField->renderInput();
+            ?>
         </div>
         <br>
         <?php echo $form->field($model, 'Occupation', 'Occupation')?>
