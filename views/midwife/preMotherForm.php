@@ -18,44 +18,66 @@ $this->title = 'Mothers';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
+<style>
+    .form-column {
+        float: left;
+        width: 50%;
+        box-sizing: border-box;
+        padding: 0 10px;
+    }
+
+    .clear {
+        clear: both;
+    }
+</style>
+
 <div class="Mothers content">
+
     <div class="shadowBox">
-        <h2>Add a New Mother</h2>
-        <?php $form = Form::begin('/preMotherForm', "post")?>
+        <h2>Add a New Mother<br></h2>
+        <?php $form = Form::begin('', "post")?>
+
+        <div class="form-column">
+            <?php echo $form->field($model, 'nic', 'NIC Number')?>
+
+            <div class="row" style="display: flex; flex-direction: column; gap: 10px"
+            <label for="maritalStatus">Marital Status</label>
+            <select id="maritalStatus" name="maritalStatus">
+                <option value="married">Married</option>
+                <option value="unmarried">Unmarried</option>
+            </select>
+
+<!--            <label for="marriageDate">Marriage Date</label>-->
+<!--            <input type="date" id="marriageDate" name="marriageDate">-->
+
+            <?php echo $form->dateField($model, 'MarriageDate', 'Marriage Date')?>
+
+            <label for="bloodGroup">Blood Group</label>
+            <select id="bloodGroup" name="bloodGroup">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="B+">O+</option>
+                <option value="B-">O-</option>
+            </select>
+        </div>
+        <br>
+        <?php echo $form->field($model, 'Occupation', 'Occupation')?>
+        <?php echo $form->field($model, 'Allergies', 'Allergies')?>
+    </div>
+
+    <div class="form-column">
+        <?php echo $form->field($model, 'Consanguinity', 'Consanguinity')?>
+        <?php echo $form->field($model, 'history_subfertility', 'history_subfertility')?>
+        <?php echo $form->field($model, 'Hypertension', 'Hypertension')?>
+        <?php echo $form->field($model, 'rubella_immunization', 'Rubella Immunization')?>
+        <?php echo $form->field($model, 'emergencyNumber', 'Emergency Number')?>
     </div>
 </div>
 
-<!---->
-<!--        <div class="form-column">-->
-<!--            --><?php //echo $form->field($model, 'rubella_immunization', 'Rubella Immunization')?>
-<!--            --><?php //echo $form->field($model, 'emergencyNumber', 'Emergency Number')?>
-<!---->
-<!--            <div class="row" style="display: flex; flex-direction: column; gap: 10px">-->
-<!--                <label for="maritalStatus">Marital Status</label>-->
-<!--                <select id="maritalStatus" name="maritalStatus">-->
-<!--                    <option value="" selected disabled>Select Marital Status</option>-->
-<!--                    <option value="married">Married</option>-->
-<!--                    <option value="unmarried">Unmarried</option>-->
-<!--                </select>-->
-<!---->
-<!--                <label for="marriageDate">Marriage Date</label>-->
-<!--                <input type="date" id="marriageDate" name="marriageDate">-->
-<!---->
-<!--                <label for="bloodGroup">Blood Group</label>-->
-<!--                <select id="bloodGroup" name="bloodGroup">-->
-<!--                    <option value="" selected disabled>Select Blood Group</option>-->
-<!--                    <option value="A+">A+</option>-->
-<!--                    <option value="A-">A-</option>-->
-<!--                    <!-- ... other options ... -->-->
-<!--                </select>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!---->
-<!--    <div class="multiRowForm">-->
-<!--        <button type="submit" class="btn-submit">Submit</button>-->
-<!--    </div>-->
-<!--    --><?php //echo Form::end()?>
-<!--</div>-->
-<!---->
-<!---->
+<button type="submit" class="btn-submit">Submit</button>
+<?php echo Form::end()?>
+</div>
+
+</div>
