@@ -128,16 +128,17 @@
     padding-bottom: 40px;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
+    text-align: center;
 }
 
 .contacts-container{
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
     gap: 20px;
-    min-width: max-content;
+    width: 200px;
+    align-content: center;
+    padding-left: 80px;
 
 }
 
@@ -153,6 +154,8 @@
     border-radius: 5px;
     background: #BFD2F8;
     padding: 40px;
+    min-width: 300px;
+    margin: auto;
 }
 
 .contact .contact-name{

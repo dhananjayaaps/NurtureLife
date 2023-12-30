@@ -23,6 +23,7 @@ abstract class DbModel extends Model
         foreach ($attributes as $attribute){
             $statement->bindValue(":$attribute",$this->{$attribute});
         }
+        var_dump($statement);
         $statement->execute();
         return true;
    }
@@ -50,7 +51,23 @@ abstract class DbModel extends Model
             return true;
     }
 
-   static public function findOne($modelClass, $where)
+    static public function deleteWhere($modelClass, $where)
+    {
+        $tableName = (new $modelClass())->tableName();
+        $attributes = array_keys($where);
+        $sql = implode(" AND ", array_map(fn($attr) => "$attr = :$attr", $attributes));
+        $statement = self::prepare("DELETE FROM $tableName WHERE $sql");
+
+        foreach ($where as $key => $item) {
+            $statement->bindValue(":$key", $item);
+        }
+
+        $statement->execute();
+        // You might want to handle errors, check affected rows, etc.
+    }
+
+
+    static public function findOne($modelClass, $where)
    {
        $tableName = (new $modelClass())->tableName();
        $attributes = array_keys($where);

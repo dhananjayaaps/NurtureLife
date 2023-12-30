@@ -58,6 +58,14 @@ class Doctor extends DbModel
                 return false;
             }
             $this->user_id = $ValidateUser->id;
+
+            // add a user role
+
+            $userRole = new UserRoles();
+            $userRole->role_id = 3;
+            $userRole->user_id = $ValidateUser->id;
+            $userRole->save();
+
             return parent::save();
         }
 
@@ -125,5 +133,10 @@ class Doctor extends DbModel
         return parent::update();
     }
 
-}
+    public function delete(): bool
+    {
+        self::deleteWhere(UserRoles::class, ['user_id' => $this->user_id, 'role_id' => 3]);
+        return parent::delete();
+    }
 
+}
