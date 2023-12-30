@@ -41,17 +41,18 @@ $this->title = 'Mothers';
         <div class="form-column">
             <?php echo $form->field($model, 'nic', 'NIC Number')?>
 
-            <div class="row" style="display: flex; flex-direction: column; gap: 10px"
-            <label for="maritalStatus">Marital Status</label>
-            <select id="maritalStatus" name="maritalStatus">
-                <option value="married">Married</option>
-                <option value="unmarried">Unmarried</option>
-            </select>
+            <div class="row" style="display: flex; flex-direction: column; gap: 10px">
 
-<!--            <label for="marriageDate">Marriage Date</label>-->
-<!--            <input type="date" id="marriageDate" name="marriageDate">-->
+            <?php
+                $maritalStatusField = new Dropdown($model, 'MartialStatus', 'Marital Status');
+                $maritalStatusField->setOptions([
+                    'married' => 'Married',
+                    'unmarried' => 'Unmarried',
+                ]);
+                echo $maritalStatusField;
+            ?>
 
-            <?php // Example usage in a form
+            <?php
                 $bloodGroupField = new DropDown($model, 'BloodGroup', 'Blood Group');
                 $bloodGroupField->setOptions([
                     'A+' => 'A+',
@@ -61,10 +62,12 @@ $this->title = 'Mothers';
                     'O+' => 'O+',
                     'O-' => 'O-',
                 ]);
-                echo $bloodGroupField->renderInput();
+                echo $bloodGroupField;
             ?>
         </div>
+
         <br>
+        <?php echo $form->dateField($model, 'MarriageDate', 'Marriage Date')?>
         <?php echo $form->field($model, 'Occupation', 'Occupation')?>
         <?php echo $form->field($model, 'Allergies', 'Allergies')?>
     </div>
@@ -73,7 +76,16 @@ $this->title = 'Mothers';
         <?php echo $form->field($model, 'Consanguinity', 'Consanguinity')?>
         <?php echo $form->field($model, 'history_subfertility', 'history_subfertility')?>
         <?php echo $form->field($model, 'Hypertension', 'Hypertension')?>
-        <?php echo $form->field($model, 'rubella_immunization', 'Rubella Immunization')?>
+
+        <?php
+        $maritalStatusField = new Dropdown($model, 'rubella_immunization', 'Rubella Immunization');
+        $maritalStatusField->setOptions([
+            'yes' => 'Yes',
+            'no' => 'No',
+        ]);
+        echo $maritalStatusField;
+        ?>
+
         <?php echo $form->field($model, 'emergencyNumber', 'Emergency Number')?>
     </div>
 </div>

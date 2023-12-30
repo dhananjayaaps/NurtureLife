@@ -19,6 +19,7 @@ class PreMotherController extends Controller
             $this->layout = 'doctor';
             $mother->loadData($request->getBody());
 
+            var_dump($mother->validate());
             if ($mother->validate() && $mother->save()) {
                 var_dump($mother);
                 Application::$app->session->setFlash('success', 'Added a new Midwife');
