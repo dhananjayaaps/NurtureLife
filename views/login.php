@@ -13,7 +13,7 @@ $this->title = 'Login';
 
 <div class="form-container">
     <div class="form-content">
-        <h2>Registration Form</h2>
+        <h2>Login</h2>
         <?php $form = Form::begin('', "post")?>
         <?php echo $form->field($model, 'email', 'Email')?>
         <?php echo $form->field($model, 'password', 'Password')->passwordField()?>

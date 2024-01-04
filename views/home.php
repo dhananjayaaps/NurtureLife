@@ -22,7 +22,7 @@
 </div>
 
 <div class="welcome">
-    <div class="small-content">Welcome to Nuturelife</div>
+    <div class="small-content">Welcome to NurtureLife</div>
     <div class="large-content">A Great Place for Mothers and Babies</div>
     <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque placerat scelerisque tortor ornare ornare. Convallis felis vitae tortor augue. Velit nascetur proin massa in. Consequat faucibus porttitor enim et.</div>
     <div class="learn-more">

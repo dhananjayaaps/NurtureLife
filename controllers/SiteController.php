@@ -6,6 +6,7 @@ use app\core\Application;
 use app\core\Request;
 use app\core\Response;
 use app\models\AddDoctor;
+//AddDoctor class not defined
 use app\models\User;
 
 class SiteController extends \app\core\Controller

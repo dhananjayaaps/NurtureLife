@@ -5,13 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NurtureLife</title>
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/Form.css">
 </head>
 <body>
-<div class="headbar">
-    <img src="../assets/images/nuturelife_logo.png" alt="nuturelife_logo">
+<div class="headBar">
 
     <div class="largeIcons">
         <img src="../assets/images/Group 188.svg" alt="phone">

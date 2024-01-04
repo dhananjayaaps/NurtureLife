@@ -23,7 +23,7 @@ abstract class Model
     abstract public function rules(): array;
 
     public array $errors = [];
-    public function validate()
+    public function validate(): bool
     {
         foreach ($this->rules() as $attribute => $rules) {
             $value = $this->{$attribute};
@@ -78,15 +78,15 @@ abstract class Model
         $this->errors[$attribute][] = $message;
     }
 
-    public function errorMessages()
+    public function errorMessages(): array
     {
         return [
             self::RULE_REQUIRED => 'This field is required',
-            self::RULE_EMAIL => 'This field must be valid email address',
-            self::RULE_MIN => 'Min length of this field must be {min}',
-            self::RULE_MAX => 'Max length of this field must be {max}',
+            self::RULE_EMAIL => 'Please enter a valid email address',
+            self::RULE_MIN => 'Minimum length of this field must be {min}',
+            self::RULE_MAX => 'Maximum length of this field must be {max}',
             self::RULE_MATCH => 'This field must be the same as {match}',
-            self::RULE_UNIQUE => 'Record with this {field} already exists'
+            self::RULE_UNIQUE => 'A record with this {field} already exists'
         ];
     }
 

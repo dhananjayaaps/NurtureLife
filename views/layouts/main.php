@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NurtureLife</title>
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,23 +13,27 @@
 </head>
 <body>
 
-<div class="headbar">
-    <img src="../assets/images/nuturelife_logo.png" alt="nuturelife_logo">
-
-    <div class="largeIcons">
-        <img src="../assets/images/Group 188.svg" alt="phone">
-        <div class="emrgency">Emergency<br/>+94 71 307 8728</div>
-        <img src="../assets/images/Group 177.svg" alt="clock">24x7 Service
-    </div>
-</div>
+<!--<div class="headBar">-->
+<!--    <img src="../assets/images/nuturelife_logo.png" alt="nuturelife_logo">-->
+<!--    <div class="largeIcons">-->
+<!--        <img src="../assets/images/Group 188.svg" alt="phone">-->
+<!--        <div class="emrgency">Emergency<br/>+94 71 123 4567</div>-->
+<!--        <img src="../assets/images/Group 177.svg" alt="clock">24x7 Service-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="navbar" id="myNavbar">
+    <img class="NL_logo" src="../assets/images/nuturelife_logo.png" alt="nuturelife_logo">
     <a href="/">Home</a>
     <a href="#about">About</a>
 
     <div class="search-container">
-        <input type="text" placeholder="Search...">
-        <button type="submit">Search</button>
+        <div>
+            <input class="search-input" type="text" placeholder="Search">
+        </div>
+        <div>
+            <button class="search-button" type="submit">Search</button>
+        </div>
     </div>
 
     <?php if (Application::isGuest()): ?>
@@ -38,7 +42,7 @@
     <?php else: ?>
 
         <div class="dropdown">
-            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
+            <button class="dropButton"><?php echo Application::$app->user->getRoleName() ?> View
                 <i class="fa fa-caret-down"></i>
             </button>
             <form id="roleChangeForm" method="POST" action="/changeRole">
@@ -102,9 +106,9 @@
         </div>
     </div>
 
-<div id="container">
-    <canvas id="lines-demo"></canvas>
-</div>
+<!--<div id="container">-->
+<!--    <canvas id="lines-demo"></canvas>-->
+<!--</div>-->
 
 <script>
     window.onscroll = function() {BarOverflow()};

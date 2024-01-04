@@ -66,7 +66,7 @@ class Application
         }
     }
 
-    public function Run()
+    public function Run(): void
     {
         try{
             $content = $this->router->resolve();
@@ -79,7 +79,7 @@ class Application
         }
     }
 
-    public function login(DbModel $user)
+    public function login(DbModel $user): void
     {
         $this->user = $user;
         $primaryKey = $user->primaryKey();
@@ -88,7 +88,7 @@ class Application
 
     }
 
-    public function logout()
+    public function logout(): void
     {
         $this->user = null;
         $this->session->remove('user');

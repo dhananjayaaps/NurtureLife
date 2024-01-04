@@ -9,8 +9,10 @@ class Router
     public Request $request;
     public Response $response;
     protected array $routes = [];
+
     /**
      * @param Request $request
+     * @param Response $response
      */
     public function __construct(Request $request, Response $response)
     {
@@ -34,6 +36,9 @@ class Router
         $this->routes['put'][$path] = $callback;
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function resolve()
     {
         $path = $this->request->getPath();

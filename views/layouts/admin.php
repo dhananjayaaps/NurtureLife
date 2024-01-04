@@ -31,7 +31,7 @@
     <?php else: ?>
 
         <div class="dropdown">
-            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
+            <button class="dropButton"><?php echo Application::$app->user->getRoleName() ?> View
                 <i class="fa fa-caret-down"></i>
             </button>
             <form id="roleChangeForm" method="POST" action="/changeRole">

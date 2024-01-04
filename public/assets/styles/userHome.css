@@ -17,12 +17,12 @@
 
 .small-content{
     color: #159EEC;
-    font-family: Work Sans;
+    font-family: Work Sans, serif;
     font-size: 25px;
     font-style: normal;
     font-weight: bold;
     line-height: normal;
-    letter-spacing: 2.88px;
+    letter-spacing: 3px;
     text-transform: uppercase;
 }
 

@@ -3,7 +3,7 @@
 namespace app\migrations;
 class m002_add_roles
 {
-    public function up()
+    public function up(): void
     {
         $db = \app\core\Application::$app->db;
         $SQL = "INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
@@ -16,7 +16,7 @@ class m002_add_roles
         $db->pdo->exec($SQL);
     }
 
-    public function down()
+    public function down(): void
     {
         $db = \app\core\Application::$app->db;
         $SQL = "ALTER TABLE users DROP COLUMN password";
