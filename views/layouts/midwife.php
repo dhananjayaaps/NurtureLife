@@ -70,7 +70,7 @@
 
 <div class="content-navbar">
     <div class="left-navbar">
-        <img src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
+        <img class="NL_logo" src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
         <div class="navigations">
             <div class="column">
                 <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>

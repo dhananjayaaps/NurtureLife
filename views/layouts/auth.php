@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="headbar">
-    <img src="../assets/images/nuturelife_logo.png" alt="nuturelife_logo">
+    <img class="NL_logo" src="../assets/images/nuturelife_logo.png" alt="nuturelife_logo">
 
     <div class="largeIcons">
         <img src="../assets/images/Group 188.svg" alt="phone">
@@ -22,8 +22,8 @@
 
 <div class="navbar">
     <a href=" ">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
+    <a href="about">About</a>
+    <a href="services">Services</a>
     <a href="contact">Contact</a>
 
     <div class="search-container">
