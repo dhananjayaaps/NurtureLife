@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -79,12 +80,6 @@
             </div>
             <div class="column">
                 <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
-            </div>
-            <div class="column">
-                <a href="/doctors"><img src="assets/images/icons/doctor.png" alt=""> Doctors</a>
-            </div>
-            <div class="column">
-                <a href="/midwife"><img src="assets/images/icons/nurse.png" alt=""> MidWives</a>
             </div>
             <div class="column">
                 <a href="preMother"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>

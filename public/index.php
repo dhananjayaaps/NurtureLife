@@ -9,6 +9,7 @@ use app\controllers\AdminController\ClinicsController;
 use app\controllers\AdminController\DoctorController;
 use app\controllers\AdminController\MidwifeController;
 use app\controllers\AuthController;
+use app\controllers\MidwifeController\ChildController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -67,5 +68,9 @@ $app->router->post('/preMotherForm', [\app\controllers\MidwifeController\PreMoth
 $app->router->get('/appointments', [SiteController::class, 'appointments']);
 $app->router->get('/doctorClinics', [SiteController::class, 'doctorClinics']);
 $app->router->get('/doctorMothers', [SiteController::class, 'doctorMothers']);
+
+$app->router->get('/Child', [ChildController::class, 'Child']);
+$app->router->post('/Child', [ChildController::class, 'Child']);
+
 
 $app->run();

@@ -67,7 +67,7 @@ $this->title = 'Admin Dashboard';
 
                         <div class="notification warning">
                             <div class="message-box">
-                                <div class="title">Emergency Allert</div>
+                                <div class="title">Emergency Alert</div>
                                 <div class="notification-content">
                                     Pressed the Emergency Elarm by Kamala Wijethunga
                                 </div>
@@ -76,7 +76,7 @@ $this->title = 'Admin Dashboard';
 
                         <div class="notification">
                             <div class="message-box">
-                                <div class="title">Emergency Allert</div>
+                                <div class="title">Emergency Alert</div>
                                 <div class="notification-content">
                                     Pressed the Emergency Elarm by Kamala Wijethunga
                                 </div>
