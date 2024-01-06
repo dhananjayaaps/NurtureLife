@@ -13,16 +13,6 @@
 </head>
 <body>
 
-<div class="headbar">
-    <img class="NL_logo" src="../assets/images/nuturelife_logo.png" alt="nuturelife_logo">
-
-    <div class="largeIcons">
-        <img src="../assets/images/Group 188.svg" alt="phone">
-        <div class="emrgency">Emergency<br/>+94 71 307 8728</div>
-        <img src="../assets/images/Group 177.svg" alt="clock">24x7 Service
-    </div>
-</div>
-
 <div class="navbar" id="myNavbar">
     <a href="/">Home</a>
     <a href="#about">About</a>
