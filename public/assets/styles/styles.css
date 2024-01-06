@@ -9,6 +9,7 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
+    font-family: "Roboto Light", serif;
 }
 #container {
     position: absolute;
@@ -27,7 +28,7 @@ body, html {
 }
 
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto Light";
     font-size: 15px;
     font-style: normal;
     font-weight: 100;
@@ -37,11 +38,12 @@ body{
 
 .navbar{
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     background: #1F2B6C;
     width: 100%;
-    z-index: 100;
+    height: 80px;
 }
 
 .navbar a {
@@ -157,9 +159,9 @@ body{
     margin-right: auto;
 }
 
-.headbar img{
-    align-items:flex-start;
-}
+/*.headbar img{*/
+/*    align-items:flex-start;*/
+/*}*/
 
 .search-container {
     padding-top: 0px;
@@ -521,5 +523,13 @@ h1 {
     vertical-align: middle;
 }
 .NL_logo{
-    width: 200px;
+    width: 150px;
+
+
+}
+.navbar_link{
+    color: #e00202;
+    font-size: large;
+    font-weight: bolder;
+
 }

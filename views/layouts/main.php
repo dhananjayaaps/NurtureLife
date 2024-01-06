@@ -14,8 +14,9 @@
 <body>
 
 <div class="navbar" id="myNavbar">
-    <a href="/">Home</a>
-    <a href="#about">About</a>
+    <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
+    <a href="/" class="navbar_link">Home</a>
+    <a href="/about" class="navbar_link">About</a>
 
     <div class="search-container">
         <input type="text" placeholder="Search...">
@@ -92,9 +93,9 @@
         </div>
     </div>
 
-<div id="container">
-    <canvas id="lines-demo"></canvas>
-</div>
+<!--<div id="container">-->
+<!--    <canvas id="lines-demo"></canvas>-->
+<!--</div>-->
 
 <script>
     window.onscroll = function() {BarOverflow()};
