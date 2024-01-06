@@ -85,6 +85,9 @@
         <div class="footer-left-text">
             SUSTAINING LIFE THROUGH EMPOWERING MOTHERHOOD
         </div>
+        <div class="policy">
+            <a href="/policy">Privacy and Policy</a>
+        </div>
     </div>
 
     <div class="footer-center">

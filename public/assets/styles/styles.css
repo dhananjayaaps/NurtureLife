@@ -225,6 +225,16 @@ body{
     opacity: 0.7;
     font-size:larger;
 }
+.policy a{
+    color: white;
+    font-family: monospace;
+    opacity: 0.5;
+    text-decoration: none;
+}
+.policy a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
 .footer-center{
     display: flex;
     flex-direction: column;
