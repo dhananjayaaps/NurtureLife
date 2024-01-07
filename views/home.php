@@ -2,9 +2,8 @@
 
 <div class="image-container">
     <div class="BackgroundText">
-        <div class="small-content">Caring for Life</div>
-        <div class="large-content">Leading the Way <br>in Medical Excellence</div>
-        <div class="services-button"><a href="#services">Our Services</a></div>
+        <div class="BackgroundText-1">NurtureLife</div>
+        <div class="BackgroundText-2">Sustaining Life Through<br>Empowering Motherhood</div>
     </div>
 </div>
 

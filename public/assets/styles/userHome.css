@@ -15,18 +15,17 @@
     gap: 30px;
 }
 
-.small-content{
-    color: #159EEC;
-    font-family: Work Sans;
-    font-size: 25px;
+.BackgroundText-1{
+    color: #d25454;
+    font-family: Yeseva One, serif;
+    font-size: 50px;
     font-style: normal;
     font-weight: bold;
     line-height: normal;
-    letter-spacing: 2.88px;
-    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.large-content{
+.BackgroundText-2{
     color: #1F2B6C;
     font-family: Yeseva One, serif;
     font-size: 48px;
