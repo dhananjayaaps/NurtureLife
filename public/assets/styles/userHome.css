@@ -45,12 +45,32 @@
 }
 
 .quick-access{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 16px;
+    row-gap: 40px;
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*justify-content: center;*/
+    /*gap: 50px;*/
     position: relative;
     bottom: 50px;
+    z-index: 100;
+}
+@media (max-width: 750px){
+    .quick-access{
+        grid-template-columns: 1fr;
+    }
+}
+@media (min-width: 751px) and (max-width: 999px){
+    .quick-access{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (min-width: 1000px){
+    .quick-access{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
 .quick-access img{
@@ -82,85 +102,25 @@
     transition: background-color 1s;
 }
 .welcome{
-    padding-top: 40px;
-    padding-inline-start: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
     justify-content: center;
-    margin: auto;
-    max-width: 800px;
+    margin-bottom: 20px;
 }
-
-.welcome .content{
-    font-size: 20px;
-    text-align: center;
-}
-
-.welcome .learn-more{
-    font-size: 20px;
-    color: #159EEC;
-    gap: 10px;
-}
-
-.services{
-    padding-top: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.contacts{
-    padding-top: 30px;
-    padding-bottom: 40px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-}
-
-.contacts-container{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    width: 200px;
-    align-content: center;
-    padding-left: 80px;
-
-}
-
-.contacts img{
-    max-height: 50px;
-    justify-content: flex-start;
-}
-
-.contact{
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    border-radius: 5px;
-    background: #BFD2F8;
-    padding: 40px;
-    min-width: 300px;
-    margin: auto;
-}
-
-.contact .contact-name{
+.content_1, .content_3{
+    font-size: 40px;
+    font-family: Yeseva One, serif;
+    font-weight: bolder;
     color: #1F2B6C;
+}
+.content_2, .content_4{
+    text-align: center;
     font-size: 25px;
-    padding-bottom:10px;
-    padding-top: 10px;
-}
-
-.location{
-    border-radius: 5px;
-    background: #1F2B6C;
-    color: white;
-}
-
-.location .contact-name{
-    color: #BFD2F8;
+    font-family: Yeseva One, serif;
+    font-weight: bolder;
+    line-height: 30px;
+    max-width: 900px;
+    color: #131f58;
 }

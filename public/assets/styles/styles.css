@@ -44,6 +44,7 @@ body{
     background: #142259;
     width: 100%;
     height: 80px;
+    z-index: 200;
 }
 
 .navbar a {
@@ -86,7 +87,7 @@ body{
     border-style: solid;
     border-color: #ffb3b3;
     border-radius: 10px;
-    font-size: 17px;
+    font-size: 20px;
     width: 250px;
     height: 35px;
 }
@@ -99,12 +100,15 @@ body{
     border-radius: 10px;
     border: solid;
     background-color: #b75879;
+    font-size: 15px;
+    font-family: monospace;
 }
 
 .search-container button:hover {
     background: #ddd;
     color: black;
     cursor: pointer;
+    transition: color 1s;
 }
 .navbar_emg{
     text-align: left;
@@ -265,16 +269,18 @@ body{
     display: flex;
     flex-direction: column;
     gap: 5px;
+    margin-top: 0;
+    padding-top: 0;
 }
 .contact-us{
     color: white;
     font-family: monospace;
-    font-size: large;
+    font-size: larger;
 }
 .tel-no, .email{
     color: rgb(255, 179, 179);
     font-family: monospace;
-    font-size: large;
+    font-size: larger;
 }
 
 .column-container {
