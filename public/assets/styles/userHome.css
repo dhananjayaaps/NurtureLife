@@ -44,12 +44,6 @@
     justify-content: center;
 }
 
-.services-button a{
-    text-decoration: none;
-    font-size: large;
-    align-items: center;
-}
-
 .quick-access{
     display: flex;
     flex-direction: row;
@@ -57,20 +51,22 @@
     gap: 50px;
     position: relative;
     bottom: 50px;
-
 }
 
-
 .quick-access img{
-    min-height: 50px;
+    height: 70px;
 }
 
 .quick-access a{
     text-decoration: none;
+    font-family: monospace;
     color: white;
     margin: auto;
     padding-left: 20px;
-
+}
+.quick-access a:hover{
+    color: black;
+    transition: color 1s;
 }
 
 .access-one, .access-two, .access-three{
@@ -79,17 +75,12 @@
     background-color: #1F2B6C;
     margin: auto;
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 35px;
 }
-
-.access-two{
-    background: #BFD2F8;
+.access-one:hover, .access-two:hover, .access-three:hover{
+    background-color: #3f57e7;
+    transition: background-color 1s;
 }
-
-.access-two a{
-    color: black;
-}
-
 .welcome{
     padding-top: 40px;
     padding-inline-start: 40px;
