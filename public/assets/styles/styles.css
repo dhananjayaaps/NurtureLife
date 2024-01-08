@@ -202,6 +202,7 @@ body{
     margin: 0;
     height: 120px;
     gap: 20px;
+
 }
 .footer-left {
     display: flex;
@@ -356,7 +357,6 @@ body{
     position: relative;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
 }
@@ -377,7 +377,6 @@ body{
     padding: 10px 20px;
     background: #fff;
     width: 200px;
-    box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     transition: 0.5s;
     visibility: hidden;
@@ -405,7 +404,7 @@ body{
 .action .menu h3 {
     width: 100%;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     padding: 20px 0;
     font-weight: 500;
     color: #555;
@@ -422,13 +421,13 @@ body{
 
 .action .menu ul li {
     list-style: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
+    margin: 20px;
 }
 
 .action .menu ul li img {
-    max-width: 20px;
+    width: 25px;
     margin-right: 10px;
     opacity: 0.5;
     transition: 0.5s;
