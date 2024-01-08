@@ -101,7 +101,7 @@ class m0001_initial
             user_id INT,
             PHM_ID INT,
             clinic_id INT,
-            MartialStatus VARCHAR(255),
+            MaritalStatus VARCHAR(255),
             MarriageDate DATE,
             BloodGroup VARCHAR(10),
             Occupation VARCHAR(255),
