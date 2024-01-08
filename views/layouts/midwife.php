@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NurtureLife</title>
+    <link rel="icon" type="image/png" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,7 +15,7 @@
 <body>
 
 <div class="navbar">
-    <a href=" ">Home</a>
+    <a href=" ">Homeeeeee</a>
     <a href="#about">About</a>
 
     <div class="search-container">
@@ -47,7 +48,7 @@
                 <h3><?php echo Application::$app->user->getDisplayName() ?></h3>
                 <ul>
                     <li>
-                        <img src="./assets/images/icons/user.png" /><a href="#">My profile</a>
+                        <img src="./assets/images/icons/user.png" /><a href="#">My123 profile</a>
                     </li>
                     <li>
                         <img src="./assets/images/icons/settings.png" /><a href="#">Setting</a>
@@ -70,7 +71,6 @@
 
 <div class="content-navbar">
     <div class="left-navbar">
-        <img class="NL_logo" src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
         <div class="navigations">
             <div class="column">
                 <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>

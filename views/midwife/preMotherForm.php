@@ -93,5 +93,3 @@ $this->title = 'Mothers';
 <button type="submit" class="btn-submit">Submit</button>
 <?php echo Form::end()?>
 </div>
-
-</div>
