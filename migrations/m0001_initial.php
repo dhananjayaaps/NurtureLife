@@ -4,18 +4,18 @@ use app\core\Application;
 
 class m0001_initial
 {
-    public function up()
+    public function up(): void
     {
         $db = Application::$app->db;
 
-        $SQL = "CREATE TABLE roles (
+        $SQL1 = "CREATE TABLE roles (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(255) NOT NULL
         ) ENGINE=INNODB;";
 
-        $db->pdo->exec($SQL);
+        $db->pdo->exec($SQL1);
 
-        $SQL = "CREATE TABLE users (
+        $SQL2 = "CREATE TABLE users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             email VARCHAR(255) NOT NULL,
             firstname VARCHAR(255) NOT NULL,
@@ -28,7 +28,7 @@ class m0001_initial
             FOREIGN KEY (role_id) REFERENCES roles(id)
         ) ENGINE=INNODB;";
 
-        $db->pdo->exec($SQL);
+        $db->pdo->exec($SQL2);
 
 
         $SQL3 = "INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
