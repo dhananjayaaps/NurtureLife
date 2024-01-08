@@ -76,7 +76,7 @@
 </div>
 
 
-    {{content}}
+{{content}}
 <div class="footer">
     <div class="footer-left">
         <div class="footer-left-title">
@@ -184,4 +184,3 @@
         });
     });
 </script>
-
