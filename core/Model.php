@@ -23,7 +23,7 @@ abstract class Model
     abstract public function rules(): array;
 
     public array $errors = [];
-    public function validate()
+    public function validate(): bool
     {
         foreach ($this->rules() as $attribute => $rules) {
             $value = $this->{$attribute};

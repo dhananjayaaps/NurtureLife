@@ -66,8 +66,6 @@ class m0001_initial
         $SQL6 = "CREATE TABLE clinics (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
-            moh_id INT,
-            FOREIGN KEY (moh_id) REFERENCES doctors(`MOH_id`),
             district VARCHAR(255) NOT NULL,
             province VARCHAR(255) NOT NULL, 
             address VARCHAR(255) NOT NULL,
@@ -177,8 +175,6 @@ class m0001_initial
                 FOREIGN KEY (phm_id) REFERENCES midwife(PHM_id),
                 moh_id int,
                 FOREIGN KEY (moh_id) REFERENCES doctors(MOH_id),
-                baby_book_id int,
-                FOREIGN KEY (baby_book_id) REFERENCES baby_book(bb_id),
                 firstname varchar(255),
                 lastname varchar(255),
                 DOB date,
@@ -272,8 +268,6 @@ class m0001_initial
                 id INT NOT NULL AUTO_INCREMENT primary key,
                 clinic_id int,
                 FOREIGN KEY (clinic_id) REFERENCES clinics(id),
-                moh_id int,
-                FOREIGN KEY (moh_id) REFERENCES doctors(MOH_id),
                 time timestamp,
                 date date
             ) ENGINE=INNODB;
@@ -377,6 +371,18 @@ class m0001_initial
                 FOREIGN KEY (mother_id) REFERENCES Mothers(MotherId),
                 date date,
                 kick_count int
+            ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($SQL20);
+
+        $SQL26 = "CREATE TABLE tetanus_immu(
+                id INT NOT NULL AUTO_INCREMENT primary key,
+                mother_id int,
+                FOREIGN KEY (mother_id) REFERENCES Mothers(MotherId),
+                pregnancy_week int,
+                date date,
+                batch_no varchar(255) 
             ) ENGINE=INNODB;
             ";
 

@@ -3,7 +3,7 @@
         <h1 style="color:green;">Mother Diagnostic Card</h1>
         <label for="">Diagnosis</label>
         <textarea name="" id="" cols="30" rows="10" style="width: 100%; height: 80px;"></textarea>
-        <label for="">Recomondations</label>
+        <label for="">Recommendations</label>
         <textarea name="" id="" cols="30" rows="10" style="width: 100%; height: 80px;"></textarea>
         <label for="">Tests to be done</label>
         <textarea name="" id="" cols="30" rows="10" style="width: 100%; height: 80px;"></textarea>

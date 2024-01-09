@@ -24,7 +24,11 @@ class User extends UserModel
     const ROLE_POST_MOTHER = 5;
     const ROLE_MIDWIFE = 6;
     public int $id;
-    public string $created_at;
+    public string $contact_no = '';
+
+    public string $DOB = '';
+    public string $gender = '';
+    public string $created_at = '';
 
     public string $firstname = '';
     public string $lastname ='';

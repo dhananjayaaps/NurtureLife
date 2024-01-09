@@ -20,7 +20,7 @@ class AuthController extends Controller
         $this->registerMiddleware(new \app\core\middlewares\AuthMiddleware(['profile']));
     }
 
-    public function login(Request $request, Response $response)
+    public function login(Request $request, Response $response): bool|array|string
     {
         $loginModel = new LoginModel();
         $this->setLayout('auth');
