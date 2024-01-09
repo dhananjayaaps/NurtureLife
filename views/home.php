@@ -6,6 +6,10 @@
         <div class="BackgroundText-2">Sustaining Life Through<br>Empowering Motherhood</div>
     </div>
 </div>
+<div class="emg_access">
+    <img src="./assets/images/emergency_call.png" alt="calender">
+    <p>+94 71 977 3265</p>
+</div>
 
 <div class="quick-access">
     <div class="access-one">

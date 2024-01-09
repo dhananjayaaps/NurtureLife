@@ -44,7 +44,7 @@ $this->title = 'Mothers';
             <div class="row" style="display: flex; flex-direction: column; gap: 10px">
 
             <?php
-                $maritalStatusField = new Dropdown($model, 'MartialStatus', 'Marital Status');
+                $maritalStatusField = new Dropdown($model, 'MaritalStatus', 'Marital Status');
                 $maritalStatusField->setOptions([
                     'married' => 'Married',
                     'unmarried' => 'Unmarried',
