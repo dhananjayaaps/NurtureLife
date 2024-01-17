@@ -14,7 +14,6 @@ class Fetalkick extends DbModel
     {
         return[
 
-            'MotherId'=> [self::RULE_REQUIRED],
             'KickCount'=> [self::RULE_REQUIRED]
 
         ];

@@ -7,6 +7,7 @@ namespace app\controllers\MotherController;
 use app\core\Application;
 use app\core\Request;
 use app\models\Fetalkick;
+use http\Client\Curl\User;
 
 
 class FetalkickController extends \app\core\Controller
@@ -28,7 +29,9 @@ class FetalkickController extends \app\core\Controller
         }
         else if ($request->isGet()) {
             $this->layout = 'mother';
+
         }
+//        var_dump(Application::$app->user->getId());
 
         return $this->render('preMother/fetalkick', [
             'model' => $fetalkick, "modelUpdate" => $fetalkick2
@@ -38,7 +41,7 @@ class FetalkickController extends \app\core\Controller
     public function fetalkickUpdate(Request $request): false|string
     {
         $fetalkick = (new Fetalkick())->getAFetalkick($request->getBody()['id']);
-        $this->setLayout('preMother');
+        $this->setLayout('mother');
         $fetalkick->loadData($request->getBody());
         $fetalkick->validate();
         if ($fetalkick->validate()) {
@@ -64,7 +67,7 @@ class FetalkickController extends \app\core\Controller
 
     public function reports(): array|false|string
     {
-        $this->layout = 'preMother';
+        $this->layout = 'mother';
         return $this->render('preMother/reports');
     }
 }
