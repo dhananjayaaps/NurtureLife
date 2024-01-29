@@ -119,6 +119,25 @@ class m0001_initial
             ";
 
         $db->pdo->exec($SQL9);
+
+        $SQL10 = "CREATE TABLE IF NOT EXISTS your_table_name (
+                    user_id INT AUTO_INCREMENT PRIMARY KEY,
+                    PHM_ID VARCHAR(255),
+                    Clinic_ID VARCHAR(255),
+                    nic VARCHAR(255),
+                    Child_Name VARCHAR(255),
+                    Register_NO VARCHAR(255),
+                    Birth_Date DATE,
+                    Birth_Place VARCHAR(255),
+                    Mother_Name VARCHAR(255),
+                    Age VARCHAR(255),
+                    Address VARCHAR(255),
+                    Gender VARCHAR(255)
+                );
+
+            ";
+
+        $db->pdo->exec($SQL9);
     }
 
     public function down()

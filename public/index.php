@@ -72,5 +72,9 @@ $app->router->get('/doctorMothers', [SiteController::class, 'doctorMothers']);
 $app->router->get('/Child', [ChildController::class, 'Child']);
 $app->router->post('/Child', [ChildController::class, 'Child']);
 
+$app->router->get('/viewChild', [ChildController::class, 'viewChild']);
+
+$app->router->get('/childCard', [ChildController::class, 'childCard']);
+$app->router->post('/childCard', [ChildController::class, 'childCard']);
 
 $app->run();

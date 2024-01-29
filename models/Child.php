@@ -8,16 +8,23 @@ class Child extends DbModel
 {
 
     public string $user_id = '';
-    public string $PHM_ID = '';
-    public string $Clinic_ID = '';
+
     public string $nic = '';
     public string $Child_Name = '';
     public string $Register_NO = '';
     public string $Birth_Date = '';
     public string $Birth_Place = '';
     public string $Mother_Name = '';
-    public string $Age = '';
     public string $Address = '';
+    public string $Gender = '';
+    public string $no_of_apga ='';
+    public string $birth_weight = '';
+    public string $head_circumference_at_birth = '';
+    public string $baby_length_at_birth = '';
+    public string $health_condition = '';
+    public string $vitamin_k= '';
+
+
 
 
 
@@ -25,21 +32,18 @@ class Child extends DbModel
     {
         return [
             'nic' => [self::RULE_REQUIRED],
-            'PHM_ID' => [self::RULE_REQUIRED],
-            'Clinic_ID' => [self::RULE_REQUIRED],
             'Birth_Date' => [self::RULE_REQUIRED],
             'Register_NO' => [self::RULE_REQUIRED],
             'Birth_Place' => [self::RULE_REQUIRED],
             'Mother_Name' => [self::RULE_REQUIRED],
-            'Age' => [self::RULE_REQUIRED],
-            'Address' => [self::RULE_REQUIRED],
+            'Gender' => [self::RULE_REQUIRED],
             'Child_Name' => [self::RULE_REQUIRED],
         ];
     }
 
     public function tableName(): string
     {
-        return 'mothers';
+        return 'child';
     }
 
     public function primaryKey(): string
@@ -50,16 +54,15 @@ class Child extends DbModel
     public function attributes(): array
     {
         return [
-            'PHM_ID',
-            'Clinic_ID',
+            'user_id',
             'nic',
             'Child_Name',
             'Register_NO',
             'Birth_Date',
             'Birth_Place',
             'Mother_Name',
-            'Age',
-            'Address',
+            'Gender',
+
 
         ];
     }
@@ -74,24 +77,39 @@ class Child extends DbModel
         }
         else{
             $exitUser = (new Mother())->getUser($ValidateUser->getId());
-            if($exitUser){
-                $this->addError('nic', 'That user is already a Mother');
-                return false;
-            }
-            $exitPHM = (new Midwife())->findOne(Child::class, ["id" => $this->PHM_ID]);
-            if(!$exitPHM){
-                $this->addError('PHM_ID', 'That Clinic no exists');
-                return false;
-            }
+
+
             $this->user_id = $ValidateUser->id;
+            var_dump("errors", $this->errors);
             return parent::save();
         }
+        return parent::save();
 
     }
 
-    private function getUser($id)
+    public function getChild($id)
     {
-        return (new Midwife())->findOne(Midwife::class, ['user_id' => $id]);
+        return (new Child())->findOne(Child::class, ['child_id' => $id]);
+    }
+
+    public function getChilds(): string
+    {
+        $childData = (new Child())->findAll(self::class);
+        $data = [];
+
+        foreach ($childData as $child) {
+//            $Child = self::findOne(Child::class, ["user_id" => $Child->user_id]);
+//            $Child = self::findOne(Child::class, ["id" => $Child->Register_NO]);
+            $data[] = [
+                'ChildName' => $child->Child_Name,
+                'MotherName' => $child->Mother_Name,
+                'RegistrationNo' => $child->Register_NO,
+                'Gender' => $child-> Gender,
+
+            ];
+        }
+
+        return json_encode($data);
     }
 
 //
