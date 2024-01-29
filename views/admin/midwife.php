@@ -3,6 +3,7 @@
 
 use app\core\Application;
 use app\core\form\Form;
+use app\models\Clinic;
 use app\models\Midwife;
 
 $this->title = 'Midwifes';
@@ -109,12 +110,21 @@ $this->title = 'Midwifes';
             <div class="form-group">
                 <label for="clinic_id">Clinic</label>
                 <br>
-                <select id="clinic_id" name="clinic_id" class="js-select2" required>
+                <select id="clinic_id" name="clinic_id" class="js-select2 custom-select" required>
                     <option value="" selected disabled>Select Clinic</option>
-                    <?php foreach ($model->getClinics() as $clinic): ?>
+                    <?php foreach ((new Clinic())->getClinicsList() as $clinic): ?>
                         <option value="<?php echo $clinic['id'] ?>"><?php echo $clinic['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
+
+                <style>
+                    .js-select2 {
+                        width: 110%;
+                        height: 130%;
+                        padding: 0;
+                    }
+                </style>
+
 
                 <div class="invalid-feedback"></div>
             </div>

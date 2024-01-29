@@ -1,9 +1,10 @@
 <?php
+
+namespace app\views\midwife;
 /** @var $this app\core\view */
 
 use app\core\Application;
 use app\core\form\Form;
-use app\models\Clinic;
 use app\models\Doctor;
 
 $this->title = 'Doctors';
@@ -13,8 +14,6 @@ $this->title = 'Doctors';
 /** @var $model Doctor **/
 /** @var $modelUpdate Doctor **/
 //?>
-
-
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
@@ -106,35 +105,7 @@ $this->title = 'Doctors';
             <?php $form = Form::begin('', "post")?>
             <?php echo $form->field($model, 'nic', 'NIC')?>
             <?php echo $form->field($model, 'SLMC_no', 'SLMC ID')?>
-            <div class="form-group">
-                <label for="clinic_id">Clinic</label>
-                <br>
-                <select id="clinic_id" name="clinic_id" class="js-select2 custom-select" required>
-                    <option value="" selected disabled>Select Clinic</option>
-                    <?php foreach ((new Clinic())->getClinicsList() as $clinic): ?>
-                        <option value="<?php echo $clinic['id'] ?>"><?php echo $clinic['name'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-
-                <style>
-                    .js-select2 {
-                        width: 110%;
-                        height: 130%;
-                        padding: 0;
-                    }
-                </style>
-
-
-                <div class="invalid-feedback"></div>
-            </div>
-
-            <script>
-                // Initialize Select2
-                $(document).ready(function () {
-                    $('.js-select2').select2();
-                });
-            </script>
-
+            <?php echo $form->field($model, 'clinic_id', 'Clinic')?>
             <button type="submit" class="btn-submit">Submit</button>
             <?php echo Form::end()?>
         </div>

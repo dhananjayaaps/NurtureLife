@@ -119,6 +119,20 @@ class m0001_initial
             ";
 
         $db->pdo->exec($SQL9);
+
+        $Trigger1 = "
+            DELIMITER //
+            CREATE TRIGGER after_insert_user
+            AFTER INSERT ON users
+            FOR EACH ROW
+            BEGIN
+                INSERT INTO user_roles (user_id, role_id)
+                VALUES (NEW.id, 1);
+            END;
+            //
+            DELIMITER ;";
+
+        $db->pdo->exec($Trigger1);
     }
 
     public function down()

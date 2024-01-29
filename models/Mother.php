@@ -97,32 +97,16 @@ class Mother extends DbModel
         return (new Mother())->findOne(Mother::class, ['user_id' => $id]);
     }
 
-//
-//    public function getMothers(): string
-//    {
-//        // Implement a method to get a list of mothers similar to the getMidwifes method
-//        // Fetch data from the database and format it as needed
-//        // Return data in JSON format as shown in the getMidwifes method.
-//    }
-//
-//    public function getMotherById($MotherId): string
-//    {
-//        // Implement a method to get mother details by ID
-//        // Fetch data from the database based on MotherId and return it in JSON format.
-//    }
-//
-//    public function getAMother($MotherId)
-//    {
-//        // Implement a method to get a single mother by ID similar to getAMidwife
-//        // Fetch data from the database and return it, or return null if not found.
-//    }
-//
-//    public function update(): bool
-//    {
-//        // Implement the update logic similar to the Midwife class
-//        // Add validation, checks, and database updating logic
-//        // Ensure you return true if the update is successful, and false if it fails.
-//    }
+    public function getDoctors(): string
+    {
+        $sql = "";
+        $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
 
-    // Add any additional methods you need for the Mother module here
+        foreach ($where as $key => $item){
+            $statement->bindValue(":$key",$item);
+        }
+        $statement->execute();
+        return $statement->fetchObject(static::class);
+    }
+
 }
