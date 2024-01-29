@@ -72,4 +72,7 @@ $app->router->get('/appointments', [SiteController::class, 'appointments']);
 $app->router->get('/doctorClinics', [SiteController::class, 'doctorClinics']);
 $app->router->get('/doctorMothers', [SiteController::class, 'doctorMothers']);
 
+$app->router->get('/about', [SiteController::class, 'about']);
+
+
 $app->run();

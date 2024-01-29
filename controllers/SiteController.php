@@ -85,4 +85,10 @@ class SiteController extends \app\core\Controller
         return $this->render('doctor/mothers');
     }
 
+    public function about()
+    {
+        $this->layout = 'auth';
+
+        return $this->render('about');
+    }
 }
