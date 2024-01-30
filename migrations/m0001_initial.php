@@ -136,6 +136,7 @@ class m0001_initial
             DELIMITER ;";
 
         $db->pdo->exec($Trigger1);
+    }
 
     public function down()
     {

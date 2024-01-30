@@ -84,19 +84,19 @@ class Doctor extends DbModel
     public function getDoctors(): string
     {
         $joins = [
-            ['model' => User::class, 'condition' => 'midwife.user_id = users.id'],
-            ['model' => Clinic::class, 'condition' => 'midwife.clinic_id = clinics.id']
+            ['model' => User::class, 'condition' => 'doctors.user_id = users.id'],
+            ['model' => Clinic::class, 'condition' => 'doctors.clinic_id = clinics.id']
         ];
-        $phmData = (new Midwife())->findAllWithJoins(self::class, $joins, []);
+        $doctorData = (new Doctor())->findAllWithJoins(self::class, $joins, []);
 
         $data = [];
 
-        foreach ($phmData as $phm) {
+        foreach ($doctorData as $doctor) {
             $data[] = [
-                'MOH_ID' => $phm->MOH_id,
-                'Name' => $phm->firstname . " " . $phm->lastname,
-                'SLMC_no' => $phm->SLMC_no,
-                'clinic_id' => $phm->name
+                'MOH_ID' => $doctor->MOH_id,
+                'Name' => $doctor->firstname . " " . $doctor->lastname,
+                'SLMC_no' => $doctor->SLMC_no,
+                'clinic_id' => $doctor->name
             ];
         }
         return json_encode($data);

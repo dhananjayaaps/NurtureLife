@@ -47,7 +47,7 @@ class UserRoles extends DbModel
 
     public function getRoles(): string
     {
-        $roles = Application::$app->userRoles->findAll(self::class);
+        $roles = Application::$app->userRoles->findAll(self::class, ['user_id' => Application::$app->user->getId()]);
         $data = [];
 
         foreach ($roles as $role) {
