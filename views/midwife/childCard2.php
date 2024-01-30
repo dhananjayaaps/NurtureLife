@@ -53,7 +53,7 @@ $this->title = 'Child';
                 echo $timeDurationField;
                 ?>
 
-                <?php echo $form->dateField($model, 'date', 'Date of Form Completion')?>
+                <?php echo $form->dateField($model, 'completion_date', 'Date of Form Completion')?>
 
                 <?php echo $form->field($model, 'skin_color', 'Skin Color')?>
 
