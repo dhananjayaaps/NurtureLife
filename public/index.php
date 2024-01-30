@@ -72,5 +72,8 @@ $app->router->get('/doctorMothers', [SiteController::class, 'doctorMothers']);
 $app->router->get('/Child', [ChildController::class, 'Child']);
 $app->router->post('/Child', [ChildController::class, 'Child']);
 
+$app->router->get('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
+$app->router->post('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
+
 
 $app->run();
