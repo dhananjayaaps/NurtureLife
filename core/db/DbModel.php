@@ -134,28 +134,6 @@ abstract class DbModel extends Model
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    static public function findWithJoins($modelClass, $joins, $where)
-    {
-        $tableName = (new $modelClass())->tableName();
-        $attributes = array_keys($where);
-
-        $joinClauses = implode(" ", array_map(fn($join) => "JOIN $join", $joins));
-
-        $whereSql = implode(" AND ", array_map(fn($attr) => "$attr = :$attr", $attributes));
-
-        $sql = "SELECT * FROM $tableName $joinClauses WHERE $whereSql";
-
-        $statement = self::prepare($sql);
-
-        foreach ($where as $key => $item) {
-            $statement->bindValue(":$key", $item);
-        }
-
-        $statement->execute();
-
-        return $statement->fetchAll(PDO::FETCH_CLASS, static::class);
-    }
-
     public static function prepare($sql)
     {
         return Application::$app->db->pdo->prepare($sql);

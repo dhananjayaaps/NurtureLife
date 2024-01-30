@@ -82,39 +82,20 @@ class Midwife extends DbModel
 
     public function getMidwifes(): string
     {
-        $MidwifeData = (new Midwife())->findAll(self::class);
-
-        $data = [];
-
-        foreach ($MidwifeData as $Midwife) {
-            $user = self::findOne(User::class, ["id" => $Midwife->user_id]);
-            $clinic = self::findOne(Clinic::class, ["id" => $Midwife->clinic_id]);
-            $data[] = [
-                'PHM_ID' => $Midwife->PHM_id,
-                'Name' => $user->firstname . " " . $user->lastname,
-                'SLMC_no' => $Midwife->SLMC_no,
-                'clinic_id' => $clinic->name
-            ];
-        }
-        return json_encode($data);
-    }
-
-    public function getDoctors(): string
-    {
         $joins = [
-            ['model' => User::class, 'condition' => 'doctors.user_id = users.id'],
-            ['model' => Clinic::class, 'condition' => 'doctors.clinic_id = clinics.id']
+            ['model' => User::class, 'condition' => 'midwife.user_id = users.id'],
+            ['model' => Clinic::class, 'condition' => 'midwife.clinic_id = clinics.id']
         ];
-        $doctorData = (new Doctor())->findAllWithJoins(self::class, $joins, []);
+        $phmData = (new Midwife())->findAllWithJoins(self::class, $joins, []);
 
         $data = [];
 
-        foreach ($doctorData as $doctor) {
+        foreach ($phmData as $phm) {
             $data[] = [
-                'MOH_ID' => $doctor->MOH_id,
-                'Name' => $doctor->firstname . " " . $doctor->lastname,
-                'SLMC_no' => $doctor->SLMC_no,
-                'clinic_id' => $doctor->name
+                'PHM_ID' => $phm->PHM_id,
+                'Name' => $phm->firstname . " " . $phm->lastname,
+                'SLMC_no' => $phm->SLMC_no,
+                'clinic_id' => $phm->name
             ];
         }
         return json_encode($data);
