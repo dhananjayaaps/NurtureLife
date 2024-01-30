@@ -15,14 +15,11 @@
 <body>
 
 <div class="navbar" id="myNavbar">
-    <div class="NL_logo_container">
-        <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
-    </div>
     <a href="/">Home</a>
-    <a href="/about">About</a>
+    <a href="#about">About</a>
 
     <div class="search-container">
-        <input type="text" placeholder=" Search...">
+        <input type="text" placeholder="Search...">
         <button type="submit">Search</button>
     </div>
 
@@ -69,12 +66,8 @@
             }
         </script>
     <?php endif; ?>
-    <div class="navbar_emg">
-        Emergency Hotline<br>+94 71 977 3265
-    </div>
 
 </div>
-
 
 {{content}}
 <div class="footer">
@@ -126,7 +119,6 @@
             actionElement.style.top = "10px";
         } else {
             navbar.classList.remove("sticky");
-            actionElement.style.top = "90px";
         }
     }
 </script>

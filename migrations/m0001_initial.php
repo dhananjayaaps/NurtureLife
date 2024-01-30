@@ -57,25 +57,19 @@ class m0001_initial
         $SQL6 = "CREATE TABLE clinics (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
-            moh_id INT,
-            FOREIGN KEY (moh_id) REFERENCES doctors(`MOH_id`),
             district VARCHAR(255) NOT NULL,
-            province VARCHAR(255) NOT NULL, 
             address VARCHAR(255) NOT NULL,
-            created_at DATE,
-            contact_no VARCHAR(255),
-            capacity INT,
-            gps_location VARCHAR(1000)
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;";
-
 
         $db->pdo->exec($SQL6);
 
         $SQL7 = "CREATE TABLE doctors (
-                MOH_id INT NOT NULL AUTO_INCREMENT primary key,
+                MOH_id INT NOT NULL AUTO_INCREMENT,
                 user_id INT,
                 SLMC_no VARCHAR(255) NOT NULL,
                 clinic_id INT,
+                PRIMARY KEY (MOH_id),
                 FOREIGN KEY (user_id) REFERENCES users(id),
                 FOREIGN KEY (clinic_id) REFERENCES clinics(id)
             ) ENGINE=INNODB;
@@ -84,10 +78,11 @@ class m0001_initial
         $db->pdo->exec($SQL7);
 
         $SQL8 = "CREATE TABLE midwife (
-                PHM_id INT NOT NULL AUTO_INCREMENT primary key ,
+                PHM_id INT NOT NULL AUTO_INCREMENT,
                 user_id INT,
                 SLMC_no VARCHAR(255) NOT NULL,
                 clinic_id INT,
+                PRIMARY KEY (PHM_id),
                 FOREIGN KEY (user_id) REFERENCES users(id),
                 FOREIGN KEY (clinic_id) REFERENCES clinics(id)
             ) ENGINE=INNODB;
@@ -99,22 +94,19 @@ class m0001_initial
             MotherId INT AUTO_INCREMENT PRIMARY KEY,
             user_id INT,
             PHM_ID INT,
-            MOH_ID INT,
             clinic_id INT,
             status varchar(255),
             MaritalStatus VARCHAR(255),
             MarriageDate DATE,
             BloodGroup VARCHAR(10),
             Occupation VARCHAR(255),
-            gps_location varchar(1000),
-            Allergies TEXT,
+            Allergies varchar(255),
             Consanguinity VARCHAR(255),
             history_subfertility varchar(255),
             Hypertension TINYINT(1),
             diabetes_mellitus TINYINT(1),
             rubella_immunization TINYINT(1),
-            emergency_no VARCHAR(20),
-            FOREIGN KEY (MOH_ID) REFERENCES doctors(MOH_id),
+            emergencyNumber VARCHAR(20),
             FOREIGN KEY (PHM_ID) REFERENCES midwife(PHM_id),
             FOREIGN KEY (clinic_id) REFERENCES clinics(id),
             FOREIGN KEY (user_id) REFERENCES users(id)

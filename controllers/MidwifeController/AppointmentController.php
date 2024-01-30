@@ -8,16 +8,17 @@ use app\core\Request;
 use app\models\Child;
 use app\models\Mother;
 
-class ChildController extends Controller
+class AppointmentController extends Controller
 {
-    public function Child(Request $request): array|false|string
+
+    public function ManageAppointments(Request $request): array|false|string
     {
         $this->layout = 'midwife';
-        $child = new Child();
+        $mother = new Mother();
 
         if ($request->isPost()) {
-            $child->loadData($request->getBody());
-            if ($child->validate() && $child->save()) {
+            $mother->loadData($request->getBody());
+            if ($mother->validate() && $mother->save()) {
                 Application::$app->session->setFlash('success', 'Added a new Child');
                 Application::$app->response->redirect('midwife/Child');
                 exit;
@@ -28,8 +29,9 @@ class ChildController extends Controller
             $this->layout = 'midwife';
         }
 
-        return $this->render('midwife/Child', [
-            'model' => $child
+        return $this->render('midwife/ManageAppointments', [
+            'model' => $mother
         ]);
     }
+
 }
