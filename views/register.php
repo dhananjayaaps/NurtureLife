@@ -11,9 +11,9 @@ $this->title = 'Register';
 ?>
 
 
-<div class="form-container">
-    <div class="form-content">
-        <h2>Registration Form</h2>
+<div class="signup_form_container">
+    <div class="signup_form_content">
+        <h2>Registration Form</h2><br>
         <?php $form = \app\core\form\Form::begin('', "post")?>
         <?php echo $form->field($model, 'firstname', 'First Name')?>
         <?php echo $form->field($model, 'lastname', 'Last Name')?>

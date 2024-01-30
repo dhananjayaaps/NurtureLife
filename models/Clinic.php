@@ -52,6 +52,19 @@ class Clinic extends DbModel
         ];
     }
 
+    public function getClinicsList()
+    {
+        $clinics = (new Clinic())->findAll(Clinic::class);
+        $data = [];
+        foreach ($clinics as $clinic) {
+            $data[] = [
+                'id' => $clinic->id,
+                'name' => $clinic->name
+            ];
+        }
+        return ($data);
+    }
+
     public function getClinics(): string
     {
         $clinicData = (new Clinic())->findAll(self::class);

@@ -83,18 +83,20 @@ class Doctor extends DbModel
 
     public function getDoctors(): string
     {
-        $doctorData = (new Doctor())->findAll(self::class);
+        $joins = [
+            ['model' => User::class, 'condition' => 'doctors.user_id = users.id'],
+            ['model' => Clinic::class, 'condition' => 'doctors.clinic_id = clinics.id']
+        ];
+        $doctorData = (new Doctor())->findAllWithJoins(self::class, $joins, []);
 
         $data = [];
 
         foreach ($doctorData as $doctor) {
-            $user = self::findOne(User::class, ["id" => $doctor->user_id]);
-            $clinic = self::findOne(Clinic::class, ["id" => $doctor->clinic_id]);
             $data[] = [
                 'MOH_ID' => $doctor->MOH_id,
-                'Name' => $user->firstname . " " . $user->lastname,
+                'Name' => $doctor->firstname . " " . $doctor->lastname,
                 'SLMC_no' => $doctor->SLMC_no,
-                'clinic_id' => $clinic->name
+                'clinic_id' => $doctor->name
             ];
         }
         return json_encode($data);
@@ -105,8 +107,6 @@ class Doctor extends DbModel
         var_dump($DoctorId);
         $this->user_id = $DoctorId;
         $doctor = (new Doctor())->findOne(self::class, ['MOH_id' => $DoctorId]);
-//        $user = self::findOne(User::class, ["id" => $doctor->user_id]);
-//        $clinic = self::findOne(Clinic::class, ["id" => $doctor->clinic_id]);
 
         $data = [
             'clinic_id' => $doctor->clinic_id

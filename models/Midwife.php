@@ -82,18 +82,20 @@ class Midwife extends DbModel
 
     public function getMidwifes(): string
     {
-        $MidwifeData = (new Midwife())->findAll(self::class);
+        $joins = [
+            ['model' => User::class, 'condition' => 'midwife.user_id = users.id'],
+            ['model' => Clinic::class, 'condition' => 'midwife.clinic_id = clinics.id']
+        ];
+        $phmData = (new Midwife())->findAllWithJoins(self::class, $joins, []);
 
         $data = [];
 
-        foreach ($MidwifeData as $Midwife) {
-            $user = self::findOne(User::class, ["id" => $Midwife->user_id]);
-            $clinic = self::findOne(Clinic::class, ["id" => $Midwife->clinic_id]);
+        foreach ($phmData as $phm) {
             $data[] = [
-                'PHM_ID' => $Midwife->PHM_id,
-                'Name' => $user->firstname . " " . $user->lastname,
-                'SLMC_no' => $Midwife->SLMC_no,
-                'clinic_id' => $clinic->name
+                'PHM_ID' => $phm->PHM_id,
+                'Name' => $phm->firstname . " " . $phm->lastname,
+                'SLMC_no' => $phm->SLMC_no,
+                'clinic_id' => $phm->name
             ];
         }
         return json_encode($data);
@@ -135,19 +137,6 @@ class Midwife extends DbModel
     {
         self::deleteWhere(UserRoles::class, ['user_id' => $this->user_id, 'role_id' => 6]);
         return parent::delete();
-    }
-
-    public function getClinics()
-    {
-        $clinics = (new Clinic())->findAll(Clinic::class);
-        $data = [];
-        foreach ($clinics as $clinic) {
-            $data[] = [
-                'id' => $clinic->id,
-                'name' => $clinic->name
-            ];
-        }
-        return ($data);
     }
 
 }

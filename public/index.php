@@ -26,6 +26,8 @@ $config = [
 $app = new Application(dirname(__DIR__), $config);
 
 $app->router->get('/', [SiteController::class, 'home']);
+$app->router->get('/about', [SiteController::class, 'about']);
+
 $app->router->get('/contact', [SiteController::class, 'contact']);
 $app->router->post('/contact', [SiteController::class, 'handleContact']);
 
@@ -82,5 +84,8 @@ $app->router->post('/childCard1', [ChildController::class, 'childCard1']);
 
 $app->router->get('/childCard2', [ChildController::class, 'childCard2']);
 $app->router->post('/childCard2', [ChildController::class, 'childCard2']);
+
+$app->router->get('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
+$app->router->post('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
 
 $app->run();

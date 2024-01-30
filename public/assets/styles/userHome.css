@@ -5,6 +5,7 @@
     width: 100%;
     height: 500px;
     display: flex;
+    margin-bottom: 20px;
 }
 
 .BackgroundText{
@@ -15,18 +16,17 @@
     gap: 30px;
 }
 
-.small-content{
-    color: #159EEC;
-    font-family: Work Sans;
-    font-size: 25px;
+.BackgroundText-1{
+    color: #d25454;
+    font-family: Yeseva One, serif;
+    font-size: 50px;
     font-style: normal;
     font-weight: bold;
     line-height: normal;
-    letter-spacing: 2.88px;
-    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.large-content{
+.BackgroundText-2{
     color: #1F2B6C;
     font-family: Yeseva One, serif;
     font-size: 48px;
@@ -35,43 +35,85 @@
     line-height: normal;
 }
 
-.services-button{
+/*.services-button{*/
+/*    display: flex;*/
+/*    padding: 13px 0 13px 0;*/
+/*    gap: 10px;*/
+/*    border-radius: 50px;*/
+/*    background: #BFD2F8;*/
+/*    width: 200px;*/
+/*    justify-content: center;*/
+/*}*/
+.emg_access{
     display: flex;
-    padding: 13px 0 13px 0;
-    gap: 10px;
-    border-radius: 50px;
-    background: #BFD2F8;
-    width: 200px;
     justify-content: center;
+    background-color: #1F2B6C;
+    margin: auto;
+    padding: 30px;
+    border-radius: 35px;
+    position: relative;
+    width: 320px;
+
+}
+.emg_access p{
+    text-decoration: none;
+    font-family: monospace;
+    font-size: 18px;
+    color: white;
+    margin: auto;
+    padding-left: 20px;
+    bottom: 50px;
+    z-index: 100;
+}
+.emg_access img{
+    height: 70px;
 }
 
-.services-button a{
-    text-decoration: none;
-    font-size: large;
-    align-items: center;
-}
 
 .quick-access{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 16px;
+    row-gap: 40px;
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*justify-content: center;*/
+    /*gap: 50px;*/
     position: relative;
     bottom: 50px;
-
+    z-index: 100;
+    margin-top: 50px;
+}
+@media (max-width: 750px){
+    .quick-access{
+        grid-template-columns: 1fr;
+    }
+}
+@media (min-width: 751px) and (max-width: 999px){
+    .quick-access{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (min-width: 1000px){
+    .quick-access{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
-
 .quick-access img{
-    min-height: 50px;
+    height: 70px;
 }
 
 .quick-access a{
     text-decoration: none;
+    font-family: monospace;
     color: white;
     margin: auto;
     padding-left: 20px;
-
+}
+.quick-access a:hover{
+    color: black;
+    transition: color 1s;
 }
 
 .access-one, .access-two, .access-three{
@@ -80,97 +122,32 @@
     background-color: #1F2B6C;
     margin: auto;
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 35px;
 }
-
-.access-two{
-    background: #BFD2F8;
+.access-one:hover, .access-two:hover, .access-three:hover{
+    background-color: #3f57e7;
+    transition: background-color 1s;
 }
-
-.access-two a{
-    color: black;
-}
-
 .welcome{
-    padding-top: 40px;
-    padding-inline-start: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
     justify-content: center;
-    margin: auto;
-    max-width: 800px;
+    margin-bottom: 20px;
 }
-
-.welcome .content{
-    font-size: 20px;
-    text-align: center;
-}
-
-.welcome .learn-more{
-    font-size: 20px;
-    color: #159EEC;
-    gap: 10px;
-}
-
-.services{
-    padding-top: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.contacts{
-    padding-top: 30px;
-    padding-bottom: 40px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-}
-
-.contacts-container{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    width: 200px;
-    align-content: center;
-    padding-left: 80px;
-
-}
-
-.contacts img{
-    max-height: 50px;
-    justify-content: flex-start;
-}
-
-.contact{
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    border-radius: 5px;
-    background: #BFD2F8;
-    padding: 40px;
-    min-width: 300px;
-    margin: auto;
-}
-
-.contact .contact-name{
+.content_1, .content_3{
+    font-size: 30px;
+    font-family: Yeseva One, serif;
+    font-weight: bolder;
     color: #1F2B6C;
-    font-size: 25px;
-    padding-bottom:10px;
-    padding-top: 10px;
 }
-
-.location{
-    border-radius: 5px;
-    background: #1F2B6C;
-    color: white;
-}
-
-.location .contact-name{
-    color: #BFD2F8;
+.content_2, .content_4{
+    text-align: center;
+    font-size: 20px;
+    font-family: Yeseva One, serif;
+    font-weight: bolder;
+    line-height: 30px;
+    max-width: 900px;
+    color: #000000;
 }
