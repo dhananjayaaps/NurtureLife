@@ -10,16 +10,20 @@
     <link rel="icon" type="image/png" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/admin.css">
+    <link rel="stylesheet" href="./assets/styles/midwife.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
-<div class="navbar">
-    <a href=" ">Homeeeeee</a>
-    <a href="#about">About</a>
+<div class="navbar_midwife">
+    <div class="NL_logo_container">
+        <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
+    </div>
 
     <div class="search-container">
-        <input type="text" placeholder="Search...">
+        <label>
+            <input type="text" placeholder=" Search...">
+        </label>
         <button type="submit">Search</button>
     </div>
 
@@ -42,13 +46,13 @@
 
         <div class="action">
             <div class="profile" onclick="menuToggle();">
-                <img src="./assets/images/men_user.jpg" />
+                <img src="./assets/images/user_profile.png" />
             </div>
             <div class="menu">
                 <h3><?php echo Application::$app->user->getDisplayName() ?></h3>
                 <ul>
                     <li>
-                        <img src="./assets/images/icons/user.png" /><a href="#">My123 profile</a>
+                        <img src="./assets/images/icons/user.png" /><a href="#">My profile</a>
                     </li>
                     <li>
                         <img src="./assets/images/icons/settings.png" /><a href="#">Setting</a>
@@ -59,12 +63,7 @@
                 </ul>
             </div>
         </div>
-        <script>
-            function menuToggle() {
-                const toggleMenu = document.querySelector(".menu");
-                toggleMenu.classList.toggle("active");
-            }
-        </script>
+
     <?php endif; ?>
 
 </div>
@@ -97,6 +96,12 @@
 </body>
 </html>
 
+<script>
+    function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        toggleMenu.classList.toggle("active");
+    }
+</script>
 <script>
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");

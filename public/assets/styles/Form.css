@@ -4,26 +4,32 @@
     box-sizing: border-box;
 }
 
-.form-container {
+.login_form_container {
     background-image: url("../images/mother-care-flip.png");
     background-size: cover;
+    height: 560px;
     width: 100%;
     display: flex;
-    flex-direction: column;
-    font-family: "Roboto Light", serif;
+    flex-direction: row;
+    font-family: monospace;
     font-size: large;
     position: relative;
     padding-left: 30px;
-    min-height: 400px;
+    margin: 0;
 }
 
-.form-container {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding-bottom: 15px;
+.signup_form_container {
+    background-image: url("../images/mother-care-flip.png");
+    background-size: cover;
+    /*background-color: rgba(255, 255, 255, 0.2);*/
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertically center the content */
-    align-items: center; /* Horizontally center the content */
+    flex-direction: row;
+    font-family: monospace;
+    font-size: large;
+    position: relative;
+    padding-left: 30px;
+    margin: 0;
 }
 
 .form-group {
@@ -33,27 +39,34 @@
     max-width: 300px;
 }
 
-.form-content{
-    margin-left: 500px;
+.login_form_content{
+    margin-left: 800px;
+    margin-top: 80px;
+    padding: 2px;
+}
+.signup_form_content{
+    margin-left: 800px;
+    padding: 2px;
 }
 
 .label {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
-    color: #333;
+    color: #000000;
 }
 
 .form-control {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
     background-color: #fff;
+    margin-top: 0;
 }
 
 .invalid-feedback {
-    color: #f44336;
+    color: #ff1000;
     align-items: flex-start;
     display: flex;
     font-size: 16px;
@@ -125,16 +138,19 @@
     clear: both;
 }
 
-/* Style for the submit button */
+/* Style for the submit button in login form*/
 .btn-submit {
     background-color: #4CAF50;
     color: white;
+    font-size: 16px;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    position: relative;
 }
 
 .btn-submit:hover {
-    background-color: #45a049;
+    background-color: #126017;
+    transition: background-color 1s;
 }

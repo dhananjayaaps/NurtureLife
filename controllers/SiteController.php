@@ -40,6 +40,10 @@ class SiteController extends \app\core\Controller
         }
         return $this->render('home');
     }
+    public function about()
+    {
+        return $this->render('about');
+    }
 
     public function contact()
     {

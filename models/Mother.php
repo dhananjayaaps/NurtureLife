@@ -10,7 +10,7 @@ class Mother extends DbModel
     public string $MotherId = '';
     public string $user_id = '';
     public string $PHM_ID = '';
-    public string $MartialStatus  = 'Married';
+    public string $MaritalStatus  = 'Married';
     public string $MarriageDate ='';
     public string $BloodGroup = '';
     public string $Occupation = '';
@@ -28,7 +28,7 @@ class Mother extends DbModel
     {
         return [
             'nic' => [self::RULE_REQUIRED],
-            'MartialStatus' => [self::RULE_REQUIRED],
+            'MaritalStatus' => [self::RULE_REQUIRED],
             'BloodGroup' => [self::RULE_REQUIRED],
             'rubella_immunization' => [self::RULE_REQUIRED],
             'emergencyNumber' => [self::RULE_REQUIRED]
@@ -49,7 +49,7 @@ class Mother extends DbModel
     {
         return [
             'PHM_ID',
-            'MartialStatus',
+            'MaritalStatus',
             'MarriageDate',
             'BloodGroup',
             'Occupation',

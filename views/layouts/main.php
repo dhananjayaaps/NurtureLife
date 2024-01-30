@@ -76,7 +76,7 @@
 </div>
 
 
-    {{content}}
+{{content}}
 <div class="footer">
     <div class="footer-left">
         <div class="footer-left-title">
@@ -112,10 +112,6 @@
         <div class="email">Email : admin.nurturelife@gmail.com</div>
     </div>
 </div>
-
-<!--<div id="container">-->
-<!--    <canvas id="lines-demo"></canvas>-->
-<!--</div>-->
 
 <script>
     window.onscroll = function() {BarOverflow()};
@@ -184,4 +180,3 @@
         });
     });
 </script>
-

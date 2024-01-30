@@ -4,18 +4,18 @@ use app\core\Application;
 
 class m0001_initial
 {
-    public function up()
+    public function up(): void
     {
         $db = Application::$app->db;
 
-        $SQL = "CREATE TABLE roles (
+        $SQL1 = "CREATE TABLE roles (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(255) NOT NULL
         ) ENGINE=INNODB;";
 
-        $db->pdo->exec($SQL);
+        $db->pdo->exec($SQL1);
 
-        $SQL = "CREATE TABLE users (
+        $SQL2 = "CREATE TABLE users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             email VARCHAR(255) NOT NULL,
             firstname VARCHAR(255) NOT NULL,
@@ -24,11 +24,14 @@ class m0001_initial
             status TINYINT NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             password VARCHAR(512) NOT NULL,
+            contact_no varchar(255),
+            DOB date,
+            gender varchar(255),
             role_id INT,
             FOREIGN KEY (role_id) REFERENCES roles(id)
         ) ENGINE=INNODB;";
 
-        $db->pdo->exec($SQL);
+        $db->pdo->exec($SQL2);
 
 
         $SQL3 = "INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
@@ -39,15 +42,6 @@ class m0001_initial
                 INSERT INTO roles (id, name) VALUES (6, 'ROLE_MIDWIFE');
             ";
         $db->pdo->exec($SQL3);
-
-        $SQL4 = "CREATE TABLE your_table_name (
-                    id INT AUTO_INCREMENT PRIMARY KEY,
-                    name VARCHAR(255) NOT NULL,
-                    district VARCHAR(255),
-                    address VARCHAR(255),
-                    gn_units INT);
-                ";
-        $db->pdo->exec($SQL4);
 
         $SQL5 = "CREATE TABLE user_roles (
                     user_id INT,
@@ -63,19 +57,25 @@ class m0001_initial
         $SQL6 = "CREATE TABLE clinics (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
+            moh_id INT,
+            FOREIGN KEY (moh_id) REFERENCES doctors(`MOH_id`),
             district VARCHAR(255) NOT NULL,
+            province VARCHAR(255) NOT NULL, 
             address VARCHAR(255) NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            created_at DATE,
+            contact_no VARCHAR(255),
+            capacity INT,
+            gps_location VARCHAR(1000)
         ) ENGINE=INNODB;";
+
 
         $db->pdo->exec($SQL6);
 
         $SQL7 = "CREATE TABLE doctors (
-                MOH_id INT NOT NULL AUTO_INCREMENT,
+                MOH_id INT NOT NULL AUTO_INCREMENT primary key,
                 user_id INT,
                 SLMC_no VARCHAR(255) NOT NULL,
                 clinic_id INT,
-                PRIMARY KEY (MOH_id),
                 FOREIGN KEY (user_id) REFERENCES users(id),
                 FOREIGN KEY (clinic_id) REFERENCES clinics(id)
             ) ENGINE=INNODB;
@@ -84,11 +84,10 @@ class m0001_initial
         $db->pdo->exec($SQL7);
 
         $SQL8 = "CREATE TABLE midwife (
-                PHM_id INT NOT NULL AUTO_INCREMENT,
+                PHM_id INT NOT NULL AUTO_INCREMENT primary key ,
                 user_id INT,
                 SLMC_no VARCHAR(255) NOT NULL,
                 clinic_id INT,
-                PRIMARY KEY (PHM_id),
                 FOREIGN KEY (user_id) REFERENCES users(id),
                 FOREIGN KEY (clinic_id) REFERENCES clinics(id)
             ) ENGINE=INNODB;
@@ -100,18 +99,22 @@ class m0001_initial
             MotherId INT AUTO_INCREMENT PRIMARY KEY,
             user_id INT,
             PHM_ID INT,
+            MOH_ID INT,
             clinic_id INT,
-            MartialStatus VARCHAR(255),
+            status varchar(255),
+            MaritalStatus VARCHAR(255),
             MarriageDate DATE,
             BloodGroup VARCHAR(10),
             Occupation VARCHAR(255),
+            gps_location varchar(1000),
             Allergies TEXT,
             Consanguinity VARCHAR(255),
-            history_subfertility TEXT,
+            history_subfertility varchar(255),
             Hypertension TINYINT(1),
             diabetes_mellitus TINYINT(1),
             rubella_immunization TINYINT(1),
-            emergencyNumber VARCHAR(20),
+            emergency_no VARCHAR(20),
+            FOREIGN KEY (MOH_ID) REFERENCES doctors(MOH_id),
             FOREIGN KEY (PHM_ID) REFERENCES midwife(PHM_id),
             FOREIGN KEY (clinic_id) REFERENCES clinics(id),
             FOREIGN KEY (user_id) REFERENCES users(id)
@@ -133,7 +136,6 @@ class m0001_initial
             DELIMITER ;";
 
         $db->pdo->exec($Trigger1);
-    }
 
     public function down()
     {
