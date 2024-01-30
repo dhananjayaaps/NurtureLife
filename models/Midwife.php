@@ -99,6 +99,27 @@ class Midwife extends DbModel
         return json_encode($data);
     }
 
+    public function getDoctors(): string
+    {
+        $joins = [
+            ['model' => User::class, 'condition' => 'doctors.user_id = users.id'],
+            ['model' => Clinic::class, 'condition' => 'doctors.clinic_id = clinics.id']
+        ];
+        $doctorData = (new Doctor())->findAllWithJoins(self::class, $joins, []);
+
+        $data = [];
+
+        foreach ($doctorData as $doctor) {
+            $data[] = [
+                'MOH_ID' => $doctor->MOH_id,
+                'Name' => $doctor->firstname . " " . $doctor->lastname,
+                'SLMC_no' => $doctor->SLMC_no,
+                'clinic_id' => $doctor->name
+            ];
+        }
+        return json_encode($data);
+    }
+
     public function getMidwifeById($MidwifeId): string
     {
         $this->user_id = $MidwifeId;
