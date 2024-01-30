@@ -95,7 +95,7 @@ class Mother extends DbModel
         }
     }
 
-    private function getUser($id)
+    public function getUser($id)
     {
         return (new Mother())->findOne(Mother::class, ['user_id' => $id]);
     }
