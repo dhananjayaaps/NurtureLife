@@ -75,4 +75,56 @@ class ChildController extends Controller
         ]);
     }
 
+    public function childCard1(Request $request): array|false|string
+    {
+        $this->layout = 'midwife';
+        $child = new Child();
+
+        if ($request->isGet()) {
+            $this->layout = 'midwife';
+        }
+
+        if ($request->isPost()) {
+//            $child = $child->getChild(1);
+
+            $child->loadData($request->getBody());
+            if ($child->update()) {
+                var_dump($child);
+                Application::$app->session->setFlash('success', 'Submit second health care form');
+                Application::$app->response->redirect('midwife/Child');
+                exit;
+            }
+        }
+
+        return $this->render('midwife/childCard1', [
+            'model' => $child
+        ]);
+    }
+
+    public function childCard2(Request $request): array|false|string
+    {
+        $this->layout = 'midwife';
+        $child = new Child();
+
+        if ($request->isGet()) {
+            $this->layout = 'midwife';
+        }
+
+        if ($request->isPost()) {
+//            $child = $child->getChild(1);
+
+            $child->loadData($request->getBody());
+            if ($child->update()) {
+                var_dump($child);
+                Application::$app->session->setFlash('success', 'Submit thirs health care form');
+                Application::$app->response->redirect('midwife/Child');
+                exit;
+            }
+        }
+
+        return $this->render('midwife/childCard2', [
+            'model' => $child
+        ]);
+    }
+
 }

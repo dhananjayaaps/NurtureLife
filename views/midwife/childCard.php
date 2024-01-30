@@ -35,7 +35,7 @@ $this->title = 'Child';
 <div class="Mothers content">
 
     <div class="shadowBox">
-        <h2>CARE OF NEWBORN CHILD<br></h2>
+        <h2>CARE OF NEWBORN CHILD<br><br></h2>
         <?php $form = Form::begin('', "post")?>
 
         <div class="form-column">

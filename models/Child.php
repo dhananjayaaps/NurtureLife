@@ -8,6 +8,7 @@ class Child extends DbModel
 {
 
     public string $user_id = '';
+    public string $child_id = '';
 
     public string $nic = '';
     public string $Child_Name = '';
@@ -23,7 +24,26 @@ class Child extends DbModel
     public string $baby_length_at_birth = '';
     public string $health_condition = '';
     public string $vitamin_k= '';
-
+    public string $premature_births= '';
+    public string $low_birth_weight= '';
+    public string $neonatal_complications= '';
+    public string $congenital_disorders= '';
+    public string $acute_conditions= '';
+    public string $complementary_feeding= '';
+    public string $growth_retardation= '';
+    public string $difficulty_feeding= '';
+    public string $death_of_mother_or_father= '';
+    public string $migration_of_mother_or_father= '';
+    public string $other_reasons= '';
+    public string $skin_color= '';
+    public string $eyes= '';
+    public string $pecan= '';
+    public string $breast_feeding= '';
+    public string $breastfeeding_position= '';
+    public string $breastfeeding_relationship= '';
+    public string $other= '';
+    public string $date= '';
+    public string $time_duration= '';
 
 
 
@@ -32,6 +52,7 @@ class Child extends DbModel
     {
         return [
             'nic' => [self::RULE_REQUIRED],
+            'child_id' => [self::RULE_REQUIRED],
             'Birth_Date' => [self::RULE_REQUIRED],
             'Register_NO' => [self::RULE_REQUIRED],
             'Birth_Place' => [self::RULE_REQUIRED],
