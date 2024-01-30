@@ -23,6 +23,7 @@ class Mother extends DbModel
     public string $emergencyNumber = '';
     public string $nic = '';
     public string $clinic_id = '';
+    public int $status = 1;
 
     public function rules(): array
     {
@@ -61,7 +62,8 @@ class Mother extends DbModel
             'rubella_immunization',
             'emergencyNumber',
             'user_id',
-            'clinic_id'
+            'clinic_id',
+            'status'
         ];
     }
 
@@ -74,11 +76,11 @@ class Mother extends DbModel
             return false;
         }
         else{
-            $exitUser = (new Mother())->getUser($ValidateUser->getId());
-            if($exitUser){
-                $this->addError('nic', 'That user is already a Mother');
-                return false;
-            }
+//            $exitUser = (new Mother())->getUser($ValidateUser->getId());
+//            if($exitUser){
+//                $this->addError('nic', 'That user is already a Mother');
+//                return false;
+//            }
 
             $exitPHM = (new Midwife())->findOne(Midwife::class, ["user_id" => Application::$app->user->getId()]);
             if(!$exitPHM){
@@ -88,6 +90,7 @@ class Mother extends DbModel
             $this->PHM_ID = $exitPHM->PHM_id;
             $this->user_id = $ValidateUser->id;
             $this->clinic_id = $exitPHM->clinic_id;
+            $this->status = 1;
             return parent::save();
         }
     }
@@ -97,16 +100,24 @@ class Mother extends DbModel
         return (new Mother())->findOne(Mother::class, ['user_id' => $id]);
     }
 
-    public function getDoctors(): string
+    public function getMothers(): string
     {
-        $sql = "";
-        $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
+        $joins = [
+            ['model' => User::class, 'condition' => 'mothers.user_id = users.id'],
+            ['model' => Midwife::class, 'condition' => 'mothers.PHM_ID = midwife.PHM_id']
+        ];
 
-        foreach ($where as $key => $item){
-            $statement->bindValue(":$key",$item);
+        $motherData = (new Mother())->findAllWithJoins(self::class, $joins, []);
+
+        $data = [];
+
+        foreach ($motherData as $mother) {
+            $data[] = [
+                'MotherId' => $mother->MotherId,
+                'Name' => $mother->firstname . " " . $mother->lastname,
+            ];
         }
-        $statement->execute();
-        return $statement->fetchObject(static::class);
+        return json_encode($data);
     }
 
 }

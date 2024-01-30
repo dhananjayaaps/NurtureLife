@@ -18,7 +18,6 @@ class ChildController extends Controller
 
         if ($request->isPost()) {
             $child->loadData($request->getBody());
-            var_dump($child);
             if ($child->validate() && $child->save()) {
                 Application::$app->session->setFlash('success', 'Added a new Child');
                 Application::$app->response->redirect('midwife/Child');
