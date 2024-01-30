@@ -41,6 +41,7 @@ $this->title = 'Child';
         <div class="form-column">
 
             <div class="row" style="display: flex; flex-direction: column; gap: 10px">
+                <?php echo $form->field($model, 'child_id', 'Child ID')?>
 
                 <?php
                 $apgaField = new Dropdown($model, 'no_of_apga', 'Number Of APGA');
@@ -53,19 +54,19 @@ $this->title = 'Child';
                 ?>
 
                 <br>
-            <?php echo $form->field($model, 'birth_weight', ' Birth Weight(g)')?>
-            <?php echo $form->field($model, 'head_circumference_at_birth', 'Head Circumference at Birth(cm)')?>
-            <?php echo $form->field($model, 'baby_length_at_birth', 'Baby Length at Birth(cm)')?>
+                <?php echo $form->field($model, 'birth_weight', ' Birth Weight(g)')?>
+                <?php echo $form->field($model, 'head_circumference_at_birth', 'Head Circumference at Birth(cm)')?>
+                <?php echo $form->field($model, 'baby_length_at_birth', 'Baby Length at Birth(cm)')?>
 
 
-            <?php
-            $healthConditionField = new Dropdown($model, 'health_condition', ' Health Condition of NewBorn Baby');
-            $healthConditionField->setOptions([
-                'normal' => 'Normal',
-                'needs special care' => 'Needs Special Care',
-            ]);
-            echo $healthConditionField;
-            ?>
+                <?php
+                $healthConditionField = new Dropdown($model, 'health_condition', ' Health Condition of NewBorn Baby');
+                $healthConditionField->setOptions([
+                    'normal' => 'Normal',
+                    'needs special care' => 'Needs Special Care',
+                ]);
+                echo $healthConditionField;
+                ?>
 
                 <?php
                 $vitaminField = new Dropdown($model, 'vitamin_k', 'Vitamin K');

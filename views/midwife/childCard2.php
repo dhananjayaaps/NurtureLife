@@ -46,9 +46,9 @@ $this->title = 'Child';
                 <?php
                 $timeDurationField = new Dropdown($model, 'time_duration', 'Time Duration');
                 $timeDurationField->setOptions([
-                    'in the first 10 days' => 'In the first ten days after birth ',
-                    'during 11 and 28 days' => 'During 11 and 28 days',
-                    'during 29 and 42 days' => 'During 29 and 42 days',
+                    '1' => 'In the first ten days after birth ',
+                    '2' => 'During 11 and 28 days',
+                    '3' => 'During 29 and 42 days',
                 ]);
                 echo $timeDurationField;
                 ?>
