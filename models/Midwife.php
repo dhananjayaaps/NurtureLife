@@ -99,6 +99,27 @@ class Midwife extends DbModel
         return json_encode($data);
     }
 
+    public function getDoctors(): string
+    {
+        $joins = [
+            ['model' => User::class, 'condition' => 'doctors.user_id = users.id'],
+            ['model' => Clinic::class, 'condition' => 'doctors.clinic_id = clinics.id']
+        ];
+        $doctorData = (new Doctor())->findAllWithJoins(self::class, $joins, []);
+
+        $data = [];
+
+        foreach ($doctorData as $doctor) {
+            $data[] = [
+                'MOH_ID' => $doctor->MOH_id,
+                'Name' => $doctor->firstname . " " . $doctor->lastname,
+                'SLMC_no' => $doctor->SLMC_no,
+                'clinic_id' => $doctor->name
+            ];
+        }
+        return json_encode($data);
+    }
+
     public function getMidwifeById($MidwifeId): string
     {
         $this->user_id = $MidwifeId;
@@ -135,19 +156,6 @@ class Midwife extends DbModel
     {
         self::deleteWhere(UserRoles::class, ['user_id' => $this->user_id, 'role_id' => 6]);
         return parent::delete();
-    }
-
-    public function getClinics()
-    {
-        $clinics = (new Clinic())->findAll(Clinic::class);
-        $data = [];
-        foreach ($clinics as $clinic) {
-            $data[] = [
-                'id' => $clinic->id,
-                'name' => $clinic->name
-            ];
-        }
-        return ($data);
     }
 
 }

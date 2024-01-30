@@ -17,7 +17,6 @@ class ChildController extends Controller
 
         if ($request->isPost()) {
             $child->loadData($request->getBody());
-            var_dump($child);
             if ($child->validate() && $child->save()) {
                 Application::$app->session->setFlash('success', 'Added a new Child');
                 Application::$app->response->redirect('midwife/Child');
@@ -34,5 +33,27 @@ class ChildController extends Controller
         ]);
     }
 
+    public function ManageAppointments(Request $request): array|false|string
+    {
+        $this->layout = 'midwife';
+        $child = new Child();
+
+        if ($request->isPost()) {
+            $child->loadData($request->getBody());
+            if ($child->validate() && $child->save()) {
+                Application::$app->session->setFlash('success', 'Added a new Child');
+                Application::$app->response->redirect('midwife/Child');
+                exit;
+            }
+        }
+
+        else if ($request->isGet()) {
+            $this->layout = 'midwife';
+        }
+
+        return $this->render('midwife/ManageAppointments', [
+            'model' => $child
+        ]);
+    }
 
 }
