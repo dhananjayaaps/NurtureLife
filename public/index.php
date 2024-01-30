@@ -74,8 +74,18 @@ $app->router->get('/doctorMothers', [SiteController::class, 'doctorMothers']);
 $app->router->get('/Child', [ChildController::class, 'Child']);
 $app->router->post('/Child', [ChildController::class, 'Child']);
 
+$app->router->get('/viewChild', [ChildController::class, 'viewChild']);
+
+$app->router->get('/childCard', [ChildController::class, 'childCard']);
+$app->router->post('/childCard', [ChildController::class, 'childCard']);
+
+$app->router->get('/childCard1', [ChildController::class, 'childCard1']);
+$app->router->post('/childCard1', [ChildController::class, 'childCard1']);
+
+$app->router->get('/childCard2', [ChildController::class, 'childCard2']);
+$app->router->post('/childCard2', [ChildController::class, 'childCard2']);
+
 $app->router->get('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
 $app->router->post('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
-
 
 $app->run();

@@ -45,16 +45,10 @@ $this->title = 'Child';
     </div>
 
     <div class="form-column">
-        <div class="row" style="display: flex; flex-direction: column; gap: 10px"
-        <label for="Birth_Date">Birth Date</label>
-        <input type="date" id="birthDate" name="birthDate">
-
-        </div>
-        <br>
-
+        <?php echo $form->field($model, 'Gender', 'Gender')?>
+        <?php echo $form->dateField($model, 'Birth_Date', 'Birth Date')?>
         <?php echo $form->field($model, 'Birth_Place', 'Birth Place')?>
-        <?php echo $form->field($model, 'Age', 'Age')?>
-        <?php echo $form->field($model, 'Address', 'Address')?>
+
     </div>
 </div>
 
