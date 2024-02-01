@@ -120,7 +120,7 @@ class Mother extends DbModel
                 'Name' => $mother->firstname . " " . $mother->lastname,
                 'Status' => $StatusNames[(int)$mother->MotherStatus],
                 'DeliveryDate' => $mother->DeliveryDate,
-                'DeliveryDate' => $mother->Address,
+                'PHM_id' => $mother->PHM_ID,
             ];
         }
         return json_encode($data);

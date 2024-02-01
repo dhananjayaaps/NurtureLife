@@ -75,18 +75,20 @@ $this->title = 'Manage Appointments';
     <div class="shadowBox">
         <div class="left-content">
             <div class="search-container">
-                <input type="text" placeholder="Search Doctor...">
+                <input type="text" placeholder="Search Mothers...">
                 <button type="submit">Search</button>
             </div>
             <table class="table-data">
                 <thead>
                 <tr>
+                    <th><input type="checkbox" id="selectAll"></th>
                     <th>Mother ID</th>
                     <th>Name</th>
                     <th>Status</th>
                     <th>Delivery Date</th>
                     <th>Midwife</th>
                     <th>Address</th>
+                    <th>GN Division</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -100,9 +102,6 @@ $this->title = 'Manage Appointments';
         </div>
     </div>
 </div>
-
-
-
 <script>
     var data = <?php echo $model->getMothers()?>;
 
@@ -119,12 +118,17 @@ $this->title = 'Manage Appointments';
             var row = data[i];
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
+            <td><input type="checkbox" class="tickCheckbox"></td>
             <td>${row.MotherId}</td>
             <td>${row.Name}</td>
+            <td>${row.Status}</td>
+            <td>${row.DeliveryDate}</td>
+            <td>${row.PHM_id}</td>
+            <td>Colombo</td>
+            <td>Maharagama</td>
             `;
             tableBody.appendChild(newRow);
         }
-
     }
 
     function displayPagination() {
@@ -147,4 +151,25 @@ $this->title = 'Manage Appointments';
 
     displayTableData();
     displayPagination();
+</script>
+
+<script>
+    document.getElementById("selectAll").addEventListener("change", function () {
+        var checkboxes = document.getElementsByClassName("tickCheckbox");
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = this.checked;
+        }
+    });
+
+    function getSelectedMotherIDs() {
+        var selectedMotherIDs = [];
+        var checkboxes = document.getElementsByClassName("tickCheckbox");
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                var motherID = checkboxes[i].getAttribute("data-motherid");
+                selectedMotherIDs.push(motherID);
+            }
+        }
+        return selectedMotherIDs;
+    }
 </script>

@@ -9,6 +9,7 @@ use app\controllers\AdminController\ClinicsController;
 use app\controllers\AdminController\DoctorController;
 use app\controllers\AdminController\MidwifeController;
 use app\controllers\AuthController;
+use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MidwifeController\ChildController;
 use app\core\Application;
 use app\controllers\SiteController;
@@ -85,7 +86,7 @@ $app->router->post('/childCard1', [ChildController::class, 'childCard1']);
 $app->router->get('/childCard2', [ChildController::class, 'childCard2']);
 $app->router->post('/childCard2', [ChildController::class, 'childCard2']);
 
-$app->router->get('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
-$app->router->post('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
+$app->router->get('/ManageAppointments', [AppointmentController::class, 'ManageAppointments']);
+$app->router->post('/ManageAppointments', [AppointmentController::class, 'ManageAppointments']);
 
 $app->run();

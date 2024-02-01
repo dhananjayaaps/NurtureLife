@@ -3,27 +3,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NurtureLife</title>
-    <link rel="icon" type="image/png" href="./assets/images/icons/favicon.png">
+    <title>Document</title>
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/admin.css">
     <link rel="stylesheet" href="./assets/styles/midwife.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+
 </head>
 <body>
 
-<div class="navbar_midwife">
-    <div class="NL_logo_container">
-        <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
-    </div>
+<div class="navbar">
+    <a href=" ">Home</a>
+    <a href="#about">About</a>
 
     <div class="search-container">
-        <label>
-            <input type="text" placeholder=" Search...">
-        </label>
+        <input type="text" placeholder="Search...">
         <button type="submit">Search</button>
     </div>
 
@@ -46,7 +45,7 @@
 
         <div class="action">
             <div class="profile" onclick="menuToggle();">
-                <img src="./assets/images/user_profile.png" />
+                <img src="./assets/images/men_user.jpg" />
             </div>
             <div class="menu">
                 <h3><?php echo Application::$app->user->getDisplayName() ?></h3>
@@ -63,7 +62,12 @@
                 </ul>
             </div>
         </div>
-
+        <script>
+            function menuToggle() {
+                const toggleMenu = document.querySelector(".menu");
+                toggleMenu.classList.toggle("active");
+            }
+        </script>
     <?php endif; ?>
 
 </div>
@@ -87,7 +91,7 @@
                 <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>
             </div>
             <div class="column">
-                <a href="#"><img src="assets/images/icons/user.png" alt=""> Users</a>
+                <a href="#"><img src="assets/images/icons/user.png" alt=""> Appointments</a>
             </div>
         </div>
     </div>
