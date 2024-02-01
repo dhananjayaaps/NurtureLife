@@ -118,6 +118,7 @@ class m0001_initial
         ) ENGINE=INNODB;
             ";
 
+
         $db->pdo->exec($SQL9);
 
         $SQL10 = "create table fetalkick (
@@ -127,12 +128,23 @@ class m0001_initial
             Time      datetime default current_timestamp() not null,
             KickCount int(3)                               not null
         );"
-            ;
-
-
+        ;
 
         $db->pdo->exec($SQL10);
 
+        $Trigger1 = "
+            DELIMITER //
+            CREATE TRIGGER after_insert_user
+            AFTER INSERT ON users
+            FOR EACH ROW
+            BEGIN
+                INSERT INTO user_roles (user_id, role_id)
+                VALUES (NEW.id, 1);
+            END;
+            //
+            DELIMITER ;";
+
+        $db->pdo->exec($Trigger1);
     }
 
     public function down()

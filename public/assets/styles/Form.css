@@ -4,26 +4,32 @@
     box-sizing: border-box;
 }
 
-.form-container {
+.login_form_container {
     background-image: url("../images/mother-care-flip.png");
     background-size: cover;
+    height: 560px;
     width: 100%;
     display: flex;
-    flex-direction: column;
-    font-family: "Roboto Light", serif;
+    flex-direction: row;
+    font-family: monospace;
     font-size: large;
     position: relative;
     padding-left: 30px;
-    min-height: 400px;
+    margin: 0;
 }
 
-.form-container {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding-bottom: 15px;
+.signup_form_container {
+    background-image: url("../images/mother-care-flip.png");
+    background-size: cover;
+    /*background-color: rgba(255, 255, 255, 0.2);*/
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertically center the content */
-    align-items: center; /* Horizontally center the content */
+    flex-direction: row;
+    font-family: monospace;
+    font-size: large;
+    position: relative;
+    padding-left: 30px;
+    margin: 0;
 }
 
 .form-group {
@@ -33,27 +39,34 @@
     max-width: 300px;
 }
 
-.form-content{
-    margin-left: 500px;
+.login_form_content{
+    margin-left: 800px;
+    margin-top: 80px;
+    padding: 2px;
+}
+.signup_form_content{
+    margin-left: 800px;
+    padding: 2px;
 }
 
 .label {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
-    color: #333;
+    color: #000000;
 }
 
 .form-control {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
     background-color: #fff;
+    margin-top: 0;
 }
 
 .invalid-feedback {
-    color: #f44336;
+    color: #ff1000;
     align-items: flex-start;
     display: flex;
     font-size: 16px;
@@ -88,4 +101,56 @@
     background-color: #4ef07c;
     padding: 20px 0 20px 20px;
     font-size: 20px;
+}
+
+/*Multi raws forms css*/
+
+.Mothers {
+    max-width: 800px; /* Adjust the width as needed */
+    margin: 0 auto;
+}
+
+.shadowBox {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.multiRowForm {
+    margin-top: 20px;
+}
+
+.form-column {
+    float: left;
+    width: 40%;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.form-column:last-child {
+    margin-left: 4%; /* Adjust to create space between columns */
+}
+
+.clear {
+    clear: both;
+}
+
+/* Style for the submit button in login form*/
+.btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+}
+
+.btn-submit:hover {
+    background-color: #126017;
+    transition: background-color 1s;
 }

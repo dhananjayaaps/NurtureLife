@@ -15,6 +15,7 @@ class SiteController extends \app\core\Controller
         if (!Application::isGuest()) {
             $userRole = Application::$app->user->getRole();
             if ($userRole == 1) {
+                $this->layout = 'auth';
                 return $this->render('home');
             }
             else if($userRole == 2){
@@ -38,8 +39,13 @@ class SiteController extends \app\core\Controller
                 return $this->render('midwife/midwife');
             }
         }
+        $this->layout = 'auth';
         return $this->render('home');
     }
+//    public function about()
+//    {
+//        return $this->render('about');
+//    }
 
     public function contact()
     {

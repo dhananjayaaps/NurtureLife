@@ -11,9 +11,9 @@ $this->title = 'Login';
 /** @var $model User **/
 ?>
 
-<div class="form-container">
-    <div class="form-content">
-        <h2>Registration Form</h2>
+<div class="login_form_container">
+    <div class="login_form_content">
+        <h2>Login</h2><br>
         <?php $form = Form::begin('', "post")?>
         <?php echo $form->field($model, 'email', 'Email')?>
         <?php echo $form->field($model, 'password', 'Password')->passwordField()?>

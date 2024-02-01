@@ -3,21 +3,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NurtureLife</title>
+    <link rel="icon" type="image/png" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/admin.css">
+    <link rel="stylesheet" href="./assets/styles/midwife.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
-<div class="navbar">
-    <a href=" ">Home</a>
-    <a href="#about">About</a>
+<div class="navbar_midwife">
+    <div class="NL_logo_container">
+        <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
+    </div>
 
     <div class="search-container">
-        <input type="text" placeholder="Search...">
+        <label>
+            <input type="text" placeholder=" Search...">
+        </label>
         <button type="submit">Search</button>
     </div>
 
@@ -40,7 +46,7 @@
 
         <div class="action">
             <div class="profile" onclick="menuToggle();">
-                <img src="./assets/images/men_user.jpg" />
+                <img src="./assets/images/user_profile.png" />
             </div>
             <div class="menu">
                 <h3><?php echo Application::$app->user->getDisplayName() ?></h3>
@@ -57,19 +63,13 @@
                 </ul>
             </div>
         </div>
-        <script>
-            function menuToggle() {
-                const toggleMenu = document.querySelector(".menu");
-                toggleMenu.classList.toggle("active");
-            }
-        </script>
+
     <?php endif; ?>
 
 </div>
 
 <div class="content-navbar">
     <div class="left-navbar">
-        <img src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
         <div class="navigations">
             <div class="column">
                 <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
@@ -79,12 +79,6 @@
             </div>
             <div class="column">
                 <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
-            </div>
-            <div class="column">
-                <a href="/doctors"><img src="assets/images/icons/doctor.png" alt=""> Doctors</a>
-            </div>
-            <div class="column">
-                <a href="/midwife"><img src="assets/images/icons/nurse.png" alt=""> MidWives</a>
             </div>
             <div class="column">
                 <a href="preMother"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
@@ -102,6 +96,12 @@
 </body>
 </html>
 
+<script>
+    function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        toggleMenu.classList.toggle("active");
+    }
+</script>
 <script>
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");

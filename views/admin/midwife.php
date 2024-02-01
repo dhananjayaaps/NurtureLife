@@ -3,6 +3,7 @@
 
 use app\core\Application;
 use app\core\form\Form;
+use app\models\Clinic;
 use app\models\Midwife;
 
 $this->title = 'Midwifes';
@@ -105,7 +106,36 @@ $this->title = 'Midwifes';
             <?php $form = Form::begin('', "post")?>
             <?php echo $form->field($model, 'nic', 'NIC')?>
             <?php echo $form->field($model, 'SLMC_no', 'SLMC ID')?>
-            <?php echo $form->field($model, 'clinic_id', 'Clinic')?>
+
+            <div class="form-group">
+                <label for="clinic_id">Clinic</label>
+                <br>
+                <select id="clinic_id" name="clinic_id" class="js-select2 custom-select" required>
+                    <option value="" selected disabled>Select Clinic</option>
+                    <?php foreach ((new Clinic())->getClinicsList() as $clinic): ?>
+                        <option value="<?php echo $clinic['id'] ?>"><?php echo $clinic['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+                <style>
+                    .js-select2 {
+                        width: 110%;
+                        height: 130%;
+                        padding: 0;
+                    }
+                </style>
+
+
+                <div class="invalid-feedback"></div>
+            </div>
+
+            <script>
+                // Initialize Select2
+                $(document).ready(function () {
+                    $('.js-select2').select2();
+                });
+            </script>
+
             <button type="submit" class="btn-submit">Submit</button>
             <?php echo Form::end()?>
         </div>
@@ -319,4 +349,24 @@ $this->title = 'Midwifes';
             myPopupRemove.classList.remove("show");
         }
     });
+</script>
+
+
+<script>
+    function searchClinics() {
+        var input, filter, select, option, i, txtValue;
+        input = document.getElementById('clinic_search');
+        filter = input.value.toUpperCase();
+        select = document.getElementById('clinic_id');
+        option = select.getElementsByTagName('option');
+
+        for (i = 0; i < option.length; i++) {
+            txtValue = option[i].text || option[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                option[i].style.display = "";
+            } else {
+                option[i].style.display = "none";
+            }
+        }
+    }
 </script>

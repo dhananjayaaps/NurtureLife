@@ -10,6 +10,7 @@ use app\controllers\AdminController\DoctorController;
 use app\controllers\AdminController\MidwifeController;
 use app\controllers\AuthController;
 use app\controllers\MotherController\FetalkickController;
+use app\controllers\MidwifeController\ChildController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -26,6 +27,8 @@ $config = [
 $app = new Application(dirname(__DIR__), $config);
 
 $app->router->get('/', [SiteController::class, 'home']);
+$app->router->get('/about', [SiteController::class, 'about']);
+
 $app->router->get('/contact', [SiteController::class, 'contact']);
 $app->router->post('/contact', [SiteController::class, 'handleContact']);
 
@@ -62,8 +65,8 @@ $app->router->post('/reports', [ClinicsController::class, 'reports']);
 
 $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'changeRole']);
 
-$app->router->get('/preMother', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
-$app->router->post('/preMother', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
+$app->router->get('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
+$app->router->post('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
 
 $app->router->get('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkick', [FetalkickController::class, 'Fetalkick']);
@@ -71,6 +74,23 @@ $app->router->post('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->get('/appointments', [SiteController::class, 'appointments']);
 $app->router->get('/doctorClinics', [SiteController::class, 'doctorClinics']);
 $app->router->get('/doctorMothers', [SiteController::class, 'doctorMothers']);
+
+$app->router->get('/Child', [ChildController::class, 'Child']);
+$app->router->post('/Child', [ChildController::class, 'Child']);
+
+$app->router->get('/viewChild', [ChildController::class, 'viewChild']);
+
+$app->router->get('/childCard', [ChildController::class, 'childCard']);
+$app->router->post('/childCard', [ChildController::class, 'childCard']);
+
+$app->router->get('/childCard1', [ChildController::class, 'childCard1']);
+$app->router->post('/childCard1', [ChildController::class, 'childCard1']);
+
+$app->router->get('/childCard2', [ChildController::class, 'childCard2']);
+$app->router->post('/childCard2', [ChildController::class, 'childCard2']);
+
+$app->router->get('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
+$app->router->post('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
 
 $app->router->get('/about', [SiteController::class, 'about']);
 
