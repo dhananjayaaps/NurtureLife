@@ -95,10 +95,11 @@ class m0001_initial
             user_id INT,
             PHM_ID INT,
             clinic_id INT,
-            status varchar(255),
+            MotherStatus varchar(255),
             MaritalStatus VARCHAR(255),
             MarriageDate DATE,
             BloodGroup VARCHAR(10),
+            DeliveryDate DATE,
             Occupation VARCHAR(255),
             Allergies varchar(255),
             Consanguinity VARCHAR(255),
@@ -107,6 +108,7 @@ class m0001_initial
             diabetes_mellitus TINYINT(1),
             rubella_immunization TINYINT(1),
             emergencyNumber VARCHAR(20),
+            status INT;
             FOREIGN KEY (PHM_ID) REFERENCES midwife(PHM_id),
             FOREIGN KEY (clinic_id) REFERENCES clinics(id),
             FOREIGN KEY (user_id) REFERENCES users(id)
