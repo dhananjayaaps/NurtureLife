@@ -4,18 +4,18 @@ use app\core\Application;
 
 class m0001_initial
 {
-    public function up(): void
+    public function up()
     {
         $db = Application::$app->db;
 
-        $SQL1 = "CREATE TABLE roles (
+        $SQL = "CREATE TABLE roles (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(255) NOT NULL
         ) ENGINE=INNODB;";
 
-        $db->pdo->exec($SQL1);
+        $db->pdo->exec($SQL);
 
-        $SQL2 = "CREATE TABLE users (
+        $SQL = "CREATE TABLE users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             email VARCHAR(255) NOT NULL,
             firstname VARCHAR(255) NOT NULL,
@@ -24,14 +24,11 @@ class m0001_initial
             status TINYINT NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             password VARCHAR(512) NOT NULL,
-            contact_no varchar(255),
-            DOB date,
-            gender varchar(255),
             role_id INT,
             FOREIGN KEY (role_id) REFERENCES roles(id)
         ) ENGINE=INNODB;";
 
-        $db->pdo->exec($SQL2);
+        $db->pdo->exec($SQL);
 
 
         $SQL3 = "INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
@@ -42,6 +39,15 @@ class m0001_initial
                 INSERT INTO roles (id, name) VALUES (6, 'ROLE_MIDWIFE');
             ";
         $db->pdo->exec($SQL3);
+
+        $SQL4 = "CREATE TABLE your_table_name (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    name VARCHAR(255) NOT NULL,
+                    district VARCHAR(255),
+                    address VARCHAR(255),
+                    gn_units INT);
+                ";
+        $db->pdo->exec($SQL4);
 
         $SQL5 = "CREATE TABLE user_roles (
                     user_id INT,
@@ -95,14 +101,13 @@ class m0001_initial
             user_id INT,
             PHM_ID INT,
             clinic_id INT,
-            status varchar(255),
-            MaritalStatus VARCHAR(255),
+            MartialStatus VARCHAR(255),
             MarriageDate DATE,
             BloodGroup VARCHAR(10),
             Occupation VARCHAR(255),
-            Allergies varchar(255),
+            Allergies TEXT,
             Consanguinity VARCHAR(255),
-            history_subfertility varchar(255),
+            history_subfertility TEXT,
             Hypertension TINYINT(1),
             diabetes_mellitus TINYINT(1),
             rubella_immunization TINYINT(1),
@@ -113,7 +118,19 @@ class m0001_initial
         ) ENGINE=INNODB;
             ";
 
+
         $db->pdo->exec($SQL9);
+
+        $SQL10 = "create table fetalkick (
+            RecordId  int auto_increment
+            primary key,
+            MotherId  int                                  not null,
+            Time      datetime default current_timestamp() not null,
+            KickCount int(3)                               not null
+        );"
+        ;
+
+        $db->pdo->exec($SQL10);
 
         $Trigger1 = "
             DELIMITER //
