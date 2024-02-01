@@ -130,7 +130,21 @@ class m0001_initial
             DELIMITER ;";
 
         $db->pdo->exec($Trigger1);
+
+        $AppointmentsTable = "CREATE TABLE Appointments (
+                    AppointmentId INT PRIMARY KEY AUTO_INCREMENT,
+                    MotherId INT,
+                    AppointType INT,
+                    AppointDate DATE,
+                    AppointStatus VARCHAR(50),
+                    AppointRemarks TEXT,
+                    FOREIGN KEY (MotherId) REFERENCES mothers(MotherId)
+        ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($AppointmentsTable);
     }
+
 
     public function down()
     {
