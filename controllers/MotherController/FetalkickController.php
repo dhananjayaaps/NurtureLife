@@ -26,8 +26,7 @@ class FetalkickController extends \app\core\Controller
                 Application::$app->response->redirect('/fetalkick');
                 exit;
             }
-        }
-        else if ($request->isGet()) {
+        } else if ($request->isGet()) {
             $this->layout = 'mother';
 
         }
@@ -40,7 +39,8 @@ class FetalkickController extends \app\core\Controller
 
     public function fetalkickUpdate(Request $request): false|string
     {
-        $fetalkick = (new Fetalkick())->getAFetalkick($request->getBody()['id']);
+        $fetalkick = (new Fetalkick())->findOneByMotherIdAndDate(Fetalkick::class);
+
         $this->setLayout('mother');
         $fetalkick->loadData($request->getBody());
         $fetalkick->validate();
@@ -54,20 +54,5 @@ class FetalkickController extends \app\core\Controller
             http_response_code(400);
             return json_encode(['message' => 'Validation failed', 'errors' => $fetalkick->getErrorMessages()]);
         }
-    }
-
-
-
-//    public function getClinicDetails(Request $request): string
-//    {
-//        $clinic = new Clinic();
-//        $clinic->loadData($request->getBody());
-//        return $clinic->getClinicById($clinic->getId());
-//    }
-
-    public function reports(): array|false|string
-    {
-        $this->layout = 'mother';
-        return $this->render('preMother/reports');
     }
 }

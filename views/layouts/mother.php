@@ -14,7 +14,7 @@
 
 <div class="navbar">
     <a href=" ">Home</a>
-    <a href="#about">About</a>
+    <a href="/about">About</a>
 
     <div class="search-container">
         <input type="text" placeholder="Search...">
