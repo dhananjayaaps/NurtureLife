@@ -5,6 +5,7 @@ namespace app\controllers\MidwifeController;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\models\Appointments;
 use app\models\Child;
 use app\models\Mother;
 
@@ -15,6 +16,7 @@ class AppointmentController extends Controller
     {
         $this->layout = 'midwife';
         $mother = new Mother();
+        $appointment = new Appointments();
 
         if ($request->isPost()) {
             $mother->loadData($request->getBody());
@@ -30,7 +32,7 @@ class AppointmentController extends Controller
         }
 
         return $this->render('midwife/ManageAppointments', [
-            'model' => $mother
+            'model' => $mother, 'appointmentModel' => $appointment
         ]);
     }
 

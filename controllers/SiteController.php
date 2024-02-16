@@ -73,12 +73,6 @@ class SiteController extends \app\core\Controller
         }
     }
 
-    public function appointments()
-    {
-        $this->layout = 'doctor';
-        return $this->render('doctor/appointments');
-    }
-
     public function doctorClinics()
     {
         $this->layout = 'doctor';

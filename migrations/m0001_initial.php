@@ -108,17 +108,16 @@ class m0001_initial
             diabetes_mellitus TINYINT(1),
             rubella_immunization TINYINT(1),
             emergencyNumber VARCHAR(20),
-            status INT;
+            status INT,
             FOREIGN KEY (PHM_ID) REFERENCES midwife(PHM_id),
             FOREIGN KEY (clinic_id) REFERENCES clinics(id),
             FOREIGN KEY (user_id) REFERENCES users(id)
         ) ENGINE=INNODB;
-            ";
+        ";
 
         $db->pdo->exec($SQL9);
 
         $Trigger1 = "
-            DELIMITER //
             CREATE TRIGGER after_insert_user
             AFTER INSERT ON users
             FOR EACH ROW
@@ -126,24 +125,52 @@ class m0001_initial
                 INSERT INTO user_roles (user_id, role_id)
                 VALUES (NEW.id, 1);
             END;
-            //
-            DELIMITER ;";
+            ";
 
         $db->pdo->exec($Trigger1);
 
         $AppointmentsTable = "CREATE TABLE Appointments (
-                    AppointmentId INT PRIMARY KEY AUTO_INCREMENT,
-                    MotherId INT,
-                    AppointType INT,
-                    AppointDate DATE,
-                    AppointStatus VARCHAR(50),
-                    AppointRemarks TEXT,
-                    FOREIGN KEY (MotherId) REFERENCES mothers(MotherId)
+            AppointmentId INT PRIMARY KEY AUTO_INCREMENT,
+            MotherId INT,
+            AppointType INT,
+            AppointDate DATE,
+            AppointStatus VARCHAR(50),
+            AppointRemarks TEXT,
+            FOREIGN KEY (MotherId) REFERENCES Mothers(MotherId)
         ) ENGINE=INNODB;
-            ";
+        ";
 
         $db->pdo->exec($AppointmentsTable);
+
+        $SQL10 = "CREATE TABLE IF NOT EXISTS child (
+                    user_id INT AUTO_INCREMENT PRIMARY KEY,
+                    PHM_ID VARCHAR(255),
+                    Clinic_ID VARCHAR(255),
+                    nic VARCHAR(255),
+                    Child_Name VARCHAR(255),
+                    Register_NO VARCHAR(255),
+                    Birth_Date DATE,
+                    Birth_Place VARCHAR(255),
+                    Mother_Name VARCHAR(255),
+                    Age VARCHAR(255),
+                    Address VARCHAR(255),
+                    Gender VARCHAR(255)
+                );
+            ";
+
+        $db->pdo->exec($SQL10);
+
+        $SQL10 = "create table fetalkick (
+            RecordId  int auto_increment primary key,
+            MotherId  int                                  not null,
+            Time      datetime default current_timestamp() not null,
+            KickCount int(3)                               not null
+        );"
+        ;
+
+        $db->pdo->exec($SQL10);
     }
+
 
 
     public function down()
