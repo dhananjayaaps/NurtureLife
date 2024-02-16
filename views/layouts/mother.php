@@ -14,7 +14,7 @@
 
 <div class="navbar">
     <a href=" ">Home</a>
-    <a href="#about">About</a>
+    <a href="/about">About</a>
 
     <div class="search-container">
         <input type="text" placeholder="Search...">
@@ -75,10 +75,22 @@
                 <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
             </div>
             <div class="column">
-                <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
+                <a href="#"><img src="assets/images/icons/clinic.png" alt=""> Report Symptoms</a>
             </div>
             <div class="column">
-                <a href="preMother"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
+                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Reports</a>
+            </div>
+            <div class="column">
+                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Calender</a>
+            </div>
+            <div class="column">
+                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Nutritions</a>
+            </div>
+            <div class="column">
+                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Communication</a>
+            </div>
+            <div class="column">
+                <a href="/fetalkick"><img src="assets/images/icons/pregnant.png" alt=""> Report Fetal kicks</a>
             </div>
 
         </div>

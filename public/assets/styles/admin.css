@@ -139,6 +139,11 @@
 
 .right-content{
     margin: auto;
+    display: flex;
+}
+.left-content{
+    margin: auto;
+    display: flex;
 }
 
 /*reports page*/
