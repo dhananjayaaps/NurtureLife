@@ -20,76 +20,89 @@ $this->title = 'Mothers';
 <link rel="stylesheet" href="./assets/styles/table.css">
 
 <style>
+    .form-container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 800px; /* Adjust the width as needed */
+        margin: 0 auto;
+    }
+
     .form-column {
-        float: left;
-        width: 50%;
+        width: 48%; /* Adjust the width as needed */
         box-sizing: border-box;
         padding: 0 10px;
     }
 
-    .clear {
-        clear: both;
+    .form-column:last-child {
+        margin-left: 2%; /* Adjust the margin between columns as needed */
+    }
+
+    .btn-submit {
+        margin-top: 20px;
     }
 </style>
 
 <div class="Mothers content">
 
     <div class="shadowBox">
-        <h2>Add a New Mother<br></h2>
+        <h2>Add a New Mother</h2>
         <?php $form = Form::begin('', "post")?>
 
-        <div class="form-column">
-            <?php echo $form->field($model, 'nic', 'NIC Number')?>
+        <div class="form-container">
 
-            <div class="row" style="display: flex; flex-direction: column; gap: 10px">
+            <div class="form-column">
+                <?php echo $form->field($model, 'nic', 'NIC Number')?>
 
-            <?php
-                $maritalStatusField = new Dropdown($model, 'MaritalStatus', 'Marital Status');
-                $maritalStatusField->setOptions([
-                    'married' => 'Married',
-                    'unmarried' => 'Unmarried',
+                <div class="row" style="display: flex; flex-direction: column; gap: 10px">
+                    <?php
+                    $maritalStatusField = new Dropdown($model, 'MaritalStatus', 'Marital Status');
+                    $maritalStatusField->setOptions([
+                        'married' => 'Married',
+                        'unmarried' => 'Unmarried',
+                    ]);
+                    echo $maritalStatusField;
+                    ?>
+
+                    <?php
+                    $bloodGroupField = new DropDown($model, 'BloodGroup', 'Blood Group');
+                    $bloodGroupField->setOptions([
+                        'A+' => 'A+',
+                        'A-' => 'A-',
+                        'B+' => 'B+',
+                        'B-' => 'B-',
+                        'O+' => 'O+',
+                        'O-' => 'O-',
+                    ]);
+                    echo $bloodGroupField;
+                    ?>
+                </div>
+
+                <br>
+                <?php echo $form->dateField($model, 'MarriageDate', 'Marriage Date')?>
+                <?php echo $form->field($model, 'Occupation', 'Occupation')?>
+                <?php echo $form->field($model, 'Allergies', 'Allergies')?>
+            </div>
+
+            <div class="form-column">
+                <?php echo $form->field($model, 'Consanguinity', 'Consanguinity')?>
+                <?php echo $form->field($model, 'history_subfertility', 'History Subfertility')?>
+                <?php echo $form->field($model, 'Hypertension', 'Hypertension')?>
+
+                <?php
+                $rubellaImmunizationField = new Dropdown($model, 'rubella_immunization', 'Rubella Immunization');
+                $rubellaImmunizationField->setOptions([
+                    'yes' => 'Yes',
+                    'no' => 'No',
                 ]);
-                echo $maritalStatusField;
-            ?>
+                echo $rubellaImmunizationField;
+                ?>
 
-            <?php
-                $bloodGroupField = new DropDown($model, 'BloodGroup', 'Blood Group');
-                $bloodGroupField->setOptions([
-                    'A+' => 'A+',
-                    'A-' => 'A-',
-                    'B+' => 'B+',
-                    'B-' => 'B-',
-                    'O+' => 'O+',
-                    'O-' => 'O-',
-                ]);
-                echo $bloodGroupField;
-            ?>
+                <?php echo $form->field($model, 'emergencyNumber', 'Emergency Number')?>
+            </div>
+
         </div>
 
-        <br>
-        <?php echo $form->dateField($model, 'MarriageDate', 'Marriage Date')?>
-        <?php echo $form->field($model, 'Occupation', 'Occupation')?>
-        <?php echo $form->field($model, 'Allergies', 'Allergies')?>
+        <button type="submit" class="btn-submit">Submit</button>
+        <?php echo Form::end()?>
     </div>
-
-    <div class="form-column">
-        <?php echo $form->field($model, 'Consanguinity', 'Consanguinity')?>
-        <?php echo $form->field($model, 'history_subfertility', 'history_subfertility')?>
-        <?php echo $form->field($model, 'Hypertension', 'Hypertension')?>
-
-        <?php
-        $maritalStatusField = new Dropdown($model, 'rubella_immunization', 'Rubella Immunization');
-        $maritalStatusField->setOptions([
-            'yes' => 'Yes',
-            'no' => 'No',
-        ]);
-        echo $maritalStatusField;
-        ?>
-
-        <?php echo $form->field($model, 'emergencyNumber', 'Emergency Number')?>
-    </div>
-</div>
-
-<button type="submit" class="btn-submit">Submit</button>
-<?php echo Form::end()?>
 </div>
