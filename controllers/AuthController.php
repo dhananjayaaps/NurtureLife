@@ -20,7 +20,7 @@ class AuthController extends Controller
         $this->registerMiddleware(new \app\core\middlewares\AuthMiddleware(['profile']));
     }
 
-    public function login(Request $request, Response $response)
+    public function login(Request $request, Response $response): bool|array|string
     {
         $loginModel = new LoginModel();
         $this->setLayout('auth');
@@ -49,7 +49,7 @@ class AuthController extends Controller
             $user->loadData($request->getBody());
 
             if ($user->validate() && $user->save()) {
-                Application::$app->session->setFlash('success', 'Thanks for the registering');
+                Application::$app->session->setFlash('success', 'Thank you for registering with NurtureLife');
                 Application::$app->response->redirect('/');
                 exit;
             }
@@ -63,7 +63,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(Request $request, Response $response)
+    public function logout(Request $request, Response $response): void
     {
         Application::$app->logout();
         $response->redirect('/');

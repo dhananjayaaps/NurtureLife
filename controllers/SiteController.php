@@ -10,7 +10,7 @@ use app\models\User;
 
 class SiteController extends \app\core\Controller
 {
-    public function home()
+    public function home(): array|false|string
     {
         if (!Application::isGuest()) {
             $userRole = Application::$app->user->getRole();
@@ -47,11 +47,11 @@ class SiteController extends \app\core\Controller
 //        return $this->render('about');
 //    }
 
-    public function contact()
+    public function contact(): false|array|string
     {
         return $this->render('contact');
     }
-    public function handleContact(Request $request)
+    public function handleContact(Request $request): string
     {
         $body = $request->getBody();
         return 'handling submitted data';
@@ -73,19 +73,19 @@ class SiteController extends \app\core\Controller
         }
     }
 
-    public function doctorClinics()
+    public function doctorClinics(): array|false|string
     {
         $this->layout = 'doctor';
         return $this->render('doctor/clinics');
     }
 
-    public function doctorMothers()
+    public function doctorMothers(): array|false|string
     {
         $this->layout = 'doctor';
         return $this->render('doctor/mothers');
     }
 
-    public function about()
+    public function about(): array|false|string
     {
         $this->layout = 'auth';
 

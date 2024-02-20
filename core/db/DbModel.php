@@ -51,7 +51,7 @@ abstract class DbModel extends Model
             return true;
     }
 
-    static public function deleteWhere($modelClass, $where)
+    static public function deleteWhere($modelClass, $where): void
     {
         $tableName = (new $modelClass())->tableName();
         $attributes = array_keys($where);
@@ -81,7 +81,7 @@ abstract class DbModel extends Model
        return $statement->fetchObject(static::class);
    }
 
-    static public function findAll($modelClass, $where = [])
+    static public function findAll($modelClass, $where = []): false|array
     {
         $tableName = (new $modelClass())->tableName();
 
@@ -104,7 +104,7 @@ abstract class DbModel extends Model
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    static public function findAllWithJoins($mainModelClass, $joins ,$where = [], $aliases = [])
+    static public function findAllWithJoins($mainModelClass, $joins ,$where = [], $aliases = []): false|array
     {
         $mainTableName = (new $mainModelClass())->tableName();
 
@@ -140,14 +140,14 @@ abstract class DbModel extends Model
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    static public function SQLRunner($query)
+    static public function SQLRunner($query): false|array
     {
         $query->execute();
         $statement = self::prepare($query);
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public static function prepare($sql)
+    public static function prepare($sql): false|\PDOStatement
     {
         return Application::$app->db->pdo->prepare($sql);
     }

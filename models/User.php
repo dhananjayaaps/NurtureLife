@@ -14,24 +14,28 @@ use app\core\UserModel;
 
 class User extends UserModel
 {
-    const STATUS_INACTIVE = 0;
-    const STATUS_ACTIVE = 1;
-    const STATUS_DELETED = 2;
-    const ROLE_USER = 1;
-    const ROLE_ADMIN = 2;
-    const ROLE_DOCTOR = 3;
-    const ROLE_PRE_MOTHER = 4;
-    const ROLE_POST_MOTHER = 5;
-    const ROLE_MIDWIFE = 6;
-    public int $id;
-    public string $created_at;
+    const int STATUS_INACTIVE = 0;
+    const int STATUS_ACTIVE = 1;
+    const int STATUS_DELETED = 2;
+    const int ROLE_USER = 1;
+    const int ROLE_ADMIN = 2;
+    const int ROLE_DOCTOR = 3;
+    const int ROLE_PRE_MOTHER = 4;
+    const int ROLE_POST_MOTHER = 5;
+    const int ROLE_MIDWIFE = 6;
 
+    public int $id;
     public string $firstname = '';
     public string $lastname ='';
     public string $email = '';
     public string $nic = '';
     public int $status = self::STATUS_INACTIVE;
+    public string $created_at;
     public string $password = '';
+    public string $DOB = '';
+    public string $gender = '';
+
+    public string $contact_no = '';
     public int $role_id;
     public string $confirm_password = '';
 

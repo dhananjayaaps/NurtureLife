@@ -6,7 +6,7 @@ use app\core\Controller;
 
 class AppoinmetHandler extends Controller
 {
-    public function appointments()
+    public function appointments(): array|false|string
     {
         $roleName = Application::$app->user->getRoleName();
         if ($roleName == 'Doctor'){
