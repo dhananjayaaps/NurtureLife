@@ -1,0 +1,63 @@
+/* Reset default margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply styles to the main container */
+.about {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-image: url("../images/mother-care-flip.png");
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto Light", serif;
+    font-size: large;
+    position: relative;
+    padding-left: 30px;
+    min-height: 400px;
+}
+
+/* Styles for individual banners */
+.banner {
+    margin-bottom: 20px;
+    /* Removed border */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Logo styles */
+.logo img {
+    max-width: 150px; /* Increased logo size */
+    height: auto;
+}
+
+/* Headline styles */
+.headline1,
+.headline2 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif; /* Replace with preferred font */
+    color: #333; /* Change color as desired */
+}
+
+.headline2 {
+    font-size: 28px; /* Smaller font size for headline2 */
+}
+
+/* Subheadline styles */
+.subheadline1,
+.subheadline2 {
+    font-size: 18px;
+    color: #666;
+    font-family: 'Arial', sans-serif; /* Replace with preferred font */
+}
+
+.subheadline2 {
+    font-size: 16px; /* Smaller font size for subheadline2 */
+}

@@ -24,6 +24,7 @@ class Mother extends DbModel
     public string $nic = '';
     public string $clinic_id = '';
     public int $status = 1;
+    public int $MotherStatus = 1;
 
     public function rules(): array
     {
@@ -63,7 +64,7 @@ class Mother extends DbModel
             'emergencyNumber',
             'user_id',
             'clinic_id',
-            'status'
+            'MotherStatus'
         ];
     }
 
@@ -87,6 +88,7 @@ class Mother extends DbModel
                 $this->addError('PHM_ID', 'That Clinic no exists');
                 return false;
             }
+            $this->MotherStatus = 1;
             $this->PHM_ID = $exitPHM->PHM_id;
             $this->user_id = $ValidateUser->id;
             $this->clinic_id = $exitPHM->clinic_id;
@@ -107,14 +109,18 @@ class Mother extends DbModel
             ['model' => Midwife::class, 'condition' => 'mothers.PHM_ID = midwife.PHM_id']
         ];
 
-        $motherData = (new Mother())->findAllWithJoins(self::class, $joins, []);
+        $motherData = (new Mother())->findAllWithJoins(self::class, $joins);
 
         $data = [];
+        $StatusNames = ['Inactive', 'Prenatal', 'Postnatal', 'Both' ,'Special'];
 
         foreach ($motherData as $mother) {
             $data[] = [
                 'MotherId' => $mother->MotherId,
                 'Name' => $mother->firstname . " " . $mother->lastname,
+                'Status' => $StatusNames[(int)$mother->MotherStatus],
+                'DeliveryDate' => $mother->DeliveryDate,
+                'PHM_id' => $mother->PHM_ID,
             ];
         }
         return json_encode($data);

@@ -2,19 +2,22 @@
 /** @var $this app\core\view */
 
 use app\core\Application;
+use app\core\form\DropDown;
 use app\core\form\Form;
-use app\models\Clinic;
-use app\models\Doctor;
+use app\models\Appointments;
+use app\models\Mother;
 
 $this->title = 'Manage Appointments';
 ?>
 
 <?php
-/** @var $model \app\models\Mother **/
-/** @var $modelUpdate \app\models\Mother **/
+/** @var $model Mother **/
+/** @var $modelUpdate Mother **/
+/** @var $appointmentModel Appointments **/
 //?>
 
 <link rel="stylesheet" href="./assets/styles/table.css">
+<link rel="stylesheet" href="./assets/styles/form.css">
 
 <!---->
 <!--<div id="myPopup" class="popup">-->
@@ -75,18 +78,20 @@ $this->title = 'Manage Appointments';
     <div class="shadowBox">
         <div class="left-content">
             <div class="search-container">
-                <input type="text" placeholder="Search Doctor...">
+                <input type="text" placeholder="Search Mothers...">
                 <button type="submit">Search</button>
             </div>
             <table class="table-data">
                 <thead>
                 <tr>
+                    <th><input type="checkbox" id="selectAll"></th>
                     <th>Mother ID</th>
                     <th>Name</th>
                     <th>Status</th>
-                    <th>Delivery Date</th>
-                    <th>Midwife</th>
-                    <th>Address</th>
+<!--                    <th>Delivery Date</th>-->
+<!--                    <th>Midwife</th>-->
+<!--                    <th>Address</th>-->
+                    <th>GN Division</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -99,9 +104,34 @@ $this->title = 'Manage Appointments';
             </div>
         </div>
     </div>
+    <div class="shadowBox">
+        <div class="Right-content">
+        <h2>Select the Appointment Details</h2>
+            <br>
+            <?php $form = Form::begin('', "post")?>
+            <?php echo $form->field($appointmentModel, 'MotherId', 'Mother ID')?>
+
+            <?php
+            $maritalStatusField = new Dropdown($appointmentModel, 'AppointType', 'Appoint Type');
+            $maritalStatusField->setOptions([
+                0 => 'Antenatal Clinic',
+                1 => 'Postnatal Clinic',
+                2 => 'Well baby Clinic',
+                3 => 'Nutrition clinic',
+                4 => 'Well women clinic',
+                5 => 'Family planning clinic',
+            ]);
+            echo $maritalStatusField;
+            ?>
+
+            <?php echo $form->dateField($appointmentModel, 'AppointDate', 'Appoint Date')?>
+            <?php echo $form->field($appointmentModel, 'AppointRemarks', 'Remarks')?>
+
+            <button type="submit" class="btn-submit">Submit</button>
+            <?php echo Form::end()?>
+        </div>
+    </div>
 </div>
-
-
 
 <script>
     var data = <?php echo $model->getMothers()?>;
@@ -119,12 +149,17 @@ $this->title = 'Manage Appointments';
             var row = data[i];
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
+            <td><input type="checkbox" class="tickCheckbox"></td>
             <td>${row.MotherId}</td>
             <td>${row.Name}</td>
+            <td>${row.Status}</td>
+<!--            <td>${row.DeliveryDate}</td>-->
+<!--            <td>${row.PHM_id}</td>-->
+            <td>Colombo</td>
+<!--            <td>Maharagama</td>-->
             `;
             tableBody.appendChild(newRow);
         }
-
     }
 
     function displayPagination() {
@@ -147,4 +182,25 @@ $this->title = 'Manage Appointments';
 
     displayTableData();
     displayPagination();
+</script>
+
+<script>
+    document.getElementById("selectAll").addEventListener("change", function () {
+        var checkboxes = document.getElementsByClassName("tickCheckbox");
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = this.checked;
+        }
+    });
+
+    function getSelectedMotherIDs() {
+        var selectedMotherIDs = [];
+        var checkboxes = document.getElementsByClassName("tickCheckbox");
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                var motherID = checkboxes[i].getAttribute("data-motherid");
+                selectedMotherIDs.push(motherID);
+            }
+        }
+        return selectedMotherIDs;
+    }
 </script>

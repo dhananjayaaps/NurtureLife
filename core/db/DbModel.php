@@ -104,7 +104,7 @@ abstract class DbModel extends Model
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    static public function findAllWithJoins($mainModelClass, $joins, $where = [])
+    static public function findAllWithJoins($mainModelClass, $joins ,$where = [], $aliases = [])
     {
         $mainTableName = (new $mainModelClass())->tableName();
 
@@ -122,15 +122,28 @@ abstract class DbModel extends Model
             $whereClause = "WHERE " . implode(" AND ", array_map(fn($attr) => "$attr = :$attr", $attributes));
         }
 
-        $sql = "SELECT * FROM $mainTableName $joinClauses $whereClause";
+        $selectAliases = [];
+        foreach ($aliases as $alias => $columnName) {
+            $selectAliases[] = "$columnName AS $alias";
+        }
+
+        $selectClause = implode(", ", $selectAliases);
+
+        $sql = "SELECT * $selectClause FROM $mainTableName $joinClauses $whereClause";
 
         $statement = self::prepare($sql);
 
         foreach ($where as $key => $item) {
             $statement->bindValue(":$key", $item);
         }
-
         $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    static public function SQLRunner($query)
+    {
+        $query->execute();
+        $statement = self::prepare($query);
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
