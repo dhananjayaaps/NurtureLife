@@ -73,15 +73,18 @@ $this->title = 'FetalKicks';
 
 <script>
     // Sample data received from the database
-    var dbData = <?php echo $model->getKicks() ?>;
+    let dbData =;
 
 
     // Extracting dates and counts from the database data
-    var dates = dbData.map(entry => new Date(entry.Date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
-    var counts = dbData.map(entry => entry.Count);
+    const dates = dbData.map(entry => new Date(entry.Date).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric'
+    }));
+    const counts = dbData.map(entry => entry.Count);
 
     // Creating the chart data
-    var data = {
+    const data = {
         labels: dates,
         datasets: [{
             label: "Daily Counts",
@@ -92,8 +95,7 @@ $this->title = 'FetalKicks';
     };
 
 
-
-    var options = {
+    const options = {
         scales: {
             y: {
                 beginAtZero: true
@@ -102,8 +104,8 @@ $this->title = 'FetalKicks';
     };
 
     // Creating the chart
-    var ctx = document.getElementById('lineChart').getContext('2d');
-    var myLineChart = new Chart(ctx, {
+    const ctx = document.getElementById('lineChart').getContext('2d');
+    const myLineChart = new Chart(ctx, {
         type: 'line',
         data: data,
         options: options
@@ -124,7 +126,7 @@ $this->title = 'FetalKicks';
     var elementU = document.getElementById("Update_section");
 
     // Hide the element
-    if (isNew == 1) {
+    if (isNew === 1) {
         elementU.style.display = "none";
     } else {
         elementA.style.display = "none";

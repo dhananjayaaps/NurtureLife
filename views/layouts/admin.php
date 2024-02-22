@@ -44,7 +44,7 @@
 
         <div class="action">
             <div class="profile" onclick="menuToggle();">
-                <img src="./assets/images/men_user.jpg" />
+                <img src="./assets/images/icons/woman.png" />
             </div>
             <div class="menu">
                 <h3><?php echo Application::$app->user->getDisplayName() ?></h3>
