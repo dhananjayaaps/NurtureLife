@@ -13,6 +13,7 @@ use app\controllers\AuthController;
 use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MotherController\FetalkickController;
 use app\controllers\MidwifeController\ChildController;
+use app\controllers\MotherController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -70,12 +71,6 @@ $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'chan
 $app->router->get('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
 $app->router->post('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
 
-$app->router->get('/fetalkick', [FetalkickController::class, 'Fetalkick']);
-$app->router->post('/fetalkick', [FetalkickController::class, 'Fetalkick']);
-$app->router->post('/fetalkickUpdate', [FetalkickController::class, 'fetalkickUpdate']);
-
-
-$app->router->get('/appointments', [SiteController::class, 'appointments']);
 $app->router->get('/doctorClinics', [SiteController::class, 'doctorClinics']);
 $app->router->get('/doctorMothers', [SiteController::class, 'doctorMothers']);
 
@@ -99,8 +94,5 @@ $app->router->post('/ManageAppointments', [AppointmentController::class, 'Manage
 $app->router->get('/mothers', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
-
-$app->router->get('/about', [SiteController::class, 'about']);
-
 
 $app->run();
