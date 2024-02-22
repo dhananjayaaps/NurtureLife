@@ -1,1 +1,3 @@
-hi
+<?php
+echo "hi from preMother/profile.php"
+?>

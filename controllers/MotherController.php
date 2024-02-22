@@ -2,12 +2,11 @@
 
 namespace app\controllers;
 
-use app\core\Application;
 use app\core\Controller;
 
 class MotherController extends Controller
 {
-    public function MotherProfile(): false|array|string
+    public function MotherProfile()
     {
             $this->layout = 'midwife';
             return $this->render('preMother/profile');
