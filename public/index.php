@@ -88,4 +88,7 @@ $app->router->post('/childCard2', [ChildController::class, 'childCard2']);
 $app->router->get('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
 $app->router->post('/ManageAppointments', [ChildController::class, 'ManageAppointments']);
 
+$app->router->get('/immunizationCard', [ChildController::class, 'immunizationCard']);
+$app->router->post('/immunizationCard', [ChildController::class, 'immunizationCard']);
+
 $app->run();
