@@ -11,6 +11,7 @@ use app\controllers\AdminController\MidwifeController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\MidwifeController\AppointmentController;
+use app\controllers\MotherController\FetalkickController;
 use app\controllers\MidwifeController\ChildController;
 use app\controllers\MotherController;
 use app\core\Application;
@@ -93,7 +94,5 @@ $app->router->post('/ManageAppointments', [AppointmentController::class, 'Manage
 $app->router->get('/mothers', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
-
-$app->router->get('/motherProfile', [MotherController::class, 'MotherProfile']);
 
 $app->run();
