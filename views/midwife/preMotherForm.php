@@ -53,7 +53,6 @@ $this->title = 'Mothers';
             <div class="form-column">
                 <?php echo $form->field($model, 'nic', 'NIC Number')?>
 
-                <div class="row" style="display: flex; flex-direction: column; gap: 10px">
                     <?php
                     $maritalStatusField = new Dropdown($model, 'MaritalStatus', 'Marital Status');
                     $maritalStatusField->setOptions([
@@ -75,7 +74,6 @@ $this->title = 'Mothers';
                     ]);
                     echo $bloodGroupField;
                     ?>
-                </div>
 
                 <br>
                 <?php echo $form->dateField($model, 'MarriageDate', 'Marriage Date')?>
@@ -87,12 +85,12 @@ $this->title = 'Mothers';
                 <?php echo $form->field($model, 'Consanguinity', 'Consanguinity')?>
                 <?php echo $form->field($model, 'history_subfertility', 'History Subfertility')?>
                 <?php echo $form->field($model, 'Hypertension', 'Hypertension')?>
-
+                <?php echo $form->field($model, 'diabetes_mellitus', 'Diabetes Mellitus')?>
                 <?php
                 $rubellaImmunizationField = new Dropdown($model, 'rubella_immunization', 'Rubella Immunization');
                 $rubellaImmunizationField->setOptions([
-                    'yes' => 'Yes',
-                    'no' => 'No',
+                    1 => 'Yes',
+                    2 => 'No',
                 ]);
                 echo $rubellaImmunizationField;
                 ?>

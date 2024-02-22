@@ -12,6 +12,7 @@ use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MidwifeController\ChildController;
+use app\controllers\MotherController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -92,5 +93,7 @@ $app->router->post('/ManageAppointments', [AppointmentController::class, 'Manage
 $app->router->get('/mothers', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
+
+$app->router->get('/motherProfile', [MotherController::class, 'MotherProfile']);
 
 $app->run();
