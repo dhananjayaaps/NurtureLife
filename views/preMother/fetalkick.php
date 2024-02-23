@@ -61,7 +61,7 @@ $this->title = 'FetalKicks';
     </div>
 </div>
 
-<!--<canvas id="lineChart" width="400" height="200"></canvas>-->
+<canvas id="lineChart" width="400" height="200"></canvas>
 
 <div id="targetElement"></div>
 

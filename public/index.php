@@ -71,6 +71,11 @@ $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'chan
 $app->router->get('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
 $app->router->post('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
 
+
+$app->router->get('/fetalkick', [FetalkickController::class, 'fetalkick']);
+$app->router->post('/fetalkick', [FetalkickController::class, 'fetalkick']);
+$app->router->post('/fetalkickUpdate', [FetalkickController::class, 'fetalkickUpdate']);
+
 $app->router->get('/doctorClinics', [SiteController::class, 'doctorClinics']);
 $app->router->get('/doctorMothers', [SiteController::class, 'doctorMothers']);
 
