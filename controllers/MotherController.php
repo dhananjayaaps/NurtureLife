@@ -6,7 +6,7 @@ use app\core\Controller;
 
 class MotherController extends Controller
 {
-    public function MotherProfile()
+    public function MotherProfile(): false|array|string
     {
             $this->layout = 'midwife';
             return $this->render('preMother/profile');

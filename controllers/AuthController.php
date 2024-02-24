@@ -30,6 +30,7 @@ class AuthController extends Controller
 
             if ($loginModel->validate() && $loginModel->login()) {
                 $response->redirect('/');
+                //TODO: flash messages are not displaying
                 Application::$app->session->setFlash('success', 'You are successfully logged in');
                 return true;
             }
