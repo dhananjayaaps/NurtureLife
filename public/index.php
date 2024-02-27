@@ -95,4 +95,13 @@ $app->router->get('/mothers', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
 
+$app->router->get('/about', [SiteController::class, 'about']);
+
+
+$app->router->get('/immunizationCard', [ChildController::class, 'immunizationCard']);
+$app->router->post('/immunizationCard', [ChildController::class, 'immunizationCard']);
+
+$app->router->get('/preMotherForm1', [ChildController::class, 'preMotherForm1']);
+$app->router->post('/preMotherForm1', [ChildController::class, 'preMotherForm1']);
+
 $app->run();
