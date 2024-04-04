@@ -13,6 +13,7 @@
 <body>
 
 <div class="navbar">
+    <img class="NL_logo" src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
     <a href=" ">Home</a>
     <a href="#about">About</a>
 
@@ -68,14 +69,16 @@
 </div>
 
 <div class="content-navbar">
+    <div class="wrapper">
     <div class="left-navbar">
-        <img class="NL_logo" src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
+
         <div class="navigations">
+
             <div class="column">
                 <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
             </div>
             <div class="column">
-                <a href="/doctorClinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
+                <a href="/doctorClinics"><img src="assets/images/icons/clinic.png" alt="">Manage Areas</a>
             </div>
             <div class="column">
                 <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
@@ -89,7 +92,10 @@
             </div>
         </div>
     </div>
-    {{content}}
+    <div class="content">
+        {{content}}
+    </div>
+    </div>
 </div>
 </body>
 </html>

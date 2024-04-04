@@ -17,6 +17,8 @@ class User extends UserModel
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_DELETED = 2;
+    const STATUS_Email_NOT_VERIFIED = 3;
+    const STATUS_PHONENO_NOT_VERIFIED = 4;
     const ROLE_USER = 1;
     const ROLE_ADMIN = 2;
     const ROLE_DOCTOR = 3;
@@ -34,6 +36,11 @@ class User extends UserModel
     public string $password = '';
     public int $role_id;
     public string $confirm_password = '';
+    public string $home_number = '';
+    public string $lane = '';
+    public string $city = '';
+    public string $postal_code = '';
+
 
     public function tableName(): string
     {
@@ -64,13 +71,17 @@ class User extends UserModel
                 self::RULE_UNIQUE ,'class' => self::class
             ]],
             'password' => [self::RULE_REQUIRED,[self::RULE_MIN,'min' => 8],[self::RULE_MAX,'max' => 24]],
-            'confirm_password' => [self::RULE_REQUIRED,[self::RULE_MATCH,'match' => 'password']]
+            'confirm_password' => [self::RULE_REQUIRED,[self::RULE_MATCH,'match' => 'password']],
+            'home_number' => [self::RULE_REQUIRED],
+            'lane' => [self::RULE_REQUIRED],
+            'city' => [self::RULE_REQUIRED],
+            'postal_code' => [self::RULE_REQUIRED]
         ];
     }
 
     public function attributes(): array
     {
-        return ['firstname','lastname','email','password','nic', 'status', 'role_id'];
+        return ['firstname','lastname','email','password','nic', 'status', 'role_id','home_number','lane','city','postal_code'];
     }
 
     public function getDisplayName(): string

@@ -19,6 +19,8 @@ $this->title = 'Mothers';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
+
+
 <style>
     .form-container {
         display: flex;
@@ -40,6 +42,46 @@ $this->title = 'Mothers';
     .btn-submit {
         margin-top: 20px;
     }
+
+    #allergies-container {
+        /*display: flex;*/
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .allergy {
+        margin-bottom: 10px; /* Adjust spacing as needed */
+        display: flex;
+        align-items: center;
+    }
+
+    .allergy label {
+        flex: 0 0 120px; /* Adjust label width as needed */
+        font-weight: bold;
+    }
+
+    .allergy select,
+    .allergy input[type="text"] {
+        flex: 1;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+        margin-left: 10px; /* Adjust margin as needed */
+    }
+
+    .btn-add {
+        padding: 8px 16px; /* Adjust padding to make the button smaller */
+        font-size: 14px; /* Adjust font size to make the button text smaller */
+    }
+
+    .content{
+        margin-left: 300px;
+        justify-content: center;
+        align-content: center;
+    }
+
+
 </style>
 
 <div class="Mothers content">
@@ -80,7 +122,10 @@ $this->title = 'Mothers';
                 <br>
                 <?php echo $form->dateField($model, 'MarriageDate', 'Marriage Date')?>
                 <?php echo $form->field($model, 'Occupation', 'Occupation')?>
-                <?php echo $form->field($model, 'Allergies', 'Allergies')?>
+<!--                --><?php //echo $form->field($model, 'Allergies', 'Allergies')?>
+                <?php echo $form->field($model, 'emergencyNumber', 'Emergency Number')?>
+
+
             </div>
 
             <div class="form-column">
@@ -150,12 +195,50 @@ $this->title = 'Mothers';
 
                 <div class="break-line"></div>
 
-                <?php echo $form->field($model, 'emergencyNumber', 'Emergency Number')?>
             </div>
 
         </div>
+        <br>
+        <h3>Allergies</h3><br>
+        <div id="allergies-container">
+            <div class="allergy">
+                <label for="allergy-type">Allergy Type:</label>
+                <select name="allergy-type" class="allergy-type">
+                    <option value="food">Food</option>
+                    <option value="drug">Drug</option>
+                    <option value="other">Other</option>
+                </select>
+                <label for="allergy-description">Description:</label>
+                <input type="text" name="allergy-description" class="allergy-description">
+            </div>
+        </div>
+        <button class="btn-add" id="add-allergy">Add New Allergy</button>
+
+        <br>
 
         <button type="submit" class="btn-submit">Submit</button>
         <?php echo Form::end()?>
     </div>
 </div>
+
+
+<script>
+    document.getElementById('add-allergy').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        const allergiesContainer = document.getElementById('allergies-container');
+        const newAllergy = document.createElement('div');
+        newAllergy.classList.add('allergy');
+        newAllergy.innerHTML = `
+        <label for="allergy-type">Allergy Type:</label>
+        <select name="allergy-type" class="allergy-type">
+            <option value="food">Food</option>
+            <option value="drug">Drug</option>
+            <option value="other">Other</option>
+        </select>
+        <label for="allergy-description">Description:</label>
+        <input type="text" name="allergy-description" class="allergy-description">
+    `;
+        allergiesContainer.appendChild(newAllergy);
+    });
+</script>

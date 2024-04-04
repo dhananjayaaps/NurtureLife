@@ -25,7 +25,7 @@ class Fetalkick extends DbModel
 
     public function tableName(): string
     {
-        return 'fetalKick';
+        return 'fetalkick';
     }
 
     public function primaryKey(): string

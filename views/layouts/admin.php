@@ -72,6 +72,7 @@
 </div>
 
 <div class="content-navbar">
+    <div class="wrapper">
     <div class="left-navbar">
         <img class="NL_logo" src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
         <div class="navigations">
@@ -101,7 +102,11 @@
             </div>
         </div>
     </div>
-    {{content}}
+
+    <div class="content">
+        {{content}}
+    </div>
+    </div>
 </div>
 </body>
 </html>
