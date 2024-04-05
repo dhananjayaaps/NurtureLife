@@ -88,7 +88,7 @@
             </div>
 
             <div class="column">
-                <a href="/appointments"><img src="assets/images/icons/user.png" alt=""> Users</a>
+                <a href="/appointments"><img src="assets/images/icons/user.png" alt=""> Appointments</a>
             </div>
         </div>
     </div>
