@@ -20,6 +20,7 @@ $this->title = 'FetalKicks';
     .MotherProfile{
         margin-left: 100px;
         display: flex;
+
         flex-direction: column;
     }
 

@@ -62,7 +62,11 @@ body{
 }
 
 .content{
-    margin-left: 130px;
+    margin-left: 120px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: min-content;
 }
 
 .navbar a {
@@ -580,3 +584,4 @@ h1 {
     font-size: inherit;
     vertical-align: middle;
 }
+
