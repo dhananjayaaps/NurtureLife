@@ -1,0 +1,12 @@
+.content{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    min-height: min-content;
+    justify-content: space-between;
+
+}
+
+.second-column{
+    float: left;
+}
