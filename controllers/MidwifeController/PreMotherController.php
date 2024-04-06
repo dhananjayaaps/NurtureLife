@@ -11,15 +11,14 @@ class PreMotherController extends Controller
 {
     public function PreMother(Request $request): array|false|string
     {
-        $this->layout = 'doctor';
+        $this->layout = 'midwife';
         $mother = new Mother();
         $mother2 = new Mother();
 
         if ($request->isPost()) {
-            $this->layout = 'doctor';
+            $this->layout = 'midwife';
             $mother->loadData($request->getBody());
 
-            var_dump($mother->validate());
             if ($mother->validate() && $mother->save()) {
                 var_dump($mother);
                 Application::$app->session->setFlash('success', 'Added a new Midwife');
@@ -29,7 +28,7 @@ class PreMotherController extends Controller
         }
 
         else if ($request->isGet()) {
-            $this->layout = 'doctor';
+            $this->layout = 'midwife';
         }
 
         return $this->render('midwife/preMotherForm', [

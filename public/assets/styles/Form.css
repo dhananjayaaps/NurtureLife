@@ -18,18 +18,22 @@
     margin: 0;
 }
 
-.signup_form_container {
-    background-image: url("../images/mother-care-flip.png");
-    background-size: cover;
-    /*background-color: rgba(255, 255, 255, 0.2);*/
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    font-family: monospace;
-    font-size: large;
-    position: relative;
-    padding-left: 30px;
-    margin: 0;
+/*.signup_form_container {*/
+/*    background-image: url("../images/mother-care-flip.png");*/
+/*    background-size: cover;*/
+/*    !*background-color: rgba(255, 255, 255, 0.2);*!*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    font-family: monospace;*/
+/*    font-size: large;*/
+/*    position: relative;*/
+/*    padding-left: 30px;*/
+/*    margin: 0;*/
+/*}*/
+
+.signup_form_container{
+
 }
 
 .form-group {
@@ -153,4 +157,51 @@
 .btn-submit:hover {
     background-color: #126017;
     transition: background-color 1s;
+}
+
+.container {
+    margin-top: 60px;
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+.imageBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 40%;
+}
+
+.imageBox img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 20px;
+}
+
+.formContent {
+    padding: 20px;
+}
+
+.signup_form_container {
+    width: 100%; /* Ensure the form container takes up full width */
+}
+
+.formRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.formColumn {
+    flex-basis: calc(50% - 10px); /* 50% width with a little space between columns */
+}
+
+.centeredButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
