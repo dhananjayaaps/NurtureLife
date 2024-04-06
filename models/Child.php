@@ -42,7 +42,7 @@ class Child extends DbModel
     public string $breastfeeding_position= '';
     public string $breastfeeding_relationship= '';
     public string $other= '';
-    public string $date= '';
+    public string $completion_date= '';
     public string $time_duration= '';
 
 
@@ -89,26 +89,26 @@ class Child extends DbModel
             'baby_length_at_birth',
             'health_condition',
             'vitamin_k',
-//            'premature_births',
-//            'low_birth_weight',
-//            'neonatal_complications',
-//            'congenital_disorders',
-//            'acute_conditions',
-//            'complementary_feeding',
-//            'growth_retardation',
-//            'difficulty_feeding',
-//            'death_of_mother_or_father',
-//            'migration_of_mother_or_father',
-//            'other_reasons',
-//            'skin_color',
-//            'eyes',
-//            'pecan',
-//            'breast_feeding',
-//            'breastfeeding_position',
-//            'breastfeeding_relationship',
-//            'other',
-//            'date',
-//            'time_duration',
+            'premature_births',
+            'low_birth_weight',
+            'neonatal_complications',
+            'congenital_disorders',
+            'acute_conditions',
+            'complementary_feeding',
+            'growth_retardation',
+            'difficulty_feeding',
+            'death_of_mother_or_father',
+            'migration_of_mother_or_father',
+            'other_reasons',
+            'skin_color',
+            'eyes',
+            'pecan',
+            'breast_feeding',
+            'breastfeeding_position',
+            'breastfeeding_relationship',
+            'other',
+            'completion_date',
+            'time_duration',
 
 
         ];

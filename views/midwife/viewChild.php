@@ -1,48 +1,27 @@
-<?php
-/** @var $this app\core\view */
-
-use app\core\Application;
-use app\core\form\DropDown;
-use app\core\form\Form;
-use app\models\Appointments;
-use app\models\Mother;
-
-$this->title = 'Manage Appointments';
-?>
 
 <?php
-/** @var $model Mother **/
+/** @var $model Child **/
+/** @var $modelUpdate viewChild **/
+
+use app\models\Child;
+
 //?>
 
-<link rel="stylesheet" href="./assets/styles/table.css">
-<link rel="stylesheet" href="./assets/styles/form.css">
 
-<style>
-    .shadowBox{
-        flex: 40%;
-        margin: 0;
-        justify-content: flex-start;
-    }
-
-    a{
-        text-decoration: none;
-        color: white;
-    }
-</style>
-
-<div class="content">
-    <div class="shadowBox" style="height: 80vh">
+<div class="doctors content">
+    <div class="shadowBox">
+        <div class="left-content">
             <div class="search-container">
-                <input type="text" placeholder="Search Mothers...">
+                <input type="text" placeholder="Search Child...">
                 <button type="submit">Search</button>
             </div>
             <table class="table-data">
                 <thead>
                 <tr>
-                    <th>Mother ID</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>GN Division</th>
+                    <th>Child Name</th>
+                    <th>Mother Name</th>
+                    <th>Registration No</th>
+                    <th>Gender</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -53,11 +32,14 @@ $this->title = 'Manage Appointments';
             <div class="pagination" id="pagination">
                 <!-- Pagination buttons will be added here -->
             </div>
+        </div>
     </div>
+
 </div>
 
 <script>
-    var data = <?php echo $model->getMothers()?>;
+    console.log("hi")
+    var data = <?php echo $model->getChilds()?>;
 
     var itemsPerPage = 10;
     var currentPage = 1;
@@ -72,16 +54,17 @@ $this->title = 'Manage Appointments';
             var row = data[i];
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
-            <td>${row.MotherId}</td>
-            <td>${row.Name}</td>
-            <td>${row.Status}</td>
-<!--            <td>${row.DeliveryDate}</td>-->
-<!--            <td>${row.PHM_id}</td>-->
-            <td>Colombo</td>
-            <button class="action-button" onclick=""><a href="/motherProfile">View Mother</a></button>
-            `;
+            <td>${row.ChildName}</td>
+            <td>${row.MotherName}</td>
+            <td>${row.RegistrationNo}</td>
+            <td>${row.Gender}</td>
+            <td class="action-buttons">
+            <button id="showPopUp" onclick="UpdatePopUp('${row.MOH_ID}', '${row.Name}')" class="action-button update-button">Update</button>
+            <button class="action-button remove-button" onclick="UpdatePopUp('${row.MOH_ID}', '${row.Name}')">Remove</button>
+        `;
             tableBody.appendChild(newRow);
         }
+
     }
 
     function displayPagination() {
@@ -105,5 +88,3 @@ $this->title = 'Manage Appointments';
     displayTableData();
     displayPagination();
 </script>
-
-

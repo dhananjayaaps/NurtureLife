@@ -28,6 +28,11 @@ class LoginModel extends Model
             return false;
         }
 
+        if ($user->status == User::STATUS_Email_NOT_VERIFIED) {
+            http_redirect('/verify-email');
+            return false;
+        }
+
         if (!password_verify($this->password, $user->password)) {
             $this->addError('password', 'Password is incorrect');
             return false;

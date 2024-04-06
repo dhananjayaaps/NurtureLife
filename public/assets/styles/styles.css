@@ -44,6 +44,31 @@ body{
     z-index: 100;
 }
 
+.navbar {
+    position: fixed; /* Fix the navbar position */
+    top: 0; /* Position at the top */
+    left: 0;
+    width: 100%; /* Full width */
+    color: #fff; /* Example text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.wrapper {
+    margin-top: 100px; /* Adjust margin to account for the fixed navbar height */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: row; /* Stack children vertically */
+    height: 100vh;
+}
+
+.content{
+    margin-left: 120px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: min-content;
+}
+
 .navbar a {
     float: left;
     display: flex;
@@ -303,6 +328,7 @@ body{
 }
 
 .left-navbar{
+    position: fixed;
     padding-left: 10px;
     display: flex;
     flex-direction: column;
@@ -485,6 +511,7 @@ body{
     display: none; /* or other hiding styles */
 }
 
+
 .popup {
     position: fixed;
     z-index: 1;
@@ -557,3 +584,4 @@ h1 {
     font-size: inherit;
     vertical-align: middle;
 }
+

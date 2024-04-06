@@ -11,15 +11,14 @@ class PreMotherController extends Controller
 {
     public function PreMother(Request $request): array|false|string
     {
-        $this->layout = 'doctor';
+        $this->layout = 'midwife';
         $mother = new Mother();
         $mother2 = new Mother();
 
         if ($request->isPost()) {
-            $this->layout = 'doctor';
+            $this->layout = 'midwife';
             $mother->loadData($request->getBody());
 
-            var_dump($mother->validate());
             if ($mother->validate() && $mother->save()) {
                 var_dump($mother);
                 Application::$app->session->setFlash('success', 'Added a new Midwife');
@@ -29,10 +28,38 @@ class PreMotherController extends Controller
         }
 
         else if ($request->isGet()) {
-            $this->layout = 'doctor';
+            $this->layout = 'midwife';
         }
 
         return $this->render('midwife/preMotherForm', [
+            'model' => $mother, "modelUpdate" => $mother2
+        ]);
+    }
+
+    public function PreMotherForm1(Request $request): array|false|string
+    {
+        $this->layout = 'midwife';
+        $mother = new Mother();
+        $mother2 = new Mother();
+
+        if ($request->isPost()) {
+            $this->layout = 'midwife';
+            $mother->loadData($request->getBody());
+
+            var_dump($mother->validate());
+            if ($mother->validate() && $mother->save()) {
+                var_dump($mother);
+                Application::$app->session->setFlash('success', 'Added a new Midwife');
+                Application::$app->response->redirect('midwife/preMotherForm1');
+                exit;
+            }
+        }
+
+        else if ($request->isGet()) {
+            $this->layout = 'midwife';
+        }
+
+        return $this->render('midwife/preMotherForm1', [
             'model' => $mother, "modelUpdate" => $mother2
         ]);
     }

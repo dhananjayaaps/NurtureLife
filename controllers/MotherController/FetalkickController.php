@@ -5,12 +5,13 @@ namespace app\controllers;
 namespace app\controllers\MotherController;
 
 use app\core\Application;
+use app\core\Controller;
 use app\core\Request;
 use app\models\Fetalkick;
 use http\Client\Curl\User;
 
 
-class FetalkickController extends \app\core\Controller
+class FetalkickController extends Controller
 {
     public function Fetalkick(Request $request): array|false|string
     {

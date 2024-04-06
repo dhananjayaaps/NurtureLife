@@ -28,6 +28,10 @@ class m0001_initial
             DOB date,
             gender varchar(255),
             role_id INT,
+            home_number VARCHAR(255),
+            lane VARCHAR(255),
+            city VARCHAR(255),
+            postal_code VARCHAR(255),
             FOREIGN KEY (role_id) REFERENCES roles(id)
         ) ENGINE=INNODB;";
 

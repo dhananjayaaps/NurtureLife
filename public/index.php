@@ -11,9 +11,10 @@ use app\controllers\AdminController\MidwifeController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\MidwifeController\AppointmentController;
-use app\controllers\MotherController\FetalkickController;
 use app\controllers\MidwifeController\ChildController;
+use app\controllers\MidwifeController\PreMotherController;
 use app\controllers\MotherController;
+use app\controllers\MotherController\FetalkickController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -68,8 +69,8 @@ $app->router->post('/reports', [ClinicsController::class, 'reports']);
 
 $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'changeRole']);
 
-$app->router->get('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
-$app->router->post('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
+$app->router->get('/preMotherForm', [PreMotherController::class, 'PreMother']);
+$app->router->post('/preMotherForm', [PreMotherController::class, 'PreMother']);
 
 
 $app->router->get('/fetalkick', [FetalkickController::class, 'fetalkick']);
@@ -99,5 +100,21 @@ $app->router->post('/ManageAppointments', [AppointmentController::class, 'Manage
 $app->router->get('/mothers', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
+
+$app->router->get('/about', [SiteController::class, 'about']);
+
+$app->router->get('/immunizationCard', [ChildController::class, 'immunizationCard']);
+$app->router->post('/immunizationCard', [ChildController::class, 'immunizationCard']);
+
+$app->router->get('/preMotherForm1', [ChildController::class, 'preMotherForm1']);
+$app->router->post('/preMotherForm1', [ChildController::class, 'preMotherForm1']);
+
+$app->router->get('/fetalKicks', [FetalkickController::class, 'Fetalkick']);
+$app->router->post('/fetalKicks', [FetalkickController::class, 'fetalkickUpdate']);
+
+$app->router->get('/verify-email', [AuthController::class, 'verifyEmail']);
+$app->router->get('/verify-phone', [AuthController::class, 'verifyPhone']);
+
+$app->router->get('/motherProfile', [MotherController\MotherProfile::class, 'motherProfile']);
 
 $app->run();
