@@ -8,24 +8,24 @@ use PDO;
 use app\core\Model;
 
 
-class Fetalkick extends DbModel
+class WeightGainChart extends DbModel
 {
     public string $RecordId ='';
     public string $MotherId;
-    public string $KickCount ='';
+    public string $weight ='';
 
     public function rules(): array
     {
         return[
 
-            'KickCount'=> [self::RULE_REQUIRED]
+            'weight'=> [self::RULE_REQUIRED]
 
         ];
     }
 
     public function tableName(): string
     {
-pre        return 'fetalkick';
+        return 'weight';
     }
 
     public function primaryKey(): string
@@ -35,21 +35,21 @@ pre        return 'fetalkick';
 
     public function attributes(): array
     {
-       return [
-            'KickCount',
+        return [
+            'weight',
             'MotherId'
-           ];
+        ];
     }
-    public function getKicks(): string
+    public function getWeight(): string
     {
         $MotherId = $this->getMotherId();
-        $KickData = (new Fetalkick())->findAll(self::class,['MotherId'=>$MotherId]);
+        $weight = (new WeightGainChart())->findAll(self::class,['MotherId'=>$MotherId]);
         $data = [];
 
-        foreach ($KickData as $Kicks) {
+        foreach ($weight as $weight) {
             $data[] = [
-                'Date' => $Kicks->Time,
-                'Count' => $Kicks->KickCount
+                'Date' => $weight->Time,
+                'Count' => $weight->Weight
             ];
         }
         return json_encode($data);
@@ -85,7 +85,7 @@ pre        return 'fetalkick';
         $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
 
         $statement->bindValue(":motherId", $motherId);
-       $statement->bindValue(":currentDate", $currentDate);
+        $statement->bindValue(":currentDate", $currentDate);
 
         $statement->execute();
 
