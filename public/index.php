@@ -11,6 +11,8 @@ use app\controllers\AdminController\MidwifeController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\MidwifeController\AppointmentController;
+use app\controllers\MidwifeController\PreMotherController;
+use app\controllers\MidwifeController\weightGainChartController;
 use app\controllers\MotherController\FetalkickController;
 use app\controllers\MidwifeController\ChildController;
 use app\core\Application;
@@ -67,8 +69,8 @@ $app->router->post('/reports', [ClinicsController::class, 'reports']);
 
 $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'changeRole']);
 
-$app->router->get('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
-$app->router->post('/preMotherForm', [\app\controllers\MidwifeController\PreMotherController::class, 'PreMother']);
+$app->router->get('/preMotherForm', [PreMotherController::class, 'PreMother']);
+$app->router->post('/preMotherForm', [PreMotherController::class, 'PreMother']);
 
 $app->router->get('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkick', [FetalkickController::class, 'Fetalkick']);
@@ -102,11 +104,26 @@ $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/about', [SiteController::class, 'about']);
 
-
 $app->router->get('/immunizationCard', [ChildController::class, 'immunizationCard']);
 $app->router->post('/immunizationCard', [ChildController::class, 'immunizationCard']);
 
-$app->router->get('/preMotherForm1', [ChildController::class, 'preMotherForm1']);
-$app->router->post('/preMotherForm1', [ChildController::class, 'preMotherForm1']);
+$app->router->get('/preMotherForm1', [PreMotherController::class, 'preMotherForm1']);
+$app->router->post('/preMotherForm1', [PreMotherController::class, 'preMotherForm1']);
+
+$app->router->get('/weightChart', [WeightGainChartController::class, 'weightGain']);
+$app->router->post('/weightChart', [WeightGainChartController::class, 'weightGain']);
+
+$app->router->get('/PreMotherHistoryForm1', [PreMotherController::class, 'PreMotherHistoryForm1']);
+$app->router->post('/PreMotherHistoryForm1', [PreMotherController::class, 'PreMotherHistoryForm1']);
+
+$app->router->get('/PreMotherHistoryForm2', [PreMotherController::class, 'PreMotherHistoryForm2']);
+$app->router->post('/PreMotherHistoryForm2', [PreMotherController::class, 'PreMotherHistoryForm2']);
+
+$app->router->get('/PreMotherHistoryForm3', [PreMotherController::class, 'PreMotherHistoryForm3']);
+$app->router->post('/PreMotherHistoryForm3', [PreMotherController::class, 'PreMotherHistoryForm3']);
+
+$app->router->get('/personalInformationForm', [PreMotherController::class, 'personalInformationForm']);
+$app->router->post('/personalInformationForm', [PreMotherController::class, 'personalInformationForm']);
+
 
 $app->run();

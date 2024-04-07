@@ -39,7 +39,7 @@ class Mother extends DbModel
 
     public function tableName(): string
     {
-        return 'mothers';
+        return 'Mothers';
     }
 
     public function primaryKey(): string
