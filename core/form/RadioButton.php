@@ -6,7 +6,7 @@ use app\core\Model;
 
 class RadioButton extends BaseField
 {
-    public const TYPE_RADIO = 'radio';
+    public const string TYPE_RADIO = 'radio';
     public string $type;
     public string $name;
     public Model $model;
@@ -31,20 +31,18 @@ class RadioButton extends BaseField
 
     public function renderInput(): string
     {
-        $inputHtml = '';
+        $optionsHtml = '';
 
         foreach ($this->options as $value => $label) {
-            $checked = $this->model->{$this->attribute} == $value ? 'checked' : '';
-            $inputHtml .= sprintf(
-                '<label><input type="%s" name="%s" value="%s" %s class="form-check-input">%s</label>',
-                $this->type,
-                $this->attribute,
-                $value,
-                $checked,
-                $label
-            );
+            $selected = $this->model->{$this->attribute} == $value ? 'selected' : '';
+            $optionsHtml .= sprintf('<option value="%s" %s>%s</option>', $value, $selected, $label);
         }
 
-        return $inputHtml;
+        return sprintf('<select name="%s" class="form-control %s" %s>%s</select>',
+            $this->attribute,
+            $this->model->hasError($this->attribute) ? ' is-invalid' : '',
+            $this->readOnly ? 'readonly' : '',
+            $optionsHtml
+        );
     }
 }

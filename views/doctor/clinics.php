@@ -54,7 +54,7 @@
 </div>
 
 <div class="clinics content">
-    <div class="shadowBox">
+    <div class="shadowBox" style="height: fit-content">
         <div class="left-content">
             <div class="search-container">
                 <input type="text" placeholder="Search Clinic...">

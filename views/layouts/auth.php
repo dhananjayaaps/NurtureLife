@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/Form.css">
 </head>
-<body">
+<body>
 
 <div class="navbar" id="myNavbar">
     <div class="NL_logo_container">
@@ -72,7 +72,12 @@
     </div>
 
 </div>
-{{content}}
+<div class="wrapper">
+    <div class="content">
+        {{content}}
+    </div>
+</div>
+
 <div class="footer">
     <div class="footer-left">
         <div class="footer-left-title">
@@ -108,3 +113,6 @@
         <div class="email">Email : admin.nurturelife@gmail.com</div>
     </div>
 </div>
+
+</body>
+</html>

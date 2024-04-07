@@ -1,14 +1,7 @@
-.content{
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    min-height: min-content;
-}
-
 .content .column{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     height: fit-content;
     gap: 20px;
     padding-top: 30px;

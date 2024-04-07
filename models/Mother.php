@@ -17,9 +17,9 @@ class Mother extends DbModel
     public string $Allergies = '';
     public string $Consanguinity = '';
     public string $history_subfertility = '';
-    public string $Hypertension = '';
-    public string $diabetes_mellitus = '';
-    public string $rubella_immunization = 'Yes';
+    public int $Hypertension = 1;
+    public int $diabetes_mellitus = 1;
+    public int $rubella_immunization = 1;
     public string $emergencyNumber = '';
     public string $nic = '';
     public string $clinic_id = '';
@@ -105,8 +105,8 @@ class Mother extends DbModel
     public function getMothers(): string
     {
         $joins = [
-            ['model' => User::class, 'condition' => 'mothers.user_id = users.id'],
-            ['model' => Midwife::class, 'condition' => 'mothers.PHM_ID = midwife.PHM_id']
+            ['model' => User::class, 'condition' => 'Mothers.user_id = users.id'],
+            ['model' => Midwife::class, 'condition' => 'Mothers.PHM_ID = midwife.PHM_id']
         ];
 
         $motherData = (new Mother())->findAllWithJoins(self::class, $joins);
