@@ -43,13 +43,13 @@ $this->title = 'Child';
             <div class="row" style="display: flex; flex-direction: column; gap: 10px">
                 <?php echo $form->field($model, 'child_id', 'Child ID')?>
 
-                <?php echo $form->dateField($model, 'date', 'Date of Form Completion')?>
+                <?php echo $form->dateField($model, 'completion_date', 'Date of Form Completion')?>
 
                 <?php
                 $prematureField = new Dropdown($model, 'premature_births', 'Premature Births');
                 $prematureField->setOptions([
-                    'yes' => 'Yes',
-                    'no' => 'No',
+                     'no' => 'No',
+                     'yes' => 'Yes',
 
                 ]);
                 echo $prematureField;
@@ -58,8 +58,8 @@ $this->title = 'Child';
                 <?php
                 $lowBirthField = new Dropdown($model, 'low_birth_weight', 'Low Birth Weight ');
                 $lowBirthField->setOptions([
-                    'yes' => 'Yes',
                     'no' => 'No',
+                    'yes' => 'Yes',
 
                 ]);
                 echo $lowBirthField;
@@ -68,8 +68,8 @@ $this->title = 'Child';
                 <?php
                 $NeonatalField = new Dropdown($model, 'neonatal_complications', 'Neonatal Complications ');
                 $NeonatalField->setOptions([
-                    'yes' => 'Yes',
                     'no' => 'No',
+                    'yes' => 'Yes',
 
                 ]);
                 echo $NeonatalField;
@@ -78,8 +78,8 @@ $this->title = 'Child';
                 <?php
                 $congenitalField = new Dropdown($model, 'congenital_disorders', 'Congenital Disoders ');
                 $congenitalField->setOptions([
-                    'yes' => 'Yes',
                     'no' => 'No',
+                    'yes' => 'Yes',
 
                 ]);
                 echo $congenitalField;
@@ -88,8 +88,8 @@ $this->title = 'Child';
                 <?php
                 $acuteConditionsField = new Dropdown($model, 'acute_conditions', 'Acute Conditions of the Mother after delivery  ');
                 $acuteConditionsField->setOptions([
-                    'yes' => 'Yes',
                     'no' => 'No',
+                    'yes' => 'Yes',
 
                 ]);
                 echo $acuteConditionsField;
@@ -98,8 +98,8 @@ $this->title = 'Child';
                 <?php
                 $complementaryFeedingField = new Dropdown($model, 'complementary_feeding', 'Complementary feeding during the first six months');
                 $complementaryFeedingField->setOptions([
-                    'yes' => 'Yes',
                     'no' => 'No',
+                    'yes' => 'Yes',
 
                 ]);
                 echo $complementaryFeedingField;
@@ -108,8 +108,9 @@ $this->title = 'Child';
                 <?php
                 $growthField = new Dropdown($model, 'growth_retardation', 'Growth Retardation');
                 $growthField->setOptions([
-                    'yes' => 'Yes',
                     'no' => 'No',
+                    'yes' => 'Yes',
+
 
                 ]);
                 echo $growthField;
@@ -118,8 +119,8 @@ $this->title = 'Child';
                 <?php
                 $difficultyFeedingField = new Dropdown($model, 'difficulty_feeding', 'Difficulty Breastfeeding/Feeding');
                 $difficultyFeedingField->setOptions([
-                    'yes' => 'Yes',
                     'no' => 'No',
+                    'yes' => 'Yes',
 
                 ]);
                 echo $difficultyFeedingField;
@@ -128,9 +129,10 @@ $this->title = 'Child';
                 <?php
                 $deathMoFaField = new Dropdown($model, 'death_of_mother_or_father', 'Death of Mother or Father');
                 $deathMoFaField->setOptions([
-                    'mother is dead' => 'Mother is dead',
-                    'father is dead' => 'Father is dead',
-                    'both are dead'  => 'Both are dead',
+                    '1' => 'No,Both are alive',
+                    '2' => 'Mother is dead',
+                    '3' => 'Father is dead',
+                    '4' => 'Both are dead',
 
                 ]);
                 echo $deathMoFaField;
@@ -139,9 +141,10 @@ $this->title = 'Child';
                 <?php
                 $migrationField = new Dropdown($model, 'migration_of_mother_or_father', 'Migration of Mother or Father abraod');
                 $migrationField->setOptions([
-                    'mother left the country' => 'Mother left the Country',
-                    'father left the country' => 'Father left the Country',
-                    'both left the country'   => 'Both left the Country',
+                    '1' => 'No,Both are in the country',
+                    '2' => 'Mother left the Country',
+                    '3' => 'Father left the Country',
+                    '4' => 'Both left the Country',
 
                 ]);
                 echo $migrationField;

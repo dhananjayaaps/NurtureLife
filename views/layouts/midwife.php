@@ -73,6 +73,7 @@
 </div>
 
 <div class="content-navbar">
+    <div class="wrapper">
     <div class="left-navbar">
         <div class="navigations">
             <div class="column">
@@ -95,8 +96,13 @@
             </div>
         </div>
     </div>
-    {{content}}
+
+        <div class="content">
+            {{content}}
+        </div>
+    </div>
 </div>
+
 </body>
 </html>
 

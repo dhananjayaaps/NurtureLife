@@ -28,6 +28,10 @@ class m0001_initial
             DOB date,
             gender varchar(255),
             role_id INT,
+            home_number VARCHAR(255),
+            lane VARCHAR(255),
+            city VARCHAR(255),
+            postal_code VARCHAR(255),
             FOREIGN KEY (role_id) REFERENCES roles(id)
         ) ENGINE=INNODB;";
 
@@ -169,7 +173,18 @@ class m0001_initial
         ;
 
         $db->pdo->exec($SQL10);
+
+        $SQL10 = "create table motherWeights (
+            RecordId  int auto_increment primary key,
+            MotherId  int                                  not null,
+            Date      date default current_timestamp() not null,
+            Weight int(3)                               not null
+        );"
+        ;
+
+        $db->pdo->exec($SQL10);
     }
+
 
 
 
