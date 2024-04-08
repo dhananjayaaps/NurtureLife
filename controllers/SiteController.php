@@ -15,8 +15,8 @@ class SiteController extends \app\core\Controller
         if (!Application::isGuest()) {
             $userRole = Application::$app->user->getRole();
             if ($userRole == 1) {
-                $this->layout = 'auth';
-                return $this->render('home');
+                $this->layout = 'volunteer';
+                return $this->render('volunteer/forum');
             }
             else if($userRole == 2){
                 $this->layout = 'admin';
