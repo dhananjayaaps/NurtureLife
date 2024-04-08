@@ -1,4 +1,8 @@
-
+.userHome_content{
+    display: flex;
+    flex-direction: column;
+    min-height: min-content;
+}
 .image-container {
     background-image: url("../images/motherbackground.png");
     background-size: cover;
@@ -144,7 +148,7 @@
 }
 .content_2, .content_4{
     text-align: center;
-    font-size: 20px;
+    font-size: 25px;
     font-family: Yeseva One, serif;
     font-weight: bolder;
     line-height: 30px;

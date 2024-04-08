@@ -73,7 +73,7 @@
 
 </div>
 <div class="wrapper">
-    <div class="content">
+    <div class="userHome_content">
         {{content}}
     </div>
 </div>
@@ -93,6 +93,7 @@
     </div>
 
     <div class="footer-center">
+        <div class="message">Made in 🇱🇰 with 💕</div>
         <div class="follow-us">FOLLOW US ON</div>
         <div class="social-media-icons">
             <div class="SM-icon-container">

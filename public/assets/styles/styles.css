@@ -41,24 +41,17 @@ body{
     align-items: center;
     background: #1F2B6C;
     width: 100%;
-    z-index: 100;
-}
-
-.navbar {
+    z-index: 1000;
+    padding: 10px 20px 10px 20px;
     position: fixed; /* Fix the navbar position */
     top: 0; /* Position at the top */
     left: 0;
-    width: 100%; /* Full width */
     color: #fff; /* Example text color */
-    padding: 10px 20px; /* Adjust padding as needed */
-    z-index: 1000; /* Ensure it stays above other content */
 }
 
 .wrapper {
-    margin-top: 100px; /* Adjust margin to account for the fixed navbar height */
-    display: flex; /* Use flexbox for layout */
-    flex-direction: row; /* Stack children vertically */
-    height: 100vh;
+    height: 180vh;
+    padding-top: 100px;
 }
 
 .content{
@@ -73,11 +66,11 @@ body{
     float: left;
     display: flex;
     text-align: center;
-    padding: 25px 25px;
+    padding: 25px 25px 25px 25px;
     text-decoration: none;
     color: white;
     font-family: Arial, Helvetica, sans-serif;;
-    font-size: 15px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 100;
     line-height: normal;
@@ -89,7 +82,7 @@ body{
 .NL_logo{
     width: 250px;
     position: absolute;
-    top: -30px;
+    top: -20px;
 
 
 }
@@ -132,16 +125,23 @@ body{
     cursor: pointer;
     transition: color 1s;
 }
+.roles-dropdown{
+
+}
 .navbar_emg{
     text-align: left;
-    padding: 25px 25px;
+    padding: 0 25px 0 25px;
     color: white;
     font-family: monospace;
     font-size: 20px;
     font-style: normal;
     font-weight: 100;
     line-height: 24px;
-
+}
+.navbar_emg p{
+    color: whitesmoke;
+    text-decoration: none;
+    line-height: 1.5;
 }
 
 /* Dropdown Button */
@@ -219,11 +219,11 @@ body{
     display: flex;
     flex-direction: row;
     background-color: #262673;
-    padding: 20px;
+    padding: 10px;
     justify-content: space-between;
     margin: 0;
     height: 120px;
-    gap: 20px;
+    gap: 10px;
 
 }
 .footer-left {
@@ -231,6 +231,7 @@ body{
     flex-direction: column;
     gap: 8px;
     margin-right: -100px;
+    padding-left: 20px;
 }
 
 .footer-left-title {
@@ -269,6 +270,12 @@ body{
     display: flex;
     flex-direction: column;
 }
+.message{
+    color: white;
+    font-family: monospace;
+    font-size: larger;
+    line-height: 1.5;
+}
 .follow-us{
     color: white;
     font-family: monospace;
@@ -294,7 +301,8 @@ body{
     flex-direction: column;
     gap: 5px;
     margin-top: 0;
-    padding-top: 0;
+    padding-top: 10px;
+    padding-right: 20px;
 }
 .contact-us{
     color: white;
@@ -370,7 +378,6 @@ body{
 /*for drop down profile*/
 
 .action {
-    position: absolute;
     padding-left: 30px;
     top: 90px;
     right: 40px;

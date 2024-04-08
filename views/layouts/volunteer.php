@@ -3,22 +3,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NurtureLife</title>
-    <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
-    <link rel="stylesheet" href="./assets/styles/styles.css">
-    <link rel="stylesheet" href="./assets/styles/Form.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NurtureLife</title>
+<link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
+<link rel="stylesheet" href="./assets/styles/styles.css">
+<link rel="stylesheet" href="./assets/styles/volunteer.css">
 </head>
 <body>
 
 <div class="navbar" id="myNavbar">
     <div class="NL_logo_container">
-        <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
+        <a href="/"><img src="./assets/images/nurturelife_logo.png" class="NL_logo" alt="NL_logo"></a>
     </div>
     <a href="/">Home</a>
     <a href="/about">About</a>
-
     <div class="search-container">
         <input type="text" placeholder=" Search...">
         <button type="submit">Search</button>
@@ -39,6 +38,10 @@
             <div class="dropdown-content" id="dropdown-content">
                 <!-- Roles will be displayed here -->
             </div>
+        </div>
+
+        <div class="navbar_emg">
+            <p>Emergency Hotline<br>+94 71 977 3265</p>
         </div>
 
         <div class="action" id="actionElement">
@@ -67,13 +70,11 @@
             }
         </script>
     <?php endif; ?>
-    <div class="navbar_emg">
-        Emergency Hotline<br>+94 71 977 3265
-    </div>
 
 </div>
-<div class="wrapper">
-    <div class="content">
+
+<div class="volunteer_wrapper">
+    <div class="volunteer_content">
         {{content}}
     </div>
 </div>
@@ -93,6 +94,7 @@
     </div>
 
     <div class="footer-center">
+        <div class="message">Made in 🇱🇰 with 💕</div>
         <div class="follow-us">FOLLOW US ON</div>
         <div class="social-media-icons">
             <div class="SM-icon-container">
@@ -113,6 +115,7 @@
         <div class="email">Email : admin.nurturelife@gmail.com</div>
     </div>
 </div>
+
 
 </body>
 </html>
