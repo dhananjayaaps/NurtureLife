@@ -126,4 +126,10 @@ class Mother extends DbModel
         return json_encode($data);
     }
 
+    public function getMotherId()
+    {
+        $UserId = Application::$app->user->getId();
+        $MotherData = self::findOne(Mother::class, ['user_id' => $UserId]);
+        return $MotherData->MotherId;
+    }
 }

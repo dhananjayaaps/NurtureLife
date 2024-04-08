@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\db\DbModel;
+use app\models\Mother;
 
 class Appointments extends DbModel
 {
@@ -15,7 +16,7 @@ class Appointments extends DbModel
 
     public function tableName(): string
     {
-        return 'appointments';
+        return 'Appointments';
     }
 
     public function attributes(): array
@@ -43,5 +44,21 @@ class Appointments extends DbModel
             'AppointStatus' => [self::RULE_REQUIRED],
             'AppointRemarks' => [self::RULE_REQUIRED]
         ];
+    }
+
+    public function getAppointmentsByMotherId(): string
+    {
+        $MotherId = ( new Mother())->getMotherId();
+        $appointments = ( new Appointments())->findAll(self::class, ['MotherId'=>$MotherId, 'AppointStatus'=> 1 ]);
+        $data = [];
+
+        foreach ($appointments as $appointData) {
+            $data[] = [
+                'Type' => $appointData->AppointType,
+                'Date' => $appointData->AppointDate,
+                'Remarks' => $appointData->AppointRemarks
+            ];
+        }
+        return json_encode($data);
     }
 }
