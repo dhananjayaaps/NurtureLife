@@ -34,6 +34,9 @@ class User extends UserModel
     public string $nic = '';
     public int $status = self::STATUS_INACTIVE;
     public string $password = '';
+    public string $contact_no = '';
+    public string $DOB = '';
+    public string $gender = '';
     public int $role_id;
     public string $confirm_password = '';
     public string $home_number = '';
