@@ -17,6 +17,9 @@
 <body>
 
 <div class="navbar">
+    <div class="NL_logo_container">
+        <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
+    </div>
     <a href=" ">Home</a>
     <a href="#about">About</a>
 

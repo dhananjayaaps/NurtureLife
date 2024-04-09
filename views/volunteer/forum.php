@@ -10,13 +10,15 @@ $this->title = 'Volunteer Forum';
 </div>
 <div class="upper">
         <p>
-            Volunteers are people of the general public who are willing to
-            help mothers, midwives and doctors to improve maternal and neonatal
-            health outcomes, as they play a part in promoting safe practices and
-            increasing access to healthcare services.Volunteers are indispensable
-            in bridging the gap between the healthcare system and the community,
-            ensuring that mothers receive the care and support they need during one
-            of the most critical times of their lives.
+            Volunteers are <b>people of the general public</b> who are willing
+            to help mothers 👩‍🍼, midwives 👩‍⚕️, and doctors 🧑‍⚕️ to improve
+            maternal and neonatal health outcomes 🍼, as they play a part
+            in promoting safe practices ✅ and increasing access to
+            healthcare services 🏥. Volunteers are <b>indispensable in
+            bridging the gap between the healthcare system and the
+                community</b> 🌐, ensuring that mothers receive the care and
+            support they need during one of the <b>most critical times of
+                their lives</b> 💞
         </p>
 </div>
 
@@ -117,7 +119,7 @@ $this->title = 'Volunteer Forum';
 <div class="lower">
     <div class="dl_container">
         <div class="dl_image_container">
-            <img src="./assets/images/download_1.png" alt="downloadable content" width="160px">
+            <img src="./assets/images/download_1.png" alt="downloadable content" width="163px">
         </div>
         <div class="dl_link_container">
             <p>Child Health Development Record Book</p><br>
@@ -128,7 +130,7 @@ $this->title = 'Volunteer Forum';
     </div>
     <div class="dl_container">
         <div class="dl_image_container">
-            <img src="./assets/images/download_2.png" alt="downloadable content" width="183px">
+            <img src="./assets/images/download_2.png" alt="downloadable content" width="185px">
         </div>
         <div class="dl_link_container">
             <p>Maternal Care Package:<br>A Guide to Field Healthcare Workers</p><br>
@@ -139,7 +141,7 @@ $this->title = 'Volunteer Forum';
     </div>
     <div class="dl_container">
         <div class="dl_image_container">
-            <img src="./assets/images/download_3.png" alt="downloadable content"width="168px">
+            <img src="./assets/images/download_3.png" alt="downloadable content"width="170px">
         </div>
         <div class="dl_link_container">
             <p>National Guidelines on<br>Post-Abortion Care</p><br>
