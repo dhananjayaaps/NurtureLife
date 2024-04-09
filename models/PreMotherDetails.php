@@ -63,7 +63,7 @@ class PreMotherDetails extends DbModel
 
     public function primaryKey(): string
     {
-        return 'nic';
+        return 'MotherId';
     }
 
     public function attributes(): array
