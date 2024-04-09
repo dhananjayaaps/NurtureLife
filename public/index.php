@@ -107,7 +107,7 @@ $app->router->post('/preMotherForm1', [ChildController::class, 'preMotherForm1']
 $app->router->get('/fetalKicks', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalKicks', [FetalkickController::class, 'fetalkickUpdate']);
 
-$app->router->get('/verify-email', [AuthController::class, 'verifyEmail']);
+$app->router->get('/verify', [AuthController::class, 'verifyEmail']);
 $app->router->get('/verify-phone', [AuthController::class, 'verifyPhone']);
 
 $app->router->get('/motherProfile', [MotherController\MotherProfile::class, 'motherProfile']);

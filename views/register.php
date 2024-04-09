@@ -10,6 +10,19 @@ $this->title = 'Register';
 /** @var $model User **/
 ?>
 
+<style>
+    .container{
+        align-items: center;
+        gap: 50px;
+    }
+
+    .formContent{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+</style>
+
 <div class="container">
         <!-- Left side content, image or anything else -->
         <div class="imageBox">
