@@ -1,0 +1,8 @@
+.registration_container {
+    margin-top: 40px;
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    padding-left: 50px;
+}
