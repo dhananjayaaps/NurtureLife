@@ -117,6 +117,18 @@ $app->router->post('/preMotherForm1', [ChildController::class, 'preMotherForm1']
 $app->router->get('/fetalKicks', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalKicks', [FetalkickController::class, 'fetalkickUpdate']);
 
+$app->router->get('/preMotherHistoryForm1', [PreMotherController::class, 'preMotherHistoryForm1']);
+$app->router->post('/preMotherHistoryForm1', [PreMotherController::class, 'preMotherHistoryForm1']);
+
+$app->router->get('/preMotherHistoryForm2', [PreMotherController::class, 'preMotherHistoryForm2']);
+$app->router->post('/preMotherHistoryForm2', [PreMotherController::class, 'preMotherHistoryForm2']);
+
+$app->router->get('/preMotherHistoryForm3', [PreMotherController::class, 'preMotherHistoryForm3']);
+$app->router->post('/preMotherHistoryForm3', [PreMotherController::class, 'preMotherHistoryForm3']);
+
+$app->router->get('/personalInformationForm', [PreMotherController::class, 'personalInformationForm']);
+$app->router->post('/personalInformationForm', [PreMotherController::class, 'personalInformationForm']);
+
 $app->router->get('/verify-email', [AuthController::class, 'verifyEmail']);
 $app->router->get('/verify-phone', [AuthController::class, 'verifyPhone']);
 
