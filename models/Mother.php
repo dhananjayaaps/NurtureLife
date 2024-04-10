@@ -13,6 +13,7 @@ class Mother extends DbModel
     public string $MaritalStatus  = 'Married';
     public string $MarriageDate ='';
     public string $BloodGroup = '';
+    public string $DeliveryDate = '';
     public string $Occupation = '';
     public string $Allergies = '';
     public string $Consanguinity = '';
@@ -54,6 +55,7 @@ class Mother extends DbModel
             'MaritalStatus',
             'MarriageDate',
             'BloodGroup',
+            'DeliveryDate',
             'Occupation',
             'Allergies',
             'Consanguinity',
@@ -131,5 +133,12 @@ class Mother extends DbModel
         $UserId = Application::$app->user->getId();
         $MotherData = self::findOne(Mother::class, ['user_id' => $UserId]);
         return $MotherData->MotherId;
+    }
+
+    public function getDeliveryDate()
+    {
+        $MotherId = (new Mother())->getMotherId();
+       $MotherData = self::findOne(Mother::class, ['MotherId'=> $MotherId]);
+        return json_encode($MotherData-> DeliveryDate);
     }
 }

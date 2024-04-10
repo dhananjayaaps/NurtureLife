@@ -22,7 +22,7 @@
 
 /* General styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
     background-color: #ffffff;
 }
 
@@ -136,4 +136,14 @@ body {
     background: none;
     font-size: 20px;
     cursor: pointer;
+}
+.DeliveryTimer {
+    font-family: Gotham, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
 }

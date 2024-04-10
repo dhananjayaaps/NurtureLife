@@ -3,6 +3,7 @@
 
 use app\models\User;
 use app\models\Appointments;
+use app\models\Mother;
 
 $this->title = 'preMother Dashboard';
 ?>
@@ -15,6 +16,7 @@ $this->title = 'preMother Dashboard';
 
 <div class="content">
     <div class="first-column">
+        <div class="DeliveryTimer"></div>
         <div class="quick-access">
             <div class="user-control addButtons">
 
@@ -100,6 +102,28 @@ $this->title = 'preMother Dashboard';
 
     </div>
 </div>
+
+<script>
+    const DeliveryTimer = document.querySelector('.DeliveryTimer');
+    let DeliveryDate = <?php echo (new Mother())->getDeliveryDate() ?>;
+    let today = new Date();
+    let RemainingTime = new Date(DeliveryDate) - today;
+
+    // Calculate remaining days and months
+    let remainingDays = Math.floor(RemainingTime / (1000 * 60 * 60 * 24));
+    let remainingMonths = Math.floor(remainingDays / 30);
+
+    // Create HTML string with styled numbers
+    let htmlString = '<span style="font-weight: bold; color: blue;">' + remainingMonths + '</span> month and <span style="font-weight: bold; color: red;">' + (remainingDays % 30) + '</span> days to Delivery';
+
+    // Set the HTML string as innerHTML of DeliveryTimer
+    DeliveryTimer.innerHTML = htmlString;
+
+    if (RemainingTime<0){
+        DeliveryTimer.innerHTML = '<span style="color: red;">Go to the hospital immediately</span>';
+    }
+</script>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
