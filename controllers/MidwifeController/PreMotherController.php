@@ -36,7 +36,7 @@ class PreMotherController extends Controller
         ]);
     }
 
-    public function PreMotherHistoryForm1(Request $request): array|false|string
+    public function preMotherHistoryForm1(Request $request): array|false|string
     {
         $this->layout = 'doctor';
         $mother = new Mother();
@@ -50,7 +50,7 @@ class PreMotherController extends Controller
             if ($mother->validate() && $mother->save()) {
                 var_dump($mother);
                 Application::$app->session->setFlash('success', 'Added a new Midwife');
-                Application::$app->response->redirect('midwife/PreMotherHistoryForm1');
+                Application::$app->response->redirect('midwife/preMotherHistoryForm1');
                 exit;
             }
         }
@@ -59,7 +59,7 @@ class PreMotherController extends Controller
             $this->layout = 'doctor';
         }
 
-        return $this->render('midwife/PreMotherHistoryForm1', [
+        return $this->render('midwife/preMotherHistoryForm1', [
             'model' => $mother, "modelUpdate" => $mother2
         ]);
     }
