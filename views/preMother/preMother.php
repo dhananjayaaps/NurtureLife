@@ -14,13 +14,16 @@ $this->title = 'preMother Dashboard';
 /** @var $model User **/
 ?>
 
+
+<div class="popup" id="popup"></div>
 <div class="content">
     <div class="first-column">
         <div class="DeliveryTimer"></div>
         <div class="quick-access">
             <div class="user-control addButtons">
 
-                <button class="addButton">SOS Emergency</button>
+                <button class="addButton"><a href="preMotherTest">SOS Emergency</a></button>
+
             </div>
 <!--            <div class="second-column">-->
             <div class="user-control addButtons">
@@ -131,6 +134,8 @@ $this->title = 'preMother Dashboard';
         const nextMonthBtn = document.querySelector(".next-month");
         const monthYearText = document.querySelector(".month-year");
         const calendarGrid = document.querySelector(".calendar-grid");
+        const popup1 = document.getElementById("popup");
+
 
         const months = [
             "January", "February", "March", "April", "May", "June",
@@ -205,12 +210,27 @@ $this->title = 'preMother Dashboard';
             const appointmentDetails = getAppointmentDetails(selectedDate);
 
             // Open a popup window to display the appointment details
-            const popupContent = "Appointment details for " + months[currentMonth] + " " + selectedDay + ", " + currentYear + ": " + appointmentDetails;
-            alert(popupContent);
+            const popupContent = "Appointment details for " + months[currentMonth] + " " + selectedDay + ", " + currentYear + ":";
+            //alert(popupContent);
+            popup1.innerHTML = `
+                <div class="popup-content">
+
+                    <h2>Appointment Details</h2>
+                    <p>${popupContent}</p>
+                    <p>${appointmentDetails}</p>
+                    <span class="close" id="close-popup">&times;</span>
+                </div>
+                `;
+            popup1.style.display = "block";
+
 
         }
-
-
+        // Event listener for close popup button
+        document.addEventListener("click", function(event) {
+            if (event.target && event.target.id === "close-popup") {
+                document.getElementById("popup").style.display = "none";
+            }
+        });
 
         function getAppointmentsByMonth(year, month) {
             // Here you would retrieve appointments from the database for the specified month
