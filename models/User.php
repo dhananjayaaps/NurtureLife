@@ -14,17 +14,17 @@ use app\core\UserModel;
 
 class User extends UserModel
 {
-    const STATUS_INACTIVE = 0;
-    const STATUS_ACTIVE = 1;
-    const STATUS_DELETED = 2;
-    const STATUS_Email_NOT_VERIFIED = 3;
-    const STATUS_PHONENO_NOT_VERIFIED = 4;
-    const ROLE_USER = 1;
-    const ROLE_ADMIN = 2;
-    const ROLE_DOCTOR = 3;
-    const ROLE_PRE_MOTHER = 4;
-    const ROLE_POST_MOTHER = 5;
-    const ROLE_MIDWIFE = 6;
+    const int STATUS_INACTIVE = 0;
+    const int STATUS_ACTIVE = 1;
+    const int STATUS_DELETED = 2;
+    const int STATUS_Email_NOT_VERIFIED = 3;
+    const int STATUS_PHONE_NO_NOT_VERIFIED = 4;
+    const int ROLE_USER = 1;
+    const int ROLE_ADMIN = 2;
+    const int ROLE_DOCTOR = 3;
+    const int ROLE_PRE_MOTHER = 4;
+    const int ROLE_POST_MOTHER = 5;
+    const int ROLE_MIDWIFE = 6;
     public int $id;
     public string $created_at;
 
@@ -58,9 +58,15 @@ class User extends UserModel
     {
         $this->status = self::STATUS_ACTIVE;
         $this->role_id = self::ROLE_USER;
-        $this->password = password_hash($this->password,PASSWORD_DEFAULT);
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->created_at = date('Y-m-d H:i:s');
+        //extracting dob and gender from nic
+        $nicDetails = $this->extractFromNic($this->nic);
+        $this->DOB = $nicDetails['dob'] ?? '2001-02-04';
+        $this->gender = $nicDetails['gender'] ?? 'undefined';
         return parent::save();
     }
+
 
     public function rules(): array
     {
@@ -84,7 +90,7 @@ class User extends UserModel
 
     public function attributes(): array
     {
-        return ['firstname','lastname','email','password','nic', 'status', 'role_id','home_number','lane','city','postal_code'];
+        return ['firstname','lastname','email','password','nic', 'status', 'role_id','home_number','lane','city','postal_code', 'contact_no', 'DOB', 'gender', 'created_at'];
     }
 
     public function getDisplayName(): string

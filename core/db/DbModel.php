@@ -18,12 +18,11 @@ abstract class DbModel extends Model
         $tableName = $this->tableName();
         $attributes = $this->attributes();
         $params = array_map(fn($attr) => ":$attr",$attributes);
-        $statement = self::prepare("INSERT INTO $tableName (".implode(',',$attributes).") 
-            VALUES (".implode(',',array_map(fn($attr) => ":$attr",$attributes)).")");
-        foreach ($attributes as $attribute){
-            $statement->bindValue(":$attribute",$this->{$attribute});
+        $statement = self::prepare("INSERT INTO $tableName (".implode(',', $attributes).") 
+        VALUES (".implode(',', $params).")");
+        foreach ($attributes as $attribute) {
+            $statement->bindValue(":$attribute", $this->{$attribute});
         }
-        var_dump($statement);
         $statement->execute();
         return true;
    }

@@ -34,21 +34,27 @@ abstract class Model
                 if (!is_string($ruleName)) {
                     $ruleName = $rule[0];
                 }
+                // Check if the value is required and not present
                 if ($ruleName === self::RULE_REQUIRED && !$value) {
                     $this->addErrorForRule($attribute, self::RULE_REQUIRED);
                 }
+                // Check if the value is a valid email
                 if ($ruleName === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
                     $this->addErrorForRule($attribute, self::RULE_EMAIL);
                 }
+                // Check if the value meets the minimum length requirement
                 if ($ruleName === self::RULE_MIN && strlen($value) < $rule['min']) {
                     $this->addErrorForRule($attribute, self::RULE_MIN, $rule);
                 }
+                // Check if the value exceeds the maximum length requirement
                 if ($ruleName === self::RULE_MAX && strlen($value) > $rule['max']) {
                     $this->addErrorForRule($attribute, self::RULE_MAX, $rule);
                 }
+                // Check if the value matches another attribute's value
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
                     $this->addErrorForRule($attribute, self::RULE_MATCH, $rule);
                 }
+                // Check if the value is unique in the database
                 if ($ruleName === self::RULE_UNIQUE) {
                     $classname = $rule['class'];
                     $uniqueAttr = $rule['attribute'] ?? $attribute;
@@ -56,7 +62,6 @@ abstract class Model
                     $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = :attr");
                     $statement->bindValue(":attr", $value);
                     $statement->execute();
-                    $statement->fetch();
                     $record = $statement->fetchObject();
                     if ($record) {
                         $this->addErrorForRule($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
@@ -64,8 +69,10 @@ abstract class Model
                 }
             }
         }
+        // Return true if there are no errors
         return empty($this->errors);
     }
+
     public function addErrorForRule(string $attribute,string $rule,$params = []): void
     {
         $message = $this->errorMessages()[$rule] ?? '';
@@ -106,7 +113,6 @@ abstract class Model
         return $this->errors[$attribute][0] ?? false;
     }
 
-    //todo: need to use this function and implement DOB and gender extraction
     public function extractFromNic($nic): array
     {
         $dates = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
