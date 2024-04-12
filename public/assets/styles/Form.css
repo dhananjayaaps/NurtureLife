@@ -173,7 +173,6 @@
     align-items: center;
     width: 40%;
     height: 40%;
-    margin-left: 20px;
 }
 
 .imageBox img {
@@ -194,6 +193,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .formColumn {
@@ -204,4 +204,12 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+}
+.registration_container {
+    margin-top: 40px;
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    padding-left: 50px;
 }

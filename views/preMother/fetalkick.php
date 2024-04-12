@@ -24,40 +24,40 @@ $this->title = 'FetalKicks';
     </div>
 </div>
 <div class="column-container"  >
-<div id="Add_section" class="right-content">
-    <div class="shadowBox">
-        <h2>Add a Record <br/><br/></h2>
-        <?php $form = Form::begin('', "post")?>
-        <?php echo $form->field($model, 'KickCount', 'Kick Count ')?>
-        <button type="submit" class="btn-submit">Submit</button>
-        <?php echo Form::end()?>
+    <div id="Add_section" class="right-content">
+        <div class="shadowBox">
+            <h2>Add a Record <br/><br/></h2>
+            <?php $form = Form::begin('', "post")?>
+            <?php echo $form->field($model, 'KickCount', 'Kick Count ')?>
+            <button type="submit" class="btn-submit">Submit</button>
+            <?php echo Form::end()?>
+        </div>
+
+
     </div>
-
-
-</div>
     <div id="Update_section" class="left-content">
-    <div class="shadowBox">
-        <div>
-            <br>
-            <form>
-                <h2 style="color: rgb(0, 15, 128);">Update Kick Count<br/><br/></h2>
+        <div class="shadowBox">
+            <div>
                 <br>
+                <form>
+                    <h2 style="color: rgb(0, 15, 128);">Update Kick Count<br/><br/></h2>
+                    <br>
 
-                <div class="form-group">
-                    <label for="UpdateKickCount">Correct Kick Count</label>
-                    <input type="text" id="UpdateKickCount" name="UpdateKickCount" value=""  class="form-control ">
-                    <div class="invalid-feedback">
+                    <div class="form-group">
+                        <label for="UpdateKickCount">Correct Kick Count</label>
+                        <input type="text" id="UpdateKickCount" name="UpdateKickCount" value=""  class="form-control ">
+                        <div class="invalid-feedback">
+                        </div>
                     </div>
-                </div>
 
-            </form>
-            <div class="buttonRow">
-                <button type="submit" id="updateButton" class="btn-submit">
-                    Update
-                </button>
+                </form>
+                <div class="buttonRow">
+                    <button type="submit" id="updateButton" class="btn-submit">
+                        Update
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </div>
 
@@ -73,18 +73,15 @@ $this->title = 'FetalKicks';
 
 <script>
     // Sample data received from the database
-    let dbData =;
+    var dbData = <?php echo $model->getKicks() ?>;
 
 
     // Extracting dates and counts from the database data
-    const dates = dbData.map(entry => new Date(entry.Date).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric'
-    }));
-    const counts = dbData.map(entry => entry.Count);
+    var dates = dbData.map(entry => new Date(entry.Date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+    var counts = dbData.map(entry => entry.Count);
 
     // Creating the chart data
-    const data = {
+    var data = {
         labels: dates,
         datasets: [{
             label: "Daily Counts",
@@ -95,7 +92,8 @@ $this->title = 'FetalKicks';
     };
 
 
-    const options = {
+
+    var options = {
         scales: {
             y: {
                 beginAtZero: true
@@ -104,8 +102,8 @@ $this->title = 'FetalKicks';
     };
 
     // Creating the chart
-    const ctx = document.getElementById('lineChart').getContext('2d');
-    const myLineChart = new Chart(ctx, {
+    var ctx = document.getElementById('lineChart').getContext('2d');
+    var myLineChart = new Chart(ctx, {
         type: 'line',
         data: data,
         options: options
@@ -126,7 +124,7 @@ $this->title = 'FetalKicks';
     var elementU = document.getElementById("Update_section");
 
     // Hide the element
-    if (isNew === 1) {
+    if (isNew == 1) {
         elementU.style.display = "none";
     } else {
         elementA.style.display = "none";

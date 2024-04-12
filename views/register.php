@@ -9,7 +9,7 @@ $this->title = 'Register';
 <?php
 /** @var $model User **/
 ?>
-<link rel="stylesheet" href="./assets/styles/registration.css">
+<link rel="stylesheet" href="./assets/styles/Form.css">
 <div class="registration_container">
         <!-- Left side content, image or anything else -->
         <div class="imageBox">
