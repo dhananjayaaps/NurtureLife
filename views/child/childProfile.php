@@ -227,16 +227,16 @@ $this->title = 'FetalKicks';
             <br>
             <div class="card-row">
                 <div class="my-card">
-                    <h3><b><a href="/views/midwife/childCard">Care of Newborn Baby</a></b></h3>
+                    <h3><b><a href="/childCard">Care of Newborn Baby</a></b></h3>
                 </div>
                 <div class="my-card">
-                    <h3><b><a href="/views/midwife/childCard1">Reasons for Special Care</a></b></h3>
+                    <h3><b><a href="/childCard1">Reasons for Special Care</a></b></h3>
                 </div>
                 <div class="my-card">
-                    <h3><b><a href="/views/midwife/childCard2">Newborn Baby's Health Chart</a></b></h3>
+                    <h3><b><a href="/childCard2">Newborn Baby's Health Chart</a></b></h3>
                 </div>
                 <div class="my-card">
-                    <h3><b><a href="/views/midwife/immunizationCard">Immunization Card</a></b></h3>
+                    <h3><b><a href="/immunizationCard">Immunization Card</a></b></h3>
                 </div>
             </div>
         </div>
