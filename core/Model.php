@@ -62,7 +62,7 @@ abstract class Model
                     $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = :attr");
                     $statement->bindValue(":attr", $value);
                     $statement->execute();
-                    $statement->fetch();
+//                    $statement->fetch();
                     $record = $statement->fetchObject();
                     if ($record) {
                         $this->addErrorForRule($attribute, self::RULE_UNIQUE, ['field' => $attribute]);

@@ -118,4 +118,32 @@
 
 
 </body>
+<script>
+    const userRoles = <?php echo Application::$app->userRoles->getRoles()?>;
+    const rolesNames = ["Normal User", "Volunteer", "Admin", "Doctor", "Prenatal mother", "Postnatal Mother", "Midwife"];
+
+    const userRolesList = document.getElementById('dropdown-content');
+    const roleChangeForm = document.getElementById('roleChangeForm');
+    const selectedRoleInput = document.getElementById('selectedRoleInput');
+
+    userRoles.forEach((role) => {
+        const anchor = document.createElement('a');
+        anchor.textContent = rolesNames[role];
+        anchor.setAttribute('data-role', role);
+        userRolesList.appendChild(anchor);
+
+        anchor.addEventListener('click', (event) => {
+            event.preventDefault();
+            const selectedRole = event.target.getAttribute('data-role');
+            console.log("Role is", selectedRole);
+
+            selectedRoleInput.value = selectedRole;
+
+            roleChangeForm.submit();
+        });
+    });
+    console.log(userRoles);
+    console.log(rolesNames);
+
+</script>
 </html>
