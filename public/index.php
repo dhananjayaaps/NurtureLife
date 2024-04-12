@@ -122,4 +122,6 @@ $app->router->get('/verify-phone', [AuthController::class, 'verifyPhone']);
 
 $app->router->get('/motherProfile', [MotherController\MotherProfile::class, 'motherProfile']);
 
+$app->router->get('/childProfile', [ChildController::class, 'childProfile']);
+
 $app->run();

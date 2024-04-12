@@ -152,4 +152,20 @@ class ChildController extends Controller
         ]);
     }
 
+
+    public function childProfile(): array|false|string
+    {
+        $roleName = Application::$app->user->getRoleName();
+
+        if ($roleName == 'Doctor') {
+            $this->layout = 'doctor';
+        } else if ($roleName == 'Midwife') {
+            $this->layout = 'midwife';
+        } else {
+            $this->setLayout('mother');
+        }
+
+        return $this->render('child/childProfile');
+    }
+
 }
