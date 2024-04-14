@@ -80,7 +80,7 @@ class PreMotherDetails extends DbModel
             'us_corrected_edd',
             'expected_period',
             'POA_at_registration',
-            'consanguinity',
+//            'consanguinity',
             'rubella_immunization',
             'pre_pregancy_screening_done',
             'folic_acid',
@@ -135,28 +135,4 @@ class PreMotherDetails extends DbModel
 
     }
 
-    public function getChild($id)
-    {
-        return (new Child())->findOne(Child::class, ['child_id' => $id]);
-    }
-
-    public function getChilds(): string
-    {
-        $childData = (new Child())->findAll(self::class);
-        $data = [];
-
-        foreach ($childData as $child) {
-//            $Child = self::findOne(Child::class, ["user_id" => $Child->user_id]);
-//            $Child = self::findOne(Child::class, ["id" => $Child->Register_NO]);
-            $data[] = [
-                'ChildName' => $child->Child_Name,
-                'MotherName' => $child->Mother_Name,
-                'RegistrationNo' => $child->Register_NO,
-                'Gender' => $child->Gender,
-
-            ];
-        }
-
-        return json_encode($data);
-    }
 }

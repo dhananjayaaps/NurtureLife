@@ -40,6 +40,12 @@ $this->title = 'Present Mother History Form1';
     .btn-submit {
         margin-top: 20px;
     }
+
+    .break-line {
+        border-top: 1px solid #FFF;
+        margin-top: 12px;
+        margin-bottom: 10px;
+    }
 </style>
 
 <div class="Mothers content">
@@ -54,150 +60,149 @@ $this->title = 'Present Mother History Form1';
 
 
                 <div class="row" style="display: flex; flex-direction: column; gap: 10px">
-                    <?php
-                    $diabetesField = new Dropdown($model, 'diabetes', 'Diabetes');
-                    $diabetesField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $diabetesField;
-                    ?>
+                    <label>
+                       1. Diabetes:
+                        <div class="break-line"></div>
+                        <input type="radio" name="diabetes" value="Yes"> Yes
+                        <input type="radio" name="diabetes" value="No"> No
+                    </label>
 
-                    <?php
-                    $hypertensionField = new Dropdown($model, 'hypertension', 'Hypertension');
-                    $hypertensionField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $hypertensionField;
-                    ?>
+                    <div class="break-line"></div>
 
-                    <?php
-                    $cardiacField = new Dropdown($model, 'cardiac_diseases', 'Cardiac Diseases');
-                    $cardiacField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $cardiacField;
-                    ?>
+                    <label>
+                       2. Hypertension:
+                        <div class="break-line"></div>
+                        <input type="radio" name="hypertension" value="Yes"> Yes
+                        <input type="radio" name="hypertension" value="No"> No
+                    </label>
 
-                    <?php
-                    $renalField = new Dropdown($model, 'renal_diseases', 'Renal Diseases');
-                    $renalField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $renalField;
-                    ?>
+                    <div class="break-line"></div>
 
-                    <?php
-                    $hepaticField = new Dropdown($model, 'hepatic_diseases', 'Hepatic Diseases');
-                    $hepaticField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $hepaticField;
-                    ?>
+                    <label>
+                       3. Cardiac Diseases:
+                        <div class="break-line"></div>
+                        <input type="radio" name="cardiac_diseases" value="Yes"> Yes
+                        <input type="radio" name="cardiac_diseases" value="No"> No
+                    </label>
 
-                    <?php
-                    $psychiatricField = new Dropdown($model, 'psychiatric_illnesses', 'Psychiatric Illnesses');
-                    $psychiatricField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $psychiatricField;
-                    ?>
+                    <div class="break-line"></div>
 
-                    <?php
-                    $epilepsyField = new Dropdown($model, 'epilepsy', 'Epilepsy');
-                    $epilepsyField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $epilepsyField;
-                    ?>
+                    <label>
+                       4. Renal Diseases:
+                        <div class="break-line"></div>
+                        <input type="radio" name="renal_diseases" value="Yes"> Yes
+                        <input type="radio" name="renal_diseases" value="No"> No
+                    </label>
 
-                    <?php
-                    $malignanciesField = new Dropdown($model, 'malignancies', 'Malignancies');
-                    $malignanciesField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $malignanciesField;
-                    ?>
+                    <div class="break-line"></div>
+
+                    <label>
+                       5. Hepatic Diseases:
+                        <div class="break-line"></div>
+                        <input type="radio" name="hepatic_diseases" value="Yes"> Yes
+                        <input type="radio" name="hepatic_diseases" value="No"> No
+                    </label>
+
+                    <div class="break-line"></div>
+
+                    <label>
+                       6. Psychiatric Illnesses:
+                        <div class="break-line"></div>
+                        <input type="radio" name="psychiatric_illnesses" value="Yes"> Yes
+                        <input type="radio" name="psychiatric_illnesses" value="No"> No
+                    </label>
+
+                    <div class="break-line"></div>
+
+                    <label>
+                       7. Epilepsy:
+                        <div class="break-line"></div>
+                        <input type="radio" name="epilepsy" value="Yes"> Yes
+                        <input type="radio" name="epilepsy" value="No"> No
+                    </label>
+
+                    <div class="break-line"></div>
+
+                    <label>
+                       8. Malignancies:
+                        <div class="break-line"></div>
+                        <input type="radio" name="malignancies" value="Yes"> Yes
+                        <input type="radio" name="malignancies" value="No"> No
+                    </label>
+
+                    <div class="break-line"></div>
+
                 </div>
             </div>
 
            <div class="form-column">
 
                <div class="row"  style="...">
+                   <label>
+                      9. Haematological Diseases:
+                       <div class="break-line"></div>
+                       <input type="radio" name="haematological_diseases" value="Yes"> Yes
+                       <input type="radio" name="haematological_diseases" value="No"> No
+                   </label>
 
-                    <?php
-                    $haematologicalField = new Dropdown($model, 'haematological_diseases', 'Haematological Diseases');
-                    $haematologicalField->setOptions([
-                        '1' => 'No',
-                        '0' => 'Yes',
-                    ]);
-                    echo $haematologicalField;
-                    ?>
+                   <div class="break-line"></div>
 
-                    <?php
-                    $tuberculosisField = new Dropdown($model, 'tuberculosis', 'Tuberculosis');
-                    $tuberculosisField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $tuberculosisField;
-                    ?>
+                   <label>
+                      10. Tuberculosis:
+                       <div class="break-line"></div>
+                       <input type="radio" name="tuberculosis" value="Yes"> Yes
+                       <input type="radio" name="tuberculosis" value="No"> No
+                   </label>
 
-                    <?php
-                    $thyroidField = new Dropdown($model, 'thyroid_diseases', 'Thyroid Diseases');
-                    $thyroidField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $thyroidField;
-                    ?>
+                   <div class="break-line"></div>
 
-                    <?php
-                    $asthmaField = new Dropdown($model, 'bronchial_asthma', 'Bronchial Asthma');
-                    $asthmaField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $asthmaField;
-                    ?>
+                   <label>
+                      11. Thyroid Diseases:
+                       <div class="break-line"></div>
+                       <input type="radio" name="thyroid_diseases" value="Yes"> Yes
+                       <input type="radio" name="thyroid_diseases" value="No"> No
+                   </label>
 
-                    <?php
-                    $previousdtvField = new Dropdown($model, 'previous_dtv', 'Previous DTV');
-                    $previousdtvField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $previousdtvField;
-                    ?>
+                   <div class="break-line"></div>
+
+                   <label>
+                      12. Bronchial Asthma:
+                       <div class="break-line"></div>
+                       <input type="radio" name="bronchial_asthma" value="Yes"> Yes
+                       <input type="radio" name="bronchial_asthma" value="No"> No
+                   </label>
+
+                   <div class="break-line"></div>
+
+                   <label>
+                      13. Previous DTV:
+                       <div class="break-line"></div>
+                       <input type="radio" name="previous_dtv" value="Yes"> Yes
+                       <input type="radio" name="previous_dtv" value="No"> No
+                   </label>
+
+                   <div class="break-line"></div>
+
+                   <label>
+                      14. Surgeries other than LSCS:
+                       <div class="break-line"></div>
+                       <input type="radio" name="surgeries" value="Yes"> Yes
+                       <input type="radio" name="surgeries" value="No"> No
+                   </label>
+
+                   <div class="break-line"></div>
+
+                   <label>
+                      15. Social risk factors:
+                       <div class="break-line"></div>
+                       <input type="radio" name="social_risk" value="Yes"> Yes
+                       <input type="radio" name="social_risk" value="No"> No
+                   </label>
+
+                   <div class="break-line"></div>
 
 
-                    <?php
-                    $surgeriesField = new Dropdown($model, 'surgeries', 'Surgeries other than LSCS');
-                    $surgeriesField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $surgeriesField;
-                    ?>
-
-
-                    <?php
-                    $socialField = new Dropdown($model, '`social_risk`', 'Social risk factors');
-                    $socialField->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $socialField;
-                    ?>
-
-                    <?php echo $form->field($model, 'other', 'Other(Specify)')?>
+                    <?php echo $form->field($model, 'other', '16. Other(Specify)')?>
 
                </div>
 

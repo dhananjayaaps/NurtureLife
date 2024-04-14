@@ -40,6 +40,13 @@ $this->title = 'Present Mother History Form1';
     .btn-submit {
         margin-top: 20px;
     }
+
+     .break-line {
+         border-top: 1px solid #FFF;
+         margin-top: 12px;
+         margin-bottom: 10px;
+     }
+
 </style>
 
 <div class="Mothers content">
@@ -79,42 +86,41 @@ $this->title = 'Present Mother History Form1';
 
             <div class="form-column">
 
-                <?php
-                $consanguinityField = new Dropdown($model, 'consanguinity', 'Consanguinity');
-                $consanguinityField ->setOptions([
-                    '1' => 'Yes',
-                    '0' => 'No',
-                ]);
-                echo $consanguinityField ;
-                ?>
+                <label>
+                    Consanguinity:
+                    <div class="break-line"></div>
+                    <input type="radio" name="Consanguinity" value="Yes"> Yes
+                    <input type="radio" name="Consanguinity" value="No"> No
+                </label>
 
+                <div class="break-line"></div>
 
-                <?php
-                $rubellaImmunizationField = new Dropdown($model, 'rubella_immunization', 'Rubella Immunization');
-                $rubellaImmunizationField->setOptions([
-                    '1' => 'Yes',
-                    '0' => 'No',
-                ]);
-                echo $rubellaImmunizationField;
-                ?>
+                <label>
+                    Rubella Immunization:
+                    <div class="break-line"></div>
+                    <input type="radio" name="rubella_immunization" value="Yes"> Yes
+                    <input type="radio" name="rubella_immunization" value="No"> No
+                </label>
 
-                <?php
-                $prePregancyField = new Dropdown($model, 'pre_pregancy_screening_done', 'Pre-Pregancy Screening done');
-                $prePregancyField->setOptions([
-                    '1' => 'Yes',
-                    '0' => 'No',
-                ]);
-                echo $prePregancyField;
-                ?>
+                <div class="break-line"></div>
 
-                <?php
-                $folicAcidField = new Dropdown($model, 'folic_acid', 'On Folic Acid');
-                $folicAcidField->setOptions([
-                    '1' => 'Yes',
-                    '0' => 'No',
-                ]);
-                echo $folicAcidField;
-                ?>
+                <label>
+                    Pre-Pregancy Screening done:
+                    <div class="break-line"></div>
+                    <input type="radio" name="pre_pregancy_screening_done" value="Yes"> Yes
+                    <input type="radio" name="pre_pregancy_screening_done" value="No"> No
+                </label>
+
+                <div class="break-line"></div>
+
+                <label>
+                    On Folic Acid:
+                    <div class="break-line"></div>
+                    <input type="radio" name="folic_acid" value="Yes"> Yes
+                    <input type="radio" name="folic_acid" value="No"> No
+                </label>
+
+                <div class="break-line"></div>
 
 
             </div>
