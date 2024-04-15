@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\core\Application;
 use app\core\db\DbModel;
+use PDO;
 
 class Mother extends DbModel
 {
@@ -139,6 +140,28 @@ class Mother extends DbModel
     {
         $MotherId = (new Mother())->getMotherId();
        $MotherData = self::findOne(Mother::class, ['MotherId'=> $MotherId]);
-        return json_encode($MotherData-> DeliveryDate);
+       if ($MotherData) {
+           return json_encode($MotherData->DeliveryDate);
+       }else{
+           return json_encode('null');
+       }
     }
+
+    public function getMidwifeContact() {
+        $MotherId = (new Mother())->getMotherId();
+
+        $sql = self::prepare("SELECT U.firstname, U.lastname, U.email, U.contact_no
+                         FROM users AS U, midwife AS Mi, Mothers AS Mo
+                         WHERE Mo.MotherId = :motherId AND Mo.clinic_id = Mi.clinic_id AND Mi.user_id = U.id");
+
+        $sql->bindValue(":motherId", $MotherId);
+        $sql->execute();
+
+        // Fetch all rows as associative arrays
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the result as JSON
+        return json_encode($result);
+    }
+
 }

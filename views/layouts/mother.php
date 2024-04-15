@@ -13,7 +13,7 @@
 <body>
 
 <div class="navbar">
-    <a href=" ">Home</a>
+    <a href="/">Home</a>
     <a href="/about">About</a>
 
     <div class="search-container">
@@ -87,7 +87,7 @@
                 <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Nutritions</a>
             </div>
             <div class="column">
-                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Communication</a>
+                <a href="/communication"><img src="assets/images/icons/pregnant.png" alt=""> Communication</a>
             </div>
             <div class="column">
                 <a href="/fetalkick"><img src="assets/images/icons/pregnant.png" alt=""> Report Fetal kicks</a>

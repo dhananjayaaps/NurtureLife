@@ -15,8 +15,9 @@ $this->title = 'FetalKicks';
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/Form.css">
+<link rel="stylesheet" href="./assets/styles/mother.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<div class="content">
 <div>
     <div class="lineChart">
         Total Kicks: 450
@@ -64,6 +65,7 @@ $this->title = 'FetalKicks';
 <canvas id="lineChart" width="400" height="200"></canvas>
 
 <div id="targetElement"></div>
+</div>
 
 
 
@@ -112,14 +114,9 @@ $this->title = 'FetalKicks';
 
 <script>
 
-    <?php
-    // PHP code to fetch the value
-    $fk =  new Fetalkick();
-    $new= $fk->isNew();
-
-    ?>
     // Get the element by ID
-    var isNew = <?php echo json_encode($new); ?>;
+    var isNew = <?php echo json_encode((new Fetalkick())->isNew()) ?>;
+    console.log(isNew);
     var elementA = document.getElementById("Add_section");
     var elementU = document.getElementById("Update_section");
 

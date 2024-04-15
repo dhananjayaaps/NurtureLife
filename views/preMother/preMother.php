@@ -22,7 +22,8 @@ $this->title = 'preMother Dashboard';
         <div class="quick-access">
             <div class="user-control addButtons">
 
-                <button class="addButton"><a href="preMotherTest">SOS Emergency</a></button>
+                <a href="preMotherTest"><button class="addButton">SOS Emergency</button></a>
+
 
             </div>
 <!--            <div class="second-column">-->
@@ -31,6 +32,7 @@ $this->title = 'preMother Dashboard';
                 <button class="addButton">Report Symptoms</button>
                 <button class="addButton">View Reports</button>
                 <button class="addButton">View Schedules</button>
+
             </div>
             <div class="user-control addButtons">
 
@@ -110,14 +112,21 @@ $this->title = 'preMother Dashboard';
     const DeliveryTimer = document.querySelector('.DeliveryTimer');
     let DeliveryDate = <?php echo (new Mother())->getDeliveryDate() ?>;
     let today = new Date();
-    let RemainingTime = new Date(DeliveryDate) - today;
+    if (DeliveryDate)
+    {
+        var RemainingTime = new Date(DeliveryDate) - today;
 
-    // Calculate remaining days and months
-    let remainingDays = Math.floor(RemainingTime / (1000 * 60 * 60 * 24));
-    let remainingMonths = Math.floor(remainingDays / 30);
+        // Calculate remaining days and months
+        let remainingDays = Math.floor(RemainingTime / (1000 * 60 * 60 * 24));
+        let remainingMonths = Math.floor(remainingDays / 30);
 
-    // Create HTML string with styled numbers
-    let htmlString = '<span style="font-weight: bold; color: blue;">' + remainingMonths + '</span> month and <span style="font-weight: bold; color: red;">' + (remainingDays % 30) + '</span> days to Delivery';
+        // Create HTML string with styled numbers
+        var htmlString = '<span style="font-weight: bold; color: blue;">' + remainingMonths + '</span> month and <span style="font-weight: bold; color: red;">' + (remainingDays % 30) + '</span> days to Delivery';
+
+    }else
+    {
+        var htmlString = 'Delivery date N/A';
+    }
 
     // Set the HTML string as innerHTML of DeliveryTimer
     DeliveryTimer.innerHTML = htmlString;

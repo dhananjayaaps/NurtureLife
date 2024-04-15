@@ -102,6 +102,9 @@ $app->router->get('/mothers', [AppoinmetHandler::class, 'appointments']);
 $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/about', [SiteController::class, 'about']);
+$app->router->get('/preMotherTest', [SiteController::class, 'preMotherTest']);
+$app->router->get('/communication', [SiteController::class, 'communication']);
+
 
 $app->router->get('/immunizationCard', [ChildController::class, 'immunizationCard']);
 $app->router->post('/immunizationCard', [ChildController::class, 'immunizationCard']);

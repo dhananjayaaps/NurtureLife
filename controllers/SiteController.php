@@ -91,4 +91,17 @@ class SiteController extends \app\core\Controller
 
         return $this->render('about');
     }
+
+    public function preMotherTest()
+    {
+        $this->layout = 'mother';
+
+        return $this->render('preMother/preMotherTest');
+    }
+    public function communication()
+    {
+        $this->layout = 'mother';
+
+        return $this->render('preMother/communication');
+    }
 }

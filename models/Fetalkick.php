@@ -4,9 +4,9 @@ namespace app\models;
 
 use app\core\Application;
 use app\core\db\DbModel;
+use app\models\Mother;
 use PDO;
 use app\core\Model;
-use app\models\Mother;
 
 
 class Fetalkick extends DbModel
@@ -70,13 +70,13 @@ class Fetalkick extends DbModel
     public function isNew(): bool
     {
         $Tdy_rec= Fetalkick::findOneByMotherIdAndDate(Fetalkick::class);
-        return empty($Tdy_rec);
+        return (empty($Tdy_rec));
     }
     static public function findOneByMotherIdAndDate($modelClass)
     {
         $tableName = (new $modelClass())->tableName();
         $currentDate = date("Y-m-d"); // Get the current date in the "YYYY-MM-DD" format
-        $motherId = (new Fetalkick())->getMotherId();
+        $motherId = (new Mother())->getMotherId();
 
         $sql = "MotherId = :motherId AND DATE_FORMAT(Time, '%Y-%m-%d') = :currentDate";
 

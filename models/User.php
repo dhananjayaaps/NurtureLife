@@ -36,6 +36,7 @@ class User extends UserModel
     public string $password = '';
     public int $role_id;
     public string $confirm_password = '';
+    public string $contact_no = '';
     public string $home_number = '';
     public string $lane = '';
     public string $city = '';
