@@ -18,7 +18,7 @@ class Database
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-    public function applyMigrations(): void
+    public function applyMigrations()
     {
         $this->createMigrationsTable();
         $appliedMigrations = $this->getAppliedMigrations();
@@ -48,8 +48,7 @@ class Database
         }
     }
 
-    public function createMigrationsTable(): void
-    {
+    public function createMigrationsTable(){
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS migration(
             id INT AUTO_INCREMENT PRIMARY KEY,
             migration VARCHAR(255),
@@ -57,7 +56,7 @@ class Database
         ) ENGINE=INNODB;");
     }
 
-    private function getAppliedMigrations(): false|array
+    private function getAppliedMigrations()
     {
         $statement = $this->pdo->prepare("SELECT migration FROM migration");
         $statement->execute();
@@ -65,7 +64,7 @@ class Database
         return $statement->fetchAll(\PDO::FETCH_COLUMN);
     }
 
-    private function saveMigrations(array $newMigrations): void
+    private function saveMigrations(array $newMigrations)
     {
         $str = implode(",", array_map(fn($m) => "('$m')", $newMigrations));
         $statement = $this->pdo->prepare("INSERT INTO migration (migration) VALUES 
@@ -74,12 +73,12 @@ class Database
         $statement->execute();
     }
 
-    protected function log($message): void
+    protected function log($message)
     {
         echo '['.date('Y-m-d H:i:s').'] - '.$message.PHP_EOL;
     }
 
-    public function prepare($sql): false|\PDOStatement
+    public function prepare($sql)
     {
         return $this->pdo->prepare($sql);
     }
