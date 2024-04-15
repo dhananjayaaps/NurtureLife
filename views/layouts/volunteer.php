@@ -3,21 +3,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./assets/styles/styles.css">
-    <link rel="stylesheet" href="./assets/styles/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NurtureLife</title>
+<link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
+<link rel="stylesheet" href="./assets/styles/styles.css">
+<link rel="stylesheet" href="./assets/styles/volunteer.css">
 </head>
 <body>
 
-<div class="navbar">
-    <a href=" ">Home</a>
+<div class="navbar" id="myNavbar">
+    <div class="NL_logo_container">
+        <a href="/"><img src="./assets/images/nurturelife_logo.png" class="NL_logo" alt="NL_logo"></a>
+    </div>
+    <a href="/">Home</a>
     <a href="/about">About</a>
-
     <div class="search-container">
-        <input type="text" placeholder="Search...">
+        <input type="text" placeholder=" Search...">
         <button type="submit">Search</button>
     </div>
 
@@ -38,7 +40,11 @@
             </div>
         </div>
 
-        <div class="action">
+        <div class="navbar_emg">
+            <p>Emergency Hotline<br>+94 71 977 3265</p>
+        </div>
+
+        <div class="action" id="actionElement">
             <div class="profile" onclick="menuToggle();">
                 <img src="./assets/images/icons/woman.png" />
             </div>
@@ -67,58 +73,51 @@
 
 </div>
 
-<div class="content-navbar">
-    <div class="left-navbar">
-        <img class="NL_logo" src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
-        <div class="navigations">
-            <div class="column">
-                <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/clinic.png" alt=""> Report Symptoms</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Reports</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Calender</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Nutritions</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Communication</a>
-            </div>
-            <div class="column">
-                <a href="/fetalkick"><img src="assets/images/icons/pregnant.png" alt=""> Report Fetal kicks</a>
-            </div>
+<div class="volunteer_wrapper">
+    <div class="volunteer_content">
+        {{content}}
+    </div>
+</div>
 
+<div class="footer">
+    <div class="footer-left">
+        <div class="footer-left-title">
+            <div class="brand-name">NurtureLife</div>
+            <div class="year">&#183 &#160 2024</div>
+        </div>
+        <div class="footer-left-text">
+            SUSTAINING LIFE THROUGH EMPOWERING MOTHERHOOD
+        </div>
+        <div class="policy">
+            <a href="/policy">Privacy and Policy</a>
         </div>
     </div>
-    {{content}}
+
+    <div class="footer-center">
+        <div class="message">Made in 🇱🇰 with 💕</div>
+        <div class="follow-us">FOLLOW US ON</div>
+        <div class="social-media-icons">
+            <div class="SM-icon-container">
+                <img class="SM-icon" src="./assets/images/fb-logo.png" />
+            </div>
+            <div class="SM-icon-container">
+                <img class="SM-icon" src="./assets/images/insta-logo.png" />
+            </div>
+            <div class="SM-icon-container">
+                <img class="SM-icon" src="./assets/images/twitter-logo.png" />
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-right">
+        <div class="contact-us">Contact Us,</div>
+        <div class="tel-no">Call Us : 077 123 4678</div>
+        <div class="email">Email : admin.nurturelife@gmail.com</div>
+    </div>
 </div>
+
+
 </body>
-</html>
-
-<script>
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-    }
-</script>
-
 <script>
     const userRoles = <?php echo Application::$app->userRoles->getRoles()?>;
     const rolesNames = ["Normal User", "Volunteer", "Admin", "Doctor", "Prenatal mother", "Postnatal Mother", "Midwife"];
@@ -143,4 +142,8 @@
             roleChangeForm.submit();
         });
     });
+    console.log(userRoles);
+    console.log(rolesNames);
+
 </script>
+</html>

@@ -6,7 +6,7 @@ use app\core\Model;
 
 class DropDown extends BaseField
 {
-    public const TYPE_DROPDOWN = 'select';
+    public const string TYPE_DROPDOWN = 'select';
     public string $type;
     public string $name;
     public Model $model;
