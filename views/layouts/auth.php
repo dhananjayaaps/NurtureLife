@@ -43,7 +43,7 @@
 
         <div class="action" id="actionElement">
             <div class="profile" onclick="menuToggle();">
-                <img src="./assets/images/icons/woman.png" />
+                <img src="./assets/images/men_user.jpg" />
             </div>
             <div class="menu">
                 <h3><?php echo Application::$app->user->getDisplayName() ?></h3>
@@ -73,7 +73,7 @@
 
 </div>
 <div class="wrapper">
-    <div class="userHome_content">
+    <div class="content">
         {{content}}
     </div>
 </div>
@@ -93,7 +93,6 @@
     </div>
 
     <div class="footer-center">
-        <div class="message">Made in 🇱🇰 with 💕</div>
         <div class="follow-us">FOLLOW US ON</div>
         <div class="social-media-icons">
             <div class="SM-icon-container">

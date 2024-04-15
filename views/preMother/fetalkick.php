@@ -24,40 +24,40 @@ $this->title = 'FetalKicks';
     </div>
 </div>
 <div class="column-container"  >
-    <div id="Add_section" class="right-content">
-        <div class="shadowBox">
-            <h2>Add a Record <br/><br/></h2>
-            <?php $form = Form::begin('', "post")?>
-            <?php echo $form->field($model, 'KickCount', 'Kick Count ')?>
-            <button type="submit" class="btn-submit">Submit</button>
-            <?php echo Form::end()?>
-        </div>
-
-
+<div id="Add_section" class="right-content">
+    <div class="shadowBox">
+        <h2>Add a Record <br/><br/></h2>
+        <?php $form = Form::begin('', "post")?>
+        <?php echo $form->field($model, 'KickCount', 'Kick Count ')?>
+        <button type="submit" class="btn-submit">Submit</button>
+        <?php echo Form::end()?>
     </div>
+
+
+</div>
     <div id="Update_section" class="left-content">
-        <div class="shadowBox">
-            <div>
+    <div class="shadowBox">
+        <div>
+            <br>
+            <form>
+                <h2 style="color: rgb(0, 15, 128);">Update Kick Count<br/><br/></h2>
                 <br>
-                <form>
-                    <h2 style="color: rgb(0, 15, 128);">Update Kick Count<br/><br/></h2>
-                    <br>
 
-                    <div class="form-group">
-                        <label for="UpdateKickCount">Correct Kick Count</label>
-                        <input type="text" id="UpdateKickCount" name="UpdateKickCount" value=""  class="form-control ">
-                        <div class="invalid-feedback">
-                        </div>
+                <div class="form-group">
+                    <label for="UpdateKickCount">Correct Kick Count</label>
+                    <input type="text" id="UpdateKickCount" name="UpdateKickCount" value=""  class="form-control ">
+                    <div class="invalid-feedback">
                     </div>
-
-                </form>
-                <div class="buttonRow">
-                    <button type="submit" id="updateButton" class="btn-submit">
-                        Update
-                    </button>
                 </div>
+
+            </form>
+            <div class="buttonRow">
+                <button type="submit" id="updateButton" class="btn-submit">
+                    Update
+                </button>
             </div>
         </div>
+    </div>
     </div>
 </div>
 

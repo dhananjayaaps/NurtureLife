@@ -18,11 +18,12 @@ abstract class DbModel extends Model
         $tableName = $this->tableName();
         $attributes = $this->attributes();
         $params = array_map(fn($attr) => ":$attr",$attributes);
-        $statement = self::prepare("INSERT INTO $tableName (".implode(',', $attributes).") 
-        VALUES (".implode(',', $params).")");
-        foreach ($attributes as $attribute) {
-            $statement->bindValue(":$attribute", $this->{$attribute});
+        $statement = self::prepare("INSERT INTO $tableName (".implode(',',$attributes).") 
+            VALUES (".implode(',',array_map(fn($attr) => ":$attr",$attributes)).")");
+        foreach ($attributes as $attribute){
+            $statement->bindValue(":$attribute",$this->{$attribute});
         }
+        var_dump($statement);
         $statement->execute();
         return true;
    }
@@ -50,7 +51,7 @@ abstract class DbModel extends Model
             return true;
     }
 
-    static public function deleteWhere($modelClass, $where): void
+    static public function deleteWhere($modelClass, $where)
     {
         $tableName = (new $modelClass())->tableName();
         $attributes = array_keys($where);
@@ -80,7 +81,7 @@ abstract class DbModel extends Model
        return $statement->fetchObject(static::class);
    }
 
-    static public function findAll($modelClass, $where = []): false|array
+    static public function findAll($modelClass, $where = [])
     {
         $tableName = (new $modelClass())->tableName();
 
@@ -103,7 +104,7 @@ abstract class DbModel extends Model
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    static public function findAllWithJoins($mainModelClass, $joins ,$where = [], $aliases = []): false|array
+    static public function findAllWithJoins($mainModelClass, $joins ,$where = [], $aliases = [])
     {
         $mainTableName = (new $mainModelClass())->tableName();
 
@@ -139,14 +140,14 @@ abstract class DbModel extends Model
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    static public function SQLRunner($query): false|array
+    static public function SQLRunner($query)
     {
         $query->execute();
         $statement = self::prepare($query);
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public static function prepare($sql): false|\PDOStatement
+    public static function prepare($sql)
     {
         return Application::$app->db->pdo->prepare($sql);
     }

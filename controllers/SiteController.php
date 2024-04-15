@@ -10,13 +10,13 @@ use app\models\User;
 
 class SiteController extends \app\core\Controller
 {
-    public function home(): array|false|string
+    public function home()
     {
         if (!Application::isGuest()) {
             $userRole = Application::$app->user->getRole();
             if ($userRole == 1) {
-                $this->layout = 'volunteer';
-                return $this->render('volunteer/forum');
+                $this->layout = 'auth';
+                return $this->render('home');
             }
             else if($userRole == 2){
                 $this->layout = 'admin';
@@ -47,11 +47,11 @@ class SiteController extends \app\core\Controller
 //        return $this->render('about');
 //    }
 
-    public function contact(): false|array|string
+    public function contact()
     {
         return $this->render('contact');
     }
-    public function handleContact(Request $request): string
+    public function handleContact(Request $request)
     {
         $body = $request->getBody();
         return 'handling submitted data';
@@ -73,19 +73,19 @@ class SiteController extends \app\core\Controller
         }
     }
 
-    public function doctorClinics(): array|false|string
+    public function doctorClinics()
     {
         $this->layout = 'doctor';
         return $this->render('doctor/clinics');
     }
 
-    public function doctorMothers(): array|false|string
+    public function doctorMothers()
     {
         $this->layout = 'doctor';
         return $this->render('doctor/mothers');
     }
 
-    public function about(): array|false|string
+    public function about()
     {
         $this->layout = 'auth';
 
