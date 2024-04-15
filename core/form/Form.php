@@ -7,13 +7,13 @@ use Cassandra\Date;
 
 class Form
 {
-    public static function begin($action, $method): Form
+    public static function begin($action, $method)
     {
         echo sprintf('<form action="%s" method="%s">', $action, $method);
         return new Form();
     }
 
-    public static function end(): string
+    public static function end()
     {
         return '</form>';
     }
