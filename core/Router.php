@@ -19,24 +19,21 @@ class Router
     }
 
 
-    public function get($path, $callback): void
+    public function get($path, $callback)
     {
         $this->routes['get'][$path] = $callback;
     }
 
-    public function post($path, $callback): void
+    public function post($path, $callback)
     {
         $this->routes['post'][$path] = $callback;
     }
 
-    public function put($path, $callback): void
+    public function put($path, $callback)
     {
         $this->routes['put'][$path] = $callback;
     }
 
-    /**
-     * @throws NotFoundException
-     */
     public function resolve()
     {
         $path = $this->request->getPath();

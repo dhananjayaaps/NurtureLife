@@ -2,25 +2,22 @@
 
 namespace app\core;
 
-class View
+class view
 {
     public string $title = '';
 
-    public function renderView($view, $params = []): array|false|string
-    {
+    public function renderView($view, $params = []){
         $viewContent = $this->renderOnlyView($view, $params);
         $layoutContent = $this->layoutContent();
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
-    public function renderContent($content): array|false|string
-    {
+    public function renderContent($content){
         $layoutContent = $this->layoutContent();
         return str_replace('{{content}}', $content, $layoutContent);
     }
 
-    protected function layoutContent(): false|string
-    {
+    protected function layoutContent() {
         $layout = Application::$app->layout;
         if (Application::$app->controller){
             $layout = Application::$app->controller->layout;
@@ -30,8 +27,7 @@ class View
         return ob_get_clean();
     }
 
-    protected function renderOnlyView($view, $params = []): false|string
-    {
+    protected function renderOnlyView($view, $params = []) {
         foreach ($params as $key => $value){
             $$key = $value;
         }
