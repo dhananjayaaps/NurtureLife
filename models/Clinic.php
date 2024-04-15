@@ -14,14 +14,15 @@ use app\core\db\DbModel;
 
 class Clinic extends DbModel
 {
-    const STATUS_INACTIVE = 0;
-    const STATUS_ACTIVE = 1;
-    const STATUS_DELETED = 2;
+    const int STATUS_INACTIVE = 0;
+    const int STATUS_ACTIVE = 1;
+    const int STATUS_DELETED = 2;
     public string $id = '';
 
     public string $name = '';
     public string $district ='';
     public string $address = '';
+    public string $created_at = '';
 
     public int $status = self::STATUS_INACTIVE;
 
@@ -52,7 +53,7 @@ class Clinic extends DbModel
         ];
     }
 
-    public function getClinicsList()
+    public function getClinicsList(): array
     {
         $clinics = (new Clinic())->findAll(Clinic::class);
         $data = [];

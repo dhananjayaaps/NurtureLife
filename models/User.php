@@ -9,22 +9,22 @@
 
 namespace app\models;
 
-use app\core\Application;
 use app\core\UserModel;
+use DateTime;
 
 class User extends UserModel
 {
-    const STATUS_INACTIVE = 0;
-    const STATUS_ACTIVE = 1;
-    const STATUS_DELETED = 2;
-    const STATUS_Email_NOT_VERIFIED = 3;
-    const STATUS_PHONENO_NOT_VERIFIED = 4;
-    const ROLE_USER = 1;
-    const ROLE_ADMIN = 2;
-    const ROLE_DOCTOR = 3;
-    const ROLE_PRE_MOTHER = 4;
-    const ROLE_POST_MOTHER = 5;
-    const ROLE_MIDWIFE = 6;
+    const int STATUS_INACTIVE = 0;
+    const int STATUS_ACTIVE = 1;
+    const int STATUS_DELETED = 2;
+    const int STATUS_Email_NOT_VERIFIED = 3;
+    const int STATUS_PHONE_NO_NOT_VERIFIED = 4;
+    const int ROLE_USER = 1;
+    const int ROLE_ADMIN = 2;
+    const int ROLE_DOCTOR = 3;
+    const int ROLE_PRE_MOTHER = 4;
+    const int ROLE_POST_MOTHER = 5;
+    const int ROLE_MIDWIFE = 6;
     public int $id;
     public string $created_at;
 
@@ -34,6 +34,9 @@ class User extends UserModel
     public string $nic = '';
     public int $status = self::STATUS_INACTIVE;
     public string $password = '';
+    public string $contact_no = '';
+    public string $DOB = '';
+    public string $gender = '';
     public int $role_id;
     public string $confirm_password = '';
     public string $home_number = '';
@@ -55,9 +58,15 @@ class User extends UserModel
     {
         $this->status = self::STATUS_ACTIVE;
         $this->role_id = self::ROLE_USER;
-        $this->password = password_hash($this->password,PASSWORD_DEFAULT);
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->created_at = date('Y-m-d H:i:s');
+        //extracting dob and gender from nic
+        $nicDetails = $this->extractFromNic($this->nic);
+        $this->DOB = $nicDetails['dob'] ?? '2001-02-04';
+        $this->gender = $nicDetails['gender'] ?? 'undefined';
         return parent::save();
     }
+
 
     public function rules(): array
     {
@@ -81,7 +90,7 @@ class User extends UserModel
 
     public function attributes(): array
     {
-        return ['firstname','lastname','email','password','nic', 'status', 'role_id','home_number','lane','city','postal_code'];
+        return ['firstname','lastname','email','password','nic', 'status', 'role_id','home_number','lane','city','postal_code', 'contact_no', 'DOB', 'gender', 'created_at'];
     }
 
     public function getDisplayName(): string
@@ -124,6 +133,57 @@ class User extends UserModel
     public function getUserByNIC($nic)
     {
         return (new User)->findOne(User::class, ['nic' => $nic]);
+    }
+    public function extractFromNic($nic): array
+    {
+        $dates = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        //nic length
+        $nicLength = strlen($nic);
+
+        $daysOld = (int)substr($nic, 2, 3);
+        $daysNew = (int)substr($nic, 4, 3);
+
+        //checking for v at last for old nic
+        $checkV = substr_compare($nic, "v", -1) || substr_compare($nic, "V", -1);
+
+        //check for first digit in new nic
+        $checkOne = substr($nic, 0, 1) === '1';
+        $checkTwo = substr($nic, 0, 1) === '2';
+
+        $isOld = true;
+        //validating
+        if ($nicLength == 10 && $checkV && ($daysOld <= 366 || ($daysOld >= 501 && $daysOld <= 866))) {
+            //this is an old nic
+            $isOld = true;
+        } else if ($nicLength == 12 && ($checkOne || $checkTwo) && ($daysNew <= 366 || ($daysNew >= 501 && $daysNew <= 866))) {
+            //this is an old nic
+            $isOld = false;
+        }
+
+        $year = ($isOld) ? 1900 + (int)substr($nic, 0, 2) : (int)substr($nic, 0, 4);
+        $threeDigitsForDays = ($isOld) ? $daysOld : $daysNew;
+
+        //Validate gender
+        $gender = "Male";
+        if ($threeDigitsForDays > 500) {
+            $threeDigitsForDays -= 500;
+            $gender = "Female"; //If day value > 500 it means NIC owner is a female.
+        }
+
+        $total = 0;
+        $date = $month = 0;
+        for ($i = 0; $i <= sizeof($dates); $i++) {
+            $total += $dates[$i];
+            if ($threeDigitsForDays <= $total) {
+                $month = $i + 1; //Get the month
+                $date = $threeDigitsForDays - ($total - $dates[$i]); //Get the day
+                break;
+            }
+        }
+        $date = new DateTime("$year-$month-$date");
+        $dob = $date->format('Y-m-d');
+        return ['dob' => $dob, 'gender' => $gender];
     }
 
 }

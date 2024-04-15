@@ -25,7 +25,7 @@ class ClinicsController extends \app\core\Controller
             $clinic->loadData($request->getBody());
 
             if ($clinic->validate() && $clinic->save()) {
-                Application::$app->session->setFlash('success', 'Added a new Doctor');
+                Application::$app->session->setFlash('success', 'New clinic created successfully');
                 Application::$app->response->redirect('/clinics');
                 exit;
             }

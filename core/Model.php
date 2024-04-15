@@ -2,16 +2,18 @@
 
 namespace app\core;
 
+use DateTime;
+
 abstract class Model
 {
-    public const RULE_REQUIRED = 'required';
-    public const RULE_EMAIL = 'email';
-    public const RULE_MIN = 'min';
-    public const RULE_MAX = 'max';
-    public const RULE_MATCH = 'match';
-    public const RULE_UNIQUE = 'unique';
+    public const string RULE_REQUIRED = 'required';
+    public const string RULE_EMAIL = 'email';
+    public const string RULE_MIN = 'min';
+    public const string RULE_MAX = 'max';
+    public const string RULE_MATCH = 'match';
+    public const string RULE_UNIQUE = 'unique';
 
-    public function loadData($data)
+    public function loadData($data): void
     {
         foreach ($data as $key => $value) {
             if (property_exists($this,$key)) {
@@ -23,7 +25,7 @@ abstract class Model
     abstract public function rules(): array;
 
     public array $errors = [];
-    public function validate()
+    public function validate(): bool
     {
         foreach ($this->rules() as $attribute => $rules) {
             $value = $this->{$attribute};
@@ -32,21 +34,27 @@ abstract class Model
                 if (!is_string($ruleName)) {
                     $ruleName = $rule[0];
                 }
+                // Check if the value is required and not present
                 if ($ruleName === self::RULE_REQUIRED && !$value) {
                     $this->addErrorForRule($attribute, self::RULE_REQUIRED);
                 }
+                // Check if the value is a valid email
                 if ($ruleName === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
                     $this->addErrorForRule($attribute, self::RULE_EMAIL);
                 }
+                // Check if the value meets the minimum length requirement
                 if ($ruleName === self::RULE_MIN && strlen($value) < $rule['min']) {
                     $this->addErrorForRule($attribute, self::RULE_MIN, $rule);
                 }
+                // Check if the value exceeds the maximum length requirement
                 if ($ruleName === self::RULE_MAX && strlen($value) > $rule['max']) {
                     $this->addErrorForRule($attribute, self::RULE_MAX, $rule);
                 }
+                // Check if the value matches another attribute's value
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
                     $this->addErrorForRule($attribute, self::RULE_MATCH, $rule);
                 }
+                // Check if the value is unique in the database
                 if ($ruleName === self::RULE_UNIQUE) {
                     $classname = $rule['class'];
                     $uniqueAttr = $rule['attribute'] ?? $attribute;
@@ -54,7 +62,7 @@ abstract class Model
                     $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = :attr");
                     $statement->bindValue(":attr", $value);
                     $statement->execute();
-                    $statement->fetch();
+//                    $statement->fetch();
                     $record = $statement->fetchObject();
                     if ($record) {
                         $this->addErrorForRule($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
@@ -62,9 +70,11 @@ abstract class Model
                 }
             }
         }
+        // Return true if there are no errors
         return empty($this->errors);
     }
-    public function addErrorForRule(string $attribute,string $rule,$params = [])
+
+    public function addErrorForRule(string $attribute,string $rule,$params = []): void
     {
         $message = $this->errorMessages()[$rule] ?? '';
         foreach ($params as $key => $value){
@@ -73,20 +83,20 @@ abstract class Model
         $this->errors[$attribute][] = $message;
     }
 
-    public function addError(string $attribute,string $message)
+    public function addError(string $attribute,string $message): void
     {
         $this->errors[$attribute][] = $message;
     }
 
-    public function errorMessages()
+    public function errorMessages(): array
     {
         return [
             self::RULE_REQUIRED => 'This field is required',
-            self::RULE_EMAIL => 'This field must be valid email address',
-            self::RULE_MIN => 'Min length of this field must be {min}',
-            self::RULE_MAX => 'Max length of this field must be {max}',
+            self::RULE_EMAIL => 'This field must be a valid email address',
+            self::RULE_MIN => 'Minimum length of this field is {min}',
+            self::RULE_MAX => 'Maximum length of this field is {max}',
             self::RULE_MATCH => 'This field must be the same as {match}',
-            self::RULE_UNIQUE => 'Record with this {field} already exists'
+            self::RULE_UNIQUE => 'This {field} already exists'
         ];
     }
 
