@@ -481,7 +481,7 @@ body{
 
 .shadowBox {
     padding: 40px;
-    margin: auto;
+    /*margin: auto;*/
     background: #fff;
     box-sizing: border-box;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
