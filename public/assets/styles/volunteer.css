@@ -127,19 +127,6 @@ body{
     background-color: #f5f5f5;
 }
 
-.navbar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #1F2B6C;
-    width: 100%;
-    z-index: 100;
-    position: fixed; /* Fix the navbar position */
-    top: 0; /* Position at the top */
-    left: 0;
-    color: #fff; /* Example text color */
-}
-
 .wrapper {
     height: 180vh;
     padding-top: 100px;
@@ -151,21 +138,6 @@ body{
     display: flex;
     flex-direction: column;
     min-height: min-content;
-}
-
-.navbar a {
-    float: left;
-    display: flex;
-    text-align: center;
-    padding: 25px 25px 25px 25px;
-    text-decoration: none;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 100;
-    line-height: normal;
-
 }
 .NL_logo_container{
     margin-right: 200px;
