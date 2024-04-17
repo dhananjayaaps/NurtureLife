@@ -123,7 +123,7 @@ $this->title = 'Volunteer Forum';
         </div>
         <div class="dl_link_container">
             <p>Child Health Development Record Book</p><br>
-            <a href="./assets/files/CHDR_completed_male.pdf" download="CHDR">
+            <a href="https://drive.google.com/file/d/1jb2U1AR94UlEZA68tjMoym4rNfQVsGbT/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                 <img src="./assets/images/icons/download_icon.jpeg" alt="download_icon" width="200">
             </a>
         </div>
@@ -134,7 +134,7 @@ $this->title = 'Volunteer Forum';
         </div>
         <div class="dl_link_container">
             <p>Maternal Care Package:<br>A Guide to Field Healthcare Workers</p><br>
-            <a href="./assets/files/maternal_care_package_a_guide_to_field_healthcare_workers_english (1).pdf" download="midwife_guide">
+            <a href="https://drive.google.com/file/d/140LA-T3ib2QbEYdkqFREa9-jiAyJsl-T/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                 <img src="./assets/images/icons/download_icon.jpeg" alt="download_icon" width="200">
             </a>
         </div>
@@ -145,7 +145,7 @@ $this->title = 'Volunteer Forum';
         </div>
         <div class="dl_link_container">
             <p>National Guidelines on<br>Post-Abortion Care</p><br>
-            <a href="./assets/files/National Guidelines on Post Abortion Care (1).pdf" download="PAC">
+            <a href="https://drive.google.com/file/d/1Dr-xoX9H3m5Tg0OgcjB_KhANQAfsbPRw/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
                 <img src="./assets/images/icons/download_icon.jpeg" alt="download_icon" width="200">
             </a>
         </div>
