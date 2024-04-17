@@ -130,6 +130,7 @@ $app->router->get('/personalInformationForm', [PreMotherController::class, 'pers
 $app->router->post('/personalInformationForm', [PreMotherController::class, 'personalInformationForm']);
 
 $app->router->get('/verify-email', [AuthController::class, 'verifyEmail']);
+$app->router->get('/verify', [AuthController::class, 'verifyEmail']);
 $app->router->get('/verify-phone', [AuthController::class, 'verifyPhone']);
 
 $app->router->get('/motherProfile', [MotherController\MotherProfile::class, 'motherProfile']);

@@ -1,7 +1,7 @@
 .content .column{
     display: flex;
     flex-direction: row;
-    /*flex-wrap: wrap;*/
+    flex-wrap: wrap;
     height: fit-content;
     gap: 20px;
     padding-top: 30px;
@@ -131,7 +131,7 @@
 }
 
 .right-content{
-    margin: auto;
+    /*margin: auto;*/
     display: flex;
 }
 .left-content{
@@ -229,7 +229,7 @@
 }
 
 .content .shadowBox{
-    height: 100%;
+    height: 80vh;
 }
 
 .action {
@@ -253,4 +253,14 @@
     .content{
         margin-left: 0;
     }
+}
+
+.content{
+    justify-content: space-around;
+    width: 100%;
+    /*flex-wrap: nowrap;*/
+}
+
+.wrapper{
+    width: 100%;
 }

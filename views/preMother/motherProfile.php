@@ -59,11 +59,12 @@ $this->title = 'FetalKicks';
         align-items: flex-start;
         margin-bottom: 20px;
         gap: 20px;
+        height: max-content;
     }
 
     .card {
         width: 200px;
-        height: 200px;
+        height: 100%;
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 10px;
@@ -162,7 +163,7 @@ $this->title = 'FetalKicks';
             <input type="text" class="form-control" value="515, Matara Road, Middeniya" disabled>
         </div>
         <div class="form-group">
-            <label>Bith Date</label>
+            <label>Date of Birth</label>
             <input type="date" class="form-control" value="2000-02-09" disabled>
         </div>
     </div>
@@ -194,29 +195,60 @@ $this->title = 'FetalKicks';
                 <p>Add a Note</p>
             </div>
             <div class="card">
+                <h3>2024-12-18</h3><br>
+                <b>Tests to be done: </b><br>
+                <div style="background-color: #f2f2f2; padding: 5px; margin-bottom: 5px;">
+                    <span>Colonoscopy</span><br>
+                    <span>Bone density scan</span><br>
+                    <span>Electrocardiogram (ECG)</span>
+                </div>
+                <b>Medicines: </b><br>
+                <div style="background-color: #f2f2f2; padding: 5px;">
+                    <span>Laxatives</span><br>
+                    <span>Calcium supplements</span><br>
+                    <span>Beta-blockers</span>
+                </div><br>
+                <b>Reminders</b><br>
+                <p>Please ensure the patient is properly prepared for the colonoscopy.</p>
+            </div>
+
+
+            <div class="card">
+                <h3>2024-11-03</h3><br>
+                <b>Tests to be done: </b><br>
+                <div style="background-color: #f2f2f2; padding: 5px; margin-bottom: 5px;">
+                    <span>Eye exam</span><br>
+                    <span>Thyroid function test</span><br>
+                    <span>Liver function test</span>
+                </div>
+                <b>Medicines: </b><br>
+                <div style="background-color: #f2f2f2; padding: 5px;">
+                    <span>Insulin</span><br>
+                    <span>Statins</span><br>
+                    <span>Vitamin D supplements</span>
+                </div><br>
+                <b>Reminders</b><br>
+                <p>Check for any contraindications before prescribing calcium supplements.</p>
+            </div>
+
+            <div class="card">
                 <h3>2024-10-12</h3><br>
-                <p>Good health condition</p><br>
-                <b>Tests to be done: </b>03<br>
-                <b>Medicines: </b>None<br><br>
-                <b>Recommendations</b><br>
-                <p>Take a good rest</p>
+                <b>Tests to be done: </b><br>
+                <div style="background-color: #f2f2f2; padding: 5px; margin-bottom: 5px;">
+                    <span>Blood pressure test</span><br>
+                    <span>Cholesterol level test</span><br>
+                    <span>Glucose tolerance test</span>
+                </div>
+                <b>Medicines: </b><br>
+                <div style="background-color: #f2f2f2; padding: 5px;">
+                    <span>Aspirin</span><br>
+                    <span>Paracetamol</span><br>
+                    <span>Antacid</span>
+                </div><br>
+                <b>Reminders</b><br>
+                <p>Monitor the patient's blood pressure regularly if beta-blockers are prescribed.</p>
             </div>
-            <div class="card">
-                <h3>2024-10-21</h3><br>
-                <p>Good health condition</p><br>
-                <b>Tests to be done: </b>03<br>
-                <b>Medicines: </b>None<br><br>
-                <b>Recommendations</b><br>
-                <p>Take a good rest</p>
-            </div>
-            <div class="card">
-                <h3>2024-11-05</h3><br>
-                <p>Good health condition</p><br>
-                <b>Tests to be done: </b>03<br>
-                <b>Medicines: </b>None<br><br>
-                <b>Recommendations</b><br>
-                <p>Take a good rest</p>
-            </div>
+
         </div>
         <h5>See More ...</h5>
         <br>
@@ -225,14 +257,12 @@ $this->title = 'FetalKicks';
             <div class="card">
                 <h3>Sineth Dhananjaya</h3><br>
                 <p>Good health condition</p><br>
-                <b>Birth Date: </b>2020-08-06<br><br>
-                <b>Recommendations</b><br>
-                <p>Take a good rest</p>
+                <b>DOB : </b>2020-08-06<br><br>
             </div>
             <div class="card">
                 <h3>Sameera Dilhara</h3><br>
                 <p>Untracked</p><br>
-                <b>Birth Date: </b>2020-08-06<br><br>
+                <b>DOB: </b>2020-08-06<br><br>
             </div>
         </div>
 
