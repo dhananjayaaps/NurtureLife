@@ -74,6 +74,16 @@ $this->title = 'Manage Appointments';
 <!--    </div>-->
 <!--</div>-->
 
+<style>
+    .content {
+        padding: 0;
+        height: 90%;
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 10px;
+    }
+</style>
+
 <div class="doctors content">
     <div class="shadowBox">
         <div class="left-content">
