@@ -20,7 +20,7 @@ class MidwifeController extends \app\core\Controller
             $Midwife->loadData($request->getBody());
 
             if ($Midwife->validate() && $Midwife->save()) {
-                Application::$app->session->setFlash('success', 'New midwife created successfully');
+                Application::$app->session->setFlash('success', 'Added a new Midwife');
                 Application::$app->response->redirect('/midwife');
                 exit;
             }

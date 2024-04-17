@@ -58,7 +58,7 @@ class PreMotherDetails extends DbModel
 
     public function tableName(): string
     {
-        return 'child';
+        return 'Mothers';
     }
 
     public function primaryKey(): string
@@ -71,6 +71,46 @@ class PreMotherDetails extends DbModel
         return [
             'user_id',
             'nic',
+            'MotherId',
+            'gravidity',
+            'no_of_children',
+            'age_of_youngest_child',
+            'lrmp',
+            'edd',
+            'us_corrected_edd',
+            'expected_period',
+            'POA_at_registration',
+//            'consanguinity',
+            'rubella_immunization',
+            'pre_pregancy_screening_done',
+            'folic_acid',
+            'diabetes',
+            'hypertension',
+            'cardiac_diseases',
+            'renal_diseases',
+            'hepatic_diseases',
+            'psychiatric_illnesses',
+            'epilepsy',
+            'malignancies',
+            'haematological_diseases',
+            'tuberculosis',
+            'thyroid_diseases',
+            'bronchial_asthma',
+            'previous_dtv',
+            'surgeries',
+            'social_risk',
+            'other',
+            'diabetes1',
+            'hypertension1',
+            'haematological1',
+            'other1',
+            'age',
+            'education_level',
+            'occuption',
+            'age1',
+            'education_level1',
+            'occuption1',
+
 
 
         ];
@@ -95,28 +135,4 @@ class PreMotherDetails extends DbModel
 
     }
 
-    public function getChild($id)
-    {
-        return (new Child())->findOne(Child::class, ['child_id' => $id]);
-    }
-
-    public function getChilds(): string
-    {
-        $childData = (new Child())->findAll(self::class);
-        $data = [];
-
-        foreach ($childData as $child) {
-//            $Child = self::findOne(Child::class, ["user_id" => $Child->user_id]);
-//            $Child = self::findOne(Child::class, ["id" => $Child->Register_NO]);
-            $data[] = [
-                'ChildName' => $child->Child_Name,
-                'MotherName' => $child->Mother_Name,
-                'RegistrationNo' => $child->Register_NO,
-                'Gender' => $child->Gender,
-
-            ];
-        }
-
-        return json_encode($data);
-    }
 }

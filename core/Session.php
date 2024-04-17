@@ -4,7 +4,7 @@ namespace app\core;
 
 class Session
 {
-    protected const string FLASH_KEY = 'flash_messages';
+    protected const FLASH_KEY = 'flash_messages';
     public function __construct()
     {
         session_start();
@@ -15,7 +15,7 @@ class Session
         $_SESSION[self::FLASH_KEY] = $flashMessages;
     }
 
-    public function setFlash($key, $message): void
+    public function setFlash($key, $message)
     {
         $_SESSION[self::FLASH_KEY][$key] = [
             'remove' => false,

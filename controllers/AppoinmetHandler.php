@@ -7,7 +7,7 @@ use app\models\Mother;
 
 class AppoinmetHandler extends Controller
 {
-    public function appointments(): array|false|string
+    public function appointments()
     {
         $model = new Mother();
         $roleName = Application::$app->user->getRoleName();
