@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?=$this->title?></title>
+    <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -76,39 +77,38 @@
 
 <div class="content-navbar">
     <div class="wrapper">
-    <div class="left-navbar">
-        <img class="NL_logo" src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
-        <div class="navigations">
-            <div class="column">
-                <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
-            </div>
-            <div class="column">
-                <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
-            </div>
-            <div class="column">
-                <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
-            </div>
-            <div class="column">
-                <a href="/doctors"><img src="assets/images/icons/doctor.png" alt=""> Doctors</a>
-            </div>
-            <div class="column">
-                <a href="/midwife"><img src="assets/images/icons/nurse.png" alt=""> MidWives</a>
-            </div>
-            <div class="column">
-                <a href="/preMother"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/user.png" alt=""> Users</a>
+        <div class="left-navbar">
+            <div class="navigations">
+                <div class="column">
+                    <a href="/"><img src="assets/images/icons/home.png" alt="">Home</a>
+                </div>
+                <div class="column">
+                    <a href="/clinics"><img src="assets/images/icons/clinic.png" alt="">Clinics</a>
+                </div>
+                <div class="column">
+                    <a href="/reports"><img src="assets/images/icons/report.png" alt="">Reports</a>
+                </div>
+                <div class="column">
+                    <a href="/doctors"><img src="assets/images/icons/doctor.png" alt="">Doctors</a>
+                </div>
+                <div class="column">
+                    <a href="/midwife"><img src="assets/images/icons/nurse.png" alt="">MidWives</a>
+                </div>
+                <div class="column">
+                    <a href="/preMother"><img src="assets/images/icons/pregnant.png" alt="">Prenatal Mothers</a>
+                </div>
+                <div class="column">
+                    <a href="#"><img src="assets/images/icons/care.png" alt="">Postnatal Mothers</a>
+                </div>
+                <div class="column">
+                    <a href="#"><img src="assets/images/icons/user.png" alt="">Users</a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="content"">
-        {{content}}
-    </div>
+        <div class="content"">
+            {{content}}
+        </div>
     </div>
 </div>
 </body>

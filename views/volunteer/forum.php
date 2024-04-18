@@ -3,7 +3,7 @@
 
 use app\models\User;
 
-$this->title = 'Volunteer Forum';
+$this->title = 'Volunteer';
 ?>
 <div class="sub_topic">
     <h1>Why Volunteers?</h1>

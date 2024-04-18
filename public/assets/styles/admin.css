@@ -103,6 +103,8 @@
     gap: 20px;
     flex: 80%;
     flex-wrap: wrap;
+    margin-left: 150px;
+
 }
 
 .content .left-content{
@@ -135,7 +137,9 @@
     display: flex;
 }
 .left-content{
-    margin: auto;
+    margin-left: auto;
+    margin-top: 0;
+    margin-bottom: 100px;
     display: flex;
 }
 
