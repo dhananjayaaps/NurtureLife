@@ -14,17 +14,17 @@ use DateTime;
 
 class User extends UserModel
 {
-    const int STATUS_INACTIVE = 0;
-    const int STATUS_ACTIVE = 1;
-    const int STATUS_DELETED = 2;
-    const int STATUS_Email_NOT_VERIFIED = 3;
-    const int STATUS_PHONE_NO_NOT_VERIFIED = 4;
-    const int ROLE_USER = 1;
-    const int ROLE_ADMIN = 2;
-    const int ROLE_DOCTOR = 3;
-    const int ROLE_PRE_MOTHER = 4;
-    const int ROLE_POST_MOTHER = 5;
-    const int ROLE_MIDWIFE = 6;
+    const STATUS_INACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_DELETED = 2;
+    const STATUS_Email_NOT_VERIFIED = 3;
+    const STATUS_PHONENO_NOT_VERIFIED = 4;
+    const ROLE_USER = 1;
+    const ROLE_ADMIN = 2;
+    const ROLE_DOCTOR = 3;
+    const ROLE_PRE_MOTHER = 4;
+    const ROLE_POST_MOTHER = 5;
+    const ROLE_MIDWIFE = 6;
     public int $id;
     public string $created_at;
 
@@ -204,4 +204,5 @@ class User extends UserModel
         ];
         return json_encode($data);
     }
+
 }

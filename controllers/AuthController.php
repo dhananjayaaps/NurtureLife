@@ -20,7 +20,7 @@ class AuthController extends Controller
         $this->registerMiddleware(new \app\core\middlewares\AuthMiddleware(['profile']));
     }
 
-    public function login(Request $request, Response $response): bool|array|string
+    public function login(Request $request, Response $response)
     {
         $loginModel = new LoginModel();
         $this->setLayout('auth');
@@ -30,7 +30,6 @@ class AuthController extends Controller
 
             if ($loginModel->validate() && $loginModel->login()) {
                 $response->redirect('/');
-                //TODO: flash messages are not displaying
                 Application::$app->session->setFlash('success', 'You are successfully logged in');
                 return true;
             }
@@ -44,13 +43,13 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $user = new User();
-        $this->setLayout('auth');
         if ($request->isPost()) {
+            $this->setLayout('auth');
             $user = new User();
             $user->loadData($request->getBody());
 
             if ($user->validate() && $user->save()) {
-                Application::$app->session->setFlash('success', 'Thank you for registering with NurtureLife');
+                Application::$app->session->setFlash('success', 'Thanks for the registering');
                 Application::$app->response->redirect('/');
                 exit;
             }
@@ -58,12 +57,13 @@ class AuthController extends Controller
                 'model' => $user
             ]);
         }
+        $this->setLayout('auth');
         return $this->render('register',[
             'model' => $user
         ]);
     }
 
-    public function logout(Request $request, Response $response): void
+    public function logout(Request $request, Response $response)
     {
         Application::$app->logout();
         $response->redirect('/');

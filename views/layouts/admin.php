@@ -18,9 +18,6 @@
 <body>
 
 <div class="navbar">
-    <div class="NL_logo_container">
-        <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
-    </div>
     <a href=" ">Home</a>
     <a href="#about">About</a>
 
@@ -48,7 +45,7 @@
 
         <div class="action">
             <div class="profile" onclick="menuToggle();">
-                <img src="./assets/images/icons/woman.png" />
+                <img src="./assets/images/men_user.jpg" />
             </div>
             <div class="menu">
                 <h3><?php echo Application::$app->user->getDisplayName() ?></h3>

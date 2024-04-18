@@ -49,18 +49,18 @@ $this->title = 'Admin Dashboard';
                     <div class="myBox">
                         <div class="notification emergency">
                             <div class="message-box">
-                                <div class="title">Emergency Alert</div>
+                                <div class="title">Emergency Allert</div>
                                 <div class="notification-content">
-                                    Pressed the Emergency Alarm by Kamala Wijethunga
+                                    Pressed the Emergency Elarm by Kamala Wijethunga
                                 </div>
                             </div>
                         </div>
 
                         <div class="notification">
                             <div class="message-box">
-                                <div class="title">Emergency Alert</div>
+                                <div class="title">Emergency Allert</div>
                                 <div class="notification-content">
-                                    Pressed the Emergency Alarm by Kamala Wijethunga
+                                    Pressed the Emergency Elarm by Kamala Wijethunga
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@ $this->title = 'Admin Dashboard';
                             <div class="message-box">
                                 <div class="title">Emergency Alert</div>
                                 <div class="notification-content">
-                                    Pressed the Emergency Alarm by Kamala Wijethunga
+                                    Pressed the Emergency Elarm by Kamala Wijethunga
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@ $this->title = 'Admin Dashboard';
                             <div class="message-box">
                                 <div class="title">Emergency Alert</div>
                                 <div class="notification-content">
-                                    Pressed the Emergency Alarm by Kamala Wijethunga
+                                    Pressed the Emergency Elarm by Kamala Wijethunga
                                 </div>
                             </div>
                         </div>
