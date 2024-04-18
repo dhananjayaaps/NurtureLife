@@ -185,5 +185,23 @@ class User extends UserModel
         $dob = $date->format('Y-m-d');
         return ['dob' => $dob, 'gender' => $gender];
     }
+    public function getAUser($id)
+    {
+        return (new User())->findOne(self::class, ['id' => $id]);
+    }
+    public function getUserById($UserId): string
+    {
+        $this->id = $UserId;
+        $userData = (new User())->findOne(self::class, ['id' => $UserId]);
 
+        $data = [
+            'user_id' => $userData->id,
+            'name' => $userData->name,
+            'email' => $userData->email,
+            'status' => $userData->status,
+            'contact_no' => $userData->contact_no,
+            'role_id' => $userData->role_id
+        ];
+        return json_encode($data);
+    }
 }

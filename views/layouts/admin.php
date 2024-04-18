@@ -98,10 +98,10 @@
                     <a href="/preMother"><img src="assets/images/icons/pregnant.png" alt="">Prenatal Mothers</a>
                 </div>
                 <div class="column">
-                    <a href="#"><img src="assets/images/icons/care.png" alt="">Postnatal Mothers</a>
+                    <a href="/postMother"><img src="assets/images/icons/care.png" alt="">Postnatal Mothers</a>
                 </div>
                 <div class="column">
-                    <a href="#"><img src="assets/images/icons/user.png" alt="">Users</a>
+                    <a href="/users"><img src="assets/images/icons/user.png" alt="">Users</a>
                 </div>
             </div>
         </div>

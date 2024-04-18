@@ -4,14 +4,15 @@
 use app\core\Application;
 use app\core\form\Form;
 use app\models\Clinic;
-use app\models\Midwife;
+use app\models\Doctor;
+use app\models\User;
 
-$this->title = 'Midwifes';
+$this->title = 'Users';
 ?>
 
 <?php
-/** @var $model Midwife **/
-/** @var $modelUpdate Midwife **/
+/** @var $model User **/
+/** @var $modelUpdate User **/
 //?>
 
 
@@ -22,19 +23,19 @@ $this->title = 'Midwifes';
 
 <div id="myPopup" class="popup">
     <div class="popup-content">
-        <h1 style="color: rgb(0, 15, 128);">Update Midwife Details<br/><br/></h1>
+        <h1 style="color: rgb(0, 15, 128);">Update Doctor Details<br/><br/></h1>
         <form action="">
 
             <div class="form-group">
 
-                <label>Midwife ID</label>
-                <input type="text" id="MidwifeId" name="MidwifeId" value=""  class="form-control ">
+                <label>Doctor ID</label>
+                <input type="text" id="DoctorId" name="DoctorId" value=""  class="form-control ">
                 <div class="invalid-feedback">
 
                 </div>
 
-                <label>Midwife Name</label>
-                <input type="text" id="MidwifeName" name="MidwifeName" value=""  class="form-control ">
+                <label>Doctor Name</label>
+                <input type="text" id="DoctorName" name="DoctorName" value=""  class="form-control ">
                 <div class="invalid-feedback">
 
                 </div>
@@ -62,7 +63,7 @@ $this->title = 'Midwifes';
 
 <div id="myPopupRemove" class="popup">
     <div class="popup-content">
-        Please confirm before removing this Midwife. This action can't be undone.
+        Please confirm before removing this Doctor. This action can't be undone.
         <div class="buttonRow" style="display: flex; flex-direction: row; gap: 10px;">
             <button id="closePopup" class="btn-submit">
                 Close
@@ -79,13 +80,13 @@ $this->title = 'Midwifes';
         <div class="shadowBox">
             <div class="left-content">
                 <div class="search-container">
-                    <input type="text" placeholder="Search Midwife...">
+                    <input type="text" placeholder="Search Doctor...">
                     <button type="submit">Search</button>
                 </div>
                 <table class="table-data">
                     <thead>
                     <tr>
-                        <th>Midwife ID</th>
+                        <th>Doctor ID</th>
                         <th>Name</th>
                         <th>SLMC ID</th>
                         <th>Clinic</th>
@@ -102,50 +103,10 @@ $this->title = 'Midwifes';
             </div>
         </div>
     </div>
-    <div class="right-content">
-        <div class="shadowBox">
-            <h2>Add a New Midwife <br/><br/></h2>
-            <?php $form = Form::begin('', "post")?>
-            <?php echo $form->field($model, 'nic', 'NIC')?>
-            <?php echo $form->field($model, 'SLMC_no', 'SLMC ID')?>
-
-            <div class="form-group">
-                <label for="clinic_id">Clinic</label>
-                <br>
-                <select id="clinic_id" name="clinic_id" class="js-select2 custom-select" required>
-                    <option value="" selected disabled>Select Clinic</option>
-                    <?php foreach ((new Clinic())->getClinicsList() as $clinic): ?>
-                        <option value="<?php echo $clinic['id'] ?>"><?php echo $clinic['name'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-
-                <style>
-                    .js-select2 {
-                        width: 110%;
-                        height: 130%;
-                        padding: 0;
-                    }
-                </style>
-
-
-                <div class="invalid-feedback"></div>
-            </div>
-
-            <script>
-                // Initialize Select2
-                $(document).ready(function () {
-                    $('.js-select2').select2();
-                });
-            </script>
-
-            <button type="submit" class="btn-submit">Submit</button>
-            <?php echo Form::end()?>
-        </div>
-    </div>
 </div>
 
 <script>
-    var data = <?php echo $model->getMidwifes()?>;
+    var data = <?php echo $model->getDoctors()?>;
 
     var itemsPerPage = 10;
     var currentPage = 1;
@@ -160,13 +121,13 @@ $this->title = 'Midwifes';
             var row = data[i];
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
-            <td>${row.PHM_ID}</td>
+            <td>${row.MOH_ID}</td>
             <td>${row.Name}</td>
             <td>${row.SLMC_no}</td>
             <td>${row.clinic_id}</td>
             <td class="action-buttons">
-            <button id="showPopUp" onclick="UpdatePopUp('${row.PHM_ID}', '${row.Name}')" class="action-button update-button">Update</button>
-            <button class="action-button remove-button" onclick="UpdatePopUp('${row.PHM_ID}', '${row.Name}')">Remove</button>
+            <button id="showPopUp" onclick="UpdatePopUp('${row.MOH_ID}', '${row.Name}')" class="action-button update-button">Update</button>
+            <button class="action-button remove-button" onclick="UpdatePopUp('${row.MOH_ID}', '${row.Name}')">Remove</button>
         `;
             tableBody.appendChild(newRow);
         }
@@ -219,14 +180,14 @@ $this->title = 'Midwifes';
 
 <script>
 
-    function UpdatePopUp(PHM_ID, Name){
+    function UpdatePopUp(MOH_ID, Name){
 
         var labels = document.querySelectorAll('form label');
 
-        const DocId = document.getElementById('MidwifeId');
-        const DocName = document.getElementById('MidwifeName');
+        const DocId = document.getElementById('DoctorId');
+        const DocName = document.getElementById('DoctorName');
 
-        DocId.value = PHM_ID;
+        DocId.value = MOH_ID;
         DocName.value = Name;
         DocId.disabled = true;
         DocName.disabled = true;
@@ -238,7 +199,7 @@ $this->title = 'Midwifes';
             inputFieldId.disabled = true;
         }
 
-        getMidwifeDetails(PHM_Id)
+        getDoctorDetails(MOH_Id)
             .then((data) => {
                 var inputFieldId = getElementById('UpdateId');
 
@@ -259,13 +220,13 @@ $this->title = 'Midwifes';
         e.preventDefault();
 
         const Clinic_id = document.querySelector('input[name="UpdateId"]').value;
-        const PHM_id = document.querySelector('input[name="MidwifeId"]').value;
+        const MOH_id = document.querySelector('input[name="DoctorId"]').value;
 
         const formData = new FormData();
         formData.append('clinic_id', Clinic_id);
-        formData.append('PHM_id', PHM_id);
+        formData.append('MOH_id', MOH_id);
 
-        const url = '/midwifeUpdate';
+        const url = '/doctorUpdate';
 
         fetch(url, {
             method: 'POST',
@@ -306,12 +267,12 @@ $this->title = 'Midwifes';
     document.getElementById('closePopupRemove').addEventListener('click', function (e) {
         e.preventDefault();
 
-        const PHM_id = document.querySelector('input[name="MidwifeId"]').value;
+        const MOH_id = document.querySelector('input[name="DoctorId"]').value;
 
         const formData = new FormData();
-        formData.append('PHM_id', PHM_id);
+        formData.append('MOH_id', MOH_id);
 
-        const url = '/deleteMidwife';
+        const url = '/deleteDoctor';
 
         fetch(url, {
             method: 'POST',
@@ -351,24 +312,4 @@ $this->title = 'Midwifes';
             myPopupRemove.classList.remove("show");
         }
     });
-</script>
-
-
-<script>
-    function searchClinics() {
-        var input, filter, select, option, i, txtValue;
-        input = document.getElementById('clinic_search');
-        filter = input.value.toUpperCase();
-        select = document.getElementById('clinic_id');
-        option = select.getElementsByTagName('option');
-
-        for (i = 0; i < option.length; i++) {
-            txtValue = option[i].text || option[i].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                option[i].style.display = "";
-            } else {
-                option[i].style.display = "none";
-            }
-        }
-    }
 </script>

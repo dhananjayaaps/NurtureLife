@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./assets/styles/Form.css">
 </head>
 <body>
-//header
+<!--header-->
 <div class="navbar" id="myNavbar">
     <div class="NL_logo_container">
         <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
@@ -28,7 +28,6 @@
         <a href="/login">Login</a>
         <a href="/register">Signup</a>
     <?php else: ?>
-
         <div class="dropdown">
             <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
                 <i class="fa fa-caret-down"></i>
@@ -73,14 +72,14 @@
 
 </div>
 
-//body content
+<!--body content-->
 <div class="wrapper">
     <div class="userHome_content">
         {{content}}
     </div>
 </div>
 
-//footer
+<!--footer-->
 <div class="footer">
     <div class="footer-left">
         <div class="footer-left-title">
