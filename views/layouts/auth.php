@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./assets/styles/Form.css">
 </head>
 <body>
-
+//header
 <div class="navbar" id="myNavbar">
     <div class="NL_logo_container">
         <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
@@ -72,12 +72,15 @@
     </div>
 
 </div>
+
+//body content
 <div class="wrapper">
     <div class="content">
         {{content}}
     </div>
 </div>
 
+//footer
 <div class="footer">
     <div class="footer-left">
         <div class="footer-left-title">

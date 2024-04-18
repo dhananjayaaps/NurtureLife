@@ -113,12 +113,12 @@ class m0001_initial
             rubella_immunization TINYINT(1),
             emergencyNumber VARCHAR(20),
             status INT,
+            Created_At TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (PHM_ID) REFERENCES midwife(PHM_id),
             FOREIGN KEY (clinic_id) REFERENCES clinics(id),
             FOREIGN KEY (user_id) REFERENCES users(id)
         ) ENGINE=INNODB;
         ";
-
         $db->pdo->exec($SQL9);
 
         $Trigger1 = "

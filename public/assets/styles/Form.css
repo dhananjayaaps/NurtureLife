@@ -161,7 +161,6 @@
 }
 
 .container {
-    margin-top: 60px;
     display: flex;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -173,7 +172,7 @@
     justify-content: center;
     align-items: center;
     width: 40%;
-    height: 40%;
+    height: 80%;
 }
 
 .imageBox img {
@@ -187,7 +186,7 @@
 }
 
 .signup_form_container {
-    width: 100%; /* Ensure the form container takes up full width */
+    width: 100%;
 }
 
 .formRow {
@@ -198,7 +197,7 @@
 }
 
 .formColumn {
-    flex-basis: calc(50% - 10px); /* 50% width with a little space between columns */
+    flex-basis: calc(50% - 10px);
 }
 
 .centeredButton {
