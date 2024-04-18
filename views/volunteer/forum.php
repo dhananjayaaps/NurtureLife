@@ -152,6 +152,3 @@ $this->title = 'Volunteer';
     </div>
 
 </div>
-
-
-git config --global user.name "username"
