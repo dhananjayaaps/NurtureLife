@@ -5,7 +5,8 @@ namespace app\controllers\MidwifeController;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\Mother;
+use app\core\view;
+use app\models\PreMotherDetails;
 
 class PreMotherController extends Controller
 {
@@ -22,7 +23,7 @@ class PreMotherController extends Controller
             if ($mother->validate() && $mother->save()) {
                 var_dump($mother);
                 Application::$app->session->setFlash('success', 'Added a new Midwife');
-                Application::$app->response->redirect('midwife/preMotherForm');
+                Application::$app->response->redirect('midwife/Mother');
                 exit;
             }
         }
