@@ -32,7 +32,7 @@ body{
     font-style: normal;
     font-weight: 100;
     line-height: normal;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
 }
 
 /*.navbar{*/
@@ -70,7 +70,7 @@ body{
     margin-left: 120px;
     margin-top: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     min-height: min-content;
 }
 
@@ -537,8 +537,12 @@ body{
     background-color: white;
     padding: 20px;
     border: 1px solid #888888;
+    border-radius: 10px;
     max-width: 400px;
     font-weight: bolder;
+}
+.popup-content h2{
+    text-align: center;
 }
 
 .popup.show {

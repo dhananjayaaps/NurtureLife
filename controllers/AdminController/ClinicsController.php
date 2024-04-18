@@ -4,9 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Request;
-
 namespace app\controllers\AdminController;
-
 use app\core\Application;
 use app\core\Request;
 use app\models\Doctor;

@@ -19,11 +19,12 @@ $this->title = 'Clinics';
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
+<link rel="stylesheet" href="./assets/styles/clinics.css">
 
 
 <div id="myPopup" class="popup">
     <div class="popup-content">
-        <h1 style="color: rgb(0, 15, 128);">Update Clinic Details<br /><br /></h1>
+        <h2 style="color: rgb(0, 15, 128);">Update Clinic Details<br /><br /></h2>
         <form action="">
 
             <div class="form-group">
@@ -48,11 +49,11 @@ $this->title = 'Clinics';
             </div>
         </form>
         <div class="buttonRow">
-            <button type="submit" id="updateButton" class="btn-submit">
-                Update
-            </button>
-            <button id="closePopup" class="btn-submit" style="background-color: brown;">
+            <button id="closePopup" class="btn-submit" style="background-color: #ff1a1a">
                 Close
+            </button>
+            <button type="submit" id="updateButton" class="btn-submit" style="background-color: #ff9900">
+                Update
             </button>
         </div>
     </div>
@@ -62,21 +63,21 @@ $this->title = 'Clinics';
 <div id="myPopupRemove" class="popup">
     <div class="selectedRow" id="selectedRow" style="display: none"></div>
     <div class="popup-content">
-        Do You Really Need to Remove This? That can't be undone
+        Please confirm before removing this clinic. This action can't be undone.
         <div class="buttonRow" style="display: flex; flex-direction: row; gap: 10px;">
             <button id="closePopup" class="btn-submit">
                 Close
             </button>
-            <button id="closePopupRemove" class="btn-submit" style="background-color: brown;">
+            <button id="closePopupRemove" class="btn-submit" style="background-color: #ff1a1a;">
                 Remove
             </button>
         </div>
     </div>
 </div>
 
-<div class="clinics content">
-    <div class="shadowBox">
-        <div class="left-content">
+<div class="content">
+    <div class="left-content">
+        <div class="shadowBox">
             <div class="search-container">
                 <input type="text" placeholder="Search Clinic...">
                 <button type="submit">Search</button>
@@ -95,6 +96,7 @@ $this->title = 'Clinics';
                     <!-- Displayed rows will be added here -->
                 </tbody>
             </table>
+            <br>
             <div class="pagination" id="pagination">
                 <!-- Pagination buttons will be added here -->
             </div>

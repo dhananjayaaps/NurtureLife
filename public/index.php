@@ -8,6 +8,7 @@ $dotenv->load();
 use app\controllers\AdminController\ClinicsController;
 use app\controllers\AdminController\DoctorController;
 use app\controllers\AdminController\MidwifeController;
+use app\controllers\AdminController\UsersController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
@@ -68,6 +69,9 @@ $app->router->get('/getMidwifeDetails', [MidwifeController::class, 'getMidwifeDe
 
 $app->router->get('/reports', [ClinicsController::class, 'reports']);
 $app->router->post('/reports', [ClinicsController::class, 'reports']);
+
+$app->router->get('/users', [UsersController::class, 'users']);
+$app->router->post('/users', [UsersController::class, 'users']);
 
 $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'changeRole']);
 
