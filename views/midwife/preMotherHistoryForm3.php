@@ -51,36 +51,35 @@ $this->title = 'Present Mother History Form1';
         <div class="form-container">
 
             <div class="form-column">
+                <label>
+                    1. Diabetes:
+                    <div class="break-line"></div>
+                    <input type="radio" name="diabetes1" value="Yes"> Yes
+                    <input type="radio" name="diabetes1" value="No"> No
+                </label>
+
+                <div class="break-line"></div>
+
+                <label>
+                    2. Hypertension:
+                    <div class="break-line"></div>
+                    <input type="radio" name="hypertension1" value="Yes"> Yes
+                    <input type="radio" name="hypertension1" value="No"> No
+                </label>
+
+                <div class="break-line"></div>
+
+                <label>
+                    3. Haematological Diseases:
+                    <div class="break-line"></div>
+                    <input type="radio" name="haematological1" value="Yes"> Yes
+                    <input type="radio" name="haematological1" value="No"> No
+                </label>
+
+                <div class="break-line"></div>]
 
 
-                    <?php
-                    $diabetes1Field = new Dropdown($model, 'diabetes1', 'Diabetes');
-                    $diabetes1Field->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $diabetes1Field;
-                    ?>
-
-                    <?php
-                    $hypertension1Field = new Dropdown($model, 'hypertension1', 'Hypertension');
-                    $hypertension1Field->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $hypertension1Field;
-                    ?>
-
-                    <?php
-                    $haematological1Field = new Dropdown($model, 'haematological1', 'Haematological Diseases');
-                    $haematological1Field->setOptions([
-                        '1' => 'Yes',
-                        '0' => 'No',
-                    ]);
-                    echo $haematological1Field;
-                    ?>
-
-                    <?php echo $form->field($model, 'other1', 'Other(specify)')?>
+                <?php echo $form->field($model, 'other1', '4. Other(specify)')?>
 
 
 

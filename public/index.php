@@ -10,6 +10,7 @@ use app\controllers\AdminController\DoctorController;
 use app\controllers\AdminController\MidwifeController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
+use app\controllers\DoctorController\PostMotherController;
 use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MidwifeController\PreMotherController;
 use app\controllers\MidwifeController\weightGainChartController;
@@ -111,7 +112,7 @@ $app->router->get('/about', [SiteController::class, 'about']);
 $app->router->get('/immunizationCard', [ChildController::class, 'immunizationCard']);
 $app->router->post('/immunizationCard', [ChildController::class, 'immunizationCard']);
 
-$app->router->get('/preMotherForm1', [ChildController::class, 'preMotherForm1']);
+$app->router->get('/  ', [ChildController::class, 'preMotherForm1']);
 $app->router->post('/preMotherForm1', [ChildController::class, 'preMotherForm1']);
 
 $app->router->get('/fetalKicks', [FetalkickController::class, 'Fetalkick']);
@@ -136,5 +137,8 @@ $app->router->get('/verify-phone', [AuthController::class, 'verifyPhone']);
 $app->router->get('/motherProfile', [MotherController\MotherProfile::class, 'motherProfile']);
 
 $app->router->get('/childProfile', [ChildController::class, 'childProfile']);
+
+$app->router->get('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
+$app->router->post('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
 
 $app->run();
