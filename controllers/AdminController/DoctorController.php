@@ -20,7 +20,7 @@ class DoctorController extends \app\core\Controller
             $doctor->loadData($request->getBody());
 
             if ($doctor->validate() && $doctor->save()) {
-                Application::$app->session->setFlash('success', 'Added a new Doctor');
+                Application::$app->session->setFlash('success', 'New doctor created successfully');
                 Application::$app->response->redirect('/doctors');
                 exit;
             }
