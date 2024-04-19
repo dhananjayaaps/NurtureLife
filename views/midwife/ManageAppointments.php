@@ -119,8 +119,7 @@ $this->title = 'Manage Appointments';
         <h2>Select the Appointment Details</h2>
             <br>
             <?php $form = Form::begin('', "post")?>
-            <?php echo $form->field($appointmentModel, 'MotherId', 'Mother ID')?>
-
+            <label for="MotherIds"></label><input type="text" name="MotherIds" id="MotherIds" value="" class="form-control hidden">
             <?php
             $maritalStatusField = new Dropdown($appointmentModel, 'AppointType', 'Appoint Type');
             $maritalStatusField->setOptions([
@@ -146,7 +145,7 @@ $this->title = 'Manage Appointments';
 <script>
     var data = <?php echo $model->getMothers()?>;
 
-    var itemsPerPage = 10;
+    var itemsPerPage = 2;
     var currentPage = 1;
 
     function displayTableData() {
@@ -159,7 +158,7 @@ $this->title = 'Manage Appointments';
             var row = data[i];
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
-            <td><input type="checkbox" class="tickCheckbox"></td>
+            <td><input type="checkbox" class="tickCheckbox" data-motherid="${row.MotherId}"></td>
             <td>${row.MotherId}</td>
             <td>${row.Name}</td>
             <td>${row.Status}</td>
@@ -201,16 +200,52 @@ $this->title = 'Manage Appointments';
             checkboxes[i].checked = this.checked;
         }
     });
+</script>
 
-    function getSelectedMotherIDs() {
-        var selectedMotherIDs = [];
+<script>
+    var selectedMothers = [];
+
+    function updateSelectedMothers() {
+        selectedMothers = [];
         var checkboxes = document.getElementsByClassName("tickCheckbox");
         for (var i = 0; i < checkboxes.length; i++) {
             if (checkboxes[i].checked) {
-                var motherID = checkboxes[i].getAttribute("data-motherid");
-                selectedMotherIDs.push(motherID);
+                selectedMothers.push(checkboxes[i].getAttribute('data-motherid'));
+                console.log(checkboxes[i].getAttribute('data-motherid'))
             }
         }
-        return selectedMotherIDs;
+        document.getElementById('MotherIds').value = selectedMothers.join(',');
     }
+
+    var checkboxes = document.getElementsByClassName("tickCheckbox");
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].addEventListener('change', function () {
+            updateSelectedMothers();
+        });
+    }
+
+    function initializeSelectedMothers() {
+        updateSelectedMothers();
+    }
+
+    initializeSelectedMothers();
+</script>
+
+<script>
+    function updatePagination() {
+        displayTableData();
+        displayPagination();
+    }
+
+    function attachListeners() {
+        var paginationButtons = document.querySelectorAll('.page-button');
+        paginationButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                currentPage = parseInt(this.textContent);
+                updatePagination();
+            });
+        });
+    }
+
+    attachListeners();
 </script>

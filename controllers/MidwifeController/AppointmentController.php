@@ -12,28 +12,38 @@ use app\models\Mother;
 class AppointmentController extends Controller
 {
 
-    public function ManageAppointments(Request $request): array|false|string
+    public function ManageAppointments(Request $request)
     {
         $this->layout = 'midwife';
         $mother = new Mother();
         $appointment = new Appointments();
 
         if ($request->isPost()) {
-            $mother->loadData($request->getBody());
-            if ($mother->validate() && $mother->save()) {
-                Application::$app->session->setFlash('success', 'Added a new Child');
-                Application::$app->response->redirect('midwife/Child');
-                exit;
+            $requestData = $request->getBody();
+            $motherIds = explode(',', $requestData['MotherIds']);
+
+            foreach ($motherIds as $motherId) {
+                $appointment->loadData($requestData);
+                $appointment->MotherId = $motherId;
+                $appointment->AppointStatus = 1;
+
+                if ($appointment->validate() && $appointment->save()) {
+                    Application::$app->session->setFlash('success', 'Added new Appointments');
+                } else {
+                    var_dump($appointment->errors);
+                }
             }
+
+            Application::$app->response->redirect('/ManageAppointments');
+            exit;
         }
+
 
         else if ($request->isGet()) {
             $this->layout = 'midwife';
+            return $this->render('midwife/ManageAppointments', [
+                'model' => $mother, 'appointmentModel' => $appointment
+            ]);
         }
-
-        return $this->render('midwife/ManageAppointments', [
-            'model' => $mother, 'appointmentModel' => $appointment
-        ]);
     }
-
 }

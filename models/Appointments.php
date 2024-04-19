@@ -15,7 +15,7 @@ class Appointments extends DbModel
 
     public function tableName(): string
     {
-        return 'appointments';
+        return 'Appointments';
     }
 
     public function attributes(): array
@@ -41,7 +41,6 @@ class Appointments extends DbModel
             'AppointType' => [self::RULE_REQUIRED],
             'AppointDate' => [self::RULE_REQUIRED],
             'AppointStatus' => [self::RULE_REQUIRED],
-            'AppointRemarks' => [self::RULE_REQUIRED]
         ];
     }
 }
