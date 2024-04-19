@@ -10,15 +10,10 @@ $this->title = 'Volunteer';
 </div>
 <div class="upper">
         <p>
-            Volunteers are <b>people of the general public</b> who are willing
-            to help mothers 👩‍🍼, midwives 👩‍⚕️, and doctors 🧑‍⚕️ to improve
-            maternal and neonatal health outcomes 🍼, as they play a part
-            in promoting safe practices ✅ and increasing access to
-            healthcare services 🏥. Volunteers are <b>indispensable in
-            bridging the gap between the healthcare system and the
-            community</b> 🌐, ensuring that mothers receive the care and
-            support they need during one of the <b>most critical times of
-            their lives</b> 💞
+            Volunteers are vital in supporting mothers, midwives, and doctors to enhance
+            maternal and neonatal health outcomes by promoting safe practices and improving
+            access to healthcare services. They bridge the gap between healthcare systems
+            and communities, ensuring mothers receive crucial care and support during childbirth.
         </p>
 </div>
 

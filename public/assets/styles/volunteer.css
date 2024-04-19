@@ -11,14 +11,14 @@
 .upper{
     display: flex;
     flex-direction: row;
-    height: 200px;
+    height: 150px;
     width: 100%;
     border-radius: 20px;
-    background-color: #ffccff;
+    background-color: #fff2e6;
     box-shadow: 10px 10px;
 }
 .upper p{
-    padding: 20px 30px 20px 30px;
+    padding: 25px 30px 15px 30px;
     font-family: sans-serif;
     text-align: center;
     font-size: 25px;
