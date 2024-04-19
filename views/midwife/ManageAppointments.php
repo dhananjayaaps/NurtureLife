@@ -98,9 +98,9 @@ $this->title = 'Manage Appointments';
                     <th>Mother ID</th>
                     <th>Name</th>
                     <th>Status</th>
-<!--                    <th>Delivery Date</th>-->
-<!--                    <th>Midwife</th>-->
-<!--                    <th>Address</th>-->
+                    <!--                    <th>Delivery Date</th>-->
+                    <!--                    <th>Midwife</th>-->
+                    <!--                    <th>Address</th>-->
                     <th>GN Division</th>
                     <th>Actions</th>
                 </tr>
@@ -116,7 +116,7 @@ $this->title = 'Manage Appointments';
     </div>
     <div class="shadowBox">
         <div class="Right-content">
-        <h2>Select the Appointment Details</h2>
+            <h2>Select the Appointment Details</h2>
             <br>
             <?php $form = Form::begin('', "post")?>
             <label for="MotherIds"></label><input type="text" name="MotherIds" id="MotherIds" value="" class="form-control hidden">
