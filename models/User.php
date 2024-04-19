@@ -204,5 +204,22 @@ class User extends UserModel
         ];
         return json_encode($data);
     }
+    public function getUsers(): string
+    {
+        $userData = (new User())->findAll(self::class);
+        $data = [];
+
+        foreach ($userData as $user) {
+            $data[] = [
+                'user_id' => $user->id,
+                'name' => $user->firstname . ' ' . $user->lastname,
+                'email' => $user->email,
+                'status' => $user->status,
+                'contact_no' => $user->contact_no,
+                'role_id' => $user->role_id
+            ];
+        }
+        return json_encode($data);
+    }
 
 }

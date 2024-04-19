@@ -17,9 +17,12 @@
 </head>
 <body>
 
-<div class="navbar">
-    <a href=" ">Home</a>
-    <a href="#about">About</a>
+<div class="navbar" id="myNavbar">
+    <div class="NL_logo_container">
+        <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
+    </div>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
 
     <div class="search-container">
         <input type="text" placeholder="Search...">
@@ -43,7 +46,7 @@
             </div>
         </div>
 
-        <div class="action">
+        <div class="action" id="actionElement">
             <div class="profile" onclick="menuToggle();">
                 <img src="./assets/images/men_user.jpg" />
             </div>
@@ -103,11 +106,10 @@
             </div>
         </div>
 
-        <div class="content"">
+        <div class="content">
             {{content}}
         </div>
     </div>
-</div>
 </body>
 </html>
 
