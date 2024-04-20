@@ -247,9 +247,9 @@ $this->title = 'Clinics';
         const url = '/clinicsUpdate';
 
         fetch(url, {
-                method: 'POST',
-                body: formData,
-            })
+            method: 'POST',
+            body: formData,
+        })
             .then(response => {
                 if (response.ok) {
                     window.location.reload();
@@ -291,9 +291,9 @@ $this->title = 'Clinics';
         const url = '/deleteClinic';
 
         fetch(url, {
-                method: 'POST',
-                body: formData,
-            })
+            method: 'POST',
+            body: formData,
+        })
             .then(response => {
                 if (response.ok) {
                     window.location.reload();

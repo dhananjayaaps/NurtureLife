@@ -22,6 +22,7 @@ class Clinic extends DbModel
     public string $name = '';
     public string $district ='';
     public string $address = '';
+    public string $created_at = '';
 
     public int $status = self::STATUS_INACTIVE;
 
