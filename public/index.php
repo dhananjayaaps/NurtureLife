@@ -13,13 +13,13 @@ use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
 use app\controllers\MidwifeController\AppointmentController;
-use app\controllers\MidwifeController\PreMotherController;
-use app\controllers\MidwifeController\weightGainChartController;
-use app\controllers\MotherController\FetalkickController;
 use app\controllers\MidwifeController\ChildController;
+use app\controllers\MidwifeController\PreMotherController;
 use app\controllers\MotherController;
-use app\core\Application;
+use app\controllers\MotherController\FetalkickController;
+use app\controllers\MotherController\PostController;
 use app\controllers\SiteController;
+use app\core\Application;
 use app\models\User;
 
 $config = [
@@ -144,5 +144,8 @@ $app->router->get('/childProfile', [ChildController::class, 'childProfile']);
 
 $app->router->get('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
 $app->router->post('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
+
+$app->router->get('/posts', [PostController::class, 'posts']);
+$app->router->post('/posts', [UsersController::class, 'posts']);
 
 $app->run();

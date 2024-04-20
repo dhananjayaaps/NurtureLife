@@ -116,7 +116,7 @@ class User extends UserModel
 
     public function getRoleName(): string
     {
-        $roleNames = ['Volunteer','Admin','Doctor','Pre Mother','Post Mother','Midwife',];
+        $roleNames = ['Volunteer','Admin','Doctor','Prenatal Mother','Postnatal Mother','Midwife',];
         return $roleNames[$this->role_id-1];
     }
 

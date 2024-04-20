@@ -96,6 +96,9 @@
                 <div class="column">
                     <a href="/fetalkick"><img src="assets/images/icons/pregnant.png" alt=""> Report Fetal kicks</a>
                 </div>
+                <div class="column">
+                    <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt="">Posts</a>
+                </div>
             </div>
         </div>
         <div class="content">

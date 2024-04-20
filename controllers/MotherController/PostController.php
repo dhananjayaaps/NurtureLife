@@ -1,10 +1,9 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\MotherController;
 
 use app\core\Application;
 use app\core\Request;
-use app\models\Clinic;
 use app\models\Post;
 
 class PostController extends \app\core\Controller
@@ -28,7 +27,7 @@ class PostController extends \app\core\Controller
             $this->layout = 'mother';
         }
 
-        return $this->render('mother/posts', [
+        return $this->render('preMother/posts', [
             'model' => $post, "modelUpdate" => $post2
         ]);
     }
