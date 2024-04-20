@@ -188,11 +188,11 @@ class m0001_initial
                 id INT NOT NULL AUTO_INCREMENT,
                 user_id INT,
                 description TEXT,
-                PRIMARY KEY (id),
-                FOREIGN KEY (user_id) REFERENCES users(id),
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                status TINYINT(1) DEFAULT 1
+                status TINYINT(1) DEFAULT 1,
+                PRIMARY KEY (id),
+                FOREIGN KEY (user_id) REFERENCES users(id)
             ) ENGINE=INNODB;
             ";
         $db->pdo->exec($sql);
