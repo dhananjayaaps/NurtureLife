@@ -183,6 +183,18 @@ class m0001_initial
         ;
 
         $db->pdo->exec($SQL10);
+
+        $sql = "CREATE TABLE volunteer (
+                vol_id INT NOT NULL AUTO_INCREMENT,
+                user_id INT,
+                clinic_id INT,
+                PRIMARY KEY (vol_id),
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (clinic_id) REFERENCES clinics(id)
+            ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($sql);
     }
 
 

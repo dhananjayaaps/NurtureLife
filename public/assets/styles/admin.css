@@ -1,10 +1,10 @@
 .content .column{
     display: flex;
     flex-direction: row;
-    /*flex-wrap: wrap;*/
+    flex-wrap: wrap;
     height: fit-content;
     gap: 20px;
-    padding-top: 30px;
+    /*padding-top: 30px;*/
 }
 
 .content canvas{
@@ -103,7 +103,7 @@
     gap: 20px;
     flex: 80%;
     flex-wrap: wrap;
-    margin-left: 150px;
+    /*margin-left: 150px;*/
 
 }
 
@@ -133,7 +133,7 @@
 }
 
 .right-content{
-    margin: auto;
+    /*margin: auto;*/
     display: flex;
 }
 .left-content{
@@ -233,7 +233,7 @@
 }
 
 .content .shadowBox{
-    height: 100%;
+    height: 80vh;
 }
 
 .action {
@@ -254,4 +254,17 @@
     .left-navbar{
         display: none;
     }
+    .content{
+        margin-left: 0;
+    }
+}
+
+.content{
+    justify-content: space-around;
+    width: 100%;
+    /*flex-wrap: nowrap;*/
+}
+
+.wrapper{
+    width: 100%;
 }
