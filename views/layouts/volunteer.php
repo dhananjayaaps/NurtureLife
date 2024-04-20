@@ -78,7 +78,7 @@
         {{content}}
     </div>
 </div>
-
+<!--footer-->
 <div class="footer">
     <div class="footer-left">
         <div class="footer-left-title">
