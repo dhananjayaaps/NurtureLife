@@ -39,8 +39,6 @@ class UsersController extends \app\core\Controller
 
     public function userUpdate(Request $request): false|string
     {
-
-
         $user = (new User())->getAUser($request->getBody()['id']);
         $this->setLayout('admin');
         $user->loadData($request->getBody());
@@ -79,9 +77,4 @@ class UsersController extends \app\core\Controller
         return $user->getUserById($user->getId());
     }
 
-//    public function reports(): array|false|string
-//    {
-//        $this->layout = 'admin';
-//        return $this->render('admin/reports');
-//    }
 }

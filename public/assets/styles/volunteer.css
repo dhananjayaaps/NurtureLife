@@ -1,5 +1,5 @@
 .volunteer_wrapper {
-    height: 155vh;
+    height: fit-content;
     padding-top: 100px;
 }
 .volunteer_content{
@@ -470,4 +470,48 @@ h1 {
 .data-item .remove-button i {
     font-size: inherit;
     vertical-align: middle;
+}
+
+/*styles for posts-container*/
+.content .shadowBox{
+    height: 80vh;
+}
+.notification-bar{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.notifications{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.myBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /*width: 550px;*/
+    height: 200px;
+    overflow:auto;
+    padding:2%;
+    align-items: flex-start;
+    text-align: left;
+}
+.notification.emergency{
+    /*background-color: #f0ad4e;*/
+}
+.notification .message-box{
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #dce6ff;
+    flex-direction: column;
+    gap: 5px;
+}
+.notification .title{
+    color: #870606;
+    font-weight: bold;
+}
+.notification-content{
+
 }

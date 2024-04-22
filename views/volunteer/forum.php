@@ -147,3 +147,48 @@ $this->title = 'Volunteer';
     </div>
 
 </div>
+
+<div class="shadowBox">
+    <div class="notification-bar">
+        <div class="notifications">
+            <span style="font-size: 20px; font-weight: bold;">Notifications</span>
+        </div>
+        <div class="myBox">
+            <div class="notification emergency">
+                <div class="message-box">
+                    <div class="title">Emergency Alert</div>
+                    <div class="notification-content">
+                        Pressed the Emergency Alarm by Kamala Wijethunga
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification">
+                <div class="message-box">
+                    <div class="title">Emergency Alert</div>
+                    <div class="notification-content">
+                        Pressed the Emergency Alarm by Kamala Wijethunga
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification warning">
+                <div class="message-box">
+                    <div class="title">Emergency Alert</div>
+                    <div class="notification-content">
+                        Pressed the Emergency Alarm by Kamala Wijethunga
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification">
+                <div class="message-box">
+                    <div class="title">Emergency Alert</div>
+                    <div class="notification-content">
+                        Pressed the Emergency Alarm by Kamala Wijethunga
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
