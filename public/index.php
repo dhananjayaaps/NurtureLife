@@ -17,6 +17,7 @@ use app\controllers\MidwifeController\weightGainChartController;
 use app\controllers\MotherController\FetalkickController;
 use app\controllers\MidwifeController\ChildController;
 use app\controllers\MotherController;
+use app\controllers\MotherController\PreMotherCareController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -140,5 +141,12 @@ $app->router->get('/childProfile', [ChildController::class, 'childProfile']);
 
 $app->router->get('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
 $app->router->post('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
+
+$app->router->get('/preMotherCareForm1', [PostMotherController::class, 'preMotherCareForm1']);
+$app->router->post('/preMotherCareForm1', [PostMotherController::class, 'preMotherCareForm1']);
+
+$app->router->get('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
+$app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
+
 
 $app->run();
