@@ -108,7 +108,7 @@ $this->title = 'Volunteer';
 </div>
 
 <div class="sub_topic">
-    <h1>Download</h1>
+    <h1>Downloads</h1>
 </div>
 
 <div class="lower">

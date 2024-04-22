@@ -222,4 +222,16 @@ class User extends UserModel
         return json_encode($data);
     }
 
+    public function userUpdateValidate(): bool
+    {
+        if($this->status === self::STATUS_ACTIVE || $this->status === self::STATUS_INACTIVE){
+            if($this->role_id === self::ROLE_USER || $this->role_id === self::ROLE_ADMIN || $this->role_id === self::ROLE_DOCTOR || $this->role_id === self::ROLE_PRE_MOTHER || $this->role_id === self::ROLE_POST_MOTHER || $this->role_id === self::ROLE_MIDWIFE){
+                return true;
+            }
+            $this->addError('role_id','Invalid Role');
+        }
+        $this->addError('status','Invalid Status');
+        return false;
+    }
+
 }

@@ -11,10 +11,9 @@ $this->title = 'Users';
 ?>
 
 <?php
-/** @var $model User **/
-/** @var $modelUpdate User **/
+/** @var $model User * */
+/** @var $modelUpdate User * */
 //?>
-
 
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
@@ -28,38 +27,45 @@ $this->title = 'Users';
             <div class="form-group">
 
                 <label>User ID</label>
-                <input type="text" id="UserId" name="UserId" value=""  class="form-control " disabled>
+                <input type="text" id="UserId" name="UserId" value="" class="form-control " disabled>
 
                 <label>User Name</label>
-                <input type="text" id="UserName" name="UserName" value=""  class="form-control " disabled>
+                <input type="text" id="UserName" name="UserName" value="" class="form-control " disabled>
+                <div style="display: flex;gap: 5px"><label>Status</label>
 
-                <label>Status</label>
-                <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider round"></span>
-                </label>
+                <div class="checkbox-wrapper-35">
+                    <input value="private" name="status" id="switch" type="checkbox" class="switch">
+                    <label for="switch">
+                        <span class="switch-x-text"></span>
+                        <span class="switch-x-toggletext">
+                          <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked: </span>Inactive</span>
+                          <span class="switch-x-checked"><span class="switch-x-hiddenlabel">Checked: </span>Active</span>
+                        </span>
+                    </label>
+                </div></div>
 
-                <label>Role</label>
+                <label for="role_id">Role</label>
                 <select id="role_id" name="role">
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                    <option value="doctor">Doctor</option>
-                    <option value="prenatal mother">Prenatal Mother</option>
-                    <option value="postnatal mother">Postnatal Mother</option>
-                    <option value="midwife">Midwife</option>
+                    <option value="1" >User</option>
+                    <option value="2">Admin</option>
+                    <option value="3">Doctor</option>
+                    <option value="4">Prenatal Mother</option>
+                    <option value="5" >Postnatal Mother</option>
+                    <option value="6">Midwife</option>
                 </select>
 
             </div>
 
+            <div class="buttonRow">
+                <button id="closePopup" class="btn-submit" style="background-color: brown;">
+                    Close
+                </button>
+                <button type="submit" id="updateButton" class="btn-submit">
+                    Update
+                </button>
+            </div>
         </form>
-        <div class="buttonRow">
-            <button id="closePopup" class="btn-submit" style="background-color: brown;">
-                Close
-            </button>
-            <button type="submit" id="updateButton" class="btn-submit">
-                Update
-            </button>
-        </div>
+
     </div>
     <br>
 </div>
@@ -183,17 +189,28 @@ $this->title = 'Users';
 
 <script>
 
-    function UpdatePopUp(user_id, name, status, role){
-
+    function UpdatePopUp(user_id, name, status, role) {
+console.log(role)
         const UserId = document.getElementById('UserId');
         const UserName = document.getElementById('UserName');
-        const Status = document.getElementById('Status');
-        const Role = document.getElementById('Role');
+        const Status = document.getElementById('switch');
+        const Role = document.getElementById('role_id');
+        const options=Role.options;
+
+        for(var i=0;i<options.length;i++){
+            if(options[i].textContent.toLowerCase()==role){
+                // console.log(options[i].textContent)
+
+                options.selectedIndex=i;
+                console.log(options.selectedIndex)
+            }
+        }
+
 
         UserId.value = user_id;
         UserName.value = name;
         Status.checked = status === "Active" ? true : false;
-        Role.value = role;
+        // Role.value = role;
 
         getUserDetails(user_id)
             .then((data) => {
@@ -210,23 +227,31 @@ $this->title = 'Users';
 
 <script>
     document.getElementById('updateButton').addEventListener('click', function (e) {
+        console.log("fgh")
         e.preventDefault();
-
-        const Clinic_id = document.querySelector('input[name="UpdateId"]').value;
-        const MOH_id = document.querySelector('input[name="DoctorId"]').value;
-
+        const id = document.querySelector('input[name="UserId"]').value;
+        let status = document.querySelector('input[name="status"]').checked;
+        const role = document.getElementById("role_id").value;
+        if (status) {
+            status = 1;
+        } else {
+            status = 0;
+        }
+        console.log(id, status, role)
         const formData = new FormData();
-        formData.append('clinic_id', Clinic_id);
-        formData.append('MOH_id', MOH_id);
-
-        const url = '/doctorUpdate';
+        formData.append('id', id);
+        formData.append('status', status);
+        formData.append('role_id', role);
+        const url = '/userUpdate';
 
         fetch(url, {
             method: 'POST',
             body: formData,
         })
             .then(response => {
+                // console.log(response.json())
                 if (response.ok) {
+                    // console.log(response.json())
                     window.location.reload();
                 } else {
                     return response.json();
@@ -247,35 +272,6 @@ $this->title = 'Users';
                     }
                 } else {
                     console.log(responseData);
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    });
-
-</script>
-
-<script>
-    document.getElementById('closePopupRemove').addEventListener('click', function (e) {
-        e.preventDefault();
-
-        const MOH_id = document.querySelector('input[name="DoctorId"]').value;
-
-        const formData = new FormData();
-        formData.append('MOH_id', MOH_id);
-
-        const url = '/deleteDoctor';
-
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-        })
-            .then(response => {
-                if (response.ok) {
-                    window.location.reload();
-                } else {
-                    return response.json();
                 }
             })
             .catch(error => {

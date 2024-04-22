@@ -122,7 +122,7 @@ class m0001_initial
         $db->pdo->exec($SQL9);
 
         $Trigger1 = "
-            CREATE TRIGGER after_insert_user
+            CREATE TRIGGER IF NOT EXISTS after_insert_user
             AFTER INSERT ON users
             FOR EACH ROW
             BEGIN
@@ -177,7 +177,7 @@ class m0001_initial
         $SQL10 = "create table IF NOT EXISTS motherWeights (
             RecordId  int auto_increment primary key,
             MotherId  int                                  not null,
-            Date      date default current_timestamp() not null,
+            Date      TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
             Weight int(3)                               not null
         );"
         ;

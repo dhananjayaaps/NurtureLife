@@ -39,11 +39,13 @@ class UsersController extends \app\core\Controller
 
     public function userUpdate(Request $request): false|string
     {
+
+
         $user = (new User())->getAUser($request->getBody()['id']);
         $this->setLayout('admin');
         $user->loadData($request->getBody());
-        $user->validate();
-        if ($user->validate()) {
+
+        if ($user->userUpdateValidate()) {
             $user->update();
             header('Content-Type: application/json');
             http_response_code(200);

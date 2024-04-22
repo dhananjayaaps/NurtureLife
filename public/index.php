@@ -17,7 +17,7 @@ use app\controllers\MidwifeController\ChildController;
 use app\controllers\MidwifeController\PreMotherController;
 use app\controllers\MotherController;
 use app\controllers\MotherController\FetalkickController;
-use app\controllers\MotherController\PostController;
+use app\controllers\PostController;
 use app\controllers\SiteController;
 use app\core\Application;
 use app\models\User;
@@ -72,6 +72,8 @@ $app->router->post('/reports', [ClinicsController::class, 'reports']);
 
 $app->router->get('/users', [UsersController::class, 'users']);
 $app->router->post('/users', [UsersController::class, 'users']);
+
+$app->router->post('/userUpdate', [UsersController::class, 'userUpdate']);
 
 $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'changeRole']);
 
@@ -147,5 +149,8 @@ $app->router->post('/postMotherForm1', [PostMotherController::class, 'postMother
 
 $app->router->get('/posts', [PostController::class, 'posts']);
 $app->router->post('/posts', [UsersController::class, 'posts']);
+
+$app->router->get('/policy', [SiteController::class, 'policy']);
+$app->router->post('/policy', [SiteController::class, 'policy']);
 
 $app->run();

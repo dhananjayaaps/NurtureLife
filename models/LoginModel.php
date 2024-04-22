@@ -27,6 +27,10 @@ class LoginModel extends Model
             $this->addError('email', 'User does not exist with this Email Address');
             return false;
         }
+        if ($user->status == User::STATUS_INACTIVE) {
+            $this->addError('email', 'This account is not active. Please contact the administrator');
+            return false;
+        }
 
         if ($user->status == User::STATUS_Email_NOT_VERIFIED) {
             http_redirect('/verify-email');

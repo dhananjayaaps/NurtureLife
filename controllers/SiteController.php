@@ -39,7 +39,7 @@ class SiteController extends \app\core\Controller
                 return $this->render('midwife/midwife');
             }
         }
-        $this->layout = 'auth';
+        $this->layout = 'main';
         return $this->render('home');
     }
 //    public function about()
@@ -90,5 +90,11 @@ class SiteController extends \app\core\Controller
         $this->layout = 'auth';
 
         return $this->render('about');
+    }
+    public function policy(): array|false|string
+    {
+        $this->layout = 'volunteer';
+
+        return $this->render('policy');
     }
 }

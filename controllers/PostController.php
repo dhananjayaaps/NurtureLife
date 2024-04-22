@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\MotherController;
+namespace app\controllers;
 
 use app\core\Application;
 use app\core\Request;
