@@ -196,17 +196,6 @@ class m0001_initial
             ) ENGINE=INNODB;
             ";
         $db->pdo->exec($sql);
-
-        $sql = "CREATE TABLE IF NOT EXISTS post_attendance (
-                    user_id INT,
-                    post_id INT,
-                    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    PRIMARY KEY (user_id, post_id),
-                    FOREIGN KEY (user_id) REFERENCES users(id),
-                    FOREIGN KEY (post_id) REFERENCES post(id)
-            ) ENGINE=INNODB;
-            ";
-        $db->pdo->exec($sql);
     }
 
 

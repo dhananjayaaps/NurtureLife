@@ -91,6 +91,9 @@
                 <div class="column">
                     <a href="/appointments"><img src="assets/images/icons/user.png" alt=""> Appointments</a>
                 </div>
+                <div class="column">
+                    <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt=""> Posts</a>
+                </div>
             </div>
         </div>
         <div class="content">

@@ -233,5 +233,25 @@ class User extends UserModel
         $this->addError('status','Invalid Status');
         return false;
     }
+    public function getZip(): string
+    {
+        return $this->postal_code;
+    }
+    public function getUsersByZip($zip): string
+    {
+        $userData = (new User())->findAll(self::class, ['postal_code' => $zip]);
+        $data = [];
 
+        foreach ($userData as $user) {
+            $data[] = [
+                //TODO: what details of user we need?
+                'user_id' => $user->id,
+                'name' => $user->firstname . ' ' . $user->lastname,
+                'email' => $user->email,
+                'contact_no' => $user->contact_no,
+                'role_id' => $user->role_id
+            ];
+        }
+        return json_encode($data);
+    }
 }

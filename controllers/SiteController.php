@@ -87,4 +87,9 @@ class SiteController extends \app\core\Controller
 
         return $this->render('about');
     }
+    public function policy(): array|false|string
+    {
+        $this->layout = 'volunteer';
+        return $this->render('policy');
+    }
 }

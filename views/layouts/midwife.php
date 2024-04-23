@@ -8,7 +8,6 @@
     <title><?=$this->title?></title>
     <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
-    <link rel="stylesheet" href="./assets/styles/admin.css">
     <link rel="stylesheet" href="./assets/styles/midwife.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -19,6 +18,9 @@
 <body>
 
 <div class="navbar">
+    <div class="NL_logo_container">
+        <a href="/"><img src="./assets/images/nurturelife_logo.png" class="NL_logo" alt="NL_logo"></a>
+    </div>
     <a href=" ">Home</a>
     <a href="#about">About</a>
 
@@ -94,6 +96,9 @@
     <!--            </div>-->
                 <div class="column">
                     <a href=""><img src="assets/images/icons/user.png" alt=""> Appointments</a>
+                </div>
+                <div class="column">
+                    <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt=""> Posts</a>
                 </div>
             </div>
         </div>
