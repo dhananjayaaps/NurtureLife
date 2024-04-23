@@ -148,7 +148,10 @@ $app->router->get('/postMotherForm1', [PostMotherController::class, 'postMotherF
 $app->router->post('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
 
 $app->router->get('/posts', [PostController::class, 'posts']);
-$app->router->post('/posts', [UsersController::class, 'posts']);
+$app->router->post('/posts', [PostController::class, 'posts']);
+$app->router->post('/postUpdate', [PostController::class, 'postsUpdate']);
+$app->router->post('/deletePost', [PostController::class, 'postDelete']);
+$app->router->get('/getPostDetails', [PostController::class, 'getPostDetails']);
 
 $app->router->get('/policy', [SiteController::class, 'policy']);
 $app->router->post('/policy', [SiteController::class, 'policy']);
