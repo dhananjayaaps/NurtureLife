@@ -18,8 +18,9 @@ use app\controllers\MidwifeController\PreMotherController;
 use app\controllers\MotherController;
 use app\controllers\MotherController\FetalkickController;
 use app\controllers\PostController;
-use app\controllers\SiteController;
+use app\controllers\MotherController\PreMotherCareController;
 use app\core\Application;
+use app\controllers\SiteController;
 use app\models\User;
 
 $config = [
@@ -155,5 +156,9 @@ $app->router->get('/getPostDetails', [PostController::class, 'getPostDetails']);
 
 $app->router->get('/policy', [SiteController::class, 'policy']);
 $app->router->post('/policy', [SiteController::class, 'policy']);
+
+$app->router->get('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
+$app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
+
 
 $app->run();

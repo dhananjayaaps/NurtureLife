@@ -21,7 +21,13 @@ $this->title = 'Present Mother History Form1';
 <link rel="stylesheet" href="./assets/styles/table.css">
 
 <style>
-    .form-container {
+    .form-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-content {
         display: flex;
         justify-content: space-between;
         max-width: 800px; /* Adjust the width as needed */
@@ -32,6 +38,9 @@ $this->title = 'Present Mother History Form1';
         width: 48%; /* Adjust the width as needed */
         box-sizing: border-box;
         padding: 0 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 
     .form-column:last-child {
@@ -44,22 +53,20 @@ $this->title = 'Present Mother History Form1';
 
     .break-line {
         border-top: 1px solid #FFF;
-        margin-top: 12px;
-        margin-bottom: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
+
 </style>
 
 <div class="Mothers content">
 
     <div class="shadowBox">
-        <h2>Postnatal Clinic Care</h2>
-        <?php $form = Form::begin('', "post")?>
-
         <div class="form-container">
-
-            <div class="form-column">
-
-                <div class="row" style="display: flex; flex-direction: column; gap: 10px">
+            <h2>Postnatal Clinic Care</h2>
+            <?php $form = Form::begin('', "post")?>
+            <div class="form-content">
+                <div class="form-column">
                     <label>
                         1. Breast Problems:
                         <div class="break-line"></div>
@@ -105,6 +112,9 @@ $this->title = 'Present Mother History Form1';
 
                     <div class="break-line"></div>
 
+                </div>
+
+                <div class="form-column">
                     <label>
                         6. Dema(ankle and/or facial):
                         <div class="break-line"></div>
@@ -114,13 +124,6 @@ $this->title = 'Present Mother History Form1';
 
                     <div class="break-line"></div>
 
-
-                </div>
-            </div>
-
-            <div class="form-column">
-
-                <div class="row"  style="...">
                     <label>
                         7. Blood Pressure:
                         <div class="break-line"></div>
@@ -145,9 +148,9 @@ $this->title = 'Present Mother History Form1';
                         <input type="radio" name="respiratory_system" value="Normal"> Normal
                         <input type="radio" name="respiratory_system" value="Unusual"> Unusual
                     </label>
+                </div>
 
-                    <div class="break-line"></div>
-
+                <div class="form-column">
                     <label>
                         10. Abdominal Examination:
                         <div class="break-line"></div>
@@ -163,9 +166,7 @@ $this->title = 'Present Mother History Form1';
                         <input type="radio" name="mental_status" value="Normal"> Normal
                         <input type="radio" name="mental_status" value="Unusual"> Unusual
                     </label>
-
                     <div class="break-line"></div>
-
                     <label>
                         12. Family Planning Method Chosen:
                         <div class="break-line"></div>
@@ -174,17 +175,11 @@ $this->title = 'Present Mother History Form1';
                         <input type="radio" name="family_planning_method" value="3"> Female Sterilization <br>
                         <input type="radio" name="family_planning_method" value="4"> Other
                     </label>
-
                     <div class="break-line"></div>
-
-
                 </div>
-
             </div>
-
+            <button type="submit" class="btn-submit">Submit</button>
         </div>
-
-        <button type="submit" class="btn-submit">Submit</button>
         <?php echo Form::end()?>
     </div>
 </div>
