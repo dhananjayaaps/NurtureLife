@@ -2,12 +2,14 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\db\DbModel;
 
 class Post extends DbModel
 {
-    const int STATUS_INACTIVE = 0;
-    const int STATUS_ACTIVE = 1;
+    const int STATUS_PENDING = 0;
+    const int STATUS_ATTENDED = 1;
+    const int STATUS_COMPLETED = 2;
     const int STATUS_DELETED = 2;
     public string $id = '';
 
@@ -16,11 +18,11 @@ class Post extends DbModel
     public string $created_at = '';
     public string $updated_at = '';
 
-    public int $status = self::STATUS_INACTIVE;
+    public int $status = self::STATUS_PENDING;
 
     public function tableName(): string
     {
-        return 'posts';
+        return 'post';
     }
 
     public function primaryKey(): string
@@ -30,7 +32,7 @@ class Post extends DbModel
 
     public function save(): bool
     {
-        $this->status = self::STATUS_ACTIVE;
+        $this->status = self::STATUS_PENDING;
         return parent::save();
     }
 
@@ -60,7 +62,15 @@ class Post extends DbModel
 
     public function getPosts(): string
     {
-        $postData = (new Post())->findAll(self::class);
+        if(Application::$app->user->getRoleName() == 'Volunteer'){
+            $joins = [
+                ['model' => User::class, 'condition' => 'post.user_id = users.id'],
+            ];
+            $postData = (new Post())->findAllWithJoins(self::class, $joins, ['postal_code' => Application::$app->user->getZip()]);
+
+        }else{
+            $postData = (new Post())->findAll(self::class, ['user_id' => Application::$app->user->getId()]);
+        }
         $data = [];
 
         foreach ($postData as $post) {
@@ -99,13 +109,11 @@ class Post extends DbModel
 
     public function attributes(): array
     {
-        return ['id', 'user_id', 'description', 'created_at', 'updated_at', 'status'];
+        return ['user_id', 'description', 'status'];
     }
 
     public function update() : bool
     {
-        $this->status = self::STATUS_ACTIVE;
-        $this->updated_at = date('Y-m-d H:i:s');
         return parent::update();
     }
 }

@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Request;
-use app\models\Clinic;
+use app\models\Mother;
 use app\models\Post;
 
 class PostController extends \app\core\Controller
@@ -15,22 +15,56 @@ class PostController extends \app\core\Controller
         $post2 = new Post();
         if ($request->isPost()) {
 
-            $this->setLayout('mother');
             $post->loadData($request->getBody());
-
+                $post->user_id = Application::$app->user->getId();
             if ($post->validate() && $post->save()) {
                 Application::$app->session->setFlash('success', 'New Post created successfully');
                 Application::$app->response->redirect('/posts');
                 exit;
             }
         }
-        else if ($request->isGet()) {
-            $this->layout = 'mother';
-        }
 
-        return $this->render('mother/posts', [
+            $roleName = Application::$app->user->getRoleName();
+            if ($roleName == 'Doctor'){
+                $this->layout = 'doctor';
+                return $this->render('doctor/post',  [
+                    'model' => $post, "modelUpdate" => $post2
+                ]);
+            }
+            else if ($roleName == 'Midwife'){
+                $this->layout = 'midwife';
+                return $this->render('midwife/post', [
             'model' => $post, "modelUpdate" => $post2
         ]);
+            }
+            else if ($roleName == 'Prenatal Mother'){
+                $this->layout = 'mother';
+                return $this->render('preMother/post', [
+            'model' => $post, "modelUpdate" => $post2
+        ]);
+            }
+            else if ($roleName == 'Postnatal Mother'){
+                $this->layout = 'mother';
+                return $this->render('postMother/post', [
+            'model' => $post, "modelUpdate" => $post2
+        ]);
+            }
+            else if ($roleName == 'Volunteer'){
+                $this->layout = 'volunteer';
+                return $this->render('volunteer/forum', [
+            'model' => $post, "modelUpdate" => $post2
+        ]);
+            }
+            else{
+                return $this->render('/');
+            }
+
+
+//        return $this->render('preMother/posts', [
+//            'model' => $post, "modelUpdate" => $post2
+//        ]);
+//        $model = new Mother();
+
     }
 
     public function postsUpdate(Request $request): false|string

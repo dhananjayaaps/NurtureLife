@@ -96,6 +96,9 @@
                 <div class="column">
                     <a href="/fetalkick"><img src="assets/images/icons/pregnant.png" alt=""> Report Fetal kicks</a>
                 </div>
+                <div class="column">
+                    <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt="">Posts</a>
+                </div>
             </div>
         </div>
         <div class="content">
@@ -120,7 +123,7 @@
 
     <div class="footer-center">
         <div class="message">Made in 🇱🇰 with 💕</div>
-        <div class="follow-us">FOLLOW US ON</div>
+        <div class="follow-us">follow us on</div>
         <div class="social-media-icons">
             <div class="SM-icon-container">
                 <img class="SM-icon" src="./assets/images/fb-logo.png" />

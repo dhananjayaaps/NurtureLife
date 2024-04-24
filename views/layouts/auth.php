@@ -97,7 +97,7 @@
 
     <div class="footer-center">
         <div class="message">Made in 🇱🇰 with 💕</div>
-        <div class="follow-us">FOLLOW US ON</div>
+        <div class="follow-us">follow us on</div>
         <div class="social-media-icons">
             <div class="SM-icon-container">
                 <img class="SM-icon" src="./assets/images/fb-logo.png" />
