@@ -37,6 +37,7 @@ class AuthController extends Controller
 
             if ($loginModel->validate() && $loginModel->login()) {
                 $response->redirect('/');
+                Application::$app->session->setFlash('success', 'You are successfully logged in');
                 return true;
             }
         }
