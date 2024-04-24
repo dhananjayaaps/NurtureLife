@@ -13,7 +13,7 @@ $this->title = 'Register';
 
 
 <div class="form-container">
-    <h2>Registration Form</h2>
+    <h1>Contact NurtureLife</h1>
 <?php $form = \app\core\form\Form::begin('', "post")?>
     <?php echo $form->field($model, 'firstname', 'First Name')?>
     <?php echo $form->field($model, 'lastname', 'Last Name')?>

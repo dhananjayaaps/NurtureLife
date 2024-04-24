@@ -14,7 +14,7 @@ $this->title = 'Volunteer';
 ?>
 
 <div class="sub_topic">
-    <h1>Why Volunteers?</h1>
+    <h1>Volunteers</h1>
 </div>
 <div class="upper">
         <p>
@@ -186,25 +186,28 @@ $this->title = 'Volunteer';
                 </div>
             </div>
             <div class="myBox" id="myBox">
-                <div class="title">Chethiya Wanigarathne &#9900 Prenatal Mother</div>
-                <div class="notification-content">
-                    <b>I need a volunteer to assist me with my delivery. I am due in 2 weeks.</b>
-                </div>
-                <div class="notification-footer">
-                    <div class="dates">
-                        <span class="created-date">Created: 2021-09-01</span><br>
-                        <span class="updated-date">Last Updated: 2021-09-01</span>
-                    </div>
-                    <div class="status">
-                        Status: Pending
-                    </div>
-                    <div class="actions" style="display: flex; flex-direction: row; gap: 20px; margin: 10px">
-                        <button class="button" style="background-color: #159EEC">Attend</button>
-                        <button class="button" style="background-color: #ffb366">Contact</button>
+                <div class="notification emergency">
+                    <div class="message-box">
+                        <div class="title">Chethiya Wanigarathne &#9900 Prenatal Mother</div>
+                        <div class="notification-content">
+                            <b>I need a volunteer to assist me with my delivery. I am due in 2 weeks.</b>
+                        </div>
+                        <div class="notification-footer">
+                            <div class="dates">
+                                <span class="created-date">Created: 2021-09-01</span><br>
+                                <span class="updated-date">Last Updated: 2021-09-01</span>
+                            </div>
+                            <div class="status">
+                                Status: Pending
+                            </div>
+                            <div class="actions" style="display: flex; flex-direction: row; gap: 20px; margin: 10px">
+                                <button class="button" style="background-color: #159EEC">Attend</button>
+                                <button class="button" style="background-color: #ffb366">Contact</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Add more notification boxes here if needed -->
         </div>
     </div>
 </div>

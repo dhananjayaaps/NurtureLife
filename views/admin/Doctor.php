@@ -19,7 +19,7 @@ $this->title = 'Doctors';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
-
+<h1>Admin - Doctors</h1>
 <div id="myPopup" class="popup">
     <div class="popup-content">
         <h1 style="color: rgb(0, 15, 128);">Update Doctor Details<br/><br/></h1>

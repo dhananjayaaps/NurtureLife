@@ -30,6 +30,7 @@ $this->title = 'Manage Appointments';
     }
 </style>
 
+<h1>Doctor - Appointments</h1>
 <div class="content">
     <div class="shadowBox" style="height: 80vh">
             <div class="search-container">

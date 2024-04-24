@@ -18,6 +18,7 @@ $this->title = 'Midwife Dashboard';
     }
 </style>
 
+<h1>Midwife - Dashboard</h1>
 <div class="content">
     <div class="column first-column">
         <div class="lineChart">

@@ -31,6 +31,7 @@ $this->title = 'Child';
     }
 </style>
 
+<h1>Midwife - Child</h1>
 <div class="Child content">
 
     <div class="shadowBox">

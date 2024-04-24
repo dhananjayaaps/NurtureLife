@@ -11,7 +11,7 @@ $this->title = 'About';
 /* @var $model User */
 ?>
 <link rel="stylesheet" href="./assets/styles/About.css">
-
+<h1>About NurtureLife</h1>
 <div class="about">
     <div class="banner">
         <div class="logo">
