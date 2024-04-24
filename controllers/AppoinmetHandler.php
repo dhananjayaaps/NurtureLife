@@ -22,7 +22,10 @@ class AppoinmetHandler extends Controller
 
         else if ($roleName == 'Midwife'){
             $this->layout = 'midwife';
-            return $this->render('midwife/ManageAppointments');
+            return $this->render('midwife/appointments', [
+                'model' => $model,
+                'appointmentModel' => $appointmentModel
+            ]);
         }
         else{
             return $this->render('/', [
