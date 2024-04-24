@@ -13,6 +13,7 @@ class AppoinmetHandler extends Controller
     public function appointments()
     {
         $model = new Mother();
+        $appointmentModel = new Appointments();
         $roleName = Application::$app->user->getRoleName();
         if ($roleName == 'Doctor'){
             $this->layout = 'doctor';
