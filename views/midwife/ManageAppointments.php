@@ -19,61 +19,6 @@ $this->title = 'Manage Appointments';
 <link rel="stylesheet" href="./assets/styles/table.css">
 <link rel="stylesheet" href="./assets/styles/form.css">
 
-<!---->
-<!--<div id="myPopup" class="popup">-->
-<!--    <div class="popup-content">-->
-<!--        <h1 style="color: rgb(0, 15, 128);">Update Clinic Details<br/><br/></h1>-->
-<!--        <form action="">-->
-<!---->
-<!--            <div class="form-group">-->
-<!---->
-<!--                <label>Doctor ID</label>-->
-<!--                <input type="text" id="DoctorId" name="DoctorId" value=""  class="form-control ">-->
-<!--                <div class="invalid-feedback">-->
-<!---->
-<!--                </div>-->
-<!---->
-<!--                <label>Doctor Name</label>-->
-<!--                <input type="text" id="DoctorName" name="DoctorName" value=""  class="form-control ">-->
-<!--                <div class="invalid-feedback">-->
-<!---->
-<!--                </div>-->
-<!---->
-<!--                <label>Select new Clinic for transfer</label>-->
-<!--                <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control ">-->
-<!--                <div class="invalid-feedback">-->
-<!---->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!--        </form>-->
-<!--        <div class="buttonRow">-->
-<!--            <button type="submit" id="updateButton" class="btn-submit">-->
-<!--                Update-->
-<!--            </button>-->
-<!--            <button id="closePopup" class="btn-submit" style="background-color: brown;">-->
-<!--                Close-->
-<!--            </button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <br>-->
-<!--</div>-->
-<!---->
-<!---->
-<!--<div id="myPopupRemove" class="popup">-->
-<!--    <div class="popup-content">-->
-<!--        Do You Really Need to Remove This? That can't be undone-->
-<!--        <div class="buttonRow" style="display: flex; flex-direction: row; gap: 10px;">-->
-<!--            <button id="closePopup" class="btn-submit">-->
-<!--                Close-->
-<!--            </button>-->
-<!--            <button id="closePopupRemove" class="btn-submit" style="background-color: brown;">-->
-<!--                Remove-->
-<!--            </button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
 <style>
     .content {
         padding: 0;
@@ -81,6 +26,11 @@ $this->title = 'Manage Appointments';
         justify-content: space-around;
         width: 100%;
         margin-top: 10px;
+    }
+
+    a{
+        text-decoration: none;
+        color: white;
     }
 </style>
 
@@ -98,9 +48,6 @@ $this->title = 'Manage Appointments';
                     <th>Mother ID</th>
                     <th>Name</th>
                     <th>Status</th>
-<!--                    <th>Delivery Date</th>-->
-<!--                    <th>Midwife</th>-->
-<!--                    <th>Address</th>-->
                     <th>GN Division</th>
                     <th>Actions</th>
                 </tr>
@@ -156,6 +103,7 @@ $this->title = 'Manage Appointments';
 
         for (var i = startIndex; i < endIndex && i < data.length; i++) {
             var row = data[i];
+            console.log(row);
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
             <td><input type="checkbox" class="tickCheckbox" data-motherid="${row.MotherId}"></td>
@@ -165,7 +113,7 @@ $this->title = 'Manage Appointments';
 <!--            <td>${row.DeliveryDate}</td>-->
 <!--            <td>${row.PHM_id}</td>-->
             <td>Colombo</td>
-<!--            <td>Maharagama</td>-->
+            <button class="action-button" onclick=""><a href="/motherProfile?id=${row.MotherId}">View Mother</a></button>
             `;
             tableBody.appendChild(newRow);
         }

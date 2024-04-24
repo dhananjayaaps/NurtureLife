@@ -121,6 +121,7 @@ class Mother extends DbModel
                 'Status' => $StatusNames[(int)$mother->MotherStatus],
                 'DeliveryDate' => $mother->DeliveryDate,
                 'PHM_id' => $mother->PHM_ID,
+//                'PHM_Name' => (new Midwife())->findOne(self::class, ['PHM_id'=> $mother->PHM_ID ] )->firstname . " " . (new Midwife())->findOne(self::class, ['PHM_id'=> $mother->PHM_ID ] )->lastname
             ];
         }
         return json_encode($data);

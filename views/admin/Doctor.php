@@ -39,11 +39,26 @@ $this->title = 'Doctors';
 
                 </div>
 
-                <label>Select new Clinic for transfer</label>
-                <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control ">
-                <div class="invalid-feedback">
+                <label for="UpdateId">Select new Clinic for transfer</label>
+                <select id="UpdateId" name="UpdateId" class="js-select2 custom-select" required>
+                    <option value="" selected disabled>Select Clinic</option>
+                    <?php foreach ((new Clinic())->getClinicsList() as $clinic): ?>
+                        <option value="<?php echo $clinic['id'] ?>"><?php echo $clinic['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
 
+
+                <style>
+                    .js-select2 {
+                        width: 110%;
+                        height: 130%;
+                        padding: 0;
+                    }
+                </style>
+
+                <div class="invalid-feedback">
                 </div>
+
             </div>
 
         </form>
@@ -125,8 +140,6 @@ $this->title = 'Doctors';
                         padding: 0;
                     }
                 </style>
-
-
                 <div class="invalid-feedback"></div>
             </div>
 
@@ -257,7 +270,7 @@ $this->title = 'Doctors';
    document.getElementById('updateButton').addEventListener('click', function (e) {
        e.preventDefault();
 
-       const Clinic_id = document.querySelector('input[name="UpdateId"]').value;
+       const Clinic_id = document.getElementById('UpdateId').value;
        const MOH_id = document.querySelector('input[name="DoctorId"]').value;
 
        const formData = new FormData();

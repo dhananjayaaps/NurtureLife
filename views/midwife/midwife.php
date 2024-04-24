@@ -5,6 +5,19 @@ use app\models\User;
 
 $this->title = 'Midwife Dashboard';
 ?>
+
+<style>
+    .content{
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .content .shadowBox{
+        height: 40vh;
+        margin-top: 15px;
+    }
+</style>
+
 <div class="content">
     <div class="column first-column">
         <div class="lineChart">

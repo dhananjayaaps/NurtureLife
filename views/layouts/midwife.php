@@ -93,7 +93,7 @@
 <!--                <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>-->
 <!--            </div>-->
             <div class="column">
-                <a href=""><img src="assets/images/icons/user.png" alt=""> Appointments</a>
+                <a href="/ManageAppointments"><img src="assets/images/icons/user.png" alt="ManageAppointments"> Appointments</a>
             </div>
         </div>
     </div>

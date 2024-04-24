@@ -196,18 +196,6 @@ $this->title = 'FetalKicks';
             </div>
             <div class="card">
                 <h3>2024-12-18</h3><br>
-                <b>Tests to be done: </b><br>
-                <div style="background-color: #f2f2f2; padding: 5px; margin-bottom: 5px;">
-                    <span>Colonoscopy</span><br>
-                    <span>Bone density scan</span><br>
-                    <span>Electrocardiogram (ECG)</span>
-                </div>
-                <b>Medicines: </b><br>
-                <div style="background-color: #f2f2f2; padding: 5px;">
-                    <span>Laxatives</span><br>
-                    <span>Calcium supplements</span><br>
-                    <span>Beta-blockers</span>
-                </div><br>
                 <b>Reminders</b><br>
                 <p>Please ensure the patient is properly prepared for the colonoscopy.</p>
             </div>
@@ -221,12 +209,6 @@ $this->title = 'FetalKicks';
                     <span>Thyroid function test</span><br>
                     <span>Liver function test</span>
                 </div>
-                <b>Medicines: </b><br>
-                <div style="background-color: #f2f2f2; padding: 5px;">
-                    <span>Insulin</span><br>
-                    <span>Statins</span><br>
-                    <span>Vitamin D supplements</span>
-                </div><br>
                 <b>Reminders</b><br>
                 <p>Check for any contraindications before prescribing calcium supplements.</p>
             </div>
@@ -236,15 +218,7 @@ $this->title = 'FetalKicks';
                 <b>Tests to be done: </b><br>
                 <div style="background-color: #f2f2f2; padding: 5px; margin-bottom: 5px;">
                     <span>Blood pressure test</span><br>
-                    <span>Cholesterol level test</span><br>
-                    <span>Glucose tolerance test</span>
                 </div>
-                <b>Medicines: </b><br>
-                <div style="background-color: #f2f2f2; padding: 5px;">
-                    <span>Aspirin</span><br>
-                    <span>Paracetamol</span><br>
-                    <span>Antacid</span>
-                </div><br>
                 <b>Reminders</b><br>
                 <p>Monitor the patient's blood pressure regularly if beta-blockers are prescribed.</p>
             </div>

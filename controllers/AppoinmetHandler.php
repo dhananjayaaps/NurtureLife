@@ -3,7 +3,10 @@
 namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
+use app\models\Appointments;
+use app\models\Midwife;
 use app\models\Mother;
+use app\models\User;
 
 class AppoinmetHandler extends Controller
 {
@@ -18,7 +21,7 @@ class AppoinmetHandler extends Controller
 
         else if ($roleName == 'Midwife'){
             $this->layout = 'midwife';
-            return $this->render('midwife/appointments');
+            return $this->render('midwife/ManageAppointments');
         }
         else{
             return $this->render('/', [
