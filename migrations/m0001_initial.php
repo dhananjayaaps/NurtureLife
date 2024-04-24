@@ -122,7 +122,7 @@ class m0001_initial
         $db->pdo->exec($SQL9);
 
         $Trigger1 = "
-            CREATE TRIGGER after_insert_user
+            CREATE TRIGGER IF NOT EXISTS after_insert_user
             AFTER INSERT ON users
             FOR EACH ROW
             BEGIN
@@ -177,7 +177,7 @@ class m0001_initial
         $SQL10 = "create table IF NOT EXISTS motherWeights (
             RecordId  int auto_increment primary key,
             MotherId  int                                  not null,
-            Date      date default current_timestamp() not null,
+            Date      TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
             Weight int(3)                               not null
         );"
         ;
@@ -197,13 +197,29 @@ class m0001_initial
             ";
         $db->pdo->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS post_attendance (
-                    user_id INT,
-                    post_id INT,
-                    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    PRIMARY KEY (user_id, post_id),
-                    FOREIGN KEY (user_id) REFERENCES users(id),
-                    FOREIGN KEY (post_id) REFERENCES post(id)
+        $sql = "CREATE TABLE IF NOT EXISTS post_request (
+                id INT NOT NULL AUTO_INCREMENT,
+                post_id INT,
+                provider_id INT,
+                seeker_id INT,
+                description TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                status TINYINT(1) DEFAULT 1,
+                PRIMARY KEY (id),
+                FOREIGN KEY (provider_id) REFERENCES users(id),
+                FOREIGN KEY (seeker_id) REFERENCES users(id),
+                FOREIGN KEY (post_id) REFERENCES post(id)
+            ) ENGINE=INNODB;
+            ";
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS feedback (
+                id INT NOT NULL AUTO_INCREMENT,
+                email VARCHAR(255),
+                feedback TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id)
             ) ENGINE=INNODB;
             ";
         $db->pdo->exec($sql);

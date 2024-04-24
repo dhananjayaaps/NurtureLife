@@ -116,7 +116,7 @@ class User extends UserModel
 
     public function getRoleName(): string
     {
-        $roleNames = ['Volunteer','Admin','Doctor','Pre Mother','Post Mother','Midwife',];
+        $roleNames = ['Volunteer','Admin','Doctor','Prenatal Mother','Postnatal Mother','Midwife',];
         return $roleNames[$this->role_id-1];
     }
 
@@ -222,4 +222,36 @@ class User extends UserModel
         return json_encode($data);
     }
 
+    public function userUpdateValidate(): bool
+    {
+        if($this->status === self::STATUS_ACTIVE || $this->status === self::STATUS_INACTIVE){
+            if($this->role_id === self::ROLE_USER || $this->role_id === self::ROLE_ADMIN || $this->role_id === self::ROLE_DOCTOR || $this->role_id === self::ROLE_PRE_MOTHER || $this->role_id === self::ROLE_POST_MOTHER || $this->role_id === self::ROLE_MIDWIFE){
+                return true;
+            }
+            $this->addError('role_id','Invalid Role');
+        }
+        $this->addError('status','Invalid Status');
+        return false;
+    }
+    public function getZip(): string
+    {
+        return $this->postal_code;
+    }
+    public function getUsersByZip($zip): string
+    {
+        $userData = (new User())->findAll(self::class, ['postal_code' => $zip]);
+        $data = [];
+
+        foreach ($userData as $user) {
+            $data[] = [
+                //TODO: what details of user we need?
+                'user_id' => $user->id,
+                'name' => $user->firstname . ' ' . $user->lastname,
+                'email' => $user->email,
+                'contact_no' => $user->contact_no,
+                'role_id' => $user->role_id
+            ];
+        }
+        return json_encode($data);
+    }
 }

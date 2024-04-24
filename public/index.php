@@ -13,11 +13,11 @@ use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
 use app\controllers\MidwifeController\AppointmentController;
-use app\controllers\MidwifeController\PreMotherController;
-use app\controllers\MidwifeController\weightGainChartController;
-use app\controllers\MotherController\FetalkickController;
 use app\controllers\MidwifeController\ChildController;
+use app\controllers\MidwifeController\PreMotherController;
 use app\controllers\MotherController;
+use app\controllers\MotherController\FetalkickController;
+use app\controllers\PostController;
 use app\controllers\MotherController\PreMotherCareController;
 use app\core\Application;
 use app\controllers\SiteController;
@@ -73,6 +73,8 @@ $app->router->post('/reports', [ClinicsController::class, 'reports']);
 
 $app->router->get('/users', [UsersController::class, 'users']);
 $app->router->post('/users', [UsersController::class, 'users']);
+
+$app->router->post('/userUpdate', [UsersController::class, 'userUpdate']);
 
 $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'changeRole']);
 
@@ -144,8 +146,14 @@ $app->router->get('/childProfile', [ChildController::class, 'childProfile']);
 $app->router->get('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
 $app->router->post('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
 
-$app->router->get('/preMotherCareForm1', [PostMotherController::class, 'preMotherCareForm1']);
-$app->router->post('/preMotherCareForm1', [PostMotherController::class, 'preMotherCareForm1']);
+$app->router->get('/posts', [PostController::class, 'posts']);
+$app->router->post('/posts', [PostController::class, 'posts']);
+$app->router->post('/postsUpdate', [PostController::class, 'postsUpdate']);
+$app->router->post('/postDelete', [PostController::class, 'postDelete']);
+$app->router->get('/getPostDetails', [PostController::class, 'getPostDetails']);
+
+$app->router->get('/policy', [SiteController::class, 'policy']);
+$app->router->post('/policy', [SiteController::class, 'policy']);
 
 $app->router->get('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
 $app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
