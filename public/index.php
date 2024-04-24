@@ -87,8 +87,6 @@ $app->router->get('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkickUpdate', [FetalkickController::class, 'fetalkickUpdate']);
 
-
-$app->router->get('/appointments', [SiteController::class, 'appointments']);
 $app->router->get('/doctorClinics', [SiteController::class, 'doctorClinics']);
 $app->router->get('/doctorMothers', [SiteController::class, 'doctorMothers']);
 

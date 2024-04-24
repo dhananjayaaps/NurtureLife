@@ -5,6 +5,12 @@ use app\models\User;
 
 $this->title = 'Admin Dashboard';
 ?>
+<style>
+    .content .shadowBox{
+        height: 40vh;
+        margin-top: 15px;
+    }
+</style>
 
 <div class="content">
     <div class="column first-column">

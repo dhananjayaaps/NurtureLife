@@ -78,31 +78,29 @@
 
 <div class="content-navbar">
     <div class="wrapper">
-        <div class="left-navbar">
-            <div class="navigations">
-                <div class="column">
-                    <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
-                </div>
-                <div class="column">
-                    <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
-                </div>
-                <div class="column">
-                    <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
-                </div>
-                <div class="column">
-                    <a href="/preMothers"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
-                </div>
-    <!--            <div class="column">-->
-    <!--                <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>-->
-    <!--            </div>-->
-                <div class="column">
-                    <a href=""><img src="assets/images/icons/user.png" alt=""> Appointments</a>
-                </div>
-                <div class="column">
-                    <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt=""> Posts</a>
-                </div>
+    <div class="left-navbar">
+        <div class="navigations">
+            <div class="column">
+                <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
+            </div>
+            <div class="column">
+                <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
+            </div>
+            <div class="column">
+                <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
+            </div>
+            <div class="column">
+                <a href="/appointments"><img src="assets/images/icons/pregnant.png" alt="">Appointments</a>
+            </div>
+<!--            <div class="column">-->
+<!--                <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>-->
+<!--            </div>-->
+            <div class="column">
+                <a href="/ManageAppointments"><img src="assets/images/icons/user.png" alt="ManageAppointments">Prenatal Mothers</a>
             </div>
         </div>
+    </div>
+
         <div class="content">
             {{content}}
         </div>
