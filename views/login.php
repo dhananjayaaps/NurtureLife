@@ -12,24 +12,14 @@ $this->title = 'Login';
 ?>
 
 <style>
-    .shadowBox{
-        min-width: 80%;
-        min-height: 60%;
-    }
-    .content{
-        margin-left: 0;
-        align-items: center;
-    }
     .container{
         align-items: center;
         gap: 50px;
-        /*justify-content: space-around;*/
     }
 
     .formContent{
-        align-items: center;
-        justify-content: center;
-        display: flex;
+        width: 50%;
+        height: 100%;
     }
 </style>
 

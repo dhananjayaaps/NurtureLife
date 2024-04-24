@@ -2,9 +2,9 @@
 
 namespace app\models;
 
-use app\core\db\DbModel;
+use app\core\db\DbModel as parentAlias;
 
-class Child extends DbModel
+class Child extends parentAlias
 {
 
     public string $user_id = '';

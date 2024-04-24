@@ -45,7 +45,7 @@ $this->title = 'Present Mother History Form1';
 <div class="Mothers content">
 
     <div class="shadowBox">
-        <h2>Medical and Surgical History</h2>
+        <h2>Family History</h2><br><br>
         <?php $form = Form::begin('', "post")?>
 
         <div class="form-container">
@@ -58,7 +58,7 @@ $this->title = 'Present Mother History Form1';
                     <input type="radio" name="diabetes1" value="No"> No
                 </label>
 
-                <div class="break-line"></div>
+                <div class="break-line"></div><br>
 
                 <label>
                     2. Hypertension:
@@ -67,7 +67,7 @@ $this->title = 'Present Mother History Form1';
                     <input type="radio" name="hypertension1" value="No"> No
                 </label>
 
-                <div class="break-line"></div>
+                <div class="break-line"></div><br>
 
                 <label>
                     3. Haematological Diseases:
@@ -76,7 +76,7 @@ $this->title = 'Present Mother History Form1';
                     <input type="radio" name="haematological1" value="No"> No
                 </label>
 
-                <div class="break-line"></div>]
+                <div class="break-line"></div><br>
 
 
                 <?php echo $form->field($model, 'other1', '4. Other(specify)')?>

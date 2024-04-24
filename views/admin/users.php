@@ -20,31 +20,35 @@ $this->title = 'Users';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
-
 <div id="myPopup" class="popup">
     <div class="popup-content">
-        <h1 style="color: rgb(0, 15, 128);">Update Doctor Details<br/><br/></h1>
+        <h1 style="color: rgb(0, 15, 128);">Update User Details<br/><br/></h1>
         <form action="">
 
             <div class="form-group">
 
-                <label>Doctor ID</label>
-                <input type="text" id="DoctorId" name="DoctorId" value=""  class="form-control ">
-                <div class="invalid-feedback">
+                <label>User ID</label>
+                <input type="text" id="UserId" name="UserId" value=""  class="form-control " disabled>
 
-                </div>
+                <label>User Name</label>
+                <input type="text" id="UserName" name="UserName" value=""  class="form-control " disabled>
 
-                <label>Doctor Name</label>
-                <input type="text" id="DoctorName" name="DoctorName" value=""  class="form-control ">
-                <div class="invalid-feedback">
+                <label>Status</label>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
 
-                </div>
+                <label>Role</label>
+                <select id="role_id" name="role">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="prenatal mother">Prenatal Mother</option>
+                    <option value="postnatal mother">Postnatal Mother</option>
+                    <option value="midwife">Midwife</option>
+                </select>
 
-                <label>Select new Clinic for transfer</label>
-                <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control ">
-                <div class="invalid-feedback">
-
-                </div>
             </div>
 
         </form>
@@ -61,35 +65,23 @@ $this->title = 'Users';
 </div>
 
 
-<div id="myPopupRemove" class="popup">
-    <div class="popup-content">
-        Please confirm before removing this Doctor. This action can't be undone.
-        <div class="buttonRow" style="display: flex; flex-direction: row; gap: 10px;">
-            <button id="closePopup" class="btn-submit">
-                Close
-            </button>
-            <button id="closePopupRemove" class="btn-submit" style="background-color: brown;">
-                Remove
-            </button>
-        </div>
-    </div>
-</div>
-
 <div class="content">
     <div class="left-content">
         <div class="shadowBox">
             <div class="left-content">
                 <div class="search-container">
-                    <input type="text" placeholder="Search Doctor...">
+                    <input type="text" placeholder="Search User...">
                     <button type="submit">Search</button>
                 </div>
                 <table class="table-data">
                     <thead>
                     <tr>
-                        <th>Doctor ID</th>
+                        <th>User ID</th>
                         <th>Name</th>
-                        <th>SLMC ID</th>
-                        <th>Clinic</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Contact No</th>
+                        <th>role</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -106,7 +98,7 @@ $this->title = 'Users';
 </div>
 
 <script>
-    var data = <?php echo $model->getDoctors()?>;
+    var data = <?php echo $model->getUsers()?>;
 
     var itemsPerPage = 10;
     var currentPage = 1;
@@ -119,15 +111,26 @@ $this->title = 'Users';
 
         for (var i = startIndex; i < endIndex && i < data.length; i++) {
             var row = data[i];
+            var statusText = row.status === 1 ? "Active" : "Inactive";
+            var roleMap = {
+                1: "user",
+                2: "admin",
+                3: "doctor",
+                4: "prenatal mother",
+                5: "postnatal mother",
+                6: "midwife"
+            };
+            var role = roleMap[row.role_id];
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
-            <td>${row.MOH_ID}</td>
-            <td>${row.Name}</td>
-            <td>${row.SLMC_no}</td>
-            <td>${row.clinic_id}</td>
+            <td>${row.user_id}</td>
+            <td>${row.name}</td>
+            <td>${row.email}</td>
+            <td>${statusText}</td>
+            <td>${row.contact_no}</td>
+            <td>${role}</td>
             <td class="action-buttons">
-            <button id="showPopUp" onclick="UpdatePopUp('${row.MOH_ID}', '${row.Name}')" class="action-button update-button">Update</button>
-            <button class="action-button remove-button" onclick="UpdatePopUp('${row.MOH_ID}', '${row.Name}')">Remove</button>
+            <button id="showPopUp" onclick="UpdatePopUp('${row.user_id}', '${row.name}', '${statusText}', '${role}')" class="action-button update-button">Update</button>
         `;
             tableBody.appendChild(newRow);
         }
@@ -180,34 +183,24 @@ $this->title = 'Users';
 
 <script>
 
-    function UpdatePopUp(MOH_ID, Name){
+    function UpdatePopUp(user_id, name, status, role){
 
-        var labels = document.querySelectorAll('form label');
+        const UserId = document.getElementById('UserId');
+        const UserName = document.getElementById('UserName');
+        const Status = document.getElementById('Status');
+        const Role = document.getElementById('Role');
 
-        const DocId = document.getElementById('DoctorId');
-        const DocName = document.getElementById('DoctorName');
+        UserId.value = user_id;
+        UserName.value = name;
+        Status.checked = status === "Active" ? true : false;
+        Role.value = role;
 
-        DocId.value = MOH_ID;
-        DocName.value = Name;
-        DocId.disabled = true;
-        DocName.disabled = true;
-
-        var inputFieldId = getElementById('UpdateId');
-
-        if (inputFieldId) {
-            inputFieldId.value = DocId;
-            inputFieldId.disabled = true;
-        }
-
-        getDoctorDetails(MOH_Id)
+        getUserDetails(user_id)
             .then((data) => {
-                var inputFieldId = getElementById('UpdateId');
-
-                if (inputFieldId) {
-                    inputFieldId.value = DocId;
-                    inputFieldId.disabled = true;
-                }
-
+                UserId.value = data.user_id;
+                UserName.value = data.name;
+                Status.checked = data.status === 1 ? true : false;
+                Role.value = data.role;
             })
             .catch((error) => {
                 console.error(error);

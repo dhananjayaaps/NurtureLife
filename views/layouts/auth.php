@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./assets/styles/Form.css">
 </head>
 <body>
-<!--header-->
+//header
 <div class="navbar" id="myNavbar">
     <div class="NL_logo_container">
         <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
@@ -28,6 +28,7 @@
         <a href="/login">Login</a>
         <a href="/register">Signup</a>
     <?php else: ?>
+
         <div class="dropdown">
             <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
                 <i class="fa fa-caret-down"></i>
@@ -42,7 +43,7 @@
 
         <div class="action" id="actionElement">
             <div class="profile" onclick="menuToggle();">
-                <img src="./assets/images/men_user.jpg" />
+                <img src="./assets/images/icons/woman.png" />
             </div>
             <div class="menu">
                 <h3><?php echo Application::$app->user->getDisplayName() ?></h3>
@@ -72,14 +73,14 @@
 
 </div>
 
-<!--body content-->
+//body content
 <div class="wrapper">
-    <div class="content">
+    <div class="userHome_content">
         {{content}}
     </div>
 </div>
 
-<!--footer-->
+//footer
 <div class="footer">
     <div class="footer-left">
         <div class="footer-left-title">
@@ -95,6 +96,7 @@
     </div>
 
     <div class="footer-center">
+        <div class="message">Made in 🇱🇰 with 💕</div>
         <div class="follow-us">FOLLOW US ON</div>
         <div class="social-media-icons">
             <div class="SM-icon-container">
