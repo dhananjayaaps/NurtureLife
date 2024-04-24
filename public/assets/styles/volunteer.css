@@ -515,3 +515,8 @@ h1 {
 .notification-content{
 
 }
+.button{
+    padding: 5px;
+    border-style: none;
+    border-radius: 8px;
+}

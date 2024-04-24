@@ -87,8 +87,8 @@ $this->title = 'Posts';
     </div>
 </div>
 
-<div class="clinics content">
-    <div class="shadowBox">
+<div class="clinics content" style="display: flex; flex-direction: row">
+    <div class="shadowBox" style="max-width: 700px; height: fit-content">
         <div class="left-content">
             <div class="search-container">
                 <input type="text" placeholder="Search Posts...">
@@ -114,8 +114,8 @@ $this->title = 'Posts';
             </div>
         </div>
     </div>
-    <div class="shadowBox">
-        <div class="right-content">
+    <div class="shadowBox" style="height: fit-content">
+        <div class="right-content" style="margin-top: 10px">
             <h2>Create a new post <br/><br/></h2>
             <?php $form = Form::begin('', "post")?>
             <?php echo $form->field($model, 'description', 'Please describe your requirement')?>

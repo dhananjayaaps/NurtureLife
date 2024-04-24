@@ -19,6 +19,7 @@ $this->title = 'Users';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
+<!--user update popup-->
 <div id="myPopup" class="popup">
     <div class="popup-content">
         <h1 style="color: rgb(0, 15, 128);">Update User Details<br/><br/></h1>
@@ -31,28 +32,32 @@ $this->title = 'Users';
 
                 <label>User Name</label>
                 <input type="text" id="UserName" name="UserName" value="" class="form-control " disabled>
-                <div style="display: flex;gap: 5px"><label>Status</label>
 
-                <div class="checkbox-wrapper-35">
-                    <input value="private" name="status" id="switch" type="checkbox" class="switch">
-                    <label for="switch">
-                        <span class="switch-x-text"></span>
-                        <span class="switch-x-toggletext">
-                          <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked: </span>Inactive</span>
-                          <span class="switch-x-checked"><span class="switch-x-hiddenlabel">Checked: </span>Active</span>
-                        </span>
-                    </label>
-                </div></div>
+                <div style="display: flex;gap: 5px; margin: 10px">
+                    <label>Status</label>
+                    <div class="checkbox-wrapper-35">
+                        <input value="private" name="status" id="switch" type="checkbox" class="switch">
+                        <label for="switch">
+                            <span class="switch-x-text"></span>
+                            <span class="switch-x-toggletext">
+                              <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked: </span>Inactive</span>
+                              <span class="switch-x-checked"><span class="switch-x-hiddenlabel">Checked: </span>Active</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
 
-                <label for="role_id">Role</label>
-                <select id="role_id" name="role">
-                    <option value="1" >User</option>
-                    <option value="2">Admin</option>
-                    <option value="3">Doctor</option>
-                    <option value="4">Prenatal Mother</option>
-                    <option value="5" >Postnatal Mother</option>
-                    <option value="6">Midwife</option>
-                </select>
+                <div style="display: flex;gap: 5px; margin: 10px>
+                    <label for="role_id">Role</label>
+                    <select id="role_id" name="role">
+                        <option value="1" >User</option>
+                        <option value="2">Admin</option>
+                        <option value="3">Doctor</option>
+                        <option value="4">Prenatal Mother</option>
+                        <option value="5" >Postnatal Mother</option>
+                        <option value="6">Midwife</option>
+                    </select>
+                </div>
 
             </div>
 
@@ -74,7 +79,7 @@ $this->title = 'Users';
 <div class="content">
     <div class="left-content">
         <div class="shadowBox">
-            <div class="left-content">
+            <div class="left-content" style="margin: 0">
                 <div class="search-container">
                     <input type="text" placeholder="Search User...">
                     <button type="submit">Search</button>
