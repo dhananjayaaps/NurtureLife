@@ -330,7 +330,8 @@ console.log(id, description, status)
         })
             .then(response => {
                 if (response.ok) {
-                    window.location.reload();
+                    console.log(response.text())
+                    // window.location.reload();
                 } else {
                     return response.json();
                 }

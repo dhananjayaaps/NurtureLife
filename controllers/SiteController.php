@@ -45,6 +45,7 @@ class SiteController extends \app\core\Controller
 
     public function contact(): false|array|string
     {
+        $this->layout = 'auth';
         return $this->render('contact');
     }
     public function handleContact(Request $request): string

@@ -83,8 +83,6 @@ $this->title = 'About';
                     <li>Implement a mechanism to generate various comprehensive reports and analytics.</li>
                     <li>Integrate all existing processes and users into NurtureLife as Sri Lanka’s centralized
                         maternity care system</li>
-
-
                 </ul>
             </p>
         </div>
