@@ -9,7 +9,6 @@
     <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/midwife.css">
-    <link rel="stylesheet" href="./assets/styles/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" />
@@ -78,29 +77,31 @@
 
 <div class="content-navbar">
     <div class="wrapper">
-    <div class="left-navbar">
-        <div class="navigations">
-            <div class="column">
-                <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
-            </div>
-            <div class="column">
-                <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
-            </div>
-            <div class="column">
-                <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
-            </div>
-            <div class="column">
-                <a href="/appointments"><img src="assets/images/icons/pregnant.png" alt="">Appointments</a>
-            </div>
-<!--            <div class="column">-->
-<!--                <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>-->
-<!--            </div>-->
-            <div class="column">
-                <a href="/ManageAppointments"><img src="assets/images/icons/user.png" alt="ManageAppointments">Prenatal Mothers</a>
+        <div class="left-navbar">
+            <div class="navigations">
+                <div class="column">
+                    <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
+                </div>
+                <div class="column">
+                    <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
+                </div>
+                <div class="column">
+                    <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
+                </div>
+                <div class="column">
+                    <a href="/preMothers"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
+                </div>
+                <!--            <div class="column">-->
+                <!--                <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>-->
+                <!--            </div>-->
+                <div class="column">
+                    <a href=""><img src="assets/images/icons/user.png" alt=""> Appointments</a>
+                </div>
+                <div class="column">
+                    <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt=""> Posts</a>
+                </div>
             </div>
         </div>
-    </div>
-
         <div class="content">
             {{content}}
         </div>

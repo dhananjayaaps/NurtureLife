@@ -74,13 +74,12 @@
 </div>
 
 //body content
-<div class="wrapper">
+<div class="wrapper" style="height: fit-content">
     <div class="userHome_content">
         {{content}}
     </div>
 </div>
 
-//footer
 <div class="footer">
     <div class="footer-left">
         <div class="footer-left-title">
