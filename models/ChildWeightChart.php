@@ -8,24 +8,25 @@ use PDO;
 use app\core\Model;
 
 
-class WeightGainChart extends DbModel
+class ChildWeightChart extends DbModel
 {
-    public string $RecordId ='';
-    public string $MotherId;
-    public string $weight ='';
+    public string $weight_record_id ='';
+    public string $child_id = '';
+    public string $value_of_weight ='';
 
     public function rules(): array
     {
         return[
 
-            'weight'=> [self::RULE_REQUIRED]
+            'value_of_weight'=> [self::RULE_REQUIRED],
+            'child_id'=> [self::RULE_REQUIRED]
 
         ];
     }
 
     public function tableName(): string
     {
-        return 'weight';
+        return 'fetalkick';
     }
 
     public function primaryKey(): string
@@ -36,20 +37,20 @@ class WeightGainChart extends DbModel
     public function attributes(): array
     {
         return [
-            'weight',
+            'KickCount',
             'MotherId'
         ];
     }
-    public function getWeight(): string
+    public function getKicks(): string
     {
         $MotherId = $this->getMotherId();
-        $weight = (new WeightGainChart())->findAll(self::class,['MotherId'=>$MotherId]);
+        $KickData = (new Fetalkick())->findAll(self::class,['MotherId'=>$MotherId]);
         $data = [];
 
-        foreach ($weight as $weight) {
+        foreach ($KickData as $Kicks) {
             $data[] = [
-                'Date' => $weight->Time,
-                'Count' => $weight->Weight
+                'Date' => $Kicks->Time,
+                'Count' => $Kicks->KickCount
             ];
         }
         return json_encode($data);

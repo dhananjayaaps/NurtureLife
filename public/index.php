@@ -142,8 +142,8 @@ $app->router->get('/childProfile', [ChildController::class, 'childProfile']);
 $app->router->get('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
 $app->router->post('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
 
-$app->router->get('/preMotherCareForm1', [PostMotherController::class, 'preMotherCareForm1']);
-$app->router->post('/preMotherCareForm1', [PostMotherController::class, 'preMotherCareForm1']);
+$app->router->get('/preMotherCareForm1', [PreMotherCareController::class, 'preMotherCareForm1']);
+$app->router->post('/preMotherCareForm1', [PreMotherCareController::class, 'preMotherCareForm1']);
 
 $app->router->get('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
 $app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
