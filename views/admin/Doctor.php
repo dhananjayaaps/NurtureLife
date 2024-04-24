@@ -39,11 +39,26 @@ $this->title = 'Doctors';
 
                 </div>
 
-                <label>Select new Clinic for transfer</label>
-                <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control ">
-                <div class="invalid-feedback">
+                <label for="UpdateId">Select new Clinic for transfer</label>
+                <select id="UpdateId" name="UpdateId" class="js-select2 custom-select" required>
+                    <option value="" selected disabled>Select Clinic</option>
+                    <?php foreach ((new Clinic())->getClinicsList() as $clinic): ?>
+                        <option value="<?php echo $clinic['id'] ?>"><?php echo $clinic['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
 
+
+                <style>
+                    .js-select2 {
+                        width: 110%;
+                        height: 130%;
+                        padding: 0;
+                    }
+                </style>
+
+                <div class="invalid-feedback">
                 </div>
+
             </div>
 
         </form>
@@ -125,8 +140,6 @@ $this->title = 'Doctors';
                         padding: 0;
                     }
                 </style>
-
-
                 <div class="invalid-feedback"></div>
             </div>
 
@@ -195,159 +208,159 @@ $this->title = 'Doctors';
 </script>
 
 <script>
-    var myPopup = document.getElementById('myPopup');
-    var closeButton = document.getElementById('closePopup');
-    var popupButtonContainer = document.querySelector('.content');
+       var myPopup = document.getElementById('myPopup');
+       var closeButton = document.getElementById('closePopup');
+       var popupButtonContainer = document.querySelector('.content');
 
-    popupButtonContainer.addEventListener("click", function (event) {
-        if (event.target.id === 'showPopUp') {
-            myPopup.classList.add("show");
-        }
-    });
+       popupButtonContainer.addEventListener("click", function (event) {
+           if (event.target.id === 'showPopUp') {
+               myPopup.classList.add("show");
+           }
+       });
 
-    closeButton.addEventListener("click", function () {
-        myPopup.classList.remove("show");
-    });
+       closeButton.addEventListener("click", function () {
+           myPopup.classList.remove("show");
+       });
 
-    window.addEventListener("click", function (event) {
-        if (event.target === myPopup) {
-            myPopup.classList.remove("show");
-        }
-    });
+       window.addEventListener("click", function (event) {
+           if (event.target === myPopup) {
+               myPopup.classList.remove("show");
+           }
+       });
 </script>
 
 <script>
 
-    function UpdatePopUp(MOH_ID, Name){
+   function UpdatePopUp(MOH_ID, Name){
 
-        var labels = document.querySelectorAll('form label');
+       var labels = document.querySelectorAll('form label');
 
-        const DocId = document.getElementById('DoctorId');
-        const DocName = document.getElementById('DoctorName');
+       const DocId = document.getElementById('DoctorId');
+       const DocName = document.getElementById('DoctorName');
 
-        DocId.value = MOH_ID;
-        DocName.value = Name;
-        DocId.disabled = true;
-        DocName.disabled = true;
+       DocId.value = MOH_ID;
+       DocName.value = Name;
+       DocId.disabled = true;
+       DocName.disabled = true;
 
-        var inputFieldId = getElementById('UpdateId');
+       var inputFieldId = getElementById('UpdateId');
 
-        if (inputFieldId) {
-            inputFieldId.value = DocId;
-            inputFieldId.disabled = true;
-        }
+       if (inputFieldId) {
+           inputFieldId.value = DocId;
+           inputFieldId.disabled = true;
+       }
 
-        getDoctorDetails(MOH_Id)
-            .then((data) => {
-                var inputFieldId = getElementById('UpdateId');
+       getDoctorDetails(MOH_Id)
+           .then((data) => {
+               var inputFieldId = getElementById('UpdateId');
 
-                if (inputFieldId) {
-                    inputFieldId.value = DocId;
-                    inputFieldId.disabled = true;
-                }
+               if (inputFieldId) {
+                   inputFieldId.value = DocId;
+                   inputFieldId.disabled = true;
+               }
 
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
+           })
+           .catch((error) => {
+               console.error(error);
+           });
+   }
 </script>
 
 <script>
-    document.getElementById('updateButton').addEventListener('click', function (e) {
-        e.preventDefault();
+   document.getElementById('updateButton').addEventListener('click', function (e) {
+       e.preventDefault();
 
-        const Clinic_id = document.querySelector('input[name="UpdateId"]').value;
-        const MOH_id = document.querySelector('input[name="DoctorId"]').value;
+       const Clinic_id = document.getElementById('UpdateId').value;
+       const MOH_id = document.querySelector('input[name="DoctorId"]').value;
 
-        const formData = new FormData();
-        formData.append('clinic_id', Clinic_id);
-        formData.append('MOH_id', MOH_id);
+       const formData = new FormData();
+       formData.append('clinic_id', Clinic_id);
+       formData.append('MOH_id', MOH_id);
 
-        const url = '/doctorUpdate';
+       const url = '/doctorUpdate';
 
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-        })
-            .then(response => {
-                if (response.ok) {
-                    window.location.reload();
-                } else {
-                    return response.json();
-                }
-            })
-            .then(responseData => {
-                if (responseData.errors) {
-                    const invalidFeedbackElements = document.querySelectorAll('.invalid-feedback');
-                    for (const key in responseData.errors) {
-                        console.log(key)
-                        if (responseData.errors[key].length > 0) {
-                            const feedbackElement = document.querySelector(`[name="Update${key.charAt(0).toUpperCase() + key.slice(1)}"] + .invalid-feedback`);
-                            if (feedbackElement) {
-                                feedbackElement.innerHTML = "<svg aria-hidden=\"true\" class=\"stUf5b qpSchb\" fill=\"currentColor\" focusable=\"false\" width=\"16px\" height=\"16px\" viewBox=\"0 0 24 24\" xmlns=\"https://www.w3.org/2000/svg\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z\"></path></svg>" +
-                                    responseData.errors[key][0];
-                            }
-                        }
-                    }
-                } else {
-                    console.log(responseData);
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    });
+       fetch(url, {
+           method: 'POST',
+           body: formData,
+       })
+           .then(response => {
+               if (response.ok) {
+                   window.location.reload();
+               } else {
+                   return response.json();
+               }
+           })
+           .then(responseData => {
+               if (responseData.errors) {
+                   const invalidFeedbackElements = document.querySelectorAll('.invalid-feedback');
+                   for (const key in responseData.errors) {
+                       console.log(key)
+                       if (responseData.errors[key].length > 0) {
+                           const feedbackElement = document.querySelector(`[name="Update${key.charAt(0).toUpperCase() + key.slice(1)}"] + .invalid-feedback`);
+                           if (feedbackElement) {
+                               feedbackElement.innerHTML = "<svg aria-hidden=\"true\" class=\"stUf5b qpSchb\" fill=\"currentColor\" focusable=\"false\" width=\"16px\" height=\"16px\" viewBox=\"0 0 24 24\" xmlns=\"https://www.w3.org/2000/svg\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z\"></path></svg>" +
+                                   responseData.errors[key][0];
+                           }
+                       }
+                   }
+               } else {
+                   console.log(responseData);
+               }
+           })
+           .catch(error => {
+               console.error(error);
+           });
+   });
 
 </script>
 
 <script>
-    document.getElementById('closePopupRemove').addEventListener('click', function (e) {
-        e.preventDefault();
+   document.getElementById('closePopupRemove').addEventListener('click', function (e) {
+       e.preventDefault();
 
-        const MOH_id = document.querySelector('input[name="DoctorId"]').value;
+       const MOH_id = document.querySelector('input[name="DoctorId"]').value;
 
-        const formData = new FormData();
-        formData.append('MOH_id', MOH_id);
+       const formData = new FormData();
+       formData.append('MOH_id', MOH_id);
 
-        const url = '/deleteDoctor';
+       const url = '/deleteDoctor';
 
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-        })
-            .then(response => {
-                if (response.ok) {
-                    window.location.reload();
-                } else {
-                    return response.json();
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    });
+       fetch(url, {
+           method: 'POST',
+           body: formData,
+       })
+           .then(response => {
+               if (response.ok) {
+                   window.location.reload();
+               } else {
+                   return response.json();
+               }
+           })
+           .catch(error => {
+               console.error(error);
+           });
+   });
 
 </script>
 
 
 <script>
-    function showRemovePopup() {
-        var myPopupRemove = document.getElementById('myPopupRemove');
-        myPopupRemove.classList.add("show");
-    }
+   function showRemovePopup() {
+       var myPopupRemove = document.getElementById('myPopupRemove');
+       myPopupRemove.classList.add("show");
+   }
 
-    var popupButtonContainer = document.querySelector('.content');
-    popupButtonContainer.addEventListener("click", function (event) {
-        if (event.target.classList.contains('remove-button')) {
-            showRemovePopup();
-        }
-    });
+   var popupButtonContainer = document.querySelector('.content');
+   popupButtonContainer.addEventListener("click", function (event) {
+       if (event.target.classList.contains('remove-button')) {
+           showRemovePopup();
+       }
+   });
 
-    window.addEventListener("click", function (event) {
-        var myPopupRemove = document.getElementById('myPopupRemove');
-        if (event.target === myPopupRemove) {
-            myPopupRemove.classList.remove("show");
-        }
-    });
+   window.addEventListener("click", function (event) {
+       var myPopupRemove = document.getElementById('myPopupRemove');
+       if (event.target === myPopupRemove) {
+           myPopupRemove.classList.remove("show");
+       }
+   });
 </script>

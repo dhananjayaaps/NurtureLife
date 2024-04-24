@@ -42,6 +42,8 @@ $this->title = 'Manage Appointments';
                     <th>Mother ID</th>
                     <th>Name</th>
                     <th>Status</th>
+                    <th>Delivery Date</th>
+                    <th>PHM ID</th>
                     <th>GN Division</th>
                     <th>Actions</th>
                 </tr>
@@ -75,8 +77,8 @@ $this->title = 'Manage Appointments';
             <td>${row.MotherId}</td>
             <td>${row.Name}</td>
             <td>${row.Status}</td>
-<!--            <td>${row.DeliveryDate}</td>-->
-<!--            <td>${row.PHM_id}</td>-->
+            <td>${row.DeliveryDate}</td>
+            <td>${row.PHM_id}</td>
             <td>Colombo</td>
             <button class="action-button" onclick=""><a href="/motherProfile">View Mother</a></button>
             `;
