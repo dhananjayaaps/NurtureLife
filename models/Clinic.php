@@ -11,6 +11,7 @@ namespace app\models;
 
 use app\core\Application;
 use app\core\db\DbModel;
+use PDO;
 
 class Clinic extends DbModel
 {
@@ -22,6 +23,7 @@ class Clinic extends DbModel
     public string $name = '';
     public string $district ='';
     public string $address = '';
+    public string $contactNo = '';
     public string $created_at = '';
 
     public int $status = self::STATUS_INACTIVE;
@@ -50,6 +52,7 @@ class Clinic extends DbModel
             ]],
             'district' => [self::RULE_REQUIRED],
             'address' => [self::RULE_REQUIRED ],
+            'contactNo' => [self::RULE_REQUIRED],
         ];
     }
 
@@ -68,15 +71,23 @@ class Clinic extends DbModel
 
     public function getClinics(): string
     {
-        $clinicData = (new Clinic())->findAll(self::class);
         $data = [];
+
+        $sql = "SELECT c.id AS clinic_id, c.contactNo as contactNo ,c.name AS clinic_name, c.district, c.address, COUNT(DISTINCT m.user_id) AS mother_count, COUNT(DISTINCT mid.PHM_id) AS midwife_count, COUNT(DISTINCT doc.user_id) AS doctor_count FROM clinics c LEFT JOIN Mothers m ON c.id = m.clinic_id LEFT JOIN midwife mid ON c.id = mid.clinic_id LEFT JOIN doctors doc ON c.id = doc.clinic_id GROUP BY c.id, c.name, c.district, c.address";
+
+        $statement = self::prepare($sql);
+
+        $statement->execute();
+        $clinicData = $statement->fetchAll(PDO::FETCH_OBJ);
 
         foreach ($clinicData as $clinic) {
             $data[] = [
-                'clinicID' => $clinic->id,
-                'name' => $clinic->name,
-                'totalMothers' => 150,
-                'totalMidwives' => 23
+                'clinicID' => $clinic->clinic_id,
+                'name' => $clinic->clinic_name,
+                'totalMothers' => $clinic->mother_count,
+                'totalMidwives' => $clinic->midwife_count,
+                'totalDoctors' => $clinic->doctor_count,
+                'contactNo' => $clinic->contactNo,
             ];
         }
         return json_encode($data);
@@ -91,7 +102,8 @@ class Clinic extends DbModel
             'clinicID' => $clinicData->id,
             'name' => $clinicData->name,
             'district' => $clinicData->district,
-            'address' => $clinicData->address
+            'address' => $clinicData->address,
+            'contactNo' => $clinicData->contactNo,
         ];
         return json_encode($data);
     }
@@ -103,7 +115,7 @@ class Clinic extends DbModel
 
     public function attributes(): array
     {
-        return ['name','district','address'];
+        return ['name','district','address', 'contactNo'];
     }
 
     public function update() : bool

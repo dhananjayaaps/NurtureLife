@@ -12,6 +12,7 @@ class Appointments extends DbModel
     public string $AppointDate = '';
     public string $AppointStatus = '';
     public string $AppointRemarks = '';
+    public string $time = '';
 
     public function tableName(): string
     {
@@ -25,7 +26,8 @@ class Appointments extends DbModel
             'AppointType',
             'AppointDate',
             'AppointStatus',
-            'AppointRemarks'
+            'AppointRemarks',
+            'time'
         ];
     }
 
@@ -41,6 +43,7 @@ class Appointments extends DbModel
             'AppointType' => [self::RULE_REQUIRED],
             'AppointDate' => [self::RULE_REQUIRED],
             'AppointStatus' => [self::RULE_REQUIRED],
+            'time' => [self::RULE_REQUIRED],
         ];
     }
 }

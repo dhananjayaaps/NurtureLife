@@ -5,6 +5,7 @@ require_once __DIR__ .'/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
+use app\controllers\AdminController\AdminController;
 use app\controllers\AdminController\ClinicsController;
 use app\controllers\AdminController\DoctorController;
 use app\controllers\AdminController\MidwifeController;
@@ -159,5 +160,7 @@ $app->router->post('/policy', [SiteController::class, 'policy']);
 $app->router->get('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
 $app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
 
+$app->router->get('/ManageAdmins', [AdminController::class, 'Admin']);
+$app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);
 
 $app->run();

@@ -63,6 +63,7 @@ class m0001_initial
             name VARCHAR(255) NOT NULL,
             district VARCHAR(255) NOT NULL,
             address VARCHAR(255) NOT NULL,
+            contactNo VARCHAR(255) NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;";
 
@@ -138,6 +139,7 @@ class m0001_initial
             MotherId INT,
             AppointType INT,
             AppointDate DATE,
+            time TIME,
             AppointStatus VARCHAR(50),
             AppointRemarks TEXT,
             FOREIGN KEY (MotherId) REFERENCES Mothers(MotherId)
@@ -226,10 +228,36 @@ class m0001_initial
             ) ENGINE=INNODB;
             ";
         $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS emailVerifications (
+                id INT NOT NULL AUTO_INCREMENT,
+                email VARCHAR(255),
+                token VARCHAR(255),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id)
+            ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS passwordResets (
+                id INT NOT NULL AUTO_INCREMENT,
+                email VARCHAR(255),
+                token VARCHAR(255),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id)
+            ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS admins (
+                admin_id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT,
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            ) ENGINE=INNODB;
+            ";
     }
-
-
-
 
     public function down()
     {
