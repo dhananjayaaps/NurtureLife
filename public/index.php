@@ -12,6 +12,7 @@ use app\controllers\AdminController\UsersController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
+use app\controllers\FeedbackController;
 use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MidwifeController\ChildController;
 use app\controllers\MidwifeController\PreMotherController;
@@ -37,8 +38,8 @@ $app = new Application(dirname(__DIR__), $config);
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/about', [SiteController::class, 'about']);
 
-$app->router->get('/contact', [SiteController::class, 'contact']);
-$app->router->post('/contact', [SiteController::class, 'handleContact']);
+$app->router->get('/contact', [FeedbackController::class, 'feedbacks']);
+$app->router->post('/contact', [FeedbackController::class, 'handleContact']);
 
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);

@@ -14,6 +14,7 @@ class Post extends DbModel
     public string $id = '';
 
     public string $user_id = '';
+    public string $topic ='';
     public string $description ='';
     public string $created_at = '';
     public string $updated_at = '';
@@ -39,6 +40,7 @@ class Post extends DbModel
     public function rules(): array
     {
         return [
+            'topic' => [self::RULE_REQUIRED],
             'description' => [self::RULE_REQUIRED]
         ];
     }
@@ -51,6 +53,7 @@ class Post extends DbModel
             $data[] = [
                 'id' => $post->id,
                 'user_id' => $post->user_id,
+                'topic' => $post->topic,
                 'description' => $post->description,
                 'created_at' => $post->created_at,
                 'updated_at' => $post->updated_at,
@@ -73,11 +76,11 @@ class Post extends DbModel
         }
         $roleMap=[
             "user",
-                "admin",
+            "admin",
             "doctor",
             "prenatal mother",
-                "postnatal mother",
-                "midwife"
+            "postnatal mother",
+            "midwife"
         ];
         $data = [];
         if(Application::$app->user->getRoleName() == 'Volunteer'){
@@ -87,6 +90,7 @@ class Post extends DbModel
                     'user_id' => $post->user_id,
                     'user_name'=>$post->firstname.' '.$post->lastname,
                     'role_name'=>$roleMap[$post->role_id+1],
+                    'topic' => $post->topic,
                     'description' => $post->description,
                     'created_at' => $post->created_at,
                     'updated_at' => $post->updated_at,
@@ -98,6 +102,7 @@ class Post extends DbModel
                 $data[] = [
                     'id' => $post->id,
                     'user_id' => $post->user_id,
+                    'topic' => $post->topic,
                     'description' => $post->description,
                     'created_at' => $post->created_at,
                     'updated_at' => $post->updated_at,
@@ -117,6 +122,7 @@ class Post extends DbModel
         $data = [
             'id' => $postData->id,
             'user_id' => $postData->user_id,
+            'topic' => $postData->topic,
             'description' => $postData->description,
             'created_at' => $postData->created_at,
             'updated_at' => $postData->updated_at,
@@ -132,7 +138,7 @@ class Post extends DbModel
 
     public function attributes(): array
     {
-        return ['user_id', 'description', 'status'];
+        return ['user_id','topic', 'description', 'status'];
     }
 
     public function update() : bool

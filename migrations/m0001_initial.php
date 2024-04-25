@@ -197,6 +197,9 @@ class m0001_initial
             ";
         $db->pdo->exec($sql);
 
+//        $sql = "ALTER TABLE post ADD topic TEXT AFTER user_id;";
+//        $db->pdo->exec($sql);
+
         $sql = "CREATE TABLE IF NOT EXISTS post_request (
                 id INT NOT NULL AUTO_INCREMENT,
                 post_id INT,
@@ -205,7 +208,7 @@ class m0001_initial
                 description TEXT,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                status TINYINT(1) DEFAULT 1,
+                status TINYINT(1) DEFAULT 0,
                 PRIMARY KEY (id),
                 FOREIGN KEY (provider_id) REFERENCES users(id),
                 FOREIGN KEY (seeker_id) REFERENCES users(id),
