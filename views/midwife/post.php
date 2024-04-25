@@ -6,6 +6,7 @@ use app\core\form\Form;
 use app\core\Model;
 use app\models\Clinic;
 use app\models\Post;
+use app\models\Post_request;
 
 $this->title = 'Posts';
 ?>
@@ -13,6 +14,7 @@ $this->title = 'Posts';
 <?php
 /** @var $model Post **/
 /** @var $modelUpdate Post **/
+/** @var $post_request Post_request **/
 //?>
 
 
@@ -29,6 +31,13 @@ $this->title = 'Posts';
             <div class="form-group">
                 <label>Post ID</label>
                 <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control " disabled>
+                <div class="invalid-feedback">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>New Topic</label>
+                <input type="text" id="UpdateTopic" name="UpdateTopic" value=""  class="form-control ">
                 <div class="invalid-feedback">
                 </div>
             </div>
@@ -89,6 +98,7 @@ $this->title = 'Posts';
 </div>
 
 <div class="clinics content" style="display: flex; flex-direction: row">
+<!--    posts table-->
     <div class="shadowBox" style="max-width: 700px; height: fit-content">
         <div class="left-content">
             <div class="search-container">
@@ -99,9 +109,8 @@ $this->title = 'Posts';
                 <thead>
                 <tr>
                     <th>Post ID</th>
+                    <th>Topic</th>
                     <th>Description</th>
-                    <th>Created At</th>
-                    <th>Last Updated At</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -115,13 +124,51 @@ $this->title = 'Posts';
             </div>
         </div>
     </div>
+<!--    create post form-->
     <div class="shadowBox" style="height: fit-content">
         <div class="right-content" style="margin-top: 10px">
             <h2>Create a new post <br/><br/></h2>
             <?php $form = Form::begin('', "post")?>
+            <?php echo $form->field($model, 'topic', 'Please give a topic to your requirement')?>
             <?php echo $form->field($model, 'description', 'Please describe your requirement')?>
             <button type="submit" class="btn-submit">Submit</button>
             <?php echo Form::end()?>
+        </div>
+    </div>
+<!--    post request container-->
+    <div class="shadowBox">
+        <div class="notification-bar" style="max-width: 450px">
+            <div class="notifications">
+                <span style="font-size: 20px; font-weight: bold;">Posts</span>
+            </div>
+            <div class="scrollable-container" style="max-height: 300px; overflow-y: auto">
+                <?php $post_requests= json_decode($post_request->getRequests());
+                foreach ($posts as $post):?>
+                    <div class="myBox" id="myBox">
+                        <div class="notification emergency">
+                            <div class="message-box">
+                                <div class="title"><?=$post->user_name?> &#9900 <?=ucfirst($post->role_name)?></div>
+                                <div class="notification-content">
+                                    <b><?=$post->description?></b>
+                                </div>
+                                <div class="notification-footer">
+                                    <div class="dates">
+                                        <span class="created-date">Created: <?=$post->created_at?></span><br>
+                                        <span class="updated-date">Last Updated: <?=$post->updated_at?></span>
+                                    </div>
+                                    <div class="status">
+                                        Status: <?=($post->status==0)?'Pending':(($post->status==1)?'Attended':'Completed');?>
+                                    </div>
+                                    <div class="actions" style="display: flex; flex-direction: row; gap: 20px; margin: 10px">
+                                        <button class="button" style="background-color: #159EEC">Attend</button>
+                                        <button class="button" style="background-color: #ffb366">Contact</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach;?>
+            </div>
         </div>
     </div>
 
@@ -150,9 +197,8 @@ $this->title = 'Posts';
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
                     <td>${row.id}</td>
+                    <td>${row.topic}</td>
                     <td>${row.description}</td>
-                    <td>${row.created_at}</td>
-                    <td>${row.updated_at}</td>
                     <td>${statusText}</td>
                     <td class="action-buttons">
                     <button id="showPopUp" onclick="UpdatePopUp(${row.id})" class="action-button update-button">Update</button>
@@ -232,6 +278,9 @@ $this->title = 'Posts';
                     if (labels[i].textContent === 'Post ID') {
                         inputFieldId = labels[i].nextElementSibling;
                     }
+                    else if (labels[i].textContent === 'New Topic') {
+                        inputFieldName = labels[i].nextElementSibling;
+                    }
                     else if (labels[i].textContent === 'New Description') {
                         inputFieldName = labels[i].nextElementSibling;
                     }
@@ -240,6 +289,9 @@ $this->title = 'Posts';
                 if (inputFieldId) {
                     inputFieldId.value = postID;
                     inputFieldId.disabled = true;
+                }
+                if (inputFieldName) {
+                    inputFieldName.value = data.topic;
                 }
                 if (inputFieldName) {
                     inputFieldName.value = data.description;
@@ -262,6 +314,7 @@ $this->title = 'Posts';
         e.preventDefault();
 
         const id = document.querySelector('input[name="UpdateId"]').value;
+        const topic = document.querySelector('input[name="UpdateTopic"]').value;
         const description = document.querySelector('input[name="UpdateDescription"]').value;
         let status = document.querySelector('input[name="radio"]:checked');
 
@@ -270,6 +323,7 @@ console.log(id, description, status)
 
         const formData = new FormData();
         formData.append('id', id);
+        formData.append('topic', topic);
         formData.append('description', description);
         formData.append('status', status.value);
 

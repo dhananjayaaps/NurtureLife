@@ -12,6 +12,68 @@ $this->title = 'Volunteer';
 /** @var $user_model User **/
 /** @var $modelUpdate Post **/
 ?>
+<!--attend confirmation popup-->
+<div id="myPopup" class="popup">
+    <div class="popup-content">
+        <h1 style="color: rgb(0, 15, 128);">Confirm Attendance<br/><br/></h1>
+        <form action="">
+            <div class="form-group">
+                <label>Post ID</label>
+                <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control ">
+                <div class="invalid-feedback">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Topic</label>
+                <input type="text" id="UpdateName" name="UpdateName" value=""  class="form-control ">
+                <div class="invalid-feedback">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" id="UpdateAddress" name="UpdateAddress" value=""  class="form-control ">
+                <div class="invalid-feedback">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Request</label>
+                <input type="text" id="UpdateAddress" name="UpdateAddress" value=""  class="form-control ">
+                <div class="invalid-feedback">
+                </div>
+            </div>
+            <p>message</p>
+        </form>
+        <div class="buttonRow">
+            <button id="closePopup" class="btn-submit" style="background-color: brown;">
+                Close
+            </button>
+            <button type="submit" id="updateButton" class="btn-submit">
+                Update
+            </button>
+        </div>
+    </div>
+    <br>
+</div>
+
+<!--service seeker contact popup -->
+<div id="myPopup" class="popup">
+    <div class="popup-content">
+        <h1 style="color: rgb(0, 15, 128);">Contact Seeker<br/><br/></h1>
+        <h2>Chethiya Wanigarathe</h2><br>
+        <h2>Chethiya Wanigarathe &#9900 Mother</h2>
+        <h2>0719773264</h2>
+        <div class="buttonRow">
+            <button id="closePopup" class="btn-submit" style="background-color: brown;">
+                Close
+            </button>
+        </div>
+    </div>
+    <br>
+</div>
+
+<!--posts container-->
 <div class="shadowBox">
     <div class="notification-bar" style="max-width: 450px">
         <div class="notifications">

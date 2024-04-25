@@ -35,7 +35,7 @@
     <?php else: ?>
 
         <div class="dropdown">
-            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
+            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?>
                 <i class="fa fa-caret-down"></i>
             </button>
             <form id="roleChangeForm" method="POST" action="/changeRole">
@@ -76,7 +76,7 @@
 </div>
 
 <div class="content-navbar">
-    <div class="wrapper">
+    <div class="wrapper" style="height: fit-content">
         <div class="left-navbar">
             <div class="navigations">
                 <div class="column">

@@ -5,9 +5,10 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\models\Feedback;
 use app\models\Post;
 
-class Feedback extends Controller
+class FeedbackController extends Controller
 {
     public function feedbacks(Request $request): array|false|string
     {
@@ -15,12 +16,12 @@ class Feedback extends Controller
         if ($request->isPost()) {
             $feedback->loadData($request->getBody());
             if ($feedback->validate() && $feedback->save()) {
-                Application::$app->session->setFlash('success', 'New Post created successfully');
+                Application::$app->session->setFlash('success', 'New feedback added successfully');
                 Application::$app->response->redirect('/contact');
                 exit;
             }
         }
-        $this->setLayout('auth');
+        $this->setLayout('volunteer');
         return $this->render('contact', ['model' => $feedback]);
     }
 
