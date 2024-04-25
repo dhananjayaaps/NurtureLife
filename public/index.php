@@ -16,9 +16,7 @@ use app\controllers\DoctorController\PostMotherController;
 use app\controllers\FeedbackController;
 use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MidwifeController\ChildController;
-use app\controllers\MidwifeController\PreMotherController;
 use app\controllers\MotherController;
-use app\controllers\MotherController\FetalkickController;
 use app\controllers\PostController;
 use app\controllers\MotherController\PreMotherCareController;
 use app\core\Application;
@@ -156,6 +154,9 @@ $app->router->get('/getPostDetails', [PostController::class, 'getPostDetails']);
 
 $app->router->get('/policy', [SiteController::class, 'policy']);
 $app->router->post('/policy', [SiteController::class, 'policy']);
+
+$app->router->get('/preMotherCareForm1', [PreMotherCareController::class, 'preMotherCareForm1']);
+$app->router->post('/preMotherCareForm1', [PreMotherCareController::class, 'preMotherCareForm1']);
 
 $app->router->get('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
 $app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);

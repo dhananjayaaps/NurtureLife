@@ -43,7 +43,7 @@ $this->title = 'Child';
             <div class="row" style="display: flex; flex-direction: column; gap: 10px">
                 <?php echo $form->field($model, 'child_id', 'Child ID')?>
 
-                <?php echo $form->dateField($model, 'completion_date', 'Date of Form Completion')?>
+<!--                --><?php //echo $form->dateField($model, 'completion_date', 'Date of Form Completion')?>
 
                 <?php
                 $prematureField = new Dropdown($model, 'premature_births', 'Premature Births');

@@ -9,7 +9,7 @@ use app\core\Response;
 
 class WeightGainChartController extends \app\core\Controller
 {
-    public function weightGain(Request $request): array|false|string
+    public function ChildWeightChart(Request $request): array|false|string
     {
         $weight = new WeightGainChart();
 
@@ -25,7 +25,7 @@ class WeightGainChartController extends \app\core\Controller
             $this->layout = 'midwife';
         }
 
-        return $this->render('midwife/weightGainChart', [
+        return $this->render('midwife/childWeightChart', [
             'model' => $weight,
             "modelUpdate" => $weight
         ]);

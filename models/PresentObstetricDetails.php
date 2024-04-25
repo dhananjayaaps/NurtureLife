@@ -11,8 +11,8 @@ class PresentObstetricDetails extends DbModel
     public string $user_id = '';
     public string $PHM_ID = '';
     public string $gravidity = '';
-    public string $no_of_children = '';
-    public string $age_of_youngest_child = '';
+    public int $no_of_children = 0;
+    public int $age_of_youngest_child = 0;
     public string $lrmp = '';
     public string $edd = '';
     public string $us_corrected_edd = '';
@@ -26,17 +26,13 @@ class PresentObstetricDetails extends DbModel
     public function rules(): array
     {
         return [
-            'nic' => [self::RULE_REQUIRED],
-            'MaritalStatus' => [self::RULE_REQUIRED],
-            'BloodGroup' => [self::RULE_REQUIRED],
-            'rubella_immunization' => [self::RULE_REQUIRED],
-            'emergencyNumber' => [self::RULE_REQUIRED]
+
         ];
     }
 
     public function tableName(): string
     {
-        return 'PreMotherHistoryDetails';
+        return 'PresentObstetricDetails';
     }
 
     public function primaryKey(): string

@@ -4,26 +4,14 @@ namespace app\models;
 
 use app\core\db\DbModel as parentAlias;
 
-class Child extends parentAlias
+class BabySpecialCare extends parentAlias
 {
 
     public string $user_id = '';
     public string $child_id = '';
 
     public string $nic = '';
-    public string $Child_Name = '';
-    public string $Register_NO = '';
-    public string $Birth_Date = '';
-    public string $Birth_Place = '';
-    public string $Mother_Name = '';
-    public string $Address = '';
-    public string $Gender = '';
-    public string $no_of_apga ='';
-    public string $birth_weight = '';
-    public string $head_circumference_at_birth = '';
-    public string $baby_length_at_birth = '';
-    public string $health_condition = '';
-    public string $vitamin_k= '';
+
     public string $premature_births= '';
     public string $low_birth_weight= '';
     public string $neonatal_complications= '';
@@ -35,36 +23,17 @@ class Child extends parentAlias
     public string $death_of_mother_or_father= '';
     public string $migration_of_mother_or_father= '';
     public string $other_reasons= '';
-    public string $skin_color= '';
-    public string $eyes= '';
-    public string $pecan= '';
-    public string $breast_feeding= '';
-    public string $breastfeeding_position= '';
-    public string $breastfeeding_relationship= '';
-    public string $other= '';
-    public string $completion_date= '';
-    public string $time_duration= '';
-
-
-
 
     public function rules(): array
     {
         return [
-            'nic' => [self::RULE_REQUIRED],
-            'child_id' => [self::RULE_REQUIRED],
-            'Birth_Date' => [self::RULE_REQUIRED],
-            'Register_NO' => [self::RULE_REQUIRED],
-            'Birth_Place' => [self::RULE_REQUIRED],
-            'Mother_Name' => [self::RULE_REQUIRED],
-            'Gender' => [self::RULE_REQUIRED],
-            'Child_Name' => [self::RULE_REQUIRED],
+
         ];
     }
 
     public function tableName(): string
     {
-        return 'child';
+        return 'BabySpecialCare';
     }
 
     public function primaryKey(): string
@@ -78,17 +47,6 @@ class Child extends parentAlias
             'user_id',
             'nic',
             'Child_Name',
-            'Register_NO',
-            'Birth_Date',
-            'Birth_Place',
-            'Mother_Name',
-            'Gender',
-            'no_of_apga',
-            'birth_weight',
-            'head_circumference_at_birth',
-            'baby_length_at_birth',
-            'health_condition',
-            'vitamin_k',
             'premature_births',
             'low_birth_weight',
             'neonatal_complications',
@@ -100,17 +58,6 @@ class Child extends parentAlias
             'death_of_mother_or_father',
             'migration_of_mother_or_father',
             'other_reasons',
-            'skin_color',
-            'eyes',
-            'pecan',
-            'breast_feeding',
-            'breastfeeding_position',
-            'breastfeeding_relationship',
-            'other',
-            'completion_date',
-            'time_duration',
-
-
         ];
     }
 
@@ -134,10 +81,6 @@ class Child extends parentAlias
 
     }
 
-    public function getChild($id)
-    {
-        return (new Child())->findOne(Child::class, ['child_id' => $id]);
-    }
 
     public function getChilds(): string
     {
