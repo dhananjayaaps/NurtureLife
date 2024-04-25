@@ -119,7 +119,7 @@
                 </div>
             </div>
         </div>
-        <div class="content">
+        <div class="content" style="margin-left: 220px; height: 1000px; ">
             {{content}}
         </div>
     </div>

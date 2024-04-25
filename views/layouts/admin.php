@@ -13,6 +13,20 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+<!--    <script src="./assets/scripts/toast.js"></script>-->
+    <script>
+        <?php
+        $FlashMessage = Application::$app->session->getFlash('success');
+        $ErrorFlashMessage = Application::$app->session->getFlash('error');
+
+        if ($FlashMessage) {
+            echo "window.onload = function() { showSuccessToast('$FlashMessage', 'success'); };";
+        }
+        if ($ErrorFlashMessage) {
+            echo "window.onload = function() { showErrorToast('$ErrorFlashMessage', 'error'); };";
+        }
+        ?>
+    </script>
     <script src="./assets/scripts/toast.js"></script>
 </head>
 <body>

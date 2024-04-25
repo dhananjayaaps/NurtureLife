@@ -22,7 +22,7 @@ $this->title = 'Posts';
 <link rel="stylesheet" href="./assets/styles/table.css">
 <link rel="stylesheet" href="./assets/styles/post.css">
 
-<h1>Midwife - Posts</h1>
+<h1 style="margin-left: 100px">Midwife - Posts</h1>
 <!--post update popup-->
 <div id="myPopup" class="popup">
     <div class="popup-content">
@@ -97,12 +97,10 @@ $this->title = 'Posts';
     </div>
 </div>
 
-
-
-<div class="clinics content" style="display: flex; flex-direction: row">
+<div class="clinics content" style="display: flex; flex-direction: row; margin: 0 10px 10px 10px; ">
 <!--    posts table-->
-    <div class="shadowBox" style="max-width: 700px; height: fit-content">
-        <div class="left-content">
+    <div class="shadowBox" style="max-width: 700px; height: fit-content;">
+        <div class="left-content" style="margin-left: 20px">
             <div class="search-container">
                 <input type="text" placeholder="Search Posts...">
                 <button type="submit">Search</button>
@@ -127,7 +125,7 @@ $this->title = 'Posts';
         </div>
     </div>
 <!--    create post form-->
-    <div class="shadowBox" style="height: fit-content">
+    <div class="shadowBox" style="height: 445px">
         <div class="right-content" style="margin-top: 10px">
             <h2>Create a new post <br/><br/></h2>
             <?php $form = Form::begin('', "post")?>
@@ -138,17 +136,16 @@ $this->title = 'Posts';
         </div>
     </div>
 <!--    post request container-->
-    <div class="shadowBox">
-        <div class="notification-bar" style="max-width: 450px">
+        <div class="notification-bar" style="height: 400px; border-radius: 20px">
             <div class="notifications">
-                <span style="font-size: 20px; font-weight: bold;">Posts</span>
+                <span style="font-size: 20px; font-weight: bold;text-align: center">Post Requests</span>
             </div>
-            <div class="scrollable-container" style="max-height: 300px; overflow-y: auto">
+            <div class="scrollable-container" style="max-height: 500px; overflow-y: auto">
                 <?php $post_requests= json_decode($modelRequest->getRequests());
                 foreach ($post_requests as $post_request):?>
-                    <div class="myBox" id="myBox">
+                    <div class="myBox" id="myBox" style=" height: 250px">
                         <div class="notification emergency">
-                            <div class="message-box">
+                            <div class="message-box" style="; height: fit-content">
                                 <div class="title"><?=$post_request->vol_name?> &#9900 Volunteer</div>
                                 <div class="notification-content">
                                     <h3>Post</h3>
@@ -178,14 +175,14 @@ $this->title = 'Posts';
                 <?php endforeach;?>
             </div>
         </div>
-    </div>
+
 
 </div>
 
 
 <script>
     var data = <?php echo $model->getPosts()?>;
-    var itemsPerPage = 8;
+    var itemsPerPage = 4;
     var currentPage = 1;
 
     function displayTableData() {
@@ -432,7 +429,7 @@ console.log(id, description, status)
     function postReqUpdate (id,status,post_id) {
 var res=0;
         if(status==1){
-            if (confirm("Are you sure you want to Accept?")) {
+            if (confirm("Do you agree to share your contact details with the volunteer and accept the request?")) {
                res=1;
             }
         }else if(status==2){

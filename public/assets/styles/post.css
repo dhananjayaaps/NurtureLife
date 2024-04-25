@@ -56,9 +56,9 @@
     /*max-width: 200px;*/
 }
 /*styles for posts-container*/
-.content .shadowBox{
-    height: 80vh;
-}
+/*.content .shadowBox{*/
+/*    height: 80vh;*/
+/*}*/
 .notification-bar{
     display: flex;
     flex-direction: column;
