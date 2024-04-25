@@ -133,7 +133,7 @@
     </div>
 
     <div class="footer-right">
-        <div class="contact-us">Contact Us,</div>
+        <div class="contact-us"><a href="/contact" style="color: white">Contact us</a></div>
         <div class="tel-no">Call Us : 077 123 4678</div>
         <div class="email">Email : admin.nurturelife@gmail.com</div>
     </div>

@@ -1,35 +1,51 @@
 <?php
-
 /** @var $this app\core\view */
 
+use app\core\form\Form;
+use app\models\Feedback;
 use app\models\User;
 
-$this->title = 'Register';
+$this->title = 'User Feedback';
 ?>
 
 <?php
-/** @var $model User **/
+/** @var $model Feedback **/
 ?>
 
+<style>
+    .contact_main{
+        display: flex;
+        flex-direction: row;
+        height: fit-content;
+        background-color: #159EEC;
+        margin-left: 100px;
+    }
+    .contact_left{
+        display: flex;
+        flex-direction: column;
+    }
+    .contact_right{
 
-<div class="form-container">
-    <h2>Registration Form</h2>
-<?php $form = \app\core\form\Form::begin('', "post")?>
-    <?php echo $form->field($model, 'firstname', 'First Name')?>
-    <?php echo $form->field($model, 'lastname', 'Last Name')?>
+    }
+</style>
+<div class="contact_main">
+    <div class="contact_left">
+        <div class="head">
+            <h1>Contact Us</h1>
+        </div>
+        <div class="body">
 
-<?php echo \app\core\form\Form::end()?>
+        </div>
+
+    </div>
+    <div class="contact_right">
+        <div class="head">
+            <h1>Send us your feedback</h1>
+        </div>
+        <div class="body">
+
+        </div>
+    </div>
+
 </div>
 
-
-///** @var $model \app\models\User **/
-//?>
-<!---->
-<!--<div class="form-container">-->
-<!--    <h2>Registration Form</h2>-->
-<!--    --><?php //$form = \app\core\form\Form::begin('', "post")?>
-<!--    --><?php //echo $form->field($model, 'firstname', 'First Name')?>
-<!--    --><?php //echo new \app\core\form\TextArea($model, 'firstname', 'First Name')?>
-<!--    <button type="submit" class="btn-submit">Submit</button>-->
-<!--    --><?php //echo \app\core\form\Form::end()?>
-<!--</div>-->

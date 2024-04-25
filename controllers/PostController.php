@@ -14,7 +14,6 @@ class PostController extends \app\core\Controller
         $post = new Post();
         $post2 = new Post();
         if ($request->isPost()) {
-
             $post->loadData($request->getBody());
                 $post->user_id = Application::$app->user->getId();
             if ($post->validate() && $post->save()) {
@@ -51,19 +50,13 @@ class PostController extends \app\core\Controller
             }
             else if ($roleName == 'Volunteer'){
                 $this->layout = 'volunteer';
-                return $this->render('volunteer/forum', [
+                return $this->render('volunteer/post', [
             'model' => $post, "modelUpdate" => $post2
         ]);
             }
             else{
                 return $this->render('/');
             }
-
-
-//        return $this->render('preMother/posts', [
-//            'model' => $post, "modelUpdate" => $post2
-//        ]);
-//        $model = new Mother();
 
     }
 

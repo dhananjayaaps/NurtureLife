@@ -1,3 +1,4 @@
+<h1>Admin - Reports</h1>
 <div class="content">
     <span class="Title">Generate Reports</span>
     <div class="column first-column">

@@ -66,25 +66,48 @@ class Post extends DbModel
             $joins = [
                 ['model' => User::class, 'condition' => 'post.user_id = users.id'],
             ];
-            $postData = (new Post())->findAllWithJoins(self::class, $joins, ['postal_code' => Application::$app->user->getZip()]);
+            $postData = (new Post())->findAllWithJoins(self::class, $joins, ['postal_code' => Application::$app->user->getZip()],['postStatus'=>'post.status']);
 
         }else{
             $postData = (new Post())->findAll(self::class, ['user_id' => Application::$app->user->getId()]);
         }
+        $roleMap=[
+            "user",
+                "admin",
+            "doctor",
+            "prenatal mother",
+                "postnatal mother",
+                "midwife"
+        ];
         $data = [];
-
-        foreach ($postData as $post) {
-            $data[] = [
-                'id' => $post->id,
-                'user_id' => $post->user_id,
-                'description' => $post->description,
-                'created_at' => $post->created_at,
-                'updated_at' => $post->updated_at,
-                'status' => $post->status
-            ];
+        if(Application::$app->user->getRoleName() == 'Volunteer'){
+            foreach ($postData as $post) {
+                $data[] = [
+                    'id' => $post->id,
+                    'user_id' => $post->user_id,
+                    'user_name'=>$post->firstname.' '.$post->lastname,
+                    'role_name'=>$roleMap[$post->role_id+1],
+                    'description' => $post->description,
+                    'created_at' => $post->created_at,
+                    'updated_at' => $post->updated_at,
+                    'status' => $post->postStatus
+                ];
+            }
+        }else {
+            foreach ($postData as $post) {
+                $data[] = [
+                    'id' => $post->id,
+                    'user_id' => $post->user_id,
+                    'description' => $post->description,
+                    'created_at' => $post->created_at,
+                    'updated_at' => $post->updated_at,
+                    'status' => $post->status
+                ];
+            }
         }
         return json_encode($data);
     }
+
 
     public function getPostById($PostId): string
     {

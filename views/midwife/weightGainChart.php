@@ -18,6 +18,7 @@ $this->title = 'Weight Gain Chart';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<h1>Midwife - Weight Gain Chart</h1>
 <div>
     <div class="lineChart">
         Total Kicks: 450
