@@ -233,8 +233,27 @@ class m0001_initial
                 PRIMARY KEY (id)
             ) ENGINE=INNODB;
             ";
-    }
 
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS passwordResets (
+                id INT NOT NULL AUTO_INCREMENT,
+                email VARCHAR(255),
+                token VARCHAR(255),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id)
+            ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS admins (
+                admin_id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT,
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            ) ENGINE=INNODB;
+            ";
+    }
 
     public function down()
     {
