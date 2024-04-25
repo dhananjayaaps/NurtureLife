@@ -4,14 +4,15 @@
 use app\core\Application;
 use app\core\form\Form;
 use app\core\Model;
+use app\models\ChildWeight;
 use app\models\Fetalkick;
 use app\models\WeightGainChart;
 
 $this->title = 'Weight Gain Chart';
 ?>
 <?php
-/** @var $model WeightGainChart **/
-/** @var $modelUpdate WeightGainChart **/
+/** @var $model ChildWeight **/
+/** @var $modelUpdate ChildWeightUpdate **/
 //?>
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
@@ -115,7 +116,7 @@ $this->title = 'Weight Gain Chart';
 
     <?php
     // PHP code to fetch the value
-    $fk =  new WeightGainChart();
+    $fk =  new ChildWeight();
     $new= $fk->isNew();
 
     ?>

@@ -12,6 +12,7 @@ use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
 use app\controllers\MidwifeController\AppointmentController;
+use app\controllers\MidwifeController\ChildChartController;
 use app\controllers\MidwifeController\PreMotherController;
 use app\controllers\MidwifeController\weightGainChartController;
 use app\controllers\MotherController\FetalkickController;
@@ -147,6 +148,9 @@ $app->router->post('/preMotherCareForm1', [PreMotherCareController::class, 'preM
 
 $app->router->get('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
 $app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
+
+$app->router->get('/childweight', [ChildChartController::class, 'ChildWeight']);
+$app->router->post('/childweight', [ChildChartController::class, 'ChildWeightUpdate']);
 
 
 $app->run();

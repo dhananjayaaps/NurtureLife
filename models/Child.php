@@ -4,7 +4,7 @@ namespace app\models;
 
 use app\core\db\DbModel as parentAlias;
 
-class ChildRegistration extends parentAlias
+class Child extends parentAlias
 {
 
     public string $user_id = '';
@@ -36,7 +36,7 @@ class ChildRegistration extends parentAlias
 
     public function tableName(): string
     {
-        return 'childRegistration';
+        return 'child';
     }
 
     public function primaryKey(): string
