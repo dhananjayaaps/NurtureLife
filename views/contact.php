@@ -150,7 +150,7 @@ $this->title = 'User FeedbackController';
             <h1>We Nurture Life</h1>
         </div>
         <div class="body">
-            <img src="./assets/images/contact_page_midwife.jpeg" alt="contact_page_midwife">
+            <img src="./assets/images/contact_page_team.jpeg" alt="contact_page_midwife">
         </div>
 
     </div>
