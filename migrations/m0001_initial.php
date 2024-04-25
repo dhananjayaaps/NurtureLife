@@ -223,9 +223,16 @@ class m0001_initial
             ) ENGINE=INNODB;
             ";
         $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS emailVerifications (
+                id INT NOT NULL AUTO_INCREMENT,
+                email VARCHAR(255),
+                token VARCHAR(255),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id)
+            ) ENGINE=INNODB;
+            ";
     }
-
-
 
 
     public function down()

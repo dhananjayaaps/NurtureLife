@@ -84,8 +84,9 @@ $this->title = 'Clinics';
                 <tr>
                     <th>Clinic ID</th>
                     <th>Name</th>
-                    <th>Total Mothers</th>
-                    <th>Total Midwives</th>
+                    <th>Mothers</th>
+                    <th>Midwives</th>
+                    <th>Doctors</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -132,6 +133,7 @@ $this->title = 'Clinics';
                     <td>${row.name}</td>
                     <td>${row.totalMothers}</td>
                     <td>${row.totalMidwives}</td>
+                    <td>${row.totalDoctors}</td>
                     <td class="action-buttons">
                     <button id="showPopUp" onclick="UpdatePopUp(${row.clinicID})" class="action-button update-button">Update</button>
                     <button class="action-button remove-button" onclick="UpdatePopUp(${row.clinicID})">Remove</button>

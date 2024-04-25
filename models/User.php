@@ -56,7 +56,14 @@ class User extends UserModel
     }
     public function save(): bool
     {
-        $this->status = self::STATUS_ACTIVE;
+        $ValidateUser = (new User)->findOne(User::class, ['email' => $this->email]);
+
+        if ($ValidateUser) {
+            $this->addError('email', 'Already a user with this email');
+            return false;
+        }
+
+        $this->status = self::STATUS_Email_NOT_VERIFIED;
         $this->role_id = self::ROLE_USER;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $this->created_at = date('Y-m-d H:i:s');
@@ -247,6 +254,7 @@ class User extends UserModel
                 //TODO: what details of user we need?
                 'user_id' => $user->id,
                 'name' => $user->firstname . ' ' . $user->lastname,
+                'email' => $user->email,
                 'email' => $user->email,
                 'contact_no' => $user->contact_no,
                 'role_id' => $user->role_id

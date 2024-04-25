@@ -11,6 +11,7 @@ namespace app\models;
 
 use app\core\Application;
 use app\core\db\DbModel;
+use PDO;
 
 class Clinic extends DbModel
 {
@@ -68,15 +69,23 @@ class Clinic extends DbModel
 
     public function getClinics(): string
     {
-        $clinicData = (new Clinic())->findAll(self::class);
+//        $clinicData = (new Clinic())->findAll(self::class);
         $data = [];
+
+        $sql = "SELECT c.id AS clinic_id, c.name AS clinic_name, c.district, c.address, COUNT(DISTINCT m.user_id) AS mother_count, COUNT(DISTINCT mid.PHM_id) AS midwife_count, COUNT(DISTINCT doc.user_id) AS doctor_count FROM clinics c LEFT JOIN Mothers m ON c.id = m.clinic_id LEFT JOIN midwife mid ON c.id = mid.clinic_id LEFT JOIN doctors doc ON c.id = doc.clinic_id GROUP BY c.id, c.name, c.district, c.address";
+
+        $statement = self::prepare($sql);
+
+        $statement->execute();
+        $clinicData = $statement->fetchAll(PDO::FETCH_OBJ);
 
         foreach ($clinicData as $clinic) {
             $data[] = [
-                'clinicID' => $clinic->id,
-                'name' => $clinic->name,
-                'totalMothers' => 150,
-                'totalMidwives' => 23
+                'clinicID' => $clinic->clinic_id,
+                'name' => $clinic->clinic_name,
+                'totalMothers' => $clinic->mother_count,
+                'totalMidwives' => $clinic->midwife_count,
+                'totalDoctors' => $clinic->doctor_count,
             ];
         }
         return json_encode($data);
