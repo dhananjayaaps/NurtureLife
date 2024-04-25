@@ -44,6 +44,13 @@ $this->title = 'Clinics';
                 <div class="invalid-feedback">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label>New Contact No</label>
+                <input type="text" id="UpdateContact" name="UpdateContact" value=""  class="form-control ">
+                <div class="invalid-feedback">
+                </div>
+            </div>
         </form>
         <div class="buttonRow">
             <button type="submit" id="updateButton" class="btn-submit">
@@ -82,11 +89,11 @@ $this->title = 'Clinics';
             <table class="table-data">
                 <thead>
                 <tr>
-                    <th>Clinic ID</th>
                     <th>Name</th>
                     <th>Mothers</th>
                     <th>Midwives</th>
                     <th>Doctors</th>
+                    <th>Contact</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -106,6 +113,7 @@ $this->title = 'Clinics';
             <?php echo $form->field($model, 'name', 'Name')?>
             <?php echo $form->field($model, 'district', 'District')?>
             <?php echo $form->field($model, 'address', 'Address')?>
+            <?php echo $form->field($model, 'contactNo', 'Contact No')?>
             <button type="submit" class="btn-submit">Submit</button>
             <?php echo Form::end()?>
         </div>
@@ -129,11 +137,11 @@ $this->title = 'Clinics';
             var row = data[i];
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
-                    <td>${row.clinicID}</td>
                     <td>${row.name}</td>
                     <td>${row.totalMothers}</td>
                     <td>${row.totalMidwives}</td>
                     <td>${row.totalDoctors}</td>
+                    <td>${row.contactNo}</td>
                     <td class="action-buttons">
                     <button id="showPopUp" onclick="UpdatePopUp(${row.clinicID})" class="action-button update-button">Update</button>
                     <button class="action-button remove-button" onclick="UpdatePopUp(${row.clinicID})">Remove</button>
@@ -206,7 +214,7 @@ $this->title = 'Clinics';
 
         getClinicDetails(ClinicId)
             .then((data) => {
-                var inputFieldId, inputFieldName, inputFieldAddress;
+                var inputFieldId, inputFieldName, inputFieldAddress, inputFieldContactNo
                 for (var i = 0; i < labels.length; i++) {
                     if (labels[i].textContent === 'Clinic ID') {
                         inputFieldId = labels[i].nextElementSibling;
@@ -218,7 +226,10 @@ $this->title = 'Clinics';
                         inputFieldAddress = labels[i].nextElementSibling;
                         break;
                     }
+                    inputFieldContactNo = document.getElementById('UpdateContact');
+
                 }
+                console.log(inputFieldContactNo);
 
                 if (inputFieldId) {
                     inputFieldId.value = ClinicId;
@@ -227,8 +238,11 @@ $this->title = 'Clinics';
                 if (inputFieldName) {
                     inputFieldName.value = data.name;
                 }
-                if (inputFieldName) {
+                if (inputFieldAddress) {
                     inputFieldAddress.value = data.address;
+                }
+                if (inputFieldContactNo) {
+                    inputFieldContactNo.value = data.contactNo;
                 }
             })
             .catch((error) => {
@@ -244,11 +258,13 @@ $this->title = 'Clinics';
         const id = document.querySelector('input[name="UpdateId"]').value;
         const name = document.querySelector('input[name="UpdateName"]').value;
         const address = document.querySelector('input[name="UpdateAddress"]').value;
+        const contactNo = document.querySelector('input[name="UpdateContact"]').value;
 
         const formData = new FormData();
         formData.append('id', id);
         formData.append('name', name);
         formData.append('address', address);
+        formData.append('contactNo', contactNo);
 
         const url = '/clinicsUpdate';
 

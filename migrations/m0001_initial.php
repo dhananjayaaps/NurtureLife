@@ -63,6 +63,7 @@ class m0001_initial
             name VARCHAR(255) NOT NULL,
             district VARCHAR(255) NOT NULL,
             address VARCHAR(255) NOT NULL,
+            contactNo VARCHAR(255) NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;";
 
