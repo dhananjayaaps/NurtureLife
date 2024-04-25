@@ -1,4 +1,5 @@
 <?php use app\core\Application; ?>
+<?php use app\core\Session; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +15,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
 
+    <script>
+    <?php
+    $FlashMessage = Application::$app->session->getFlash('success');
+    $ErrorFlashMessage = Application::$app->session->getFlash('error');
+
+    if ($FlashMessage) {
+        echo "window.onload = function() { showSuccessToast('$FlashMessage', 'success'); };";
+    }
+    if ($ErrorFlashMessage) {
+        echo "window.onload = function() { showErrorToast('$ErrorFlashMessage', 'error'); };";
+    }
+    ?>
+    </script>
+    <script src="./assets/scripts/toast.js"></script>
+
 </head>
 <body>
+<div id="toast" class="toast"></div>
 
 <div class="navbar">
     <div class="NL_logo_container">

@@ -9,6 +9,19 @@ $this->title = 'Register';
 <?php
 /** @var $model User **/
 ?>
+
+<style>
+    .registration_container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f1f1f1;
+    }
+    .form-group{
+    }
+</style>
+
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <div class="registration_container">
     <!-- Left side content, image or anything else -->
@@ -23,10 +36,13 @@ $this->title = 'Register';
                 <div class="formColumn">
                     <?php echo $form->field($model, 'firstname', 'First Name')?>
                     <?php echo $form->field($model, 'nic', 'NIC Number')?>
-                    <?php echo $form->field($model, 'password', 'Password')->passwordField()?>
+
                 </div>
                 <div class="formColumn">
+                    <?php echo $form->field($model, 'password', 'Password')->passwordField()?>
                     <?php echo $form->field($model, 'lastname', 'Last Name')?>
+                </div>
+                <div class="formColumn">
                     <?php echo $form->field($model, 'email', 'Email')?>
                     <?php echo $form->field($model, 'confirm_password', 'Confirm Password')->passwordField()?>
                 </div>
@@ -41,7 +57,7 @@ $this->title = 'Register';
                     <?php echo $form->field($model, 'postal_code', 'Postal Code')?>
                 </div>
             </div>
-            <div class="formRow"style="justify-content: center">
+            <div class="formRow" style="justify-content: center">
                 <?php echo $form->field($model, 'contact_no', 'Contact Number')?>
             </div>
             <div class="centeredButton">
