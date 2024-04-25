@@ -29,7 +29,7 @@
     <?php else: ?>
 
         <div class="dropdown">
-            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
+            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?>
                 <i class="fa fa-caret-down"></i>
             </button>
             <form id="roleChangeForm" method="POST" action="/changeRole">
@@ -133,7 +133,7 @@
     </div>
 
     <div class="footer-right">
-        <div class="contact-us">Contact Us,</div>
+        <div class="contact-us"><a href="/contact" style="color: white">Contact us</a></div>
         <div class="tel-no">Call Us : 077 123 4678</div>
         <div class="email">Email : admin.nurturelife@gmail.com</div>
     </div>

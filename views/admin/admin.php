@@ -11,7 +11,7 @@ $this->title = 'Admin Dashboard';
         margin-top: 15px;
     }
 </style>
-
+<h1>Admin Dashboard</h1>
 <div class="content">
     <div class="column first-column">
         <div class="lineChart">

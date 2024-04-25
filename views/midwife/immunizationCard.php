@@ -402,7 +402,7 @@ $this->title = 'Child';
 
 </style>
 
-
+<h1>Midwife - Immunization card</h1>
 <div class="vaccinesCards">
     <div class="vaccineBox">
         <h1>IMMUNIZATION CARD</h1>

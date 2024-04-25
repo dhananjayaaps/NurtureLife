@@ -35,7 +35,7 @@
     <?php else: ?>
 
         <div class="dropdown">
-            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
+            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?>
                 <i class="fa fa-caret-down"></i>
             </button>
             <form id="roleChangeForm" method="POST" action="/changeRole">
@@ -95,6 +95,12 @@
                     <a href="/midwife"><img src="assets/images/icons/nurse.png" alt="">MidWives</a>
                 </div>
                 <div class="column">
+                    <a href="/preMother"><img src="assets/images/icons/pregnant.png" alt="">Prenatal Mothers</a>
+                </div>
+                <div class="column">
+                    <a href="/postMother"><img src="assets/images/icons/care.png" alt="">Postnatal Mothers</a>
+                </div>
+                <div class="column">
                     <a href="/users"><img src="assets/images/icons/user.png" alt="">Users</a>
                 </div>
             </div>
@@ -137,7 +143,7 @@
     </div>
 
     <div class="footer-right">
-        <div class="contact-us">Contact Us,</div>
+        <div class="contact-us"><a href="/contact" style="color: white">Contact us</a></div>
         <div class="tel-no">Call Us : 077 123 4678</div>
         <div class="email">Email : admin.nurturelife@gmail.com</div>
     </div>

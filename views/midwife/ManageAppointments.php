@@ -33,7 +33,7 @@ $this->title = 'Manage Appointments';
         color: white;
     }
 </style>
-
+<h1>Midwife - Appointment Management</h1>
 <div class="doctors content">
     <div class="shadowBox">
         <div class="left-content">

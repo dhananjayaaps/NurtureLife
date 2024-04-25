@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./assets/styles/Form.css">
     <link rel="stylesheet" href="./assets/styles/table.css">
     <link rel="stylesheet" href="./assets/styles/post.css">
-
+<h1>Postnatal Mother - Posts</h1>
     <!--post update popup-->
     <div id="myPopup" class="popup">
         <div class="popup-content">

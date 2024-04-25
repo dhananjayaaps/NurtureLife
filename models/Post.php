@@ -14,6 +14,7 @@ class Post extends DbModel
     public string $id = '';
 
     public string $user_id = '';
+    public string $topic ='';
     public string $description ='';
     public string $created_at = '';
     public string $updated_at = '';
@@ -39,6 +40,7 @@ class Post extends DbModel
     public function rules(): array
     {
         return [
+            'topic' => [self::RULE_REQUIRED],
             'description' => [self::RULE_REQUIRED]
         ];
     }
@@ -51,6 +53,7 @@ class Post extends DbModel
             $data[] = [
                 'id' => $post->id,
                 'user_id' => $post->user_id,
+                'topic' => $post->topic,
                 'description' => $post->description,
                 'created_at' => $post->created_at,
                 'updated_at' => $post->updated_at,
@@ -66,25 +69,50 @@ class Post extends DbModel
             $joins = [
                 ['model' => User::class, 'condition' => 'post.user_id = users.id'],
             ];
-            $postData = (new Post())->findAllWithJoins(self::class, $joins, ['postal_code' => Application::$app->user->getZip()]);
+            $postData = (new Post())->findAllWithJoins(self::class, $joins, ['postal_code' => Application::$app->user->getZip()],['postStatus'=>'post.status']);
 
         }else{
             $postData = (new Post())->findAll(self::class, ['user_id' => Application::$app->user->getId()]);
         }
+        $roleMap=[
+            "user",
+            "admin",
+            "doctor",
+            "prenatal mother",
+            "postnatal mother",
+            "midwife"
+        ];
         $data = [];
-
-        foreach ($postData as $post) {
-            $data[] = [
-                'id' => $post->id,
-                'user_id' => $post->user_id,
-                'description' => $post->description,
-                'created_at' => $post->created_at,
-                'updated_at' => $post->updated_at,
-                'status' => $post->status
-            ];
+        if(Application::$app->user->getRoleName() == 'Volunteer'){
+            foreach ($postData as $post) {
+                $data[] = [
+                    'id' => $post->id,
+                    'user_id' => $post->user_id,
+                    'user_name'=>$post->firstname.' '.$post->lastname,
+                    'role_name'=>$roleMap[$post->role_id+1],
+                    'topic' => $post->topic,
+                    'description' => $post->description,
+                    'created_at' => $post->created_at,
+                    'updated_at' => $post->updated_at,
+                    'status' => $post->postStatus
+                ];
+            }
+        }else {
+            foreach ($postData as $post) {
+                $data[] = [
+                    'id' => $post->id,
+                    'user_id' => $post->user_id,
+                    'topic' => $post->topic,
+                    'description' => $post->description,
+                    'created_at' => $post->created_at,
+                    'updated_at' => $post->updated_at,
+                    'status' => $post->status
+                ];
+            }
         }
         return json_encode($data);
     }
+
 
     public function getPostById($PostId): string
     {
@@ -94,6 +122,7 @@ class Post extends DbModel
         $data = [
             'id' => $postData->id,
             'user_id' => $postData->user_id,
+            'topic' => $postData->topic,
             'description' => $postData->description,
             'created_at' => $postData->created_at,
             'updated_at' => $postData->updated_at,
@@ -109,7 +138,7 @@ class Post extends DbModel
 
     public function attributes(): array
     {
-        return ['user_id', 'description', 'status'];
+        return ['user_id','topic', 'description', 'status'];
     }
 
     public function update() : bool

@@ -63,7 +63,7 @@ $this->title = 'Verification Success';
     }
 
 </style>
-
+<h1>Email Verification</h1>
 <div class="container">
     <div class="imageBox">
         <img src="https://www.cidrap.umn.edu/sites/default/files/styles/article_detail/public/article/Pregnant%20woman%20with%20young%20child.jpg" alt="Image">

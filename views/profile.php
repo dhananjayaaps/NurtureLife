@@ -10,7 +10,7 @@ $this->title = 'Profile';
 <?php
 /** @var $model User **/
 ?>
-
+<h1>User Profile</h1>
 <div class="column-container">
     <div class="left-container">
         <div class="profile-image">

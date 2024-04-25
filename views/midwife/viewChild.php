@@ -7,7 +7,7 @@ use app\models\Child;
 
 //?>
 
-
+<h1>Midwife - Child</h1>
 <div class="doctors content">
     <div class="shadowBox">
         <div class="left-content">
