@@ -34,12 +34,5 @@ class AppoinmetHandler extends Controller
         }
     }
 
-//    public function mothers(){
-//
-//        if ($roleName == 'Doctor'){
-//            $this->layout = 'doctor';
-//            return $this->render('doctor/appointments');
-//        }
-//    }
 
 }

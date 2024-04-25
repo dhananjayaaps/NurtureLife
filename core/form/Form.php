@@ -27,4 +27,9 @@ class Form
     {
         return new DateField($model, $attribute, $name);
     }
+
+    public function timeField(Model $model, $attribute, $name): TimeField
+    {
+        return new TimeField($model, $attribute, $name);
+    }
 }

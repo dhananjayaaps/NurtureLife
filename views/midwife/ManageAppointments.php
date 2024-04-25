@@ -81,6 +81,7 @@ $this->title = 'Manage Appointments';
             ?>
 
             <?php echo $form->dateField($appointmentModel, 'AppointDate', 'Appoint Date')?>
+            <?php echo $form->TimeField($appointmentModel, 'time', 'Appoint Time')?>
             <?php echo $form->field($appointmentModel, 'AppointRemarks', 'Remarks')?>
 
             <button type="submit" class="btn-submit">Submit</button>

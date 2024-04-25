@@ -139,6 +139,7 @@ class m0001_initial
             MotherId INT,
             AppointType INT,
             AppointDate DATE,
+            time TIME,
             AppointStatus VARCHAR(50),
             AppointRemarks TEXT,
             FOREIGN KEY (MotherId) REFERENCES Mothers(MotherId)

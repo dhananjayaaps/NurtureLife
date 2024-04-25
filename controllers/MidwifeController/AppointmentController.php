@@ -5,6 +5,7 @@ namespace app\controllers\MidwifeController;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Response;
 use app\models\Appointments;
 use app\models\Child;
 use app\models\Mother;
@@ -12,38 +13,53 @@ use app\models\Mother;
 class AppointmentController extends Controller
 {
 
-    public function ManageAppointments(Request $request)
+    public function ManageAppointments(Request $request, Response $response)
     {
         $this->layout = 'midwife';
         $mother = new Mother();
         $appointment = new Appointments();
 
         if ($request->isPost()) {
+
             $requestData = $request->getBody();
-            $motherIds = explode(',', $requestData['MotherIds']);
+            $appointment->loadData($requestData);
 
-            foreach ($motherIds as $motherId) {
-                $appointment->loadData($requestData);
-                $appointment->MotherId = $motherId;
-                $appointment->AppointStatus = 1;
-
-                if ($appointment->validate() && $appointment->save()) {
-                    Application::$app->session->setFlash('success', 'Added new Appointments');
-                } else {
-                    var_dump($appointment->errors);
-                }
+            if ($requestData['MotherIds'] == "") {
+                Application::$app->session->setFlash('error', 'Please select a mother');
+                return $this->render('midwife/ManageAppointments', [
+                    'model' => $mother, 'appointmentModel' => $appointment
+                ]);
             }
 
-            Application::$app->response->redirect('/ManageAppointments');
-            exit;
+            $motherIds = explode(',', $requestData['MotherIds']);
+
+            if (empty($requestData['AppointDate'])) {
+                $appointment->addError('AppointDate', 'Select a Correct Appointment Date');
+            } elseif (strtotime($requestData['AppointDate']) < strtotime(date('Y-m-d'))) {
+                $appointment->addError('AppointDate', 'Appointment date cannot be in the past');
+            } elseif (empty($requestData['time'])) {
+                $appointment->addError('time', 'Select a Correct Appointment Time');
+            }else{
+                foreach ($motherIds as $motherId) {
+                    $appointment->loadData($requestData);
+                    $appointment->MotherId = $motherId;
+                    $appointment->AppointStatus = 1;
+
+                    if ($appointment->validate() && $appointment->save()) {
+                        Application::$app->session->setFlash('success', 'Added new Appointments');
+                    } else {
+                        var_dump($appointment->errors);
+                    }
+                }
+
+                Application::$app->response->redirect('/ManageAppointments');
+                exit;
+            }
         }
 
-
-        else if ($request->isGet()) {
-            $this->layout = 'midwife';
-            return $this->render('midwife/ManageAppointments', [
-                'model' => $mother, 'appointmentModel' => $appointment
-            ]);
-        }
+        $this->layout = 'midwife';
+        return $this->render('midwife/ManageAppointments', [
+            'model' => $mother, 'appointmentModel' => $appointment
+        ]);
     }
 }
