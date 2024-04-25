@@ -25,7 +25,7 @@ class AppointmentController extends Controller
             $appointment->loadData($requestData);
 
             if ($requestData['MotherIds'] == "") {
-                Application::$app->session->setFlash('error', 'Please select a mother');
+                Application::$app->session->setFlash('error', 'Please select mothers');
                 return $this->render('midwife/ManageAppointments', [
                     'model' => $mother, 'appointmentModel' => $appointment
                 ]);

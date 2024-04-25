@@ -11,6 +11,20 @@
     <link rel="stylesheet" href="./assets/styles/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
+    <script>
+        <?php
+        $FlashMessage = Application::$app->session->getFlash('success');
+        $ErrorFlashMessage = Application::$app->session->getFlash('error');
+
+        if ($FlashMessage) {
+            echo "window.onload = function() { showSuccessToast('$FlashMessage', 'success'); };";
+        }
+        if ($ErrorFlashMessage) {
+            echo "window.onload = function() { showErrorToast('$ErrorFlashMessage', 'error'); };";
+        }
+        ?>
+    </script>
+    <script src="./assets/scripts/toast.js"></script>
 </head>
 <body>
 
