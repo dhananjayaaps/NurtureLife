@@ -12,6 +12,11 @@ $this->title = 'Volunteer';
 /** @var $user_model User **/
 /** @var $modelUpdate Post **/
 ?>
+<style>
+    .volunteer_content{
+        height: 69vh;
+    }
+</style>
 <!--attend confirmation popup-->
 <div id="myPopup" class="popup">
     <div class="popup-content">
@@ -19,7 +24,7 @@ $this->title = 'Volunteer';
         <form action="">
             <div class="form-group">
                 <label>Post ID</label>
-                <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control ">
+                <input type="text" id="postIDValue" name="UpdateId" value=""  class="form-control ">
                 <div class="invalid-feedback">
                 </div>
             </div>
@@ -39,7 +44,7 @@ $this->title = 'Volunteer';
             </div>
             <div class="form-group">
                 <label>Request</label>
-                <input type="text" id="UpdateAddress" name="UpdateAddress" value=""  class="form-control ">
+                <input type="text" id="requestValue" name="requestValue" value=""  class="form-control ">
                 <div class="invalid-feedback">
                 </div>
             </div>
@@ -49,8 +54,8 @@ $this->title = 'Volunteer';
             <button id="closePopup" class="btn-submit" style="background-color: brown;">
                 Close
             </button>
-            <button type="submit" id="updateButton" class="btn-submit">
-                Update
+            <button type="submit" id="updateButton" class="btn-submit" onclick="sendReq()">
+                Request
             </button>
         </div>
     </div>
@@ -58,14 +63,14 @@ $this->title = 'Volunteer';
 </div>
 
 <!--service seeker contact popup -->
-<div id="myPopup" class="popup">
+<div id="myPopup2" class="popup">
     <div class="popup-content">
         <h1 style="color: rgb(0, 15, 128);">Contact Seeker<br/><br/></h1>
-        <h2>Chethiya Wanigarathe</h2><br>
-        <h2>Chethiya Wanigarathe &#9900 Mother</h2>
-        <h2>0719773264</h2>
+        <h2></h2><br>
+        <h2></h2><br>
+        <h2></h2>
         <div class="buttonRow">
-            <button id="closePopup" class="btn-submit" style="background-color: brown;">
+            <button id="closePopup2" class="btn-submit" style="background-color: brown;">
                 Close
             </button>
         </div>
@@ -87,6 +92,7 @@ $this->title = 'Volunteer';
                         <div class="message-box">
                             <div class="title"><?=$post->user_name?> &#9900 <?=ucfirst($post->role_name)?></div>
                             <div class="notification-content">
+                                <h3><?=ucfirst($post->topic)?></h3>
                                 <b><?=$post->description?></b>
                             </div>
                             <div class="notification-footer">
@@ -98,8 +104,8 @@ $this->title = 'Volunteer';
                                     Status: <?=($post->status==0)?'Pending':(($post->status==1)?'Attended':'Completed');?>
                                 </div>
                                 <div class="actions" style="display: flex; flex-direction: row; gap: 20px; margin: 10px">
-                                    <button class="button" style="background-color: #159EEC">Attend</button>
-                                    <button class="button" style="background-color: #ffb366">Contact</button>
+                                    <button class="button" style="background-color: #159EEC" onclick="attendPopup(<?=$post->id?>)">Attend</button>
+                                    <button class="button" style="background-color: #ffb366" onclick="contactPopup('<?=$post->user_name?>','<?=$post->contact_no?>','<?=$post->email?>')">Contact</button>
                                 </div>
                             </div>
                         </div>
@@ -109,3 +115,134 @@ $this->title = 'Volunteer';
         </div>
     </div>
 </div>
+
+<script>
+    var myPopup = document.getElementById('myPopup');
+    var myPopup2 = document.getElementById('myPopup2');
+    var closeButton = document.getElementById('closePopup');
+    var closeButton2 = document.getElementById('closePopup2');
+    var popupButtonContainer = document.querySelector('.clinics.content');
+
+    function attendPopup (data) {
+        console.log(data);
+        console.log(myPopup);
+        // Get the parent div element with id "myPopup"
+
+// Get all input elements within the popup
+        var inputs = myPopup.querySelectorAll("input");
+        getPostDetails(data)
+            .then((dataValue) => {
+                inputs[0].value=dataValue.id;
+                inputs[1].value = dataValue.topic;
+
+                inputs[2].value = dataValue.description;
+
+
+
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+
+        myPopup.classList.add("show");
+    }
+
+    closeButton.addEventListener("click", function () {
+        myPopup.classList.remove("show");
+    });
+    closeButton2.addEventListener("click", function () {
+        myPopup2.classList.remove("show");
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === myPopup) {
+            myPopup.classList.remove("show");
+
+        }else if(event.target === myPopup2){
+            myPopup2.classList.remove("show");
+        }
+    });
+
+
+    function getPostDetails(id) {
+        const url = `/getPostDetails?id=${id}`;
+
+        return fetch(url)
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            });
+    }
+
+
+    function sendReq(){
+        var req = myPopup.querySelectorAll("input#requestValue")[0].value;
+        var postId = myPopup.querySelectorAll("input#postIDValue")[0].value;
+
+
+
+            const formData = new FormData();
+            formData.append('post_id', postId);
+            formData.append('description', req);
+
+            const url = '/createPostRequest';
+
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        return response.json();
+                    }
+                })
+                .then(responseData => {
+                    if (responseData.errors) {
+                        const invalidFeedbackElements = document.querySelectorAll('.invalid-feedback');
+                        for (const key in responseData.errors) {
+                            console.log(key)
+                            if (responseData.errors[key].length > 0) {
+                                const feedbackElement = document.querySelector(`[name="Update${key.charAt(0).toUpperCase() + key.slice(1)}"] + .invalid-feedback`);
+                                if (feedbackElement) {
+                                    console.log("found");
+                                    feedbackElement.innerHTML = "<svg aria-hidden=\"true\" class=\"stUf5b qpSchb\" fill=\"currentColor\" focusable=\"false\" width=\"16px\" height=\"16px\" viewBox=\"0 0 24 24\" xmlns=\"https://www.w3.org/2000/svg\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z\"></path></svg>" +
+                                        responseData.errors[key][0];
+                                }
+                            }
+                        }
+                    } else {
+                        console.log(responseData);
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+
+    function contactPopup (name,phone,email) {
+
+        if(phone!='') {
+// Get all input elements within the popup
+            var inputs = myPopup2.querySelectorAll("h2");
+            inputs[0].innerHTML = name;
+            inputs[1].innerHTML = phone;
+            inputs[2].innerHTML = email;
+        }else{
+            var inputs = myPopup2.querySelectorAll("h2");
+            inputs[0].innerHTML = "No contact details available";
+            inputs[1].innerHTML = "";
+            inputs[2].innerHTML = "";
+        }
+
+        myPopup2.classList.add("show");
+    }
+
+
+</script>
