@@ -136,7 +136,7 @@ $this->title = 'Prenatal Mother-Posts';
         </div>
     </div>
     <!--    post request container-->
-    <div class="notification-bar" style="height: 400px; border-radius: 20px">
+    <div class="notification-bar" style="height: 400px; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
         <div class="notifications">
             <span style="font-size: 20px; font-weight: bold;text-align: center">Post Requests</span>
         </div>
