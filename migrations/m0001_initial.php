@@ -229,6 +229,15 @@ class m0001_initial
             ) ENGINE=INNODB;
             ";
         $db->pdo->exec($sql);
+        $sql = "CREATE TABLE IF NOT EXISTS emergency (
+                id INT NOT NULL AUTO_INCREMENT,
+                user_id INT,
+                pressed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id),
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            ) ENGINE=INNODB;
+            ";
+        $db->pdo->exec($sql);
 
         $sql = "CREATE TABLE IF NOT EXISTS emailVerifications (
                 id INT NOT NULL AUTO_INCREMENT,
