@@ -19,59 +19,54 @@ $this->title = 'Volunteer';
 </style>
 <link rel="stylesheet" href="assets/css/styles.css">
 <!--attend confirmation popup-->
-<div id="myPopup" class="popup">
+<div id="myPopup" class="popup" style="position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 30%;height: fit-content; max-width: 600px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); padding: 20px; z-index: 1000;">
     <div class="popup-content">
-        <h1 style="color: rgb(0, 15, 128);">Confirm Attendance<br/><br/></h1>
+        <h1 style="color: #003f88; text-align: center; margin-bottom: 30px;">Confirm Attendance</h1>
         <form action="">
-            <div class="form-group">
-                <label>Post ID</label>
-                <input type="text" id="postIDValue" name="UpdateId" value=""  class="form-control ">
-                <div class="invalid-feedback">
-                </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="postIDValue" style="display: block; margin-bottom: 5px;">Post ID</label>
+                <input type="text" id="postIDValue" name="UpdateId" value="" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
             </div>
 
-            <div class="form-group">
-                <label>Topic</label>
-                <input type="text" id="UpdateName" name="UpdateName" value=""  class="form-control ">
-                <div class="invalid-feedback">
-                </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="UpdateName" style="display: block; margin-bottom: 5px;">Topic</label>
+                <input type="text" id="UpdateName" name="UpdateName" value="" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
             </div>
 
-            <div class="form-group">
-                <label>Description</label>
-                <input type="text" id="UpdateAddress" name="UpdateAddress" value=""  class="form-control ">
-                <div class="invalid-feedback">
-                </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="UpdateAddress" style="display: block; margin-bottom: 5px;">Description</label>
+                <input type="text" id="UpdateAddress" name="UpdateAddress" value="" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
             </div>
-            <div class="form-group">
-                <label>Request</label>
-                <input type="text" id="requestValue" name="requestValue" value=""  class="form-control ">
-                <div class="invalid-feedback">
-                </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="requestValue" style="display: block; margin-bottom: 5px;">Request</label>
+                <input type="text" id="requestValue" name="requestValue" value="" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
             </div>
-            <p>message</p>
+
+            <p style="text-align: center; margin-top: 20px;">Please fill in all fields before submitting your request.</p>
+
+            <div class="buttonRow" style="text-align: center; margin-top: 30px;">
+                <button id="closePopup" class="btn-submit" style="padding: 10px 20px; border: none; background-color: #8b0000; color: white; border-radius: 5px; margin-right: 10px; cursor: pointer;">
+                    Close
+                </button>
+                <button type="submit" id="updateButton" class="btn-submit" onclick="sendReq()" style="padding: 10px 20px; border: none; background-color: #4CAF50; color: white; border-radius: 5px; cursor: pointer;">
+                    Request
+                </button>
+            </div>
         </form>
-        <div class="buttonRow">
-            <button id="closePopup" class="btn-submit" style="background-color: brown;">
-                Close
-            </button>
-            <button type="submit" id="updateButton" class="btn-submit" onclick="sendReq()">
-                Request
-            </button>
-        </div>
     </div>
-    <br>
 </div>
+
 
 <!--service seeker contact popup -->
 <div id="myPopup2" class="popup">
     <div class="popup-content">
-        <h1 style="color: rgb(0, 15, 128);">Contact Seeker<br/><br/></h1>
+        <h1 style="color: rgb(0, 15, 128);">Contact Service Seeker<br/><br/></h1>
         <h2></h2><br>
         <h2></h2><br>
         <h2></h2>
         <div class="buttonRow">
-            <button id="closePopup2" class="btn-submit" style="background-color: brown;">
+            <button id="closePopup2" class="btn-submit" style="padding: 10px 20px; border: none; background-color: #8b0000; color: white; border-radius: 5px; margin-right: 10px; cursor: pointer;">
                 Close
             </button>
         </div>
@@ -243,7 +238,7 @@ $this->title = 'Volunteer';
             inputs[2].innerHTML = email;
         }else{
             var inputs = myPopup2.querySelectorAll("h2");
-            inputs[0].innerHTML = "No contact details available";
+            inputs[0].innerHTML = "You are still not authorized to view contact details";
             inputs[1].innerHTML = "";
             inputs[2].innerHTML = "";
         }
