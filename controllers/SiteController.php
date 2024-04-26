@@ -104,5 +104,10 @@ class SiteController extends \app\core\Controller
             $this->layout = 'mother';
             return $this->render('postMother/nutrition');
         }
+        else{
+            $this->layout = 'auth';
+            return $this->render('home');
+        }
+
     }
 }

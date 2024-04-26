@@ -170,4 +170,6 @@ $app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);
 $app->router->get('/nutrition', [SiteController::class, 'nutrition']);
 $app->router->post('/nutrition', [SiteController::class, 'nutrition']);
 
+$app->router->get('/communication', [postController::class, 'communication']);
+$app->router->post('/communication', [postController::class, 'communication']);
 $app->run();

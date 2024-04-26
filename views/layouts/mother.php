@@ -113,6 +113,9 @@
                 <div class="column">
                     <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt="">Posts</a>
                 </div>
+                <div class="column">
+                    <a href="/communication"><img src="assets/images/icons/communication.png" alt=""> Communication</a>
+                </div>
             </div>
         </div>
         <div class="content">

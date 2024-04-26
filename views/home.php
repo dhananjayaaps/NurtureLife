@@ -9,7 +9,7 @@
     }
     .image-container{
         border-radius: 30px;
-        opacity: 0.8;
+        opacity: 0.9;
     }
 </style>
 <div class="image-container">

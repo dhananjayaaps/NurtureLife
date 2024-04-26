@@ -22,14 +22,14 @@ $this->title = 'Prenatal Mother-Posts';
 <link rel="stylesheet" href="./assets/styles/table.css">
 <link rel="stylesheet" href="./assets/styles/post.css">
 
-<h1>Prenatal Mother - Posts</h1>
+<h1>Communication with Midwife</h1>
 <!--post update popup-->
 <div id="myPopup" class="popup">
     <div class="popup-content">
-        <h1 style="color: rgb(0, 15, 128);">Update Post<br/><br/></h1>
+        <h1 style="color: rgb(0, 15, 128);">Update Message<br/><br/></h1>
         <form action="">
             <div class="form-group">
-                <label>Post ID</label>
+                <label>Message ID</label>
                 <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control " disabled>
                 <div class="invalid-feedback">
                 </div>
@@ -43,7 +43,7 @@ $this->title = 'Prenatal Mother-Posts';
             </div>
 
             <div class="form-group">
-                <label>New Description</label>
+                <label>New Message</label>
                 <input type="text" id="UpdateDescription" name="UpdateDescription" value=""  class="form-control ">
                 <div class="invalid-feedback">
                 </div>
@@ -108,9 +108,8 @@ $this->title = 'Prenatal Mother-Posts';
             <table class="posts_table">
                 <thead>
                 <tr>
-                    <th>Post ID</th>
-                    <th>Topic</th>
-                    <th>Description</th>
+                    <th>ID</th>
+                    <th>Message</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -127,52 +126,49 @@ $this->title = 'Prenatal Mother-Posts';
     <!--    create post form-->
     <div class="shadowBox" style="height: 445px">
         <div class="right-content" style="margin-top: 10px">
-            <h2>Create a new post <br/><br/></h2>
+            <h2>Send a message to your Midwife<br/><br/></h2>
             <?php $form = Form::begin('', "post")?>
-            <?php echo $form->field($model, 'topic', 'Please give a topic to your requirement')?>
-            <?php echo $form->field($model, 'description', 'Please describe your requirement')?>
-            <button type="submit" class="btn-submit">Submit</button>
+            <?php echo $form->field($model, 'topic', 'Type \'PHM\' to contact yor Midwife')?>
+            <?php echo $form->field($model, 'description', 'Your message')?>
+            <button type="submit" class="btn-submit">Send</button>
             <?php echo Form::end()?>
         </div>
     </div>
     <!--    post request container-->
     <div class="notification-bar" style="height: 400px; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
         <div class="notifications">
-            <span style="font-size: 20px; font-weight: bold;text-align: center">Post Requests</span>
+            <span style="font-size: 20px; font-weight: bold;text-align: center">Replies form Midwife</span>
         </div>
         <div class="scrollable-container" style="max-height: 500px; overflow-y: auto">
-            <?php $post_requests= json_decode($modelRequest->getRequests());
-            foreach ($post_requests as $post_request):?>
-                <div class="myBox" id="myBox" style=" height: 250px">
-                    <div class="notification emergency">
-                        <div class="message-box" style="; height: fit-content">
-                            <div class="title"><?=$post_request->vol_name?> &#9900 Volunteer</div>
-                            <div class="notification-content">
-                                <h3>Post</h3>
-                                <b><?=$post_request->topic." - ".$post_request->description?></b>
-                            </div>
-                            <div class="notification-content">
-                                <h3>Request</h3>
-                                <b><?=$post_request->req?></b>
-                            </div>
-                            <div class="notification-footer">
-                                <div class="dates">
-                                    <span class="created-date">Created: <?=$post_request->req_created_at?></span><br>
+            <?php
+            $post_requests = json_decode($modelRequest->getRequests());
+            foreach ($post_requests as $post_request):
+                if ($post_request->topic === 'PHM'): ?>
+                    <div class="myBox" id="myBox" style=" height: 250px">
+                        <div class="notification emergency">
+                            <div class="message-box" style="; height: fit-content">
+                                <div class="title"><?=$post_request->vol_name?> ⚬ Volunteer</div>
+                                <div class="notification-content">
+                                    <h3>Post</h3>
+                                    <b><?=$post_request->topic." - ".$post_request->description?></b>
                                 </div>
-                                <div class="status">
-                                    Status: <?=($post_request->req_status==0)?'Waiting':(($post_request->req_status==1)?'Accepted':'Rejected');?>
+                                <div class="notification-content">
+                                    <h3>Reply</h3>
+                                    <b><?=$post_request->req?></b>
                                 </div>
-                                <?php if($post_request->req_status==0):?>
-                                    <div class="actions" style="display: flex; flex-direction: row; gap: 20px; margin: 10px">
-                                        <button class="button" style="background-color: #159EEC" onclick="postReqUpdate(<?=$post_request->id?>,1,<?=$post_request->post_id?>)">Accept</button>
-                                        <button class="button" style="background-color: #ffb366" onclick="postReqUpdate(<?=$post_request->id?>,2,<?=$post_request->post_id?>)">Reject</button>
+                                <div class="notification-footer">
+                                    <div class="dates">
+                                        <span class="created-date">Created: <?=$post_request->req_created_at?></span><br>
                                     </div>
-                                <?php endif;?>
+                                    <div class="status">
+                                        Status: <?=($post_request->req_status==0)?'Waiting':(($post_request->req_status==1)?'Accepted':'Rejected');?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach;?>
+                <?php endif;
+            endforeach;?>
         </div>
     </div>
 
@@ -182,7 +178,7 @@ $this->title = 'Prenatal Mother-Posts';
 
 <script>
     var data = <?php echo $model->getPosts()?>;
-    var itemsPerPage = 4;
+    var itemsPerPage = 8;
     var currentPage = 1;
 
     function displayTableData() {
@@ -201,17 +197,16 @@ $this->title = 'Prenatal Mother-Posts';
             var statusText = statusTextMap[row.status];
 
             // Check if the topic is 'PHM'
-            if (row.topic !== 'PHM') {
+            if (row.topic === 'PHM') {
                 var newRow = document.createElement('tr');
 
                 // Extract the first 3 words from the description
-                var descriptionWords = row.description.split(' ');
-                var truncatedDescription = descriptionWords.slice(0, 4).join(' ');
+                // var descriptionWords = row.description.split(' ');
+                // var truncatedDescription = descriptionWords.slice(0, 4).join(' ');
 
                 newRow.innerHTML = `
                 <td>${row.id}</td>
-                <td>${row.topic}</td>
-                <td>${truncatedDescription}...</td> <!-- Display the truncated description -->
+                <td>${row.description}</td> <!-- Display the truncated description -->
                 <td>${statusText}</td>
                 <td class="action-buttons">
                     <button id="showPopUp" onclick="UpdatePopUp(${row.id})" class="action-button update-button">Update</button>
@@ -297,7 +292,7 @@ $this->title = 'Prenatal Mother-Posts';
                     else if (labels[i].textContent === 'New Topic') {
                         inputFieldTopic = labels[i].nextElementSibling;
                     }
-                    else if (labels[i].textContent === 'New Description') {
+                    else if (labels[i].textContent === 'New Message') {
                         inputFieldName = labels[i].nextElementSibling;
                     }
                 }
