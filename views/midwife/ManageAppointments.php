@@ -32,6 +32,10 @@ $this->title = 'Manage Appointments';
         text-decoration: none;
         color: white;
     }
+
+    .shadowBox{
+        height: 80vh;
+    }
 </style>
 <h1>Midwife - Appointment Management</h1>
 <div class="doctors content">

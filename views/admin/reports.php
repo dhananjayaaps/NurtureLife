@@ -1,6 +1,12 @@
-<h1>Admin - Reports</h1>
+<!--<h1>Admin - Reports</h1>-->
+
+<style>
+    .content{
+        justify-content: flex-start;
+    }
+</style>
+
 <div class="content">
-    <span class="Title">Generate Reports</span>
     <div class="column first-column">
         <div class="quick-access">
 
@@ -8,24 +14,7 @@
     </div>
     <div class="column second-column">
         <div class="first-row">
-            <span class="Title">Select The Type of Report to Generate</span>
             <div class="report-types">
-                <div class="report-type addButtons">
-                    <button class="addButton">New Borns</button>
-                    <button class="addButton">New Registrations</button>
-                    <button class="addButton">Mother Deaths</button>
-                    <button class="addButton">Child Deaths</button>
-                    <button class="addButton">Mother Deaths</button>
-                    <button class="addButton">Child Deaths</button>
-                </div>
-                <div class="report-type addButtons">
-                    <button class="addButton">New Borns</button>
-                    <button class="addButton">New Registrations</button>
-                    <button class="addButton">Mother Deaths</button>
-                    <button class="addButton">Child Deaths</button>
-                    <button class="addButton">Mother Deaths</button>
-                    <button class="addButton">Child Deaths</button>
-                </div>
                 <div class="report-type addButtons">
                     <button class="addButton">New Borns</button>
                     <button class="addButton">New Registrations</button>
@@ -60,6 +49,24 @@
                 <!-- Display a download button -->
                 <a id="downloadButton" href="#" download="report.pdf" style="display: none;">Download Report</a>
             </div>
+        </div>
+        <div>
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+            <link rel="stylesheet" type="text/css" href="./assets/styles/heatmap.css" />
+            <script type="module" src="./assets/scripts/Heatmap.js"></script>
+            <div id="floating-panel">
+                <button id="toggle-heatmap">Toggle Heatmap</button>
+                <button id="change-gradient">Change gradient</button>
+                <button id="change-radius">Change radius</button>
+                <button id="change-opacity">Change opacity</button>
+            </div>
+            <div id="map"></div>
+
+            <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCun8jKr1zvi4wKd_1HwSuhM7i2KOAIkQI&callback=initMap&libraries=visualization&v=weekly"
+                    defer
+            >
+            </script>
         </div>
     </div>
 </div>
