@@ -93,16 +93,16 @@
                     <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
                 </div>
                 <div class="column">
-                    <a href="#"><img src="assets/images/icons/clinic.png" alt=""> Report Symptoms</a>
+                    <a href="/reportSymptom"><img src="assets/images/icons/clinic.png" alt=""> Report Symptoms</a>
                 </div>
                 <div class="column">
-                    <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Reports</a>
+                    <a href="/reports"><img src="assets/images/icons/pregnant.png" alt=""> Reports</a>
                 </div>
                 <div class="column">
-                    <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Calender</a>
+                    <a href="/calender"><img src="assets/images/icons/pregnant.png" alt=""> Calender</a>
                 </div>
                 <div class="column">
-                    <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Nutritions</a>
+                    <a href="/nutrition"><img src="assets/images/icons/pregnant.png" alt=""> Nutritions</a>
                 </div>
                 <div class="column">
                     <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Communication</a>

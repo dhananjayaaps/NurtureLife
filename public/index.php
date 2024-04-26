@@ -167,4 +167,7 @@ $app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preM
 $app->router->get('/ManageAdmins', [AdminController::class, 'Admin']);
 $app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);
 
+$app->router->get('/nutrition', [SiteController::class, 'nutrition']);
+$app->router->post('/nutrition', [SiteController::class, 'nutrition']);
+
 $app->run();

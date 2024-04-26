@@ -93,4 +93,9 @@ class SiteController extends \app\core\Controller
         $this->layout = 'volunteer';
         return $this->render('policy');
     }
+    public function nutrition(): array|false|string
+    {
+        $this->layout = 'mother';
+        return $this->render('preMother/nutrition');
+    }
 }
