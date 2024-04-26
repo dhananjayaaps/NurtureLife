@@ -14,10 +14,10 @@ $this->title = 'Volunteer';
 ?>
 <style>
     .volunteer_content{
-        height: 69vh;
+        height: fit-content;
     }
 </style>
-<link rel="stylesheet" href="assets/css/Form.css">
+<link rel="stylesheet" href="assets/css/styles.css">
 <!--attend confirmation popup-->
 <div id="myPopup" class="popup">
     <div class="popup-content">

@@ -17,22 +17,9 @@ $this->title = 'Volunteer';
     <a href="/posts">
         <button class="post_button"> # POSTS </button>
     </a>
-    <h1>Volunteers</h1>
 </div>
-<div class="upper">
-        <p>
-            Volunteers are vital in supporting mothers, midwives, and doctors to enhance
-            maternal and neonatal health outcomes by promoting safe practices and improving
-            access to healthcare services. They bridge the gap between healthcare systems
-            and communities, ensuring mothers receive crucial care and support during childbirth.
-        </p>
-</div>
-
-<div class="sub_topic">
-    <h1>For Reading</h1>
-</div>
-
-<div class="mid">
+<div class="volunteer_body">
+    <!--<div class="mid">-->
     <div class="reading_topic">
         <div class="image_container">
             <img src="./assets/images/pregnant_chat.jpeg" alt="pregnant_chat">
@@ -74,8 +61,8 @@ $this->title = 'Volunteer';
             </a>
         </div>
     </div>
-</div>
-<div class="mid">
+    <!--</div>-->
+    <!--<div class="mid">-->
     <div class="reading_topic">
         <div class="image_container">
             <img src="./assets/images/respect.jpeg" alt="pregnant_chat">
@@ -116,13 +103,9 @@ $this->title = 'Volunteer';
             </a>
         </div>
     </div>
-</div>
+    <!--</div>-->
 
-<div class="sub_topic">
-    <h1>Downloads</h1>
-</div>
-
-<div class="lower">
+    <!--<div class="lower">-->
     <div class="dl_container">
         <div class="dl_image_container">
             <img src="./assets/images/download_1.png" alt="downloadable content" width="163px">
@@ -156,5 +139,5 @@ $this->title = 'Volunteer';
             </a>
         </div>
     </div>
-
+    <!--</div>-->
 </div>
