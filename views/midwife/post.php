@@ -8,7 +8,7 @@ use app\models\Clinic;
 use app\models\Post;
 use app\models\Post_request;
 
-$this->title = 'Posts';
+$this->title = 'Midwife - Posts';
 ?>
 <!---->
 <?php

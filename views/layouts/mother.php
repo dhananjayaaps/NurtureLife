@@ -86,7 +86,7 @@
 </div>
 
 <div class="content-navbar">
-    <div class="wrapper">
+    <div class="wrapper" style="height: fit-content">
         <div class="left-navbar">
             <div class="navigations">
                 <div class="column">
@@ -115,7 +115,7 @@
                 </div>
             </div>
         </div>
-        <div class="content" style="flex-direction: column">
+        <div class="content">
             {{content}}
         </div>
     </div>

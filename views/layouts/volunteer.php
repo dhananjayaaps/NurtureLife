@@ -87,7 +87,7 @@
 
 </div>
 
-<div class="volunteer_wrapper">
+<div class="volunteer_wrapper" style="height: fit-content">
     <div class="volunteer_content">
         {{content}}
     </div>

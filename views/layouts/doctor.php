@@ -84,7 +84,7 @@
 </div>
 
 <div class="content-navbar">
-    <div class="wrapper">
+    <div class="wrapper" style="height: fit-content">
         <div class="left-navbar">
 
             <div class="navigations">
