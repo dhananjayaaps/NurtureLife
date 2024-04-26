@@ -200,15 +200,19 @@ $this->title = 'Prenatal Mother-Posts';
             };
             var statusText = statusTextMap[row.status];
             var newRow = document.createElement('tr');
+
+            // Extract the first 3 words from the description
+            var descriptionWords = row.description.split(' ');
+            var truncatedDescription = descriptionWords.slice(0, 4).join(' ');
             newRow.innerHTML = `
-                    <td>${row.id}</td>
-                    <td>${row.topic}</td>
-                    <td>${row.description}</td>
-                    <td>${statusText}</td>
-                    <td class="action-buttons">
-                    <button id="showPopUp" onclick="UpdatePopUp(${row.id})" class="action-button update-button">Update</button>
-                    <button class="action-button remove-button" onclick="UpdatePopUp(${row.id})">Delete</button>
-                `;
+        <td>${row.id}</td>
+        <td>${row.topic}</td>
+        <td>${truncatedDescription}...</td> <!-- Display the truncated description -->
+        <td>${statusText}</td>
+        <td class="action-buttons">
+            <button id="showPopUp" onclick="UpdatePopUp(${row.id})" class="action-button update-button">Update</button>
+            <button class="action-button remove-button" onclick="UpdatePopUp(${row.id})">Delete</button>
+        `;
             tableBody.appendChild(newRow);
         }
     }
