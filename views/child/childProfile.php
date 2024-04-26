@@ -149,7 +149,7 @@ $this->title = 'FetalKicks';
 
 </style>
 
-
+<h1>Child Profile</h1>
 <div id="myPopup" class="popup">
     <div class="popup-content">
         <h1 style="color:green;">Mother Diagnostic Card</h1>

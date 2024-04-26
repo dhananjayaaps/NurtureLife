@@ -30,7 +30,7 @@
     <?php else: ?>
 
         <div class="dropdown">
-            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
+            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?>
                 <i class="fa fa-caret-down"></i>
             </button>
             <form id="roleChangeForm" method="POST" action="/changeRole">
@@ -43,7 +43,7 @@
 
         <div class="action" id="actionElement">
             <div class="profile" onclick="menuToggle();">
-                <img src="./assets/images/men_user.jpg" />
+                <img src="./assets/images/icons/woman.png" />
             </div>
             <div class="menu">
                 <h3><?php echo Application::$app->user->getDisplayName() ?></h3>
@@ -74,13 +74,12 @@
 </div>
 
 //body content
-<div class="wrapper">
-    <div class="content">
+<div class="wrapper" style="height: fit-content">
+    <div class="userHome_content">
         {{content}}
     </div>
 </div>
 
-//footer
 <div class="footer">
     <div class="footer-left">
         <div class="footer-left-title">
@@ -96,7 +95,8 @@
     </div>
 
     <div class="footer-center">
-        <div class="follow-us">FOLLOW US ON</div>
+        <div class="message">Made in 🇱🇰 with 💕</div>
+        <div class="follow-us">follow us on</div>
         <div class="social-media-icons">
             <div class="SM-icon-container">
                 <img class="SM-icon" src="./assets/images/fb-logo.png" />
@@ -111,7 +111,7 @@
     </div>
 
     <div class="footer-right">
-        <div class="contact-us">Contact Us,</div>
+        <div class="contact-us"><a href="/contact" style="color: white">Contact us</a></div>
         <div class="tel-no">Call Us : 077 123 4678</div>
         <div class="email">Email : admin.nurturelife@gmail.com</div>
     </div>

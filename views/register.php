@@ -11,23 +11,23 @@ $this->title = 'Register';
 ?>
 
 <style>
-    .container{
-        align-items: center;
-        gap: 50px;
-    }
-
-    .formContent{
-        align-items: center;
-        justify-content: center;
+    .registration_container{
         display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f1f1f1;
+    }
+    .form-group{
     }
 </style>
 
-<div class="container">
-        <!-- Left side content, image or anything else -->
-        <div class="imageBox">
-            <img src="https://www.cidrap.umn.edu/sites/default/files/styles/article_detail/public/article/Pregnant%20woman%20with%20young%20child.jpg" alt="Image">
-        </div>
+<link rel="stylesheet" href="./assets/styles/Form.css">
+<div class="registration_container">
+    <!-- Left side content, image or anything else -->
+    <div class="imageBox">
+        <img src="./assets/images/mother_baby_cover.jpeg" alt="Image">
+    </div>
     <div class="formContent">
         <div class="shadowBox">
             <h2>Registration Form</h2><br>
@@ -35,24 +35,30 @@ $this->title = 'Register';
             <div class="formRow">
                 <div class="formColumn">
                     <?php echo $form->field($model, 'firstname', 'First Name')?>
-                    <?php echo $form->field($model, 'lastname', 'Last Name')?>
-                    <?php echo $form->field($model, 'email', 'Email')?>
+                    <?php echo $form->field($model, 'nic', 'NIC Number')?>
+
                 </div>
                 <div class="formColumn">
-                    <?php echo $form->field($model, 'nic', 'NIC Number')?>
                     <?php echo $form->field($model, 'password', 'Password')->passwordField()?>
+                    <?php echo $form->field($model, 'lastname', 'Last Name')?>
+                </div>
+                <div class="formColumn">
+                    <?php echo $form->field($model, 'email', 'Email')?>
                     <?php echo $form->field($model, 'confirm_password', 'Confirm Password')->passwordField()?>
                 </div>
             </div>
             <div class="formRow">
                 <div class="formColumn">
-                    <?php echo $form->field($model, 'home_number', 'Home Name/Number')?>
+                    <?php echo $form->field($model, 'home_number', 'Home Name / Home No.')?>
                     <?php echo $form->field($model, 'lane', 'Lane')?>
                 </div>
                 <div class="formColumn">
                     <?php echo $form->field($model, 'city', 'City')?>
                     <?php echo $form->field($model, 'postal_code', 'Postal Code')?>
                 </div>
+            </div>
+            <div class="formRow" style="justify-content: center">
+                <?php echo $form->field($model, 'contact_no', 'Contact Number')?>
             </div>
             <div class="centeredButton">
                 <button type="submit" class="btn-submit">Submit</button>

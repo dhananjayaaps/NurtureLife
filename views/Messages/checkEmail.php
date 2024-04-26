@@ -69,8 +69,8 @@ $this->title = 'Verification Success';
         <img src="https://www.cidrap.umn.edu/sites/default/files/styles/article_detail/public/article/Pregnant%20woman%20with%20young%20child.jpg" alt="Image">
     </div>
     <div>
-        <img class="tick" src="https://media.istockphoto.com/id/1094780808/vector/approval-symbol-check-mark-in-a-circle-drawn-by-hand-vector-green-sign-ok-approval-or.jpg?s=612x612&w=0&k=20&c=0mlB50r769kHmLkVcq_HpdNFGdHIA_Cu_tPqN4IKZbc=" alt="tick">
-        <h1>Email Verified Successfully</h1>
+        <img class="tick" src="https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png" alt="tick">
+        <h1>Email not verified. Check the Email</h1>
     </div>
 </div>
 

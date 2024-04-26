@@ -4,9 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Request;
-
 namespace app\controllers\AdminController;
-
 use app\core\Application;
 use app\core\Request;
 use app\models\Doctor;
@@ -25,7 +23,7 @@ class ClinicsController extends \app\core\Controller
             $clinic->loadData($request->getBody());
 
             if ($clinic->validate() && $clinic->save()) {
-                Application::$app->session->setFlash('success', 'Added a new Doctor');
+                Application::$app->session->setFlash('success', 'New Clinic created successfully');
                 Application::$app->response->redirect('/clinics');
                 exit;
             }

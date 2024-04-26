@@ -5,12 +5,15 @@ require_once __DIR__ .'/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
+use app\controllers\AdminController\AdminController;
 use app\controllers\AdminController\ClinicsController;
 use app\controllers\AdminController\DoctorController;
 use app\controllers\AdminController\MidwifeController;
+use app\controllers\AdminController\UsersController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
+use app\controllers\FeedbackController;
 use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MidwifeController\ChildChartController;
 use app\controllers\MidwifeController\PreMotherController;
@@ -19,6 +22,7 @@ use app\controllers\MotherController\FetalkickController;
 use app\controllers\MidwifeController\ChildController;
 use app\controllers\MotherController;
 use app\controllers\MotherController\PreMotherCareController;
+use app\controllers\PostController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -37,8 +41,8 @@ $app = new Application(dirname(__DIR__), $config);
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/about', [SiteController::class, 'about']);
 
-$app->router->get('/contact', [SiteController::class, 'contact']);
-$app->router->post('/contact', [SiteController::class, 'handleContact']);
+$app->router->get('/contact', [FeedbackController::class, 'feedbacks']);
+$app->router->post('/contact', [FeedbackController::class, 'handleContact']);
 
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
@@ -70,6 +74,11 @@ $app->router->get('/getMidwifeDetails', [MidwifeController::class, 'getMidwifeDe
 
 $app->router->get('/reports', [ClinicsController::class, 'reports']);
 $app->router->post('/reports', [ClinicsController::class, 'reports']);
+
+$app->router->get('/users', [UsersController::class, 'users']);
+$app->router->post('/users', [UsersController::class, 'users']);
+
+$app->router->post('/userUpdate', [UsersController::class, 'userUpdate']);
 
 $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'changeRole']);
 
@@ -143,6 +152,15 @@ $app->router->get('/childProfile', [ChildController::class, 'childProfile']);
 $app->router->get('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
 $app->router->post('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
 
+$app->router->get('/posts', [PostController::class, 'posts']);
+$app->router->post('/posts', [PostController::class, 'posts']);
+$app->router->post('/postsUpdate', [PostController::class, 'postsUpdate']);
+$app->router->post('/postDelete', [PostController::class, 'postDelete']);
+$app->router->get('/getPostDetails', [PostController::class, 'getPostDetails']);
+
+$app->router->get('/policy', [SiteController::class, 'policy']);
+$app->router->post('/policy', [SiteController::class, 'policy']);
+
 $app->router->get('/preMotherCareForm1', [PreMotherCareController::class, 'preMotherCareForm1']);
 $app->router->post('/preMotherCareForm1', [PreMotherCareController::class, 'preMotherCareForm1']);
 
@@ -155,5 +173,7 @@ $app->router->post('/childweight', [ChildChartController::class, 'ChildWeightUpd
 $app->router->get('/childHeight', [ChildChartController::class, 'childHeight']);
 $app->router->post('/childHeight', [ChildChartController::class, 'childHeightUpdate']);
 
+$app->router->get('/ManageAdmins', [AdminController::class, 'Admin']);
+$app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);
 
 $app->run();

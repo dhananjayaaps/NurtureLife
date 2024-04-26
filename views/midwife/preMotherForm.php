@@ -129,18 +129,6 @@ $this->title = 'Mothers';
             </div>
 
             <div class="form-column">
-<!--                --><?php //echo $form->field($model, 'Consanguinity', 'Consanguinity')?>
-<!--                --><?php //echo $form->field($model, 'history_subfertility', 'History Subfertility')?>
-<!--                --><?php //echo $form->field($model, 'Hypertension', 'Hypertension')?>
-<!--                --><?php //echo $form->field($model, 'diabetes_mellitus', 'Diabetes Mellitus')?>
-<!--                --><?php
-//                $rubellaImmunizationField = new Dropdown($model, 'rubella_immunization', 'Rubella Immunization');
-//                $rubellaImmunizationField->setOptions([
-//                    1 => 'Yes',
-//                    2 => 'No',
-//                ]);
-//                echo $rubellaImmunizationField;
-//                ?>
 
                 <style>
                     .break-line {

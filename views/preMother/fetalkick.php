@@ -17,6 +17,7 @@ $this->title = 'FetalKicks';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<h1>Prenatal Mother - Fetal Kick Count</h1>
 <div>
     <div class="lineChart">
         Total Kicks: 450

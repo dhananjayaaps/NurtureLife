@@ -128,9 +128,10 @@ abstract class DbModel extends Model
         }
 
         $selectClause = implode(", ", $selectAliases);
-
+        if($selectClause){
+            $selectClause=",".$selectClause;
+        }
         $sql = "SELECT * $selectClause FROM $mainTableName $joinClauses $whereClause";
-
         $statement = self::prepare($sql);
 
         foreach ($where as $key => $item) {

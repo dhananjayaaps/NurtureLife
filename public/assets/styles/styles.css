@@ -35,28 +35,23 @@ body{
     background-color: #f5f5f5;
 }
 
-/*.navbar{*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    background: #1F2B6C;*/
-/*    width: 100%;*/
-/*    z-index: 100;*/
-/*}*/
-
 .navbar{
     display: flex;
     justify-content: center;
     align-items: center;
     background: #1F2B6C;
     width: 100%;
-    height: 90px;
     z-index: 100;
+}
+
+.navbar {
     position: fixed; /* Fix the navbar position */
     top: 0; /* Position at the top */
     left: 0;
+    width: 100%; /* Full width */
     color: #fff; /* Example text color */
-
+    padding: 10px 20px; /* Adjust padding as needed */
+    z-index: 1000; /* Ensure it stays above other content */
 }
 
 .wrapper {
@@ -78,14 +73,15 @@ body{
     float: left;
     display: flex;
     text-align: center;
-    padding: 25px 25px 25px 25px;
+    padding: 25px 25px;
     text-decoration: none;
     color: white;
     font-family: Arial, Helvetica, sans-serif;;
-    font-size: 20px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 100;
     line-height: normal;
+
 }
 .NL_logo_container{
     margin-right: 200px;
@@ -127,7 +123,7 @@ body{
     border: solid;
     background-color: #b75879;
     font-size: 15px;
-    font-family: monospace;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .search-container button:hover {
@@ -140,7 +136,7 @@ body{
     text-align: left;
     padding: 25px 25px;
     color: white;
-    font-family: monospace;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 100;
@@ -204,7 +200,7 @@ body{
     margin-right: 20px;
 
     color: #159EEC;
-    font-family: Work Sans, serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: bold;
@@ -223,7 +219,7 @@ body{
     display: flex;
     flex-direction: row;
     background-color: #262673;
-    padding: 20px;
+    padding: 10px 30px 10px 30px;
     justify-content: space-between;
     margin: 0;
     height: 120px;
@@ -245,11 +241,11 @@ body{
 .brand-name{
     font-size: 30px;
     font-weight:bolder;
-    font-family: monospace;
+    font-family: Arial, Helvetica, sans-serif;
     color: #ffccff;
 }
 .footer-left-text{
-    font-family: monospace;
+    font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: larger;
 }
@@ -261,7 +257,7 @@ body{
 }
 .policy a{
     color: white;
-    font-family: monospace;
+    font-family: Arial, Helvetica, sans-serif;
     opacity: 0.5;
     text-decoration: none;
 }
@@ -273,11 +269,17 @@ body{
     display: flex;
     flex-direction: column;
 }
+.message{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    text-align: center;
+}
 .follow-us{
     color: white;
-    font-family: monospace;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: large;
-    margin-left: 35px;
+    text-align: center
 }
 .social-media-icons{
     display: flex;
@@ -302,12 +304,12 @@ body{
 }
 .contact-us{
     color: white;
-    font-family: monospace;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: larger;
 }
 .tel-no, .email{
     color: rgb(255, 179, 179);
-    font-family: monospace;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: larger;
 }
 
@@ -489,7 +491,6 @@ body{
     align-items: center;
     justify-content: center;
     text-align: center;
-    /*height: 100%;*/
 }
 
 .shadowBox form{
@@ -588,4 +589,3 @@ h1 {
     font-size: inherit;
     vertical-align: middle;
 }
-

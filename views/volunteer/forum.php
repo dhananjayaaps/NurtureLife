@@ -1,24 +1,30 @@
 <?php
 /** @var $this app\core\view */
 
+use app\core\Application;
+use app\models\LoginModel;
+use app\models\Post;
 use app\models\User;
 
-$this->title = 'Volunteer Forum';
+$this->title = 'Volunteer';
+
+/** @var $model Post **/
+/** @var $user_model User **/
+/** @var $modelUpdate Post **/
 ?>
+
 <div class="sub_topic">
-    <h1>Why Volunteers?</h1>
+    <a href="/posts">
+        <button class="post_button"> # POSTS </button>
+    </a>
+    <h1>Volunteers</h1>
 </div>
 <div class="upper">
         <p>
-            Volunteers are <b>people of the general public</b> who are willing
-            to help mothers 👩‍🍼, midwives 👩‍⚕️, and doctors 🧑‍⚕️ to improve
-            maternal and neonatal health outcomes 🍼, as they play a part
-            in promoting safe practices ✅ and increasing access to
-            healthcare services 🏥. Volunteers are <b>indispensable in
-            bridging the gap between the healthcare system and the
-                community</b> 🌐, ensuring that mothers receive the care and
-            support they need during one of the <b>most critical times of
-                their lives</b> 💞
+            Volunteers are vital in supporting mothers, midwives, and doctors to enhance
+            maternal and neonatal health outcomes by promoting safe practices and improving
+            access to healthcare services. They bridge the gap between healthcare systems
+            and communities, ensuring mothers receive crucial care and support during childbirth.
         </p>
 </div>
 
@@ -36,7 +42,7 @@ $this->title = 'Volunteer Forum';
                 People say really rude and inappropriate things to pregnant women,
                 especially in regards to their physical appearance. Read more...
             </p><br>
-            <a href="http://bayareahomebirth.org/blog/how-to-talk-to-pregnant-people">
+            <a href="http://bayareahomebirth.org/blog/how-to-talk-to-pregnant-people" target="_blank" rel="noopener noreferrer">
                 10 Dos and Don'ts when talking to pregnant people
             </a>
         </div>
@@ -49,7 +55,7 @@ $this->title = 'Volunteer Forum';
             <p>
                 A childbirth companion has been found to improve the whole birth experience. Read more...
             </p><br>
-            <a href="https://www.ncbi.nlm.nih.gov/books/NBK304186/">
+            <a href="https://www.ncbi.nlm.nih.gov/books/NBK304186/" target="_blank" rel="noopener noreferrer">
                 support during labour and childbirth
             </a>
         </div>
@@ -63,7 +69,7 @@ $this->title = 'Volunteer Forum';
                 The transport of pregnant women to an appropriate health facility plays
                 a pivotal role in preventing maternal deaths. Read more...
             </p><br>
-            <a href="https://bmcpregnancychildbirth.biomedcentral.com/articles/10.1186/s12884-016-1113-7">
+            <a href="https://bmcpregnancychildbirth.biomedcentral.com/articles/10.1186/s12884-016-1113-7" target="_blank" rel="noopener noreferrer">
                 Transport of pregnant women and obstetric emergencies
             </a>
         </div>
@@ -79,7 +85,7 @@ $this->title = 'Volunteer Forum';
                 Providing respectful, non-discriminatory care that honors the preferences
                 and needs of mothers is fundamental.Read more...
             </p><br>
-            <a href="https://www.who.int/docs/default-source/mca-documents/nbh/brief-postnatal-care-for-mothers-and-newborns-highlights-from-the-who-2013-guidelines.pdf">
+            <a href="https://www.who.int/docs/default-source/mca-documents/nbh/brief-postnatal-care-for-mothers-and-newborns-highlights-from-the-who-2013-guidelines.pdf" target="_blank" rel="noopener noreferrer">
                 Respectful maternity care
             </a>
         </div>
@@ -92,7 +98,7 @@ $this->title = 'Volunteer Forum';
             <p>
                 Grab these nutritious foods whenever vising a mother. Read more...
             </p><br>
-            <a href="https://www.healthline.com/nutrition/13-foods-to-eat-when-pregnant">
+            <a href="https://www.healthline.com/nutrition/13-foods-to-eat-when-pregnant" target="_blank" rel="noopener noreferrer">
                 13 nutritious foods to eat when pregnant
             </a>
         </div>
@@ -105,7 +111,7 @@ $this->title = 'Volunteer Forum';
             <p>
                 Knowing how to ensure mental wellbeing is a vital part in maternal care. Read more...
             </p><br>
-            <a href="https://www.pregnancybirthbaby.org.au/mental-wellbeing-during-pregnancy#:~:text=Try%20not%20to%20make%20major,relaxed%20and%20good%20about%20yourself.">
+            <a href="https://www.pregnancybirthbaby.org.au/mental-wellbeing-during-pregnancy#:~:text=Try%20not%20to%20make%20major,relaxed%20and%20good%20about%20yourself." target="_blank" rel="noopener noreferrer">
                 Mental wellbeing during pregnancy
             </a>
         </div>
@@ -113,7 +119,7 @@ $this->title = 'Volunteer Forum';
 </div>
 
 <div class="sub_topic">
-    <h1>Download</h1>
+    <h1>Downloads</h1>
 </div>
 
 <div class="lower">

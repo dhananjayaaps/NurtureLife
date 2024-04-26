@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?=$this->title?></title>
+    <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,9 +17,12 @@
 </head>
 <body>
 
-<div class="navbar">
-    <a href=" ">Home</a>
-    <a href="#about">About</a>
+<div class="navbar" id="myNavbar">
+    <div class="NL_logo_container">
+        <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
+    </div>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
 
     <div class="search-container">
         <input type="text" placeholder="Search...">
@@ -31,7 +35,7 @@
     <?php else: ?>
 
         <div class="dropdown">
-            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
+            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?>
                 <i class="fa fa-caret-down"></i>
             </button>
             <form id="roleChangeForm" method="POST" action="/changeRole">
@@ -42,7 +46,7 @@
             </div>
         </div>
 
-        <div class="action">
+        <div class="action" id="actionElement">
             <div class="profile" onclick="menuToggle();">
                 <img src="./assets/images/men_user.jpg" />
             </div>
@@ -73,39 +77,75 @@
 
 <div class="content-navbar">
     <div class="wrapper">
-    <div class="left-navbar">
-        <img class="NL_logo" src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
-        <div class="navigations">
-            <div class="column">
-                <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
+        <div class="left-navbar">
+            <div class="navigations">
+                <div class="column">
+                    <a href="/"><img src="assets/images/icons/home.png" alt="">Home</a>
+                </div>
+                <div class="column">
+                    <a href="/clinics"><img src="assets/images/icons/clinic.png" alt="">Clinics</a>
+                </div>
+                <div class="column">
+                    <a href="/reports"><img src="assets/images/icons/report.png" alt="">Reports</a>
+                </div>
+                <div class="column">
+                    <a href="/doctors"><img src="assets/images/icons/doctor.png" alt="">Doctors</a>
+                </div>
+                <div class="column">
+                    <a href="/midwife"><img src="assets/images/icons/nurse.png" alt="">MidWives</a>
+                </div>
+                <div class="column">
+                    <a href="/preMother"><img src="assets/images/icons/pregnant.png" alt="">Prenatal Mothers</a>
+                </div>
+                <div class="column">
+                    <a href="/postMother"><img src="assets/images/icons/care.png" alt="">Postnatal Mothers</a>
+                </div>
+                <div class="column">
+                    <a href="/users"><img src="assets/images/icons/user.png" alt="">Users</a>
+                </div>
             </div>
-            <div class="column">
-                <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
+        </div>
+
+        <div class="content">
+            {{content}}
+        </div>
+    </div>
+</div>
+<!--footer-->
+<div class="footer">
+    <div class="footer-left">
+        <div class="footer-left-title">
+            <div class="brand-name">NurtureLife</div>
+            <div class="year">&#183 &#160 2024</div>
+        </div>
+        <div class="footer-left-text">
+            SUSTAINING LIFE THROUGH EMPOWERING MOTHERHOOD
+        </div>
+        <div class="policy">
+            <a href="/policy">Privacy and Policy</a>
+        </div>
+    </div>
+
+    <div class="footer-center">
+        <div class="message">Made in 🇱🇰 with 💕</div>
+        <div class="follow-us">follow us on</div>
+        <div class="social-media-icons">
+            <div class="SM-icon-container">
+                <img class="SM-icon" src="./assets/images/fb-logo.png" />
             </div>
-            <div class="column">
-                <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
+            <div class="SM-icon-container">
+                <img class="SM-icon" src="./assets/images/insta-logo.png" />
             </div>
-            <div class="column">
-                <a href="/doctors"><img src="assets/images/icons/doctor.png" alt=""> Doctors</a>
-            </div>
-            <div class="column">
-                <a href="/midwife"><img src="assets/images/icons/nurse.png" alt=""> MidWives</a>
-            </div>
-            <div class="column">
-                <a href="/preMother"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/user.png" alt=""> Users</a>
+            <div class="SM-icon-container">
+                <img class="SM-icon" src="./assets/images/twitter-logo.png" />
             </div>
         </div>
     </div>
 
-    <div class="content"">
-        {{content}}
-    </div>
+    <div class="footer-right">
+        <div class="contact-us"><a href="/contact" style="color: white">Contact us</a></div>
+        <div class="tel-no">Call Us : 077 123 4678</div>
+        <div class="email">Email : admin.nurturelife@gmail.com</div>
     </div>
 </div>
 </body>

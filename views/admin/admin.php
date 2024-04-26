@@ -5,89 +5,95 @@ use app\models\User;
 
 $this->title = 'Admin Dashboard';
 ?>
-
-    <div class="content">
-        <div class="column first-column">
-            <div class="lineChart">
-                Total Mothers: 450
-                <canvas id="lineChart"></canvas>
-            </div>
-            <div class="lineChart">
-                Total Borns: 450
-                <canvas id="lineChart2"></canvas>
-            </div>
-            <div class="lineChart">
-                Total Registrations: 450
-                <canvas id="lineChart3"></canvas>
-            </div>
+<style>
+    .content .shadowBox{
+        height: 40vh;
+        margin-top: 15px;
+    }
+</style>
+<h1>Admin Dashboard</h1>
+<div class="content">
+    <div class="column first-column">
+        <div class="lineChart">
+            Total Mothers: 450
+            <canvas id="lineChart"></canvas>
         </div>
-        <div class="column second-column">
-            <div class="user-control">
-                User Distribution
-                <canvas id="myPieChart" width="300" height="300"></canvas>
-            </div>
-            <div class="quick-access">
-                <div class="user-control addButtons">
-                    <button class="addButton">Add a Clinic</button>
-                    <button class="addButton">Transfer a Doctor</button>
-                    <button class="addButton">Add a Doctor</button>
-                    <button class="addButton">Add a Midwife</button>
-                </div>
-                <div class="user-control addButtons">
-                    <button class="addButton">Restrict a User</button>
-                    <button class="addButton">Add an Admin</button>
-                    <button class="addButton">Transfer a Midwife</button>
-                    <button class="addButton">Add a Midwife</button>
-                </div>
-            </div>
-
-            <div class="shadowBox">
-                <div class="notification-bar">
-                    <div class="notifications">
-                        <span style="font-size: 20px; font-weight: bold;">Notifications</span>
-                    </div>
-                    <div class="myBox">
-                        <div class="notification emergency">
-                            <div class="message-box">
-                                <div class="title">Emergency Allert</div>
-                                <div class="notification-content">
-                                    Pressed the Emergency Elarm by Kamala Wijethunga
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="notification">
-                            <div class="message-box">
-                                <div class="title">Emergency Allert</div>
-                                <div class="notification-content">
-                                    Pressed the Emergency Elarm by Kamala Wijethunga
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="notification warning">
-                            <div class="message-box">
-                                <div class="title">Emergency Alert</div>
-                                <div class="notification-content">
-                                    Pressed the Emergency Elarm by Kamala Wijethunga
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="notification">
-                            <div class="message-box">
-                                <div class="title">Emergency Alert</div>
-                                <div class="notification-content">
-                                    Pressed the Emergency Elarm by Kamala Wijethunga
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="lineChart">
+            Total Borns: 450
+            <canvas id="lineChart2"></canvas>
+        </div>
+        <div class="lineChart">
+            Total Registrations: 450
+            <canvas id="lineChart3"></canvas>
         </div>
     </div>
+    <div class="column second-column">
+        <div class="user-control">
+            User Distribution
+            <canvas id="myPieChart" width="300" height="300"></canvas>
+        </div>
+        <div class="quick-access">
+            <div class="user-control addButtons">
+                <button class="addButton">Add a Clinic</button>
+                <button class="addButton">Transfer a Doctor</button>
+                <button class="addButton">Add a Doctor</button>
+                <button class="addButton">Add a Midwife</button>
+            </div>
+            <div class="user-control addButtons">
+                <button class="addButton">Restrict a User</button>
+                <button class="addButton">Add an Admin</button>
+                <button class="addButton">Transfer a Midwife</button>
+                <button class="addButton">Add a Midwife</button>
+            </div>
+        </div>
+
+        <div class="shadowBox">
+            <div class="notification-bar">
+                <div class="notifications">
+                    <span style="font-size: 20px; font-weight: bold;">Notifications</span>
+                </div>
+                <div class="myBox">
+                    <div class="notification emergency">
+                        <div class="message-box">
+                            <div class="title">Emergency Alert</div>
+                            <div class="notification-content">
+                                Pressed the Emergency Alarm by Kamala Wijethunga
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notification">
+                        <div class="message-box">
+                            <div class="title">Emergency Alert</div>
+                            <div class="notification-content">
+                                Pressed the Emergency Alarm by Kamala Wijethunga
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notification warning">
+                        <div class="message-box">
+                            <div class="title">Emergency Alert</div>
+                            <div class="notification-content">
+                                Pressed the Emergency Alarm by Kamala Wijethunga
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notification">
+                        <div class="message-box">
+                            <div class="title">Emergency Alert</div>
+                            <div class="notification-content">
+                                Pressed the Emergency Alarm by Kamala Wijethunga
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <!--Scripts for the chart development. That is hardcoded-->
 

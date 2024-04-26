@@ -19,61 +19,6 @@ $this->title = 'Manage Appointments';
 <link rel="stylesheet" href="./assets/styles/table.css">
 <link rel="stylesheet" href="./assets/styles/form.css">
 
-<!---->
-<!--<div id="myPopup" class="popup">-->
-<!--    <div class="popup-content">-->
-<!--        <h1 style="color: rgb(0, 15, 128);">Update Clinic Details<br/><br/></h1>-->
-<!--        <form action="">-->
-<!---->
-<!--            <div class="form-group">-->
-<!---->
-<!--                <label>Doctor ID</label>-->
-<!--                <input type="text" id="DoctorId" name="DoctorId" value=""  class="form-control ">-->
-<!--                <div class="invalid-feedback">-->
-<!---->
-<!--                </div>-->
-<!---->
-<!--                <label>Doctor Name</label>-->
-<!--                <input type="text" id="DoctorName" name="DoctorName" value=""  class="form-control ">-->
-<!--                <div class="invalid-feedback">-->
-<!---->
-<!--                </div>-->
-<!---->
-<!--                <label>Select new Clinic for transfer</label>-->
-<!--                <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control ">-->
-<!--                <div class="invalid-feedback">-->
-<!---->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!--        </form>-->
-<!--        <div class="buttonRow">-->
-<!--            <button type="submit" id="updateButton" class="btn-submit">-->
-<!--                Update-->
-<!--            </button>-->
-<!--            <button id="closePopup" class="btn-submit" style="background-color: brown;">-->
-<!--                Close-->
-<!--            </button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <br>-->
-<!--</div>-->
-<!---->
-<!---->
-<!--<div id="myPopupRemove" class="popup">-->
-<!--    <div class="popup-content">-->
-<!--        Do You Really Need to Remove This? That can't be undone-->
-<!--        <div class="buttonRow" style="display: flex; flex-direction: row; gap: 10px;">-->
-<!--            <button id="closePopup" class="btn-submit">-->
-<!--                Close-->
-<!--            </button>-->
-<!--            <button id="closePopupRemove" class="btn-submit" style="background-color: brown;">-->
-<!--                Remove-->
-<!--            </button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
 <style>
     .content {
         padding: 0;
@@ -82,8 +27,13 @@ $this->title = 'Manage Appointments';
         width: 100%;
         margin-top: 10px;
     }
-</style>
 
+    a{
+        text-decoration: none;
+        color: white;
+    }
+</style>
+<h1>Midwife - Appointment Management</h1>
 <div class="doctors content">
     <div class="shadowBox">
         <div class="left-content">
@@ -98,9 +48,6 @@ $this->title = 'Manage Appointments';
                     <th>Mother ID</th>
                     <th>Name</th>
                     <th>Status</th>
-<!--                    <th>Delivery Date</th>-->
-<!--                    <th>Midwife</th>-->
-<!--                    <th>Address</th>-->
                     <th>GN Division</th>
                     <th>Actions</th>
                 </tr>
@@ -119,8 +66,7 @@ $this->title = 'Manage Appointments';
         <h2>Select the Appointment Details</h2>
             <br>
             <?php $form = Form::begin('', "post")?>
-            <?php echo $form->field($appointmentModel, 'MotherId', 'Mother ID')?>
-
+            <label for="MotherIds"></label><input type="text" name="MotherIds" id="MotherIds" value="" class="form-control hidden">
             <?php
             $maritalStatusField = new Dropdown($appointmentModel, 'AppointType', 'Appoint Type');
             $maritalStatusField->setOptions([
@@ -135,6 +81,7 @@ $this->title = 'Manage Appointments';
             ?>
 
             <?php echo $form->dateField($appointmentModel, 'AppointDate', 'Appoint Date')?>
+            <?php echo $form->TimeField($appointmentModel, 'time', 'Appoint Time')?>
             <?php echo $form->field($appointmentModel, 'AppointRemarks', 'Remarks')?>
 
             <button type="submit" class="btn-submit">Submit</button>
@@ -146,7 +93,7 @@ $this->title = 'Manage Appointments';
 <script>
     var data = <?php echo $model->getMothers()?>;
 
-    var itemsPerPage = 10;
+    var itemsPerPage = 2;
     var currentPage = 1;
 
     function displayTableData() {
@@ -157,16 +104,17 @@ $this->title = 'Manage Appointments';
 
         for (var i = startIndex; i < endIndex && i < data.length; i++) {
             var row = data[i];
+            console.log(row);
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
-            <td><input type="checkbox" class="tickCheckbox"></td>
+            <td><input type="checkbox" class="tickCheckbox" data-motherid="${row.MotherId}"></td>
             <td>${row.MotherId}</td>
             <td>${row.Name}</td>
             <td>${row.Status}</td>
 <!--            <td>${row.DeliveryDate}</td>-->
 <!--            <td>${row.PHM_id}</td>-->
             <td>Colombo</td>
-<!--            <td>Maharagama</td>-->
+            <button class="action-button" onclick=""><a href="/motherProfile?id=${row.MotherId}">View Mother</a></button>
             `;
             tableBody.appendChild(newRow);
         }
@@ -201,16 +149,52 @@ $this->title = 'Manage Appointments';
             checkboxes[i].checked = this.checked;
         }
     });
+</script>
 
-    function getSelectedMotherIDs() {
-        var selectedMotherIDs = [];
+<script>
+    var selectedMothers = [];
+
+    function updateSelectedMothers() {
+        selectedMothers = [];
         var checkboxes = document.getElementsByClassName("tickCheckbox");
         for (var i = 0; i < checkboxes.length; i++) {
             if (checkboxes[i].checked) {
-                var motherID = checkboxes[i].getAttribute("data-motherid");
-                selectedMotherIDs.push(motherID);
+                selectedMothers.push(checkboxes[i].getAttribute('data-motherid'));
+                console.log(checkboxes[i].getAttribute('data-motherid'))
             }
         }
-        return selectedMotherIDs;
+        document.getElementById('MotherIds').value = selectedMothers.join(',');
     }
+
+    var checkboxes = document.getElementsByClassName("tickCheckbox");
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].addEventListener('change', function () {
+            updateSelectedMothers();
+        });
+    }
+
+    function initializeSelectedMothers() {
+        updateSelectedMothers();
+    }
+
+    initializeSelectedMothers();
+</script>
+
+<script>
+    function updatePagination() {
+        displayTableData();
+        displayPagination();
+    }
+
+    function attachListeners() {
+        var paginationButtons = document.querySelectorAll('.page-button');
+        paginationButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                currentPage = parseInt(this.textContent);
+                updatePagination();
+            });
+        });
+    }
+
+    attachListeners();
 </script>

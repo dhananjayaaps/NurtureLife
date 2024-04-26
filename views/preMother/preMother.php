@@ -11,5 +11,4 @@ $this->title = 'Login';
 ?>
 
 
-<h1>preMother View</h1>
-
+<h1>Prenatal Mother - Dashboard</h1>

@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="./assets/styles/table.css">
 <link rel="stylesheet" href="./assets/styles/admin.css">
 
+<h1>Midwife - Appointments</h1>
 <div id="myPopup" class="popup">
     <div class="popup-content">
         <h1 style="color:green;">Mother Diagnostic Card</h1>

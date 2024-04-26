@@ -8,14 +8,14 @@ class m0001_initial
     {
         $db = Application::$app->db;
 
-        $SQL1 = "CREATE TABLE roles (
+        $SQL1 = "CREATE TABLE IF NOT EXISTS roles (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(255) NOT NULL
         ) ENGINE=INNODB;";
 
         $db->pdo->exec($SQL1);
 
-        $SQL2 = "CREATE TABLE users (
+        $SQL2 = "CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             email VARCHAR(255) NOT NULL,
             firstname VARCHAR(255) NOT NULL,
@@ -38,16 +38,16 @@ class m0001_initial
         $db->pdo->exec($SQL2);
 
 
-        $SQL3 = "INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
-                INSERT INTO roles (id, name) VALUES (2, 'ROLE_ADMIN');
-                INSERT INTO roles (id, name) VALUES (3, 'ROLE_DOCTOR');
-                INSERT INTO roles (id, name) VALUES (4, 'ROLE_PRE_MOTHER');
-                INSERT INTO roles (id, name) VALUES (5, 'ROLE_POST_MOTHER');
-                INSERT INTO roles (id, name) VALUES (6, 'ROLE_MIDWIFE');
+        $SQL3 = "INSERT IGNORE INTO roles (id, name) VALUES (1, 'ROLE_USER');
+                INSERT IGNORE INTO roles (id, name) VALUES (2, 'ROLE_ADMIN');
+                INSERT IGNORE INTO roles (id, name) VALUES (3, 'ROLE_DOCTOR');
+                INSERT IGNORE INTO roles (id, name) VALUES (4, 'ROLE_PRE_MOTHER');
+                INSERT IGNORE INTO roles (id, name) VALUES (5, 'ROLE_POST_MOTHER');
+                INSERT IGNORE INTO roles (id, name) VALUES (6, 'ROLE_MIDWIFE');
             ";
         $db->pdo->exec($SQL3);
 
-        $SQL5 = "CREATE TABLE user_roles (
+        $SQL5 = "CREATE TABLE IF NOT EXISTS user_roles (
                     user_id INT,
                     role_id INT,
                     PRIMARY KEY (user_id, role_id),
@@ -58,17 +58,18 @@ class m0001_initial
         $db->pdo->exec($SQL5);
 
 
-        $SQL6 = "CREATE TABLE clinics (
+        $SQL6 = "CREATE TABLE IF NOT EXISTS clinics (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             district VARCHAR(255) NOT NULL,
             address VARCHAR(255) NOT NULL,
+            contactNo VARCHAR(255) NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;";
 
         $db->pdo->exec($SQL6);
 
-        $SQL7 = "CREATE TABLE doctors (
+        $SQL7 = "CREATE TABLE IF NOT EXISTS doctors (
                 MOH_id INT NOT NULL AUTO_INCREMENT,
                 user_id INT,
                 SLMC_no VARCHAR(255) NOT NULL,
@@ -81,7 +82,7 @@ class m0001_initial
 
         $db->pdo->exec($SQL7);
 
-        $SQL8 = "CREATE TABLE midwife (
+        $SQL8 = "CREATE TABLE IF NOT EXISTS midwife (
                 PHM_id INT NOT NULL AUTO_INCREMENT,
                 user_id INT,
                 SLMC_no VARCHAR(255) NOT NULL,
@@ -94,7 +95,7 @@ class m0001_initial
 
         $db->pdo->exec($SQL8);
 
-        $SQL9 = "CREATE TABLE Mothers (
+        $SQL9 = "CREATE TABLE IF NOT EXISTS Mothers (
             MotherId INT AUTO_INCREMENT PRIMARY KEY,
             user_id INT,
             PHM_ID INT,
@@ -122,7 +123,7 @@ class m0001_initial
         $db->pdo->exec($SQL9);
 
         $Trigger1 = "
-            CREATE TRIGGER after_insert_user
+            CREATE TRIGGER IF NOT EXISTS after_insert_user
             AFTER INSERT ON users
             FOR EACH ROW
             BEGIN
@@ -133,11 +134,12 @@ class m0001_initial
 
         $db->pdo->exec($Trigger1);
 
-        $AppointmentsTable = "CREATE TABLE Appointments (
+        $AppointmentsTable = "CREATE TABLE IF NOT EXISTS Appointments (
             AppointmentId INT PRIMARY KEY AUTO_INCREMENT,
             MotherId INT,
             AppointType INT,
             AppointDate DATE,
+            time TIME,
             AppointStatus VARCHAR(50),
             AppointRemarks TEXT,
             FOREIGN KEY (MotherId) REFERENCES Mothers(MotherId)
@@ -164,7 +166,7 @@ class m0001_initial
 
         $db->pdo->exec($SQL10);
 
-        $SQL10 = "create table fetalkick (
+        $SQL10 = "create table IF NOT EXISTS fetalkick (
             RecordId  int auto_increment primary key,
             MotherId  int                                  not null,
             Time      datetime default current_timestamp() not null,
@@ -174,19 +176,88 @@ class m0001_initial
 
         $db->pdo->exec($SQL10);
 
-        $SQL10 = "create table motherWeights (
+        $SQL10 = "create table IF NOT EXISTS motherWeights (
             RecordId  int auto_increment primary key,
             MotherId  int                                  not null,
-            Date      date default current_timestamp() not null,
+            Date      TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
             Weight int(3)                               not null
         );"
         ;
 
         $db->pdo->exec($SQL10);
+
+        $sql = "CREATE TABLE IF NOT EXISTS post (
+                id INT NOT NULL AUTO_INCREMENT,
+                user_id INT,
+                description TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                status TINYINT(1) DEFAULT 1,
+                PRIMARY KEY (id),
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            ) ENGINE=INNODB;
+            ";
+        $db->pdo->exec($sql);
+
+//        $sql = "ALTER TABLE post ADD topic TEXT AFTER user_id;";
+//        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS post_request (
+                id INT NOT NULL AUTO_INCREMENT,
+                post_id INT,
+                provider_id INT,
+                seeker_id INT,
+                description TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                status TINYINT(1) DEFAULT 0,
+                PRIMARY KEY (id),
+                FOREIGN KEY (provider_id) REFERENCES users(id),
+                FOREIGN KEY (seeker_id) REFERENCES users(id),
+                FOREIGN KEY (post_id) REFERENCES post(id)
+            ) ENGINE=INNODB;
+            ";
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS feedback (
+                id INT NOT NULL AUTO_INCREMENT,
+                email VARCHAR(255),
+                feedback TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id)
+            ) ENGINE=INNODB;
+            ";
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS emailVerifications (
+                id INT NOT NULL AUTO_INCREMENT,
+                email VARCHAR(255),
+                token VARCHAR(255),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id)
+            ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS passwordResets (
+                id INT NOT NULL AUTO_INCREMENT,
+                email VARCHAR(255),
+                token VARCHAR(255),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id)
+            ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS admins (
+                admin_id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT,
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            ) ENGINE=INNODB;
+            ";
     }
-
-
-
 
     public function down()
     {
