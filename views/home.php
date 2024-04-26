@@ -1,4 +1,16 @@
 <link rel="stylesheet" href="./assets/styles/UserHome.css">
+<style>
+    .userHome_content{
+
+    }
+    .wrapper{
+        justify-content: center;
+        padding: 20px;
+    }
+    .image-container{
+        border-radius: 30px;
+    }
+</style>
 <div class="image-container">
     <div class="BackgroundText">
         <div class="BackgroundText-1">💕NurtureLife</div>
@@ -13,11 +25,11 @@
 <div class="quick-access">
     <div class="access-one">
         <img src="./assets/images/resources.png" alt="calender">
-        <a href="/resources">Resources and Books</a>
+        <a href="https://drive.google.com/drive/folders/1tgtXQ39kbaM37BUenEuEPqWDaJT-4DAa?usp=sharing" target="_blank">Resources and Books</a>
     </div>
     <div class="access-two">
         <img src="./assets/images/team.png" alt="volunteer">
-        <a href="/login">Register as a Volunteer</a></div>
+        <a href="/register">Register as a Volunteer</a></div>
     <div class="access-three">
         <img src="./assets/images/15.-Cash.svg" alt="volunteer">
         <a href="/login">Make a Donation</a></div>
