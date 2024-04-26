@@ -9,6 +9,20 @@
     <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/volunteer.css">
+    <script>
+        <?php
+        $FlashMessage = Application::$app->session->getFlash('success');
+        $ErrorFlashMessage = Application::$app->session->getFlash('error');
+
+        if ($FlashMessage) {
+            echo "window.onload = function() { showSuccessToast('$FlashMessage', 'success'); };";
+        }
+        if ($ErrorFlashMessage) {
+            echo "window.onload = function() { showErrorToast('$ErrorFlashMessage', 'error'); };";
+        }
+        ?>
+    </script>
+    <script src="./assets/scripts/toast.js"></script>
 </head>
 <body>
 
