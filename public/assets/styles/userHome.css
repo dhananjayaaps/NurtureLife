@@ -57,6 +57,7 @@
     position: relative;
     width: 320px;
     font-family: Arial, Helvetica, sans-serif;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
 }
 .emg_access p{
@@ -127,6 +128,7 @@
     margin: auto;
     padding: 30px;
     border-radius: 35px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 .access-one:hover, .access-two:hover, .access-three:hover{
     background-color: #3f57e7;
