@@ -21,6 +21,7 @@ use app\controllers\MotherController;
 use app\controllers\MotherController\FetalkickController;
 use app\controllers\PostController;
 use app\controllers\MotherController\PreMotherCareController;
+use app\controllers\PostRequestController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -153,6 +154,9 @@ $app->router->post('/posts', [PostController::class, 'posts']);
 $app->router->post('/postsUpdate', [PostController::class, 'postsUpdate']);
 $app->router->post('/postDelete', [PostController::class, 'postDelete']);
 $app->router->get('/getPostDetails', [PostController::class, 'getPostDetails']);
+
+$app->router->post('/createPostRequest', [PostRequestController::class, 'createPostRequest']);
+$app->router->post('/postRequestUpdate', [PostRequestController::class, 'postRequestUpdate']);
 
 $app->router->get('/policy', [SiteController::class, 'policy']);
 $app->router->post('/policy', [SiteController::class, 'policy']);

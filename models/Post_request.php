@@ -63,15 +63,22 @@ class Post_request extends DbModel
     }
     public function getRequests(): string
     {
-        if(Application::$app->user->getRoleName() == 'Volunteer'){
-            $joins = [
-                ['model' => User::class, 'condition' => 'post.user_id = users.id'],
-            ];
-            $requestData = (new Post_request())->findAllWithJoins(self::class, $joins, ['postal_code' => Application::$app->user->getZip()],['postStatus'=>'post.status']);
 
-        }else{
-            $requestData = (new Post_request())->findAll(self::class, ['user_id' => Application::$app->user->getId()]);
-        }
+            $joins = [
+                ['model' => User::class, 'condition' => 'post_request.provider_id = users.id'],
+                ['model' => Post::class, 'condition' => 'post_request.post_id = post.id'],
+            ];
+            $alias=['postID'=>'post.id',
+                'postReqID'=>'post_request.id',
+                'post_desc'=>'post.description',
+                'req'=>'post_request.description',
+                'req_status'=>'post_request.status',
+                'post_status'=>'post.status',
+                'req_created_at'=>'post_request.created_at',
+                ];
+            $requestData = (new Post_request())->findAllWithJoins(self::class, $joins, ['seeker_id' => Application::$app->user->getId()],$alias);
+
+//            $requestData = (new Post_request())->findAll(self::class, ['seeker_id' => Application::$app->user->getId()]);
         $roleMap=[
             "user",
             "admin",
@@ -81,33 +88,23 @@ class Post_request extends DbModel
             "midwife"
         ];
         $data = [];
-        if(Application::$app->user->getRoleName() == 'Volunteer'){
+
             foreach ($requestData as $post_request) {
                 $data[] = [
-                    'id' => $post_request->id,
-                    'post_id' => $post_request->post_id,
+                    'id' => $post_request->postReqID,
+                    'post_id' => $post_request->postID,
                     'provider_id' => $post_request->provider_id,
                     'seeker_id' => $post_request->seeker_id,
-                    'description' => $post_request->description,
-                    'created_at' => $post_request->created_at,
-                    'updated_at' => $post_request->updated_at,
-                    'status' => $post_request->status
+                    'description' => $post_request->post_desc,
+                    'topic' => $post_request->topic,
+                    'req' => $post_request->req,
+                    'req_created_at' => $post_request->req_created_at,
+                    'req_status' => $post_request->req_status,
+                    'post_status' => $post_request->post_status,
+                    'vol_name' => ucfirst($post_request->firstname).' '.ucfirst($post_request->lastname),
+                    'role' => $roleMap[$post_request->role_id-1],
                 ];
             }
-        }else {
-            foreach ($requestData as $post_request) {
-                $data[] = [
-                    'id' => $post_request->id,
-                    'post_id' => $post_request->post_id,
-                    'provider_id' => $post_request->provider_id,
-                    'seeker_id' => $post_request->seeker_id,
-                    'description' => $post_request->description,
-                    'created_at' => $post_request->created_at,
-                    'updated_at' => $post_request->updated_at,
-                    'status' => $post_request->status
-                ];
-            }
-        }
         return json_encode($data);
     }
     public function getPostRequestById($RequestId): string
@@ -142,4 +139,6 @@ class Post_request extends DbModel
     {
         return parent::update();
     }
+
+
 }
