@@ -19,7 +19,7 @@ $this->title = 'Midwifes';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
-<h1>Admin - Midwives</h1>
+<h1>Midwives Management</h1>
 <div id="myPopup" class="popup">
     <div class="popup-content">
         <h1 style="color: rgb(0, 15, 128);">Update Midwife Details<br/><br/></h1>

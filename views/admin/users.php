@@ -19,7 +19,7 @@ $this->title = 'Users';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
-<h1>Admin - User Management</h1>
+<h1>User Management</h1>
 <!--user update popup-->
 <div id="myPopup" class="popup">
     <div class="popup-content">
