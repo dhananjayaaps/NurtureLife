@@ -8,17 +8,17 @@ use PDO;
 use app\core\Model;
 
 
-class ChildWeight extends DbModel
+class ChildHeight extends DbModel
 {
-    public string $weight_record_id ='';
+    public string $height_record_id ='';
     public string $child_id = '';
-    public string $value_of_weight ='';
+    public string $value_of_height ='';
 
     public function rules(): array
     {
         return[
 
-            'value_of_weight'=> [self::RULE_REQUIRED],
+            'value_of_height'=> [self::RULE_REQUIRED],
             'child_id'=> [self::RULE_REQUIRED]
 
         ];
@@ -26,31 +26,31 @@ class ChildWeight extends DbModel
 
     public function tableName(): string
     {
-        return 'ChildWeight';
+        return 'ChildHeight';
     }
 
     public function primaryKey(): string
     {
-        return 'weight_record_id';
+        return 'height_record_id';
     }
 
     public function attributes(): array
     {
         return [
-            'value_of_weight',
+            'value_of_height',
             'child_id'
         ];
     }
-    public function getWeight(): string
+    public function getHeight(): string
     {
         $child_id = $this->getChildId();
-        $WeightData = (new ChildWeight())->findAll(self::class,['child_id'=>$child_id]);
+        $HeightData = (new ChildHeight())->findAll(self::class,['child_id'=>$child_id]);
         $data = [];
 
-        foreach ($WeightData as $Weight) {
+        foreach ($HeightData as $Height) {
             $data[] = [
-                'Date' => $Weight->Time,
-                'Count' => $Weight->weight_record_id
+                'Date' => $Height->Time,
+                'Count' => $Height->height_record_id
             ];
         }
         return json_encode($data);
@@ -71,14 +71,14 @@ class ChildWeight extends DbModel
 
     public function isNew(): bool
     {
-        $Tdy_rec= ChildWeight::findOneByChildIdAndDate(ChildWeight::class);
+        $Tdy_rec= ChildHeight::findOneByChildIdAndDate(ChildHeight::class);
         return empty($Tdy_rec);
     }
     static public function findOneByChildIdAndDate($modelClass)
     {
         $tableName = (new $modelClass())->tableName();
         $currentDate = date("Y-m-d"); // Get the current date in the "YYYY-MM-DD" format
-        $childId = (new ChildWeight())->getChildId();
+        $childId = (new ChildHeight())->getChildId();
 
         $sql = "child_id = :childId AND DATE_FORMAT(Time, '%Y-%m-%d') = :currentDate";
 

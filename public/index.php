@@ -152,5 +152,8 @@ $app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preM
 $app->router->get('/childweight', [ChildChartController::class, 'ChildWeight']);
 $app->router->post('/childweight', [ChildChartController::class, 'ChildWeightUpdate']);
 
+$app->router->get('/childHeight', [ChildChartController::class, 'childHeight']);
+$app->router->post('/childHeight', [ChildChartController::class, 'childHeightUpdate']);
+
 
 $app->run();

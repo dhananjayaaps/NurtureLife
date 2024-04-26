@@ -4,6 +4,7 @@
 use app\core\Application;
 use app\core\form\Form;
 use app\core\Model;
+use app\models\ChildHeight;
 use app\models\ChildWeight;
 use app\models\Fetalkick;
 use app\models\WeightGainChart;
@@ -11,8 +12,8 @@ use app\models\WeightGainChart;
 $this->title = 'Weight Gain Chart';
 ?>
 <?php
-/** @var $model ChildWeight **/
-/** @var $modelUpdate ChildWeight **/
+/** @var $model ChildHeight **/
+/** @var $modelUpdate ChildHeight **/
 //?>
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
@@ -21,16 +22,16 @@ $this->title = 'Weight Gain Chart';
 
 <div>
     <div class="lineChart">
-        Weight(kg)
+        Height(m)
         <canvas id="lineChart" ></canvas>
     </div>
 </div>
 <div class="column-container"  >
     <div id="Add_section" class="right-content">
         <div class="shadowBox">
-            <h2>Child Weight Monthly Record <br/><br/></h2>
+            <h2>Child Height Monthly Record <br/><br/></h2>
             <?php $form = Form::begin('', "post")?>
-            <?php echo $form->field($model, 'value_of_weight', 'Weight(kg) ')?>
+            <?php echo $form->field($model, 'value_of_height', 'Height(m) ')?>
             <button type="submit" class="btn-submit">Submit</button>
             <?php echo Form::end()?>
         </div>
@@ -40,12 +41,12 @@ $this->title = 'Weight Gain Chart';
             <div>
                 <br>
                 <form>
-                    <h2 style="color: rgb(0, 15, 128);">Update Weight<br/><br/></h2>
+                    <h2 style="color: rgb(0, 15, 128);">Update Height<br/><br/></h2>
                     <br>
 
                     <div class="form-group">
-                        <label for="UpdateWeightCount">Correct Weight</label>
-                        <input type="text" id="UpdateWeightCount" name="UpdateWeightCount" value=""  class="form-control ">
+                        <label for="UpdateHeightCount">Correct Height</label>
+                        <input type="text" id="UpdateHeightCount" name="UpdateHeightCount" value=""  class="form-control ">
                         <div class="invalid-feedback">
                         </div>
                     </div>
@@ -73,7 +74,7 @@ $this->title = 'Weight Gain Chart';
 
 <script>
     // Sample data received from the database
-    var dbData = <?php echo $model->getWeight() ?>;
+    var dbData = <?php echo $model->getHeight() ?>;
 
 
     // Extracting dates and counts from the database data
@@ -114,7 +115,7 @@ $this->title = 'Weight Gain Chart';
 
     <?php
     // PHP code to fetch the value
-    $fk =  new ChildWeight();
+    $fk =  new ChildHeight();
     $new= $fk->isNew();
 
     ?>
@@ -160,14 +161,14 @@ $this->title = 'Weight Gain Chart';
     document.getElementById('updateButton').addEventListener('click', function(e) {
         e.preventDefault();
 
-        const value_of_weight = document.querySelector('input[name="UpdateWeight"]').value;
+        const value_of_height = document.querySelector('input[name="UpdateHeight"]').value;
 
         const formData = new FormData();
-        formData.append('value_of_weight', value_of_weight);
-        console.log(value_of_weight)
+        formData.append('value_of_height', value_of_height);
+        console.log(value_of_height)
         // formData.append('MotherId', Mid);
 
-        const url = '/ChildWeightUpdate';
+        const url = '/ChildHeightUpdate';
 
         fetch(url, {
             method: 'POST',
