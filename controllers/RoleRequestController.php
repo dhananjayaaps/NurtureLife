@@ -9,7 +9,7 @@ use app\models\RoleRequest;
 
 class RoleRequestController extends Controller
 {
-    public function posts(Request $request): array|false|string
+    public function roleRequest(Request $request): array|false|string
     {
         $roleReq = new RoleRequest();
         if ($request->isPost()) {
@@ -17,11 +17,10 @@ class RoleRequestController extends Controller
             $roleReq->user_id = Application::$app->user->getId();
             if ($roleReq->validate() && $roleReq->save()) {
                 Application::$app->session->setFlash('success', 'New role requested successfully');
-                Application::$app->response->redirect('/roleRequest');
+                Application::$app->response->redirect('/');
                 exit;
             }
         }
-
         $roleName = Application::$app->user->getRoleName();
         if ($roleName == 'Admin'){
             $this->layout = 'admin';

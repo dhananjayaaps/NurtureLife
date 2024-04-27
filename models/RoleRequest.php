@@ -12,7 +12,6 @@ class RoleRequest extends DbModel
     const int STATUS_ATTENDED = 1;
     const int STATUS_COMPLETED = 2;
     public string $id = '';
-
     public string $user_id = '';
     public string $name ='';
     public string $nic ='';
@@ -35,6 +34,9 @@ class RoleRequest extends DbModel
     public function save(): bool
     {
         $this->status = self::STATUS_PENDING;
+        $this->user_id = Application::$app->user->getId();
+        $this->nic = Application::$app->user->getNIC();
+        $this->created_at = date('Y-m-d H:i:s');
         return parent::save();
     }
 
@@ -42,7 +44,6 @@ class RoleRequest extends DbModel
     {
         return [
             'name' => [self::RULE_REQUIRED],
-            'nic' => [self::RULE_REQUIRED,[self::RULE_MIN,'min' => 10],[self::RULE_MAX,'max' => 12]],
             'SLMC_no' => [self::RULE_REQUIRED,[
                 self::RULE_UNIQUE ,'class' => self::class
             ]],
@@ -50,7 +51,7 @@ class RoleRequest extends DbModel
         ];
     }
 
-    public function getPostsList(): array
+    public function getRoleRequestsList(): array
     {
         $roleRequests = (new RoleRequest())->findAll(RoleRequest::class);
         $data = [];
@@ -61,6 +62,7 @@ class RoleRequest extends DbModel
                 'name' => $roleRequests->name,
                 'nic' => $roleRequests->nic,
                 'SLMC_no' => $roleRequests->SLMC_no,
+                'requested_role' => $roleRequests->requested_role,
                 'created_at' => $roleRequests->created_at,
                 'status' => $roleRequests->status
             ];
@@ -68,7 +70,7 @@ class RoleRequest extends DbModel
         return ($data);
     }
 
-    public function getPosts(): string
+    public function getRoleRequests(): string
     {
         $roleRequestData = [];
         if(Application::$app->user->getRoleName() == 'Volunteer'){
