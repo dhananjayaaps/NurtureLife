@@ -41,7 +41,7 @@
             <div id="map"></div>
 
             <script
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCun8jKr1zvi4wKd_1HwSuhM7i2KOAIkQI&callback=initMap&libraries=visualization&v=weekly"
+                    src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['MAP_API']?>&callback=initMap&libraries=visualization&v=weekly"
                     defer
             >
             </script>
