@@ -163,5 +163,28 @@ class Mother extends DbModel
         // Return the result as JSON
         return json_encode($result);
     }
+    public function getMotherClinic()
+    {
+        $UserId = Application::$app->user->getId();
+        $MotherData = self::findOne(Mother::class, ['user_id' => $UserId]);
+        return $MotherData->clinic_id;
+    }
+    public function getClinicDoctors()
+    {
+        $clinic = (new Mother())->getMotherClinic();
+
+        $sql = self::prepare("SELECT D.MOH_id , U.firstname, U.lastname
+                     From doctors AS D, users AS U
+                     WHERE D.user_id = U.id AND D.clinic_id = :clinicId");
+
+        $sql->bindValue(":clinicId", $clinic);
+        $sql->execute();
+
+        // Fetch all rows as associative arrays
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the result as JSON
+        return json_encode($result);
+    }
 
 }

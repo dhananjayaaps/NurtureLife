@@ -22,7 +22,7 @@ $this->title = 'preMother Dashboard';
         <div class="quick-access">
             <div class="user-control addButtons">
 
-                <a href="preMotherTest"><button class="addButton">SOS Emergency</button></a>
+                <a href="/preMotherTest"><button class="addButton">SOS Emergency</button></a>
 
 
             </div>

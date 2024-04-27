@@ -93,9 +93,9 @@ $this->title = 'Mothers';
         <div class="form-container">
 
             <div class="form-column">
-                <?php echo $form->field($model, 'nic', 'NIC Number')?>
+                <?php echo $form->field($model, 'nic', 'NIC Number');
 
-                    <?php
+
                     $maritalStatusField = new Dropdown($model, 'MaritalStatus', 'Marital Status');
                     $maritalStatusField->setOptions([
                         'married' => 'Married',

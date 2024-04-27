@@ -11,7 +11,6 @@ class PreMotherController extends Controller
 {
     public function PreMother(Request $request): array|false|string
     {
-        $this->layout = 'midwife';
         $mother = new Mother();
         $mother2 = new Mother();
 

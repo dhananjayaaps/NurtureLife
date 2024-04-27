@@ -5,6 +5,7 @@ namespace app\models;
 use app\core\Application;
 use app\core\db\DbModel;
 use app\core\Model;
+use PDO;
 
 class Midwife extends DbModel
 {
@@ -138,5 +139,49 @@ class Midwife extends DbModel
         self::deleteWhere(UserRoles::class, ['user_id' => $this->user_id, 'role_id' => 6]);
         return parent::delete();
     }
+    public function getMidwifeId()
+    {
+        $UserId = Application::$app->user->getId();
+        $MidwifeData = self::findOne(Midwife::class, ['user_id' => $UserId]);
+        return $MidwifeData->PHM_id;
+    }
+    public function getMidwifeClinic()
+    {
+        $UserId = Application::$app->user->getId();
+        $MidwifeData = self::findOne(Doctor::class, ['user_id' => $UserId]);
+        return $MidwifeData->clinic_id;
+    }
+    public function getClinicDoctors()
+    {
+        $clinic = (new Midwife())->getMidwifeClinic();
 
+        $sql = self::prepare("SELECT D.MOH_id , U.firstname, U.lastname
+                     From doctors AS D, users AS U
+                     WHERE D.user_id = U.id AND D.clinic_id = :clinicId");
+
+        $sql->bindValue(":clinicId", $clinic);
+        $sql->execute();
+
+        // Fetch all rows as associative arrays
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the result as JSON
+        return json_encode($result);
+    }
+    public function getMidwifeMothers()
+    {
+        $MidwifeId = (new Midwife())->getMidwifeId();
+        $sql = self::prepare("SELECT M.MotherId , U.firstname, U.lastname
+                     From Mothers AS M, users AS U
+                     WHERE M.user_id = U.id AND M.PHM_ID = :midwifeId");
+
+        $sql->bindValue(":midwifeId", $MidwifeId);
+        $sql->execute();
+
+        // Fetch all rows as associative arrays
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the result as JSON
+        return json_encode($result);
+    }
 }

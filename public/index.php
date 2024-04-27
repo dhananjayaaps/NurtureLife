@@ -75,6 +75,11 @@ $app->router->post('/preMotherForm', [PreMotherController::class, 'PreMother']);
 $app->router->get('/preMotherForm', [PreMotherController::class, 'PreMother']);
 $app->router->post('/preMotherForm', [PreMotherController::class, 'PreMother']);
 
+$app->router->get('/MotherSymptoms', [MotherController::class, 'MotherSymptom']);
+$app->router->post('/MotherSymptoms', [MotherController::class, 'MotherSymptom']);
+$app->router->post('/symptomsUpdate', [MotherController::class, 'MotherSymptomUpdate']);
+$app->router->post('/deleteSymptom', [MotherController::class, 'MotherSymptomDelete']);
+
 $app->router->get('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkickUpdate', [FetalkickController::class, 'fetalkickUpdate']);
@@ -106,8 +111,11 @@ $app->router->get('/mothers', [AppoinmetHandler::class, 'appointments']);
 $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/about', [SiteController::class, 'about']);
-$app->router->get('/preMotherTest', [SiteController::class, 'preMotherTest']);
+//$app->router->get('/preMotherTest', [SiteController::class, 'preMotherTest']);
 $app->router->get('/communication', [SiteController::class, 'communication']);
+$app->router->get('/replySymptoms', [SiteController::class, 'doctorViewSymptoms']);
+$app->router->get('/checkSymptoms', [SiteController::class, 'midwifeViewSymptoms']);
+
 
 
 $app->router->get('/immunizationCard', [ChildController::class, 'immunizationCard']);

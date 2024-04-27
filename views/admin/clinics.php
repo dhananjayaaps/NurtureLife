@@ -323,3 +323,4 @@ $this->title = 'Clinics';
         }
     });
 </script>
+

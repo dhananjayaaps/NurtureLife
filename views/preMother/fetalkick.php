@@ -11,7 +11,7 @@ $this->title = 'FetalKicks';
 <?php
 /** @var $model Fetalkick **/
 /** @var $modelUpdate Fetalkick **/
-//?>
+?>
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/Form.css">
@@ -130,28 +130,28 @@ $this->title = 'FetalKicks';
 </script>
 
 
-<script>
-    function fetchData(url) {
-
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                // Parse the response body as JSON
-                return response.json();
-            })
-            .then(data => {
-                console.log('Data received:', data);
-
-
-            })
-            .catch(error => {
-                // Handle errors during the fetch operation
-                console.error('Fetch error:', error);
-            });
-    }
-</script>
+<!--<script>-->
+<!--    function fetchData(url) {-->
+<!---->
+<!--        fetch(url)-->
+<!--            .then(response => {-->
+<!--                if (!response.ok) {-->
+<!--                    throw new Error(`HTTP error! Status: ${response.status}`);-->
+<!--                }-->
+<!--                // Parse the response body as JSON-->
+<!--                return response.json();-->
+<!--            })-->
+<!--            .then(data => {-->
+<!--                console.log('Data received:', data);-->
+<!---->
+<!---->
+<!--            })-->
+<!--            .catch(error => {-->
+<!--                // Handle errors during the fetch operation-->
+<!--                console.error('Fetch error:', error);-->
+<!--            });-->
+<!--    }-->
+<!--</script>-->
 
 <script>
     document.getElementById('updateButton').addEventListener('click', function(e) {

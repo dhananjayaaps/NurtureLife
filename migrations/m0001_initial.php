@@ -183,6 +183,14 @@ class m0001_initial
         ;
 
         $db->pdo->exec($SQL10);
+
+        $SQL13 = "CREATE TABLE `nurturelife`.`MotherSymptoms` ( `symptomRecNo` INT NOT NULL AUTO_INCREMENT , 
+        `MotherId` INT NOT NULL , `clinicId` INT NOT NULL , `symptomDescription` TEXT NOT NULL , 
+        `priorityLvl` VARCHAR(8) NOT NULL , `recTime` DATETIME NOT NULL , `midwifeId` INT NOT NULL , 
+        `midwifeCheck` VARCHAR(4) NOT NULL DEFAULT 'No' , `replyDocId` INT NOT NULL , `doctorReply` TEXT NULL , 
+        `replyTime` DATETIME NULL , PRIMARY KEY (`symptomRecNo`)) ENGINE = InnoDB;";
+
+        $db->pdo->exec($SQL13);
     }
 
 

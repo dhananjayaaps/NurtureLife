@@ -75,7 +75,7 @@
                 <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
             </div>
             <div class="column">
-                <a href="#"><img src="assets/images/icons/clinic.png" alt=""> Report Symptoms</a>
+                <a href="/MotherSymptoms"><img src="assets/images/icons/clinic.png" alt=""> Report Symptoms</a>
             </div>
             <div class="column">
                 <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Reports</a>
