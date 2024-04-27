@@ -182,7 +182,7 @@ $this->title = 'Midwife - Posts';
 
 <script>
     var data = <?php echo $model->getPosts()?>;
-    var itemsPerPage = 4;
+    var itemsPerPage = 7;
     var currentPage = 1;
 
     function displayTableData() {
