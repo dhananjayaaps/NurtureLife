@@ -5,7 +5,7 @@ use app\core\form\Form;
 use app\models\Feedback;
 use app\models\User;
 
-$this->title = 'User FeedbackController';
+$this->title = 'User Feedback';
 ?>
 
 <?php

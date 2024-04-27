@@ -65,7 +65,7 @@ class Post extends DbModel
 
     public function getPosts(): string
     {
-        if(Application::$app->user->getRoleName() == 'Volunteer'){
+        if(Application::$app->user->getRoleName() == 'Volunteer' || Application::$app->user->getRoleName() == 'Midwife'){
             $joins = [
                 ['model' => User::class, 'condition' => 'post.user_id = users.id'],
             ];
@@ -83,7 +83,7 @@ class Post extends DbModel
             "midwife"
         ];
         $data = [];
-        if(Application::$app->user->getRoleName() == 'Volunteer'){
+        if(Application::$app->user->getRoleName() == 'Volunteer' || Application::$app->user->getRoleName() == 'Midwife'){
             foreach ($postData as $post) {
                 $res = (new Post_request())->findOne(Post_request::class, ['post_id'=>$post->post_id,'provider_id' => Application::$app->user->getId(),'seeker_id'=>$post->user_id,'status'=>1]);
                 if(empty($res)){
