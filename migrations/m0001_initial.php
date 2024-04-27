@@ -266,6 +266,24 @@ class m0001_initial
                 FOREIGN KEY (user_id) REFERENCES users(id)
             ) ENGINE=INNODB;
             ";
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS roleRequest (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT,
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                name VARCHAR(255),
+                nic VARCHAR(255),
+                SLMC_no VARCHAR(255),
+                requested_role VARCHAR(255)
+            ) ENGINE=INNODB;
+            ";
+        $db->pdo->exec($sql);
+
+//        $sql = "ALTER TABLE roleRequest ADD created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP AFTER requested_role;";
+//        $db->pdo->exec($sql);
+//        $sql = "ALTER TABLE roleRequest ADD status TINYINT default 0 AFTER requested_role;";
+//        $db->pdo->exec($sql);
     }
 
     public function down()

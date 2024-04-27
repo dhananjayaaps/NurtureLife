@@ -117,6 +117,9 @@
                 <div class="column">
                     <a href="/users"><img src="assets/images/icons/user.png" alt="">Users</a>
                 </div>
+                <div class="column">
+                    <a href="/roleRequest"><img src="assets/images/icons/role_request.png" alt="">Role Requests</a>
+                </div>
             </div>
         </div>
 

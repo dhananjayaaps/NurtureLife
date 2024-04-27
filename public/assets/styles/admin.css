@@ -114,6 +114,10 @@
     gap: 20px;
 }
 
+.left-content th{
+    text-align: center;
+}
+
 .content .right-content{
     display: flex;
     flex: 40%;

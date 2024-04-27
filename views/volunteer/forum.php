@@ -17,6 +17,9 @@ $this->title = 'Volunteer';
     <a href="/posts">
         <button class="post_button"> # POSTS </button>
     </a>
+    <a href="/roleRequest">
+        <button class="post_button"> Request a Role </button>
+    </a>
 </div>
 <div class="volunteer_body">
     <!--<div class="mid">-->

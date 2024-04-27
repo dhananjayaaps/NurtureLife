@@ -110,4 +110,22 @@ class SiteController extends \app\core\Controller
         }
 
     }
+
+    public function articles(): array|false|string
+    {
+        $userRole = Application::$app->user->getRole();
+        if ($userRole == 4) {
+            $this->layout = 'mother';
+            return $this->render('preMother/articles');
+        }
+        else if($userRole == 5){
+            $this->layout = 'mother';
+            return $this->render('postMother/articles');
+        }
+        else{
+            $this->layout = 'auth';
+            return $this->render('home');
+        }
+
+    }
 }
