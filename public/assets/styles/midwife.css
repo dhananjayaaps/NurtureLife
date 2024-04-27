@@ -122,7 +122,7 @@
 /* clinic module */
 .content{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 20px;
     flex: 80%;
     flex-wrap: wrap;
@@ -262,6 +262,9 @@
 @media (max-width: 768px) {
     .left-navbar{
         display: none;
+    }
+    .content{
+        margin: 0;
     }
 }
 

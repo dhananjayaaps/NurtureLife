@@ -24,7 +24,7 @@ $this->title = 'Users';
     }
 </style>
 
-<h1>Admin - User Management</h1>
+<h1>User Management</h1>
 <!--user update popup-->
 <div id="myPopup" class="popup">
     <div class="popup-content">
