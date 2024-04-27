@@ -21,9 +21,10 @@ $this->title = 'Manage Appointments';
 
 <style>
     .content {
+        display: flex;
+        flex-wrap: wrap;
         padding: 0;
         height: 90%;
-        justify-content: space-around;
         width: 100%;
         margin-top: 10px;
     }
@@ -37,7 +38,7 @@ $this->title = 'Manage Appointments';
         height: 80vh;
     }
 </style>
-<h1>Midwife - Appointment Management</h1>
+<h1>Midwife - Appointment Creating</h1>
 <div class="doctors content">
     <div class="shadowBox">
         <div class="left-content">
@@ -52,7 +53,7 @@ $this->title = 'Manage Appointments';
                     <th>Mother ID</th>
                     <th>Name</th>
                     <th>Status</th>
-                    <th>GN Division</th>
+                    <th>City</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -70,10 +71,14 @@ $this->title = 'Manage Appointments';
         <h2>Select the Appointment Details</h2>
             <br>
             <?php $form = Form::begin('', "post")?>
-            <label for="MotherIds"></label><input type="text" name="MotherIds" id="MotherIds" value="" class="form-control hidden">
+<!--            <label for="MotherIds"></label><input type="text" name="MotherIds" id="MotherIds" value="" class="form-control hidden">-->
+            <div style="display: none">
+                <?php echo $form->field($appointmentModel, 'MotherId', 'Mother Ids')?>
+            </div>
+
             <?php
-            $maritalStatusField = new Dropdown($appointmentModel, 'AppointType', 'Appoint Type');
-            $maritalStatusField->setOptions([
+            $appointmentType = new Dropdown($appointmentModel, 'AppointType', 'Appoint Type');
+            $appointmentType->setOptions([
                 0 => 'Antenatal Clinic',
                 1 => 'Postnatal Clinic',
                 2 => 'Well baby Clinic',
@@ -81,7 +86,7 @@ $this->title = 'Manage Appointments';
                 4 => 'Well women clinic',
                 5 => 'Family planning clinic',
             ]);
-            echo $maritalStatusField;
+            echo $appointmentType;
             ?>
 
             <?php echo $form->dateField($appointmentModel, 'AppointDate', 'Appoint Date')?>
@@ -95,10 +100,11 @@ $this->title = 'Manage Appointments';
 </div>
 
 <script>
-    var data = <?php echo $model->getMothers()?>;
-
-    var itemsPerPage = 2;
+    var data = <?php echo (new Appointments())->getMothersForMidwife()?>;
+    var itemsPerPage = 3;
     var currentPage = 1;
+
+    var selectedIdNumbers = document.getElementsByName('MotherId')[0].value.split(',').map(Number);
 
     function displayTableData() {
         var startIndex = (currentPage - 1) * itemsPerPage;
@@ -108,21 +114,20 @@ $this->title = 'Manage Appointments';
 
         for (var i = startIndex; i < endIndex && i < data.length; i++) {
             var row = data[i];
-            console.log(row);
+            console.log(row.MotherId)
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
-            <td><input type="checkbox" class="tickCheckbox" data-motherid="${row.MotherId}"></td>
-            <td>${row.MotherId}</td>
-            <td>${row.Name}</td>
-            <td>${row.Status}</td>
-<!--            <td>${row.DeliveryDate}</td>-->
-<!--            <td>${row.PHM_id}</td>-->
-            <td>Colombo</td>
-            <button class="action-button" onclick=""><a href="/motherProfile?id=${row.MotherId}">View Mother</a></button>
-            `;
+                <td><input type="checkbox" class="tickCheckbox" data-motherid="${row.MotherId}" ${selectedIdNumbers.includes(row.MotherId) ? 'checked' : ''}></td>
+                <td>${row.MotherId}</td>
+                <td>${row.Name}</td>
+                <td>${row.Status}</td>
+                <td>${row.City}</td>
+                <td><button class="action-button"><a href="/motherProfile?id=${row.MotherId}">View Mother</a></button></td>
+               `;
             tableBody.appendChild(newRow);
         }
     }
+
 
     function displayPagination() {
         var totalPages = Math.ceil(data.length / itemsPerPage);
@@ -137,57 +142,10 @@ $this->title = 'Manage Appointments';
                 currentPage = parseInt(this.textContent);
                 displayTableData();
                 displayPagination();
+                attachListeners(); // Attach listeners after creating pagination buttons
             });
             pagination.appendChild(pageButton);
         }
-    }
-
-    displayTableData();
-    displayPagination();
-</script>
-
-<script>
-    document.getElementById("selectAll").addEventListener("change", function () {
-        var checkboxes = document.getElementsByClassName("tickCheckbox");
-        for (var i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = this.checked;
-        }
-    });
-</script>
-
-<script>
-    var selectedMothers = [];
-
-    function updateSelectedMothers() {
-        selectedMothers = [];
-        var checkboxes = document.getElementsByClassName("tickCheckbox");
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                selectedMothers.push(checkboxes[i].getAttribute('data-motherid'));
-                console.log(checkboxes[i].getAttribute('data-motherid'))
-            }
-        }
-        document.getElementById('MotherIds').value = selectedMothers.join(',');
-    }
-
-    var checkboxes = document.getElementsByClassName("tickCheckbox");
-    for (var i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].addEventListener('change', function () {
-            updateSelectedMothers();
-        });
-    }
-
-    function initializeSelectedMothers() {
-        updateSelectedMothers();
-    }
-
-    initializeSelectedMothers();
-</script>
-
-<script>
-    function updatePagination() {
-        displayTableData();
-        displayPagination();
     }
 
     function attachListeners() {
@@ -198,7 +156,46 @@ $this->title = 'Manage Appointments';
                 updatePagination();
             });
         });
+
+        document.getElementById("selectAll").addEventListener("change", function () {
+            var checkboxes = document.getElementsByClassName("tickCheckbox");
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = this.checked;
+            }
+            updateSelectedMothers();
+        });
+
+        var checkboxes = document.getElementsByClassName("tickCheckbox");
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].addEventListener('change', function () {
+                updateSelectedMothers();
+            });
+        }
     }
 
-    attachListeners();
+    function updatePagination() {
+        displayTableData();
+        displayPagination();
+        attachListeners(); // Reattach listeners after updating pagination
+    }
+
+    var selectedMothers = [];
+
+    function updateSelectedMothers() {
+        selectedMothers = [];
+        var checkboxes = document.getElementsByClassName("tickCheckbox");
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                selectedMothers.push(checkboxes[i].getAttribute('data-motherid'));
+            }
+        }
+        document.getElementsByName('MotherId')[0].value = selectedMothers.join(',');
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        displayTableData();
+        displayPagination();
+        attachListeners();
+    });
 </script>
+

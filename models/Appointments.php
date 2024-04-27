@@ -2,7 +2,10 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\db\DbModel;
+use mysql_xdevapi\Statement;
+use PDO;
 
 class Appointments extends DbModel
 {
@@ -45,5 +48,28 @@ class Appointments extends DbModel
             'AppointStatus' => [self::RULE_REQUIRED],
             'time' => [self::RULE_REQUIRED],
         ];
+    }
+
+    public function getMothersForMidwife() {
+        $sql = "SELECT Mothers.MotherId, users.firstname, users.city, users.lastname, Mothers.Status, Mothers.DeliveryDate, Mothers.PHM_ID FROM Mothers INNER JOIN users ON Mothers.user_id = users.id INNER JOIN midwife ON Mothers.PHM_ID = midwife.PHM_id WHERE midwife.user_id = 1";
+
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $motherData = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $statusNames = ['Inactive', 'Prenatal', 'Postnatal', 'Both', 'Special'];
+        $data2 = [];
+
+
+        foreach ($motherData as $mother) {
+            $data2[] = [
+                'MotherId' => $mother->MotherId,
+                'Name' => $mother->firstname . " " . $mother->lastname,
+                'Status' => $statusNames[(int)$mother->Status],
+                'City' => $mother->city,
+                'DeliveryDate' => $mother->DeliveryDate,
+                'PHM_id' => $mother->PHM_ID,
+            ];
+        }
+        return json_encode($data2);
     }
 }
