@@ -56,10 +56,9 @@ class ChildWeight extends DbModel
         return json_encode($data);
     }
 
-    public function getChildId()
+    public function getChildId(): string
     {
-        $UserId = Application::$app->user->getId();
-        $ChildData = self::findOne(Child::class, ['user_id' => $UserId]);
+
         return "1";
     }
 
@@ -79,15 +78,16 @@ class ChildWeight extends DbModel
         $tableName = (new $modelClass())->tableName();
         $currentDate = date("Y-m-d"); // Get the current date in the "YYYY-MM-DD" format
         $childId = (new ChildWeight())->getChildId();
+        $childId = 1;
 
-        $sql = "child_id = :childId AND DATE_FORMAT(Time, '%Y-%m-%d') = :currentDate";
+        $sql = "child_id = :childId AND DATE_FORMAT(Date, '%Y-%m-%d') = :currentDate";
 
 //        $sql->bindValue(":motherId", $motherId);
 //        $sql->bindValue(":currentDate", $currentDate);
 
         $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
 
-        $statement->bindValue(":childId", $childId);
+        $statement->bindValue(":childId ", $childId);
         $statement->bindValue(":currentDate", $currentDate);
 
         $statement->execute();

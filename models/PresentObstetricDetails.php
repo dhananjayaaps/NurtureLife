@@ -8,8 +8,6 @@ use app\core\db\DbModel;
 class PresentObstetricDetails extends DbModel
 {
     public string $MotherId = '';
-    public string $user_id = '';
-    public string $PHM_ID = '';
     public string $gravidity = '';
     public int $no_of_children = 0;
     public int $age_of_youngest_child = 0;
@@ -26,6 +24,7 @@ class PresentObstetricDetails extends DbModel
     public function rules(): array
     {
         return [
+            'premature_births' => [self::RULE_REQUIRED],
 
         ];
     }

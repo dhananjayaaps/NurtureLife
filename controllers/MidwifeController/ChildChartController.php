@@ -39,8 +39,9 @@ class ChildChartController extends \app\core\Controller
     public function ChildWeightUpdate(Request $request): false|string
     {
         $childweight = (new ChildWeight())->findOneByChildIdAndDate(ChildWeight::class);
-
+        var_dump($childweight);
         $this->setLayout('midwife');
+        var_dump($request->getBody());
         $childweight->loadData($request->getBody());
         $childweight->validate();
         if ($childweight->validate()) {

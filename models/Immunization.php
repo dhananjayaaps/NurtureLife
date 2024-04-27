@@ -6,8 +6,8 @@ use app\core\db\DbModel;
 
 class Immunization extends DbModel
 {
-    public int $AppointmentId = 0;
-    public string $MotherId = '';
+    public int $child_id = 0;
+
     public int $AppointType = 1;
     public string $AppointDate = '';
     public string $AppointStatus = '';

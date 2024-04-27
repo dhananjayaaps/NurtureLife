@@ -6,12 +6,7 @@ use app\core\db\DbModel as parentAlias;
 
 class BabyHealthChart extends parentAlias
 {
-
-    public string $user_id = '';
-    public string $child_id = '';
-
-    public string $nic = '';
-
+    public int $child_id = 0;
     public string $skin_color= '';
     public string $eyes= '';
     public string $pecan= '';
@@ -27,7 +22,13 @@ class BabyHealthChart extends parentAlias
     public function rules(): array
     {
         return [
-
+            'time_duration' => [self::RULE_REQUIRED],
+            'skin_color' => [self::RULE_REQUIRED],
+            'eyes' => [self::RULE_REQUIRED],
+            'pecan' => [self::RULE_REQUIRED],
+            'breast_feeding' => [self::RULE_REQUIRED],
+            'breastfeeding_position' => [self::RULE_REQUIRED],
+            'breastfeeding_relationship' => [self::RULE_REQUIRED],
         ];
     }
 
@@ -38,15 +39,12 @@ class BabyHealthChart extends parentAlias
 
     public function primaryKey(): string
     {
-        return 'nic';
+        return 'child_id';
     }
 
     public function attributes(): array
     {
         return [
-            'user_id',
-            'nic',
-            'Child_Name',
             'skin_color',
             'eyes',
             'pecan',
