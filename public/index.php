@@ -155,9 +155,6 @@ $app->router->post('/postsUpdate', [PostController::class, 'postsUpdate']);
 $app->router->post('/postDelete', [PostController::class, 'postDelete']);
 $app->router->get('/getPostDetails', [PostController::class, 'getPostDetails']);
 
-$app->router->post('/createPostRequest', [PostRequestController::class, 'createPostRequest']);
-$app->router->post('/postRequestUpdate', [PostRequestController::class, 'postRequestUpdate']);
-
 $app->router->get('/policy', [SiteController::class, 'policy']);
 $app->router->post('/policy', [SiteController::class, 'policy']);
 
@@ -167,9 +164,4 @@ $app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preM
 $app->router->get('/ManageAdmins', [AdminController::class, 'Admin']);
 $app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);
 
-$app->router->get('/nutrition', [SiteController::class, 'nutrition']);
-$app->router->post('/nutrition', [SiteController::class, 'nutrition']);
-
-$app->router->get('/communication', [postController::class, 'communication']);
-$app->router->post('/communication', [postController::class, 'communication']);
 $app->run();

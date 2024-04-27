@@ -8,8 +8,6 @@ class MedicalSurgicalDetails extends DbModel
 {
 
     public string $MotherId = '';
-    public string $user_id = '';
-    public string $PHM_ID = '';
     public string $diabetes = '';
     public string $hypertension = '';
     public string $cardiac_diseases = '';

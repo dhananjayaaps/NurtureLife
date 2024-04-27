@@ -4,14 +4,17 @@
 use app\core\Application;
 use app\core\form\DropDown;
 use app\core\form\Form;
+use app\core\form\RadioButton;
+use app\models\MedicalSurgicalDetails;
+use app\models\Midwife;
 use app\models\Mother;
 
 $this->title = 'Present Mother History Form1';
 ?>
 
 <?php
-/** @var $model Midwife **/
-/** @var $modelUpdate Midwife **/
+/** @var $model MedicalSurgicalDetails **/
+/** @var $modelUpdate MedicalSurgicalDetails **/
 //?>
 
 
@@ -72,111 +75,155 @@ $this->title = 'Present Mother History Form1';
 </style>
 
 <div class="Mothers content">
-
     <div class="shadowBox">
         <div class="form-container">
-
             <h2>Medical and Surgical History</h2>
             <?php $form = Form::begin('', "post")?>
-
             <div class="form-content-container">
-
                 <div class="form-column">
-
                     <div class="row" style="display: flex; flex-direction: column; gap: 5px">
-                        <label>
-                           1. Diabetes:
-                            <div class="break-line"></div>
-                            <input type="radio" name="diabetes" value="Yes"> Yes
-                            <input type="radio" name="diabetes" value="No"> No
-                        </label>
+                        <?php
+                        $radioButton = new RadioButton($model, 'diabetes', '1. Diabetes');
+                        $radioButton->setOptions([
+                            '1' => 'Yes',
+                            '2' => 'No',
+                        ]);
+                        echo $radioButton;
+                        ?>
 
-                        <div class="break-line"></div>
+                        <?php
+                        $radioButton = new RadioButton($model, 'hypertension', '2. Hypertension');
+                        $radioButton->setOptions([
+                            '1' => 'Yes',
+                            '2' => 'No',
+                        ]);
+                        echo $radioButton;
+                        ?>
 
-                        <label>
-                           2. Hypertension:
-                            <div class="break-line"></div>
-                            <input type="radio" name="hypertension" value="Yes"> Yes
-                            <input type="radio" name="hypertension" value="No"> No
-                        </label>
+                        <?php
+                        $radioButton = new RadioButton($model, 'cardiac_diseases', '3. Cardiac Diseases');
+                        $radioButton->setOptions([
+                            '1' => 'Yes',
+                            '2' => 'No',
+                        ]);
+                        echo $radioButton;
+                        ?>
 
-                        <div class="break-line"></div>
+                        <?php
+                        $radioButton = new RadioButton($model, 'renal_diseases', '4. Renal Diseases');
+                        $radioButton->setOptions([
+                            '1' => 'Yes',
+                            '2' => 'No',
+                        ]);
+                        echo $radioButton;
+                        ?>
 
-                        <label>
-                           3. Cardiac Diseases:
-                            <div class="break-line"></div>
-                            <input type="radio" name="cardiac_diseases" value="Yes"> Yes
-                            <input type="radio" name="cardiac_diseases" value="No"> No
-                        </label>
-
-                        <div class="break-line"></div>
-
-                        <label>
-                           4. Renal Diseases:
-                            <div class="break-line"></div>
-                            <input type="radio" name="renal_diseases" value="Yes"> Yes
-                            <input type="radio" name="renal_diseases" value="No"> No
-                        </label>
-
-                        <label>
-                           5. Hepatic Diseases:
-                            <div class="break-line"></div>
-                            <input type="radio" name="hepatic_diseases" value="Yes"> Yes
-                            <input type="radio" name="hepatic_diseases" value="No"> No
-                        </label>
+                        <?php
+                        $radioButton = new RadioButton($model, 'hepatic_diseases', '5. Hepatic Diseases');
+                        $radioButton->setOptions([
+                            '1' => 'Yes',
+                            '2' => 'No',
+                        ]);
+                        echo $radioButton;
+                        ?>
                     </div>
                 </div>
 
                 <div class="form-column">
-                    <label>
-                        6. Psychiatric Illnesses:
-                        <div class="break-line"></div>
-                        <input type="radio" name="psychiatric_illnesses" value="Yes"> Yes
-                        <input type="radio" name="psychiatric_illnesses" value="No"> No
-                    </label>
+                    <?php
+                    $radioButton = new RadioButton($model, 'psychiatric_illnesses', '6. Psychiatric Illnesses');
+                    $radioButton->setOptions([
+                        '1' => 'Yes',
+                        '2' => 'No',
+                    ]);
+                    echo $radioButton;
+                    ?>
 
-                    <div class="break-line"></div>
+                    <?php
+                    $radioButton = new RadioButton($model, 'epilepsy', '7. Epilepsy');
+                    $radioButton->setOptions([
+                        '1' => 'Yes',
+                        '2' => 'No',
+                    ]);
+                    echo $radioButton;
+                    ?>
 
-                    <label>
-                        7. Epilepsy:
-                        <div class="break-line"></div>
-                        <input type="radio" name="epilepsy" value="Yes"> Yes
-                        <input type="radio" name="epilepsy" value="No"> No
-                    </label>
+                    <?php
+                    $radioButton = new RadioButton($model, 'malignancies', '8. Malignancies');
+                    $radioButton->setOptions([
+                        '1' => 'Yes',
+                        '2' => 'No',
+                    ]);
+                    echo $radioButton;
+                    ?>
 
-                    <div class="break-line"></div>
+                    <?php
+                    $radioButton = new RadioButton($model, 'haematological_diseases', '9. Haematological Diseases');
+                    $radioButton->setOptions([
+                        '1' => 'Yes',
+                        '2' => 'No',
+                    ]);
+                    echo $radioButton;
+                    ?>
 
-                    <label>
-                        8. Malignancies:
-                        <div class="break-line"></div>
-                        <input type="radio" name="malignancies" value="Yes"> Yes
-                        <input type="radio" name="malignancies" value="No"> No
-                    </label>
+                    <?php
+                    $radioButton = new RadioButton($model, 'tuberculosis', '10. Tuberculosis');
+                    $radioButton->setOptions([
+                        '1' => 'Yes',
+                        '2' => 'No',
+                    ]);
+                    echo $radioButton;
+                    ?>
 
-                    <div class="break-line"></div>
-
-                    <label>
-                        9. Haematological Diseases:
-                        <div class="break-line"></div>
-                        <input type="radio" name="haematological_diseases" value="Yes"> Yes
-                        <input type="radio" name="haematological_diseases" value="No"> No
-                    </label>
-
-                    <div class="break-line"></div>
-
-                    <label>
-                        10. Tuberculosis:
-                        <div class="break-line"></div>
-                        <input type="radio" name="tuberculosis" value="Yes"> Yes
-                        <input type="radio" name="tuberculosis" value="No"> No
-                    </label>
 
                 </div>
 
                 <div class="form-column">
+                    <div class="row"  style="display: flex; flex-direction: column; gap: 5px">
+                        <?php
+                        $radioButton = new RadioButton($model, 'rubella_immunization', 'Rubella Immunization');
+                        $radioButton->setOptions([
+                            '1' => 'Yes',
+                            '2' => 'No',
+                        ]);
+                        echo $radioButton;
+                        ?>
 
+                        <?php
+                        $radioButton = new RadioButton($model, 'rubella_immunization', 'Rubella Immunization');
+                        $radioButton->setOptions([
+                            '1' => 'Yes',
+                            '2' => 'No',
+                        ]);
+                        echo $radioButton;
+                        ?>
 
-                   <div class="row"  style="display: flex; flex-direction: column; gap: 5px">
+                        <?php
+                        $radioButton = new RadioButton($model, 'rubella_immunization', 'Rubella Immunization');
+                        $radioButton->setOptions([
+                            '1' => 'Yes',
+                            '2' => 'No',
+                        ]);
+                        echo $radioButton;
+                        ?>
+
+                        <?php
+                        $radioButton = new RadioButton($model, 'rubella_immunization', 'Rubella Immunization');
+                        $radioButton->setOptions([
+                            '1' => 'Yes',
+                            '2' => 'No',
+                        ]);
+                        echo $radioButton;
+                        ?>
+
+                        <?php
+                        $radioButton = new RadioButton($model, 'rubella_immunization', 'Rubella Immunization');
+                        $radioButton->setOptions([
+                            '1' => 'Yes',
+                            '2' => 'No',
+                        ]);
+                        echo $radioButton;
+                        ?>
                        <label>
                            11. Thyroid Diseases:
                            <div class="break-line"></div>

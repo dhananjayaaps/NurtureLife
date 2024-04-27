@@ -6,12 +6,7 @@ use app\core\db\DbModel;
 
 class PreMotherPersonalDetails extends DbModel
 {
-
-    public string $user_id = '';
-
-    public string $nic = '';
     public string $MotherId = '';
-
     public string $age = '';
     public string $education_level = '';
     public string $occuption = '';
@@ -27,7 +22,7 @@ class PreMotherPersonalDetails extends DbModel
 
     public function tableName(): string
     {
-        return 'Mothers';
+        return 'PreMotherPersonalDetails';
     }
 
     public function primaryKey(): string
