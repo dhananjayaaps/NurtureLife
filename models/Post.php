@@ -65,11 +65,11 @@ class Post extends DbModel
 
     public function getPosts(): string
     {
-        if(Application::$app->user->getRoleName() == 'Volunteer'){
+        if(Application::$app->user->getRoleName() == 'Volunteer' || Application::$app->user->getRoleName() == 'Midwife'){
             $joins = [
                 ['model' => User::class, 'condition' => 'post.user_id = users.id'],
             ];
-            $postData = (new Post())->findAllWithJoins(self::class, $joins, ['postal_code' => Application::$app->user->getZip()],['postStatus'=>'post.status']);
+            $postData = (new Post())->findAllWithJoins(self::class, $joins, ['postal_code' => Application::$app->user->getZip()],['postStatus'=>'post.status','post_id'=>'post.id']);
 
         }else{
             $postData = (new Post())->findAll(self::class, ['user_id' => Application::$app->user->getId()]);
@@ -83,18 +83,26 @@ class Post extends DbModel
             "midwife"
         ];
         $data = [];
-        if(Application::$app->user->getRoleName() == 'Volunteer'){
+        if(Application::$app->user->getRoleName() == 'Volunteer' || Application::$app->user->getRoleName() == 'Midwife'){
             foreach ($postData as $post) {
+                $res = (new Post_request())->findOne(Post_request::class, ['post_id'=>$post->post_id,'provider_id' => Application::$app->user->getId(),'seeker_id'=>$post->user_id,'status'=>1]);
+                if(empty($res)){
+                    $post->contact_no='';
+                    $post->email='';
+                }
+
                 $data[] = [
-                    'id' => $post->id,
+                    'id' => $post->post_id,
                     'user_id' => $post->user_id,
                     'user_name'=>$post->firstname.' '.$post->lastname,
-                    'role_name'=>$roleMap[$post->role_id+1],
+                    'role_name'=>$roleMap[$post->role_id-1],
                     'topic' => $post->topic,
                     'description' => $post->description,
                     'created_at' => $post->created_at,
                     'updated_at' => $post->updated_at,
-                    'status' => $post->postStatus
+                    'status' => $post->postStatus,
+                    'contact_no' => $post->contact_no,
+                    'email' => $post->email
                 ];
             }
         }else {

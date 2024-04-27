@@ -93,4 +93,21 @@ class SiteController extends \app\core\Controller
         $this->layout = 'volunteer';
         return $this->render('policy');
     }
+    public function nutrition(): array|false|string
+    {
+        $userRole = Application::$app->user->getRole();
+        if ($userRole == 4) {
+            $this->layout = 'mother';
+            return $this->render('preMother/nutrition');
+        }
+        else if($userRole == 5){
+            $this->layout = 'mother';
+            return $this->render('postMother/nutrition');
+        }
+        else{
+            $this->layout = 'auth';
+            return $this->render('home');
+        }
+
+    }
 }

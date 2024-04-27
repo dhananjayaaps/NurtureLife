@@ -221,6 +221,7 @@ class User extends UserModel
                 'user_id' => $user->id,
                 'name' => $user->firstname . ' ' . $user->lastname,
                 'email' => $user->email,
+                'nic' => $user->nic,
                 'status' => $user->status,
                 'contact_no' => $user->contact_no,
                 'role_id' => $user->role_id

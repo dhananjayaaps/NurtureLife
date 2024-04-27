@@ -15,14 +15,13 @@ use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
 use app\controllers\FeedbackController;
 use app\controllers\MidwifeController\AppointmentController;
-use app\controllers\MidwifeController\ChildChartController;
-use app\controllers\MidwifeController\PreMotherController;
-use app\controllers\MidwifeController\weightGainChartController;
-use app\controllers\MotherController\FetalkickController;
 use app\controllers\MidwifeController\ChildController;
+use app\controllers\MidwifeController\PreMotherController;
 use app\controllers\MotherController;
-use app\controllers\MotherController\PreMotherCareController;
+use app\controllers\MotherController\FetalkickController;
 use app\controllers\PostController;
+use app\controllers\MotherController\PreMotherCareController;
+use app\controllers\PostRequestController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -91,8 +90,6 @@ $app->router->get('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkickUpdate', [FetalkickController::class, 'fetalkickUpdate']);
 
-
-$app->router->get('/appointments', [SiteController::class, 'appointments']);
 $app->router->get('/doctorClinics', [SiteController::class, 'doctorClinics']);
 $app->router->get('/doctorMothers', [SiteController::class, 'doctorMothers']);
 
@@ -161,17 +158,8 @@ $app->router->get('/getPostDetails', [PostController::class, 'getPostDetails']);
 $app->router->get('/policy', [SiteController::class, 'policy']);
 $app->router->post('/policy', [SiteController::class, 'policy']);
 
-$app->router->get('/preMotherCareForm1', [PreMotherCareController::class, 'preMotherCareForm1']);
-$app->router->post('/preMotherCareForm1', [PreMotherCareController::class, 'preMotherCareForm1']);
-
 $app->router->get('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
 $app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
-
-$app->router->get('/childweight', [ChildChartController::class, 'ChildWeight']);
-$app->router->post('/childweight', [ChildChartController::class, 'ChildWeightUpdate']);
-
-$app->router->get('/childHeight', [ChildChartController::class, 'childHeight']);
-$app->router->post('/childHeight', [ChildChartController::class, 'childHeightUpdate']);
 
 $app->router->get('/ManageAdmins', [AdminController::class, 'Admin']);
 $app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);

@@ -31,7 +31,7 @@
     <div class="NL_logo_container">
         <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
     </div>
-    <a href=" ">Home</a>
+    <a href="/">Home</a>
     <a href="/about">About</a>
 
     <div class="search-container">
@@ -86,23 +86,23 @@
 </div>
 
 <div class="content-navbar">
-    <div class="wrapper">
+    <div class="wrapper" style="height: fit-content">
         <div class="left-navbar">
             <div class="navigations">
                 <div class="column">
                     <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
                 </div>
                 <div class="column">
-                    <a href="#"><img src="assets/images/icons/clinic.png" alt=""> Report Symptoms</a>
+                    <a href="/reportSymptom"><img src="assets/images/icons/clinic.png" alt=""> Report Symptoms</a>
                 </div>
                 <div class="column">
-                    <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Reports</a>
+                    <a href="/reports"><img src="assets/images/icons/pregnant.png" alt=""> Reports</a>
                 </div>
                 <div class="column">
-                    <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Calender</a>
+                    <a href="/calender"><img src="assets/images/icons/pregnant.png" alt=""> Calender</a>
                 </div>
                 <div class="column">
-                    <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Nutritions</a>
+                    <a href="/nutrition"><img src="assets/images/icons/pregnant.png" alt=""> Nutritions</a>
                 </div>
                 <div class="column">
                     <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Communication</a>
@@ -113,6 +113,9 @@
                 <div class="column">
                     <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt="">Posts</a>
                 </div>
+                <div class="column">
+                    <a href="/communication"><img src="assets/images/icons/communication.png" alt=""> Contact Midwife</a>
+                </div>
             </div>
         </div>
         <div class="content">
@@ -122,40 +125,17 @@
 </div>
 <!--footer-->
 <div class="footer">
-    <div class="footer-left">
-        <div class="footer-left-title">
-            <div class="brand-name">NurtureLife</div>
-            <div class="year">&#183 &#160 2024</div>
+    <div class="brand">
+        <div class="section_icon">
+            <img src="assets/images/nurturelife_logo_text.jpeg" alt="NL_logo_text_icon" />
         </div>
-        <div class="footer-left-text">
-            SUSTAINING LIFE THROUGH EMPOWERING MOTHERHOOD
-        </div>
-        <div class="policy">
-            <a href="/policy">Privacy and Policy</a>
-        </div>
+        <div class="section_name"> ©  2024 NurtureLife</div>
     </div>
-
-    <div class="footer-center">
-        <div class="message">Made in 🇱🇰 with 💕</div>
-        <div class="follow-us">follow us on</div>
-        <div class="social-media-icons">
-            <div class="SM-icon-container">
-                <img class="SM-icon" src="./assets/images/fb-logo.png" />
-            </div>
-            <div class="SM-icon-container">
-                <img class="SM-icon" src="./assets/images/insta-logo.png" />
-            </div>
-            <div class="SM-icon-container">
-                <img class="SM-icon" src="./assets/images/twitter-logo.png" />
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-right">
-        <div class="contact-us"><a href="/contact" style="color: white">Contact us</a></div>
-        <div class="tel-no">Call Us : 077 123 4678</div>
-        <div class="email">Email : admin.nurturelife@gmail.com</div>
-    </div>
+    <div class="section_privacy"><a href="/policy" target="_blank">Privacy and Policy</a></div>
+    <div class="section_contact"><a href="/contact" target="_blank">Contact</a></div>
+    <div class="section_docs"><a href="https://drive.google.com/drive/folders/1tgtXQ39kbaM37BUenEuEPqWDaJT-4DAa?usp=sharing" target="_blank">Docs</a></div>
+    <div class="section_security"><a href="/policy" target="_blank">Security</a></div>
+    <div class="section_about"><a href="/about" target="_blank">About</a></div>
 </div>
 </body>
 </html>
