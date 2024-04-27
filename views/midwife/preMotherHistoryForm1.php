@@ -4,14 +4,16 @@
 use app\core\Application;
 use app\core\form\DropDown;
 use app\core\form\Form;
+use app\core\form\RadioButton;
 use app\models\Mother;
+use app\models\PresentObstetricDetails;
 
 $this->title = 'Present Mother History Form1';
 ?>
 
 <?php
-/** @var $model Midwife **/
-/** @var $modelUpdate Midwife **/
+/** @var $model PresentObstetricDetails **/
+/** @var $modelUpdate PresentObstetricDetails **/
 //?>
 
 
@@ -113,47 +115,46 @@ $this->title = 'Present Mother History Form1';
 
                 <div class="form-column">
 
-                    <label>
-                        Consanguinity:
-                        <div class="break-line"></div>
-                        <input type="radio" name="Consanguinity" value="Yes"> Yes
-                        <input type="radio" name="Consanguinity" value="No"> No
-                    </label>
+                    <?php
+                    $radioButton = new RadioButton($model, 'consanguinity', 'Consanguinity');
+                    $radioButton->setOptions([
+                        '1' => 'Yes',
+                        '2' => 'No',
+                    ]);
+                    echo $radioButton;
+                    ?>
 
-                    <div class="break-line"></div>
+                    <?php
+                    $radioButton = new RadioButton($model, 'rubella_immunization', 'Rubella Immunization');
+                    $radioButton->setOptions([
+                        '1' => 'Yes',
+                        '2' => 'No',
+                    ]);
+                    echo $radioButton;
+                    ?>
 
-                    <label>
-                        Rubella Immunization:
-                        <div class="break-line"></div>
-                        <input type="radio" name="rubella_immunization" value="Yes"> Yes
-                        <input type="radio" name="rubella_immunization" value="No"> No
-                    </label>
+                    <?php
+                    $radioButton = new RadioButton($model, 'pre_pregancy_screening_done', 'Pre-Pregancy Screening done');
+                    $radioButton->setOptions([
+                        '1' => 'Yes',
+                        '2' => 'No',
+                    ]);
+                    echo $radioButton;
+                    ?>
 
-                    <div class="break-line"></div>
+                    <?php
+                    $radioButton = new RadioButton($model, 'folic_acid', 'On Folic Acid');
+                    $radioButton->setOptions([
+                        '1' => 'Yes',
+                        '2' => 'No',
+                    ]);
+                    echo $radioButton;
+                    ?>
 
-                    <label>
-                        Pre-Pregancy Screening done:
-                        <div class="break-line"></div>
-                        <input type="radio" name="pre_pregancy_screening_done" value="Yes"> Yes
-                        <input type="radio" name="pre_pregancy_screening_done" value="No"> No
-                    </label>
-
-                    <div class="break-line"></div>
-
-                    <label>
-                        On Folic Acid:
-                        <div class="break-line"></div>
-                        <input type="radio" name="folic_acid" value="Yes"> Yes
-                        <input type="radio" name="folic_acid" value="No"> No
-                    </label>
-
-                    <div class="break-line"></div>
                 </div>
             </div>
             <button type="submit" class="btn-submit">Submit</button>
         </div>
-
-
         <?php echo Form::end()?>
     </div>
 </div>

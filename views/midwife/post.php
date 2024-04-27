@@ -136,9 +136,9 @@ $this->title = 'Midwife - Posts';
         </div>
     </div>
 <!--    post request container-->
-        <div class="notification-bar" style="height: 400px; border-radius: 20px">
+        <div class="notification-bar" style="height: 400px; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="notifications">
-                <span style="font-size: 20px; font-weight: bold;text-align: center">Post Requests</span>
+                <span style="font-size: 20px; font-weight: bold;text-align: center">Post Replies</span>
             </div>
             <div class="scrollable-container" style="max-height: 500px; overflow-y: auto">
                 <?php $post_requests= json_decode($modelRequest->getRequests());
@@ -182,7 +182,7 @@ $this->title = 'Midwife - Posts';
 
 <script>
     var data = <?php echo $model->getPosts()?>;
-    var itemsPerPage = 4;
+    var itemsPerPage = 7;
     var currentPage = 1;
 
     function displayTableData() {
@@ -200,15 +200,19 @@ $this->title = 'Midwife - Posts';
             };
             var statusText = statusTextMap[row.status];
             var newRow = document.createElement('tr');
+
+            // Extract the first 3 words from the description
+            var descriptionWords = row.description.split(' ');
+            var truncatedDescription = descriptionWords.slice(0, 4).join(' ');
             newRow.innerHTML = `
-                    <td>${row.id}</td>
-                    <td>${row.topic}</td>
-                    <td>${row.description}</td>
-                    <td>${statusText}</td>
-                    <td class="action-buttons">
-                    <button id="showPopUp" onclick="UpdatePopUp(${row.id})" class="action-button update-button">Update</button>
-                    <button class="action-button remove-button" onclick="UpdatePopUp(${row.id})">Delete</button>
-                `;
+        <td>${row.id}</td>
+        <td>${row.topic}</td>
+        <td>${truncatedDescription}...</td> <!-- Display the truncated description -->
+        <td>${statusText}</td>
+        <td class="action-buttons">
+            <button id="showPopUp" onclick="UpdatePopUp(${row.id})" class="action-button update-button">Update</button>
+            <button class="action-button remove-button" onclick="UpdatePopUp(${row.id})">Delete</button>
+        `;
             tableBody.appendChild(newRow);
         }
     }

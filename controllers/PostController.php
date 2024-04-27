@@ -101,4 +101,42 @@ class PostController extends \app\core\Controller
         $post->loadData($request->getBody());
         return $post->getPostById($post->getId());
     }
+    public function communication(Request $request): array|false|string
+    {
+        $post = new Post();
+        $post2 = new Post();
+        $post_request = new Post_request();
+        if ($request->isPost()) {
+            $post->loadData($request->getBody());
+            $post->user_id = Application::$app->user->getId();
+            if ($post->validate() && $post->save()) {
+                Application::$app->session->setFlash('success', 'New Message created successfully');
+                Application::$app->response->redirect('/communication');
+                exit;
+            }
+        }
+        $roleName = Application::$app->user->getRoleName();
+        if ($roleName == 'Midwife'){
+            $this->layout = 'midwife';
+            return $this->render('midwife/communication', [
+                'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
+            ]);
+        }
+        else if ($roleName == 'Prenatal Mother'){
+            $this->layout = 'mother';
+            return $this->render('preMother/communication', [
+                'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
+            ]);
+        }
+        else if ($roleName == 'Postnatal Mother'){
+            $this->layout = 'mother';
+            return $this->render('postMother/communication', [
+                'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
+            ]);
+        }
+        else{
+            return $this->render('/');
+        }
+
+    }
 }

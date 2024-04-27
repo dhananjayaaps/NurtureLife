@@ -6,9 +6,6 @@ use app\core\db\DbModel;
 
 class FamilyHistoryDetails extends DbModel
 {
-
-    public string $user_id = '';
-
     public string $nic = '';
     public string $MotherId = '';
     public string $PHM_ID = '';

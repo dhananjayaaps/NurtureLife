@@ -18,6 +18,11 @@ $this->title = 'Users';
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
+<style>
+    .left-content{
+        width: 80vw;
+    }
+</style>
 
 <h1>User Management</h1>
 <!--user update popup-->
@@ -91,6 +96,7 @@ $this->title = 'Users';
                         <th>User ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>NIC</th>
                         <th>Contact No</th>
                         <th>role</th>
                         <th>Status</th>
@@ -138,6 +144,7 @@ $this->title = 'Users';
             <td>${row.user_id}</td>
             <td>${row.name}</td>
             <td>${row.email}</td>
+            <td>${row.nic}</td>
             <td>${row.contact_no}</td>
             <td>${role}</td>
             <td>${statusText}</td>

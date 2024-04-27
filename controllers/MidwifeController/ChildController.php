@@ -7,6 +7,7 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\view;
 use app\models\Child;
+use app\models\ChildRegistration;
 use app\models\Mother;
 
 class ChildController extends Controller

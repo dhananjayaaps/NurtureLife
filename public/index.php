@@ -155,9 +155,6 @@ $app->router->post('/postsUpdate', [PostController::class, 'postsUpdate']);
 $app->router->post('/postDelete', [PostController::class, 'postDelete']);
 $app->router->get('/getPostDetails', [PostController::class, 'getPostDetails']);
 
-$app->router->post('/createPostRequest', [PostRequestController::class, 'createPostRequest']);
-$app->router->post('/postRequestUpdate', [PostRequestController::class, 'postRequestUpdate']);
-
 $app->router->get('/policy', [SiteController::class, 'policy']);
 $app->router->post('/policy', [SiteController::class, 'policy']);
 
