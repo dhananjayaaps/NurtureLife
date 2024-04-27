@@ -276,7 +276,7 @@ $this->title = 'Clinics';
                 if (response.ok) {
                     window.location.reload();
                 } else {
-                    return response.json();
+                    setflash('Failed to update clinic details');
                 }
             })
             .then(responseData => {

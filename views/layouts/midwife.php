@@ -93,7 +93,7 @@
 </div>
 
 <div class="content-navbar">
-    <div class="wrapper" style="height: fit-content">
+    <div class="wrapper">
         <div class="left-navbar">
             <div class="navigations">
                 <div class="column">
@@ -119,7 +119,7 @@
                 </div>
             </div>
         </div>
-        <div class="content" style="margin-left: 220px; height: 1000px; ">
+        <div class="content"">
             {{content}}
         </div>
     </div>

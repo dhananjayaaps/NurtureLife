@@ -167,4 +167,6 @@ $app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preM
 $app->router->get('/ManageAdmins', [AdminController::class, 'Admin']);
 $app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);
 
+$app->router->post('/cancel-appointment', [AppoinmetHandler::class, 'cancelAppointment']);
+
 $app->run();

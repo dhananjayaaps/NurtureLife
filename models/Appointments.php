@@ -72,4 +72,59 @@ class Appointments extends DbModel
         }
         return json_encode($data2);
     }
+
+    public function getAllAppointmentsForMidwife(): false|string
+    {
+        $sql = "SELECT Appointments.AppointmentId, Mothers.MotherId, users.firstname, users.city, users.lastname, Mothers.Status, Mothers.DeliveryDate, Mothers.PHM_ID, Appointments.AppointType, Appointments.AppointDate, Appointments.AppointStatus, Appointments.AppointRemarks, Appointments.time FROM Appointments INNER JOIN Mothers ON Appointments.MotherId = Mothers.MotherId INNER JOIN users ON Mothers.user_id = users.id INNER JOIN midwife ON Mothers.PHM_ID = midwife.PHM_id WHERE midwife.user_id = 1";
+
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $appointmentData = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $statusNames = ['Inactive', 'Prenatal', 'Postnatal', 'Both', 'Special'];
+        $appointTypeNames = ['Antenatal', 'Postnatal', 'Special', 'Other'];
+        $data = [];
+
+        foreach ($appointmentData as $appointment) {
+            $data[] = [
+                'AppointmentId' => $appointment->AppointmentId,
+                'MotherId' => $appointment->MotherId,
+                'Name' => $appointment->firstname . " " . $appointment->lastname,
+                'Status' => $statusNames[(int)$appointment->Status],
+                'City' => $appointment->city,
+                'DeliveryDate' => $appointment->DeliveryDate,
+                'PHM_id' => $appointment->PHM_ID,
+                'AppointType' => $appointTypeNames[(int)$appointment->AppointType],
+                'AppointDate' => $appointment->AppointDate,
+                'AppointStatus' => $appointment->AppointStatus,
+                'AppointRemarks' => $appointment->AppointRemarks,
+                'time' => $appointment->time
+            ];
+        }
+        return json_encode($data);
+    }
+
+    //delete appoinmets by sending appointments id list, this is used in the delete appointments page. the appointment is must be done by the associated midwife
+    public function deleteAppointments($appointments): bool
+    {
+        $sql = "DELETE FROM Appointments WHERE AppointmentId IN (";
+        $sql .= implode(',', array_map(fn($id) => $id, $appointments));
+        $sql .= ") AND MotherId IN (SELECT MotherId FROM Mothers WHERE PHM_ID = (SELECT PHM_id FROM midwife WHERE user_id = 1))";
+
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        return true;
+    }
+
+    public function deleteByAppointmentId(): bool
+    {
+        try {
+            $sql = "DELETE FROM Appointments WHERE AppointmentId = :AppointmentId";
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':AppointmentId', $this->AppointmentId);
+            $stmt->execute();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 }

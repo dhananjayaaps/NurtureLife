@@ -27,6 +27,8 @@ $this->title = 'Manage Appointments';
         height: 90%;
         width: 100%;
         margin-top: 10px;
+        flex-direction: row;
+        justify-content: space-around;
     }
 
     a{
