@@ -182,7 +182,7 @@ $this->title = 'Prenatal Mother-Posts';
 
 <script>
     var data = <?php echo $model->getPosts()?>;
-    var itemsPerPage = 4;
+    var itemsPerPage = 8;
     var currentPage = 1;
 
     function displayTableData() {
@@ -204,7 +204,7 @@ $this->title = 'Prenatal Mother-Posts';
             if (row.topic !== 'PHM') {
                 var newRow = document.createElement('tr');
 
-                // Extract the first 3 words from the description
+                // Extract the first 4 words from the description
                 var descriptionWords = row.description.split(' ');
                 var truncatedDescription = descriptionWords.slice(0, 4).join(' ');
 

@@ -118,7 +118,7 @@
                     <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt=""> Posts</a>
                 </div>
                 <div class="column">
-                    <a href="/communication"><img src="assets/images/icons/communication.png" alt=""> Communication</a>
+                    <a href="/communication"><img src="assets/images/icons/communication.png" alt=""> Contact Mothers</a>
                 </div>
             </div>
         </div>

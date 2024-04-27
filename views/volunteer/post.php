@@ -56,6 +56,22 @@ $this->title = 'Volunteer';
         </form>
     </div>
 </div>
+<!--service seeker contact popup -->
+<div id="myPopup2" class="popup" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30%; background-color: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); padding: 20px; z-index: 1000; height: fit-content">
+    <div class="popup-content">
+        <h1 style="color: #001f80; margin-bottom: 0.5em;">Contact Seeker</h1>
+        <div class="notification-content">
+            <h2></h2><br>
+            <h2></h2><br>
+            <h2></h2>
+        </div>
+        <div class="buttonRow" style="text-align: center; margin-top: 20px;">
+            <button id="closePopup2" class="btn-submit" style="padding: 10px 20px; border: none; border-radius: 5px; background-color: #9c4668; color: white; cursor: pointer;">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
 
 <!--posts container-->
 <div class="shadowBox">
@@ -67,7 +83,7 @@ $this->title = 'Volunteer';
             <?php
             $posts = json_decode($model->getPosts());
             foreach ($posts as $post) {
-                if ($post->status === 0 || $post->status === 1) { // Check if status is 0 or 1
+                if (($post->status === 0 || $post->status === 1) && $post->topic !== 'PHM') { // Check if status is 0 or 1 and topic is not PHM
                     ?>
                     <div class="myBox" id="myBox" style=" height: 250px">
                         <div class="notification emergency">
