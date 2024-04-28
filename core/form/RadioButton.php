@@ -6,12 +6,13 @@ use app\core\Model;
 
 class RadioButton extends BaseField
 {
-    public const string TYPE_RADIO = 'radio';
+    public const TYPE_RADIO = 'radio';
     public string $type;
     public string $name;
     public Model $model;
     public string $attribute;
     private array $options = [];
+    private bool $readOnly = false;
 
     /**
      * @param Model $model

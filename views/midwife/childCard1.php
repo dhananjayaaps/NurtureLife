@@ -5,6 +5,7 @@ use app\core\Application;
 use app\core\form\DropDown;
 use app\core\form\Form;
 use app\core\form\RadioButton;
+use app\models\Child;
 use app\models\Mother;
 
 $this->title = 'Child';
@@ -128,7 +129,7 @@ $this->title = 'Child';
                 ?>
 
                 <?php
-                $radioButton = new Dropdown($model, 'migration_of_mother_or_father', '10.Migration of Mother or Father Abraod');
+                $radioButton = new RadioButton($model, 'migration_of_mother_or_father', '10.Migration of Mother or Father Abraod');
                 $radioButton->setOptions([
                     '1' => 'No,Both are in the country',
                     '2' => 'Mother left the Country',

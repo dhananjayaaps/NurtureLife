@@ -5,7 +5,7 @@ namespace app\models;
 use app\core\Application;
 use app\core\db\DbModel;
 
-class PresentObstetricDetails extends DbModel
+class PresentObstetricDetails extends Mother
 {
     public string $MotherId = '';
     public string $gravidity = '';
@@ -17,7 +17,7 @@ class PresentObstetricDetails extends DbModel
     public string $expected_period = '';
     public string $POA_at_registration = '';
     public string $consanguinity = '';
-    public string $rubella_immunization = '';
+    public int $rubella_immunization = 0;
     public string $pre_pregancy_screening_done = '';
     public string $folic_acid = '';
 

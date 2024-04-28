@@ -85,6 +85,7 @@ $this->title = 'Present Mother History Form1';
                 <div class="form-column">
 
                     <div class="row" style="display: flex; flex-direction: column; gap: 10px">
+                        <?php echo $form->field($model, 'MotherId', 'MotherId')?>
                         <?php
                         $gravidityField = new Dropdown($model, 'gravidity', 'Gravidity');
                         $gravidityField->setOptions([
