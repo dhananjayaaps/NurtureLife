@@ -18,10 +18,8 @@ class ClinicsController extends \app\core\Controller
         $clinic = new Clinic();
         $clinic2 = new Clinic();
         if ($request->isPost()) {
-
             $this->setLayout('admin');
             $clinic->loadData($request->getBody());
-
             if ($clinic->validate() && $clinic->save()) {
                 Application::$app->session->setFlash('success', 'New Clinic created successfully');
                 Application::$app->response->redirect('/clinics');
@@ -42,7 +40,6 @@ class ClinicsController extends \app\core\Controller
         $clinic = (new Clinic())->getAClinic($request->getBody()['id']);
         $this->setLayout('admin');
         $clinic->loadData($request->getBody());
-        $clinic->validate();
         if ($clinic->validate()) {
             $clinic->update();
             header('Content-Type: application/json');
