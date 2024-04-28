@@ -14,7 +14,7 @@ $this->title = 'Prenatal Mother';
     <h1>Prenatal Mother - Dashboard</h1>
 <!--    emergency button-->
     <div class="btn-conteiner">
-        <a class="btn-content" href="#">
+        <a class="btn-content" href="/emergency">
             <span class="btn-title">EMERGENCY</span>
             <span class="icon-arrow">
           <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

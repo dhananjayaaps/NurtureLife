@@ -13,6 +13,7 @@ use app\controllers\AdminController\UsersController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
+use app\controllers\EmergencyController;
 use app\controllers\FeedbackController;
 use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MidwifeController\ChildController;
@@ -179,5 +180,8 @@ $app->router->post('/roleRequest', [RoleRequestController::class, 'roleRequest']
 
 $app->router->get('/articles', [SiteController::class, 'articles']);
 $app->router->post('/articles', [SiteController::class, 'articles']);
+
+$app->router->get('/emergency', [EmergencyController::class, 'emergency']);
+$app->router->post('/emergency', [EmergencyController::class, 'emergency']);
 
 $app->run();
