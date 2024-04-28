@@ -139,4 +139,10 @@ class Midwife extends DbModel
         return parent::delete();
     }
 
+    public function getMidwifeId(){
+        $userId = $this->getUser(Application::$app->user->getId());
+        $midwife = (new Midwife())->findOne(self::class, ['user_id' => $userId]);
+        return $midwife->PHM_id;
+    }
+
 }

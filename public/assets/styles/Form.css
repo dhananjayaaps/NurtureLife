@@ -80,7 +80,7 @@
 }
 
 .btn-submit {
-    background-color: #4285f4;
+    background-color: #1F2B6C;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -144,7 +144,7 @@
 
 /* Style for the submit button in login form*/
 .btn-submit {
-    background-color: #4CAF50;
+    background-color: #1F2B6C;
     color: white;
     font-size: 16px;
     padding: 10px 20px;
@@ -155,7 +155,7 @@
 }
 
 .btn-submit:hover {
-    background-color: #126017;
+    background-color: #131941;
     transition: background-color 1s;
 }
 

@@ -18,7 +18,7 @@ $this->title = 'Clinics';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
-<h1>Admin - Clinic Center Management</h1>
+<h1>Clinics centers management</h1>
 <div id="myPopup" class="popup">
     <div class="popup-content">
         <h1 style="color: rgb(0, 15, 128);">Update Clinic Details<br/><br/></h1>
@@ -276,7 +276,7 @@ $this->title = 'Clinics';
                 if (response.ok) {
                     window.location.reload();
                 } else {
-                    return response.json();
+                    setflash('Failed to update clinic details');
                 }
             })
             .then(responseData => {

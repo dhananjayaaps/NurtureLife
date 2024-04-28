@@ -35,15 +35,16 @@ class RadioButton extends BaseField
         $optionsHtml = '';
 
         foreach ($this->options as $value => $label) {
-            $selected = $this->model->{$this->attribute} == $value ? 'selected' : '';
-            $optionsHtml .= sprintf('<option value="%s" %s>%s</option>', $value, $selected, $label);
+            $checked = $this->model->{$this->attribute} == $value ? 'checked' : '';
+            $optionsHtml .= sprintf(
+                '<div><input type="radio" name="%s" value="%s" %s>%s</div>',
+                $this->attribute,
+                $value,
+                $checked,
+                $label
+            );
         }
 
-        return sprintf('<select name="%s" class="form-control %s" %s>%s</select>',
-            $this->attribute,
-            $this->model->hasError($this->attribute) ? ' is-invalid' : '',
-            $this->readOnly ? 'readonly' : '',
-            $optionsHtml
-        );
+        return $optionsHtml;
     }
 }

@@ -24,18 +24,20 @@ class AppointmentController extends Controller
             $requestData = $request->getBody();
             $appointment->loadData($requestData);
 
-            if ($requestData['MotherIds'] == "") {
+            if ($requestData['MotherId'] == "") {
                 Application::$app->session->setFlash('error', 'Please select mothers');
                 return $this->render('midwife/ManageAppointments', [
                     'model' => $mother, 'appointmentModel' => $appointment
                 ]);
             }
 
-            $motherIds = explode(',', $requestData['MotherIds']);
+            $motherIds = explode(',', $requestData['MotherId']);
 
             if (empty($requestData['AppointDate'])) {
                 $appointment->addError('AppointDate', 'Select a Correct Appointment Date');
             } elseif (strtotime($requestData['AppointDate']) < strtotime(date('Y-m-d'))) {
+//                var_dump($appointment);
+//                exit();
                 $appointment->addError('AppointDate', 'Appointment date cannot be in the past');
             } elseif (empty($requestData['time'])) {
                 $appointment->addError('time', 'Select a Correct Appointment Time');

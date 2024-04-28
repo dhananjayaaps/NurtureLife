@@ -41,7 +41,7 @@ body{
     align-items: center;
     background: #1F2B6C;
     width: 100%;
-    z-index: 100;
+    z-index: 1;
 }
 
 .navbar {
@@ -51,7 +51,7 @@ body{
     width: 100%; /* Full width */
     color: #fff; /* Example text color */
     padding: 10px 20px; /* Adjust padding as needed */
-    z-index: 1000; /* Ensure it stays above other content */
+    z-index: 1; /* Ensure it stays above other content */
 }
 
 .wrapper {
