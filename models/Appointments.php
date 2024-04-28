@@ -9,7 +9,7 @@ use PDO;
 
 class Appointments extends DbModel
 {
-    public int $AppointmentId = 0;
+    public string $AppointmentId = '';
     public string $MotherId = '';
     public int $AppointType = 1;
     public string $AppointDate = '';
@@ -126,5 +126,27 @@ class Appointments extends DbModel
         } catch (\Exception $e) {
             return false;
         }
+    }
+
+    //make a update to the appointment details by sending the appointment model
+    public function update(): bool
+    {
+        $sql = "UPDATE Appointments SET AppointDate = :AppointDate, AppointRemarks = :AppointRemarks, time = :time WHERE AppointmentId = :AppointmentId AND MotherId IN (SELECT MotherId FROM Mothers WHERE PHM_ID = (SELECT PHM_id FROM midwife WHERE user_id = 1))";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':AppointDate', $this->AppointDate);
+        $stmt->bindValue(':AppointRemarks', $this->AppointRemarks);
+        $stmt->bindValue(':time', $this->time);
+        $stmt->bindValue(':AppointmentId', $this->AppointmentId);
+        $stmt->execute();
+        return true;
+    }
+
+    public function cancelAppointment($appointmentId): bool
+    {
+        $sql = "UPDATE Appointments SET AppointStatus = 1 WHERE AppointmentId = :AppointmentId AND MotherId IN (SELECT MotherId FROM Mothers WHERE PHM_ID = (SELECT PHM_id FROM midwife WHERE user_id = 1))";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':AppointmentId', $appointmentId);
+        $stmt->execute();
+        return true;
     }
 }

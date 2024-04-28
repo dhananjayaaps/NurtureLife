@@ -2,26 +2,51 @@
 /** @var $this app\core\view */
 
 use app\core\Application;
-use app\core\form\DropDown;
 use app\core\form\Form;
 use app\models\Appointments;
-use app\models\Mother;
 
-$this->title = 'Cancel Appointments';
+/** @var $appointmentModel Appointments **/
+
+$this->title = 'Manage Appointments';
 ?>
 
 <style>
-    .content{
-        justify-content: flex-start;
+    .content {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 0;
+        height: 90%;
+        width: 100%;
+        margin-top: 10px;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .shadowBox {
+        height: 80vh;
+    }
+
+    .btn-cancel{
+        background-color: brown;
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        position: relative;
     }
 </style>
 
 <link rel="stylesheet" href="./assets/styles/table.css">
 <link rel="stylesheet" href="./assets/styles/form.css">
 
-<h1>Midwife - Cancel Appointments</h1>
+<h1>Manage My Appointments</h1>
 
 <div id="myPopupRemove" class="popup">
     <div class="selectedRow" id="selectedRow" style="display: none"></div>
@@ -41,10 +66,6 @@ $this->title = 'Cancel Appointments';
 <div class="doctors content">
     <div class="shadowBox">
         <div class="left-content">
-            <div class="search-container">
-                <input type="text" placeholder="Search Appointments...">
-                <button type="submit">Search</button>
-            </div>
             <table class="table-data">
                 <thead>
                 <tr>
@@ -66,6 +87,25 @@ $this->title = 'Cancel Appointments';
             </div>
         </div>
     </div>
+
+    <div class="shadowBox">
+        <div class="Right-content">
+            <h2>New Appointment Details</h2>
+            <br>
+            <?php $form = Form::begin('', "post") ?>
+            <div style="">
+                <?php echo $form->field($appointmentModel, 'AppointmentId', 'Appointment Ids') ?>
+            </div>
+            <?php echo $form->dateField($appointmentModel, 'AppointDate', 'Appointment Date') ?>
+            <?php echo $form->TimeField($appointmentModel, 'time', 'Appointment Time') ?>
+            <?php echo $form->field($appointmentModel, 'AppointRemarks', 'Remarks') ?>
+
+            <button type="submit" class="btn-submit">Update</button>
+            <button type="button" class="btn-cancel" onclick="confirmDelete()">Cancel Appointments</button>
+
+            <?php echo Form::end() ?>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -73,7 +113,7 @@ $this->title = 'Cancel Appointments';
     var itemsPerPage = 3;
     var currentPage = 1;
 
-    var selectedIdNumbers = [];
+    var selectedAppointmentIds = [];
 
     function displayTableData() {
         var startIndex = (currentPage - 1) * itemsPerPage;
@@ -91,7 +131,7 @@ $this->title = 'Cancel Appointments';
                 <td>${row.time}</td>
                 <td>${row.Name}</td>
                 <td>${row.AppointType}</td>
-                <td><button class="action-button" onclick="cancelAppointment(${row.AppointmentId})">Cancel</button></td>
+                <td><button class="action-button"><a href="/motherProfile?id=${row.MotherId}">View Mother</a></button></td>
                `;
             tableBody.appendChild(newRow);
         }
@@ -119,17 +159,8 @@ $this->title = 'Cancel Appointments';
     document.addEventListener("DOMContentLoaded", function () {
         displayTableData();
         displayPagination();
+        attachListeners();
     });
-
-    function cancelAppointment(appointmentId) {
-        // Implement cancellation logic here
-        //use deleteAppointments method in the Appointments model to delete the appointment
-        //pass the appointmentId as an array to the deleteAppointments method
-        alert("Appointment with ID " + appointmentId + " is canceled.");
-        // You can add further logic here, like updating the UI or sending a request to the server to cancel the appointment.
-    }
-
-    var selectedAppointmentIds = [];
 
     function updateSelectedAppointments() {
         selectedAppointmentIds = [];
@@ -139,6 +170,7 @@ $this->title = 'Cancel Appointments';
                 selectedAppointmentIds.push(parseInt(checkboxes[i].getAttribute('data-appointmentid')));
             }
         }
+        document.getElementsByName('AppointmentId')[0].value = selectedAppointmentIds.join(',');
     }
 
     function attachListeners() {
@@ -164,45 +196,6 @@ $this->title = 'Cancel Appointments';
                 updateSelectedAppointments();
             });
         }
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        displayTableData();
-        displayPagination();
-        attachListeners();
-    });
-
-    function cancelAppointment(appointmentId) {
-        var popup = document.getElementById('myPopupRemove');
-        var selectedRow = document.getElementById('selectedRow');
-        selectedRow.innerHTML = "Appointment ID: " + appointmentId;
-        popup.style.display = "block";
-
-        var closePopup = document.getElementById('closePopup');
-        closePopup.addEventListener('click', function () {
-            popup.style.display = "none";
-        });
-
-        var closePopupRemove = document.getElementById('closePopupRemove');
-        closePopupRemove.addEventListener('click', function () {
-            popup.style.display = "none";
-            // Implement cancellation logic here
-            const formData = new FormData();
-            formData.append('AppointmentId', appointmentId);
-            fetch('/cancel-appointment', {
-                method: 'POST',
-                body: formData
-            }).then(response => response.json()).then(data => {
-                if (data.success) {
-                    <?php Application::$app->session->setFlash('success', 'Cancelled successfully');?>
-                    window.location.reload();
-                } else {
-                    <?php Application::$app->session->setFlash('error', 'Fail to Cancel Appointment');?>
-                }
-            });
-            alert("Appointment with ID " + appointmentId + " is canceled.");
-
-        });
     }
 
 </script>
