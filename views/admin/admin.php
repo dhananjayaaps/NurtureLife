@@ -12,7 +12,7 @@ $this->title = 'Admin Dashboard';
     }
 </style>
 <h1>Admin Dashboard</h1>
-<div class="content">
+<div>
     <div class="column first-column">
         <div class="lineChart">
             Total Mothers: 450

@@ -113,6 +113,7 @@ class m0001_initial
             diabetes_mellitus TINYINT(1),
             rubella_immunization TINYINT(1),
             emergencyNumber VARCHAR(20),
+            location VARCHAR(255),
             status INT,
             Created_At TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (PHM_ID) REFERENCES midwife(PHM_id),
