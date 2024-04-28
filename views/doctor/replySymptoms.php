@@ -97,7 +97,6 @@ $this->title = 'Reply Symptoms';
         var itemsPerPage = 10;
         var currentPage = 1;
 
-        // Function to display table data
         function displayTableData() {
             var startIndex = (currentPage - 1) * itemsPerPage;
             var endIndex = Math.min(startIndex + itemsPerPage, data.length);
@@ -148,7 +147,6 @@ $this->title = 'Reply Symptoms';
             </td>
         `;
                 }
-                // Inside the displayTableData function
 
                 if (row.priorityLvl === 'low') {
                     newRow.classList.add('low-priority');
@@ -163,7 +161,6 @@ $this->title = 'Reply Symptoms';
 
         }
 
-        // Function to display pagination
         function displayPagination() {
             var totalPages = Math.ceil(data.length / itemsPerPage);
             var pagination = document.getElementById('pagination');
@@ -182,40 +179,31 @@ $this->title = 'Reply Symptoms';
             }
         }
 
-        // Call functions to display initial table data and pagination
         displayTableData();
         displayPagination();
 
 
-        // Get the reply button
         const replyButtons = document.querySelectorAll('.reply-btn');
 
-        // Add click event listener to each reply button
         replyButtons.forEach(button => {
             button.addEventListener("click", function(event) {
                 if (event.target && event.target.classList.contains("reply-btn")) {
                     const symptomRecNo = event.target.value;
 
-                    // Populate the hidden input field in the update popup with the symptomRecNo value
                     document.getElementById('symptomId').value = symptomRecNo;
 
-                    // Display the update popup
                     document.getElementById('updatePopup').style.display = 'block';
                 }
             });
         });
 
-        // Add event listener for the close button in the update popup
         document.getElementById('closePopupBtn').addEventListener('click', function() {
-            // Hide the update popup when the close button is clicked
             document.getElementById('updatePopup').style.display = 'none';
         });
 
-        // Function to handle form submission
         document.querySelector('.update-form').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Get the form data
             const docId= <?php echo (new Doctor())->getDocId() ?>;
             const symptomId = document.getElementById('symptomId').value;
             const symptomReply = document.getElementById('SymptomReply').value;
@@ -246,30 +234,11 @@ $this->title = 'Reply Symptoms';
                 .then(data => {
                     // Handle successful response
                     console.log('Update successful:', data);
-                    // Optionally, you can check if the response data is valid JSON
-                    //     try {
-                    //         const jsonData = JSON.parse(data);
-                    //         // Handle JSON data
-                    //         console.log('Parsed JSON data:', jsonData);
-                    //     } catch (error) {
-                    //         // Handle JSON parsing error
-                    //         console.error('JSON parsing error:', error);
-                    //     }
 
-                    // Optionally, perform additional actions after successful update
-                    // For example, close the update popup
                     document.getElementById('updatePopup').style.display = 'none';
                     setTimeout(() => {
                         window.location.reload(); // Refresh the page
                     }, 1000);
-                    // // Then, refresh the table data
-                    // displayTableData();
-                    // displayPagination();
-                });
-                // .catch(error => {
-                //     // Handle fetch errors
-                //     console.error('Update failed:', error);
-                // });
         });
 
         const histButtons = document.querySelectorAll('.hist-btn');

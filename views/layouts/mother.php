@@ -1,4 +1,8 @@
 <?php use app\core\Application; ?>
+<?php use app\models\Mother; ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,6 +70,7 @@
     <?php endif; ?>
 
 </div>
+<div class="popup" id="popupFetal"></div>
 
 <div class="content-navbar">
     <div class="left-navbar">
@@ -141,6 +146,43 @@
             selectedRoleInput.value = selectedRole;
 
             roleChangeForm.submit();
+        });
+    });
+</script>
+
+<script>
+    var DeliveryDate = <?php echo (new Mother())->getDeliveryDate() ?>;
+    console.log(DeliveryDate)
+    var today = new Date();
+    var RemainingTime = new Date(DeliveryDate) - today;
+    console.log(RemainingTime)
+    const fetalLinks = document.querySelectorAll('a[href="/fetalkick"]');
+    fetalLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            // Prevent the default behavior of the link
+            event.preventDefault();
+
+            if (RemainingTime < 1000*60*60*24*30*7) {
+                // If so, navigate to the link
+               window.location.href = link.href;
+           } else {
+                // If not, display an alert
+                const popupFetal = document.getElementById("popupFetal");
+
+                popupFetal.innerHTML = `
+               <div class="popup-content">
+
+                    <h3>Fetalkick reporting will be enabled only after the 28th week (7 months) of pregnancy</h3>
+                    <span class="close" id="close-popupFetal">&times;</span>
+                </div>
+                `;
+                popupFetal.style.display = "block";
+            }
+            document.addEventListener("click", function(event) {
+                if (event.target && event.target.id === "close-popupFetal") {
+                    document.getElementById("popupFetal").style.display = "none";
+               }
+            });
         });
     });
 </script>

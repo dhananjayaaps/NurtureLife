@@ -20,45 +20,45 @@ $this->title = 'FetalKicks';
 <div class="content">
 <div>
     <div class="lineChart">
-        Total Kicks: 450
+         <p id="total"></p>
+        <p id="avg"></p>
         <canvas id="lineChart" ></canvas>
     </div>
 </div>
 <div class="column-container"  >
-<div id="Add_section" class="right-content">
-    <div class="shadowBox">
-        <h2>Add a Record <br/><br/></h2>
-        <?php $form = Form::begin('', "post")?>
-        <?php echo $form->field($model, 'KickCount', 'Kick Count ')?>
-        <button type="submit" class="btn-submit">Submit</button>
-        <?php echo Form::end()?>
-    </div>
-
-
-</div>
-    <div id="Update_section" class="left-content">
-    <div class="shadowBox">
-        <div>
-            <br>
-            <form>
-                <h2 style="color: rgb(0, 15, 128);">Update Kick Count<br/><br/></h2>
-                <br>
-
-                <div class="form-group">
-                    <label for="UpdateKickCount">Correct Kick Count</label>
-                    <input type="text" id="UpdateKickCount" name="UpdateKickCount" value=""  class="form-control ">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-
-            </form>
-            <div class="buttonRow">
-                <button type="submit" id="updateButton" class="btn-submit">
-                    Update
-                </button>
-            </div>
+    <div id="Add_section" class="right-content">
+        <div class="shadowBox">
+            <h2>Add a Record <br/><br/></h2>
+            <?php $form = Form::begin('', "post")?>
+            <?php echo $form->field($model, 'KickCount', 'Kick Count ')?>
+            <button type="submit" class="btn-submit">Submit</button>
+            <?php echo Form::end()?>
         </div>
     </div>
+
+    <div id="Update_section" class="left-content">
+        <div class="shadowBox">
+            <div>
+                <br>
+                <form>
+                    <h2 style="color: rgb(0, 15, 128);">Update Kick Count<br/><br/></h2>
+                    <br>
+
+                    <div class="form-group">
+                        <label for="UpdateKickCount">Correct Kick Count</label>
+                        <input type="text" id="UpdateKickCount" name="UpdateKickCount" value=""  class="form-control ">
+                        <div class="invalid-feedback">
+                        </div>
+                    </div>
+
+                </form>
+                <div class="buttonRow">
+                    <button type="submit" id="updateButton" class="btn-submit">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -76,6 +76,15 @@ $this->title = 'FetalKicks';
 <script>
     // Sample data received from the database
     var dbData = <?php echo $model->getKicks() ?>;
+    var count = 0;
+    for (let i = 0; i < dbData.length; i++) {
+        var day = dbData[i];
+        count  = count + day.Count;
+    }
+    var avg = parseInt(count/dbData.length);
+    document.getElementById("total").innerHTML = `Total Kicks: ${count}`;
+    document.getElementById("avg").innerHTML = `Average Kicks: ${avg}`;
+
 
 
     // Extracting dates and counts from the database data
@@ -128,30 +137,6 @@ $this->title = 'FetalKicks';
     }
 
 </script>
-
-
-<!--<script>-->
-<!--    function fetchData(url) {-->
-<!---->
-<!--        fetch(url)-->
-<!--            .then(response => {-->
-<!--                if (!response.ok) {-->
-<!--                    throw new Error(`HTTP error! Status: ${response.status}`);-->
-<!--                }-->
-<!--                // Parse the response body as JSON-->
-<!--                return response.json();-->
-<!--            })-->
-<!--            .then(data => {-->
-<!--                console.log('Data received:', data);-->
-<!---->
-<!---->
-<!--            })-->
-<!--            .catch(error => {-->
-<!--                // Handle errors during the fetch operation-->
-<!--                console.error('Fetch error:', error);-->
-<!--            });-->
-<!--    }-->
-<!--</script>-->
 
 <script>
     document.getElementById('updateButton').addEventListener('click', function(e) {

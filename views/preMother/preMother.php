@@ -16,6 +16,7 @@ $this->title = 'preMother Dashboard';
 
 
 <div class="popup" id="popup"></div>
+
 <div class="content">
     <div class="first-column">
         <div class="DeliveryTimer"></div>
@@ -38,7 +39,7 @@ $this->title = 'preMother Dashboard';
 
                 <button class="addButton">Nutrition Guidelines</button>
                 <button class="addButton">Communicate to  Officers</button>
-                <button class="addButton">Record Fetalkicks</button>
+                <a href="/fetalkick"> <button class="addButton fetal-btn">Record Fetalkicks</button></a>
             </div>
 <!--            </div>-->
 
@@ -110,30 +111,24 @@ $this->title = 'preMother Dashboard';
 
 <script>
     const DeliveryTimer = document.querySelector('.DeliveryTimer');
-    let DeliveryDate = <?php echo (new Mother())->getDeliveryDate() ?>;
-    let today = new Date();
-    if (DeliveryDate)
-    {
-        var RemainingTime = new Date(DeliveryDate) - today;
-
-        // Calculate remaining days and months
-        let remainingDays = Math.floor(RemainingTime / (1000 * 60 * 60 * 24));
-        let remainingMonths = Math.floor(remainingDays / 30);
-
-        // Create HTML string with styled numbers
-        var htmlString = '<span style="font-weight: bold; color: blue;">' + remainingMonths + '</span> month and <span style="font-weight: bold; color: red;">' + (remainingDays % 30) + '</span> days to Delivery';
-
-    }else
-    {
-        var htmlString = 'Delivery date N/A';
-    }
+    let DeliveryDate1 = <?php echo (new Mother())->getDeliveryDate() ?>;
+    let today1 = new Date();
 
     // Set the HTML string as innerHTML of DeliveryTimer
-    DeliveryTimer.innerHTML = htmlString;
+    var RemainingTime1 = new Date(DeliveryDate1) - today1;
+    var remainingDays = Math.floor(RemainingTime1 / (1000 * 60 * 60 * 24));
+    var remainingMonths = Math.floor(remainingDays / 30);
+    DeliveryTimer.innerHTML = '<span style="font-weight: bold; color: blue;">' + remainingMonths + '</span> month and <span style="font-weight: bold; color: red;">' + (remainingDays % 30) + '</span> days until Delivery';
 
-    if (RemainingTime<0){
+
+    if (RemainingTime1<1000*60*60*22){
         DeliveryTimer.innerHTML = '<span style="color: red;">Go to the hospital immediately</span>';
     }
+
+
+
+
+
 </script>
 
 
