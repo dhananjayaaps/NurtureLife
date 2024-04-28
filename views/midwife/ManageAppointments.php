@@ -200,4 +200,3 @@ $this->title = 'Manage Appointments';
         attachListeners();
     });
 </script>
-
