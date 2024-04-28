@@ -8,8 +8,9 @@
     <title><?=$this->title?></title>
     <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
-    <link rel="stylesheet" href="./assets/styles/admin.css">
+    <link rel="stylesheet" href="./assets/styles/content.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
@@ -76,32 +77,31 @@
     <div class="wrapper" style="height: fit-content">
         <div class="sidebar">
             <div class="logo-details">
-                <i class="bx bxl-c-plus-plus icon"></i>
                 <div class="logo_name">NurtureLife</div>
                 <i class="bx bx-menu" id="btn"></i>
             </div>
             <ul class="nav-list">
                 <br><br>
                 <li>
-                    <a href="#">
+                    <a href="/">
                         <i class="bx bx-grid-alt"></i>
                         <span class="links_name">Dashboard</span>
                     </a>
                     <span class="tooltip">Dashboard</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/users">
                         <i class="bx bx-user"></i>
                         <span class="links_name">User</span>
                     </a>
                     <span class="tooltip">User</span>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="bx bx-chat"></i>
-                        <span class="links_name">Messages</span>
+                    <a href="/clinics">
+                        <i class="bx fa-user-doctor"></i>
+                        <span class="links_name">Clinics</span>
                     </a>
-                    <span class="tooltip">Messages</span>
+                    <span class="tooltip">Clinics</span>
                 </li>
                 <li>
                     <a href="#">
@@ -142,8 +142,8 @@
                     <div class="profile-details">
                         <img src="./assets/images/men_user.jpg" alt="profileImg" />
                         <div class="name_job">
-                            <div class="name">Prem Shahi</div>
-                            <div class="job">Web designer</div>
+                            <div class="name"><?php echo Application::$app->user->getDisplayName() ?></div>
+                            <div class="job"><?php echo Application::$app->user->getRoleName() ?></div>
                         </div>
                     </div>
                     <a href="/logout"><i class="bx bx-log-out" id="log_out"></i></a>
