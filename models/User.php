@@ -263,4 +263,8 @@ class User extends UserModel
         }
         return json_encode($data);
     }
+    public function getNIC(): int
+    {
+        return $this->nic;
+    }
 }

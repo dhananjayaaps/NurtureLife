@@ -1,0 +1,335 @@
+.navbar_midwife{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 80px;
+    align-items: center;
+    background: #142259;
+    width: 100%;
+    height: 80px;
+    z-index: 200;
+}
+.midwife_sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100px;
+
+}
+.content{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: min-content;
+}
+
+.content .column{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: fit-content;
+    gap: 20px;
+    padding-top: 30px;
+}
+
+.content canvas{
+    height: 190px;
+    width: auto;
+}
+
+
+
+.quick-access{
+    display: flex;
+    flex-direction: row;
+    padding-top: 15px;
+    gap: 30px;
+    min-width: min-content;
+}
+
+.content .second-column .user-control{
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.user-control{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-control button{
+    background-color: #1F2B6C;
+    color: #FFFFFF;
+    padding: 30px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.notification-bar{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notifications{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notifications .notification{
+    display: flex;
+    flex-direction: row;
+    background-color: #0036a2;
+    border-radius: 10px;
+    padding: 8px;
+    justify-content: center;
+}
+
+.notification .message-box{
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #dce6ff;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.notification .title{
+    color: #870606;
+    font-weight: bold;
+}
+
+.notification img{
+    height: 60px;
+}
+
+.notification.warning{
+    /*background-color: #d9d61f;*/
+}
+
+.notification .message{
+    /*background-color: #4ef07c;*/
+}
+
+.notification.emergency{
+    /*background-color: #f0ad4e;*/
+}
+
+
+/* clinic module */
+.content{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex: 80%;
+    flex-wrap: wrap;
+}
+
+.content .left-content{
+    display: flex;
+    flex: 40%;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.content .right-content{
+    display: flex;
+    flex: 40%;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.content .search-container{
+    padding-top: 20px;
+}
+
+.alert .alert-success{
+    background-color: #4ef07c;
+    padding: 20px 0 20px 20px;
+    font-size: 20px;
+}
+
+.clinics .right-content{
+    margin: auto;
+}
+
+/*reports page*/
+
+.report-types{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.content .second-column .report-type{
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.report-type{
+    display: flex;
+    flex-direction: column;
+}
+
+.report-type button{
+    background-color: #6652a4;
+    color: #FFFFFF;
+    padding: 30px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.side-window {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-window .date-fields{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.side-window .buttons{
+    display: flex;
+    flex-direction: row;
+    gap : 20px;
+}
+
+.side-window button{
+    width: 100px;
+    background-color: #1F2B6C;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+/* scrollable box */
+
+.myBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /*width: 550px;*/
+    height: 200px;
+    overflow:auto;
+    padding:2%;
+    align-items: flex-start;
+    text-align: left;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    border: 1px solid #1F2B6C;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1F2B6C;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1F2B6C;
+}
+
+.clinics.content .shadowBox{
+    height: 100%;
+}
+
+.action {
+    position: absolute;
+    padding-left: 30px;
+    top: 10px;
+    right: 40px;
+}
+
+/*Media queries*/
+
+@media (max-width: 768px) {
+    .left-navbar{
+        display: none;
+    }
+}
+
+table {
+    text-transform: capitalize;
+    border-collapse: collapse;
+    width: 100%;
+    cursor: crosshair;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    gap : 10px;
+    height: 100%;
+}
+
+.action-button {
+    background-color: #0074D9;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: row;
+    gap : 10px;
+    min-width: 70px;
+    text-align: center;
+}
+
+.view-button {
+    background-color: #5cb85c;
+}
+
+.update-button {
+    background-color: #f0ad4e;
+}
+
+.remove-button {
+    background-color: #870606;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.page-button {
+    background-color: #0074D9;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.page-button:hover {
+    background-color: #0056b3;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+tr:hover {background-color: #adffec;}

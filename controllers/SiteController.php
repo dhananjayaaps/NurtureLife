@@ -43,11 +43,11 @@ class SiteController extends \app\core\Controller
         return $this->render('home');
     }
 
-    public function contact(): false|array|string
-    {
-        $this->layout = 'volunteer';
-        return $this->render('contact');
-    }
+//    public function contact(): false|array|string
+//    {
+//        $this->layout = 'volunteer';
+//        return $this->render('contact');
+//    }
     public function handleContact(Request $request): string
     {
         $body = $request->getBody();
@@ -103,6 +103,24 @@ class SiteController extends \app\core\Controller
         else if($userRole == 5){
             $this->layout = 'mother';
             return $this->render('postMother/nutrition');
+        }
+        else{
+            $this->layout = 'auth';
+            return $this->render('home');
+        }
+
+    }
+
+    public function articles(): array|false|string
+    {
+        $userRole = Application::$app->user->getRole();
+        if ($userRole == 4) {
+            $this->layout = 'mother';
+            return $this->render('preMother/articles');
+        }
+        else if($userRole == 5){
+            $this->layout = 'mother';
+            return $this->render('postMother/articles');
         }
         else{
             $this->layout = 'auth';
