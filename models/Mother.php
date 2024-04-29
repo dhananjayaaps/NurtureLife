@@ -203,4 +203,25 @@ class Mother extends DbModel
         return json_encode($result);
     }
 
+    public function getMotherCountForAdmin()
+    {
+        // Get the current month
+        $currentMonth = date('n');
+
+        $sql = "SELECT COUNT(*) AS Registration_Count, MONTH(Created_At) AS Registration_Month FROM Mothers WHERE Created_At BETWEEN DATE_SUB(NOW(), INTERVAL 12 MONTH) AND NOW() GROUP BY MONTH(Created_At)";
+        $statement = self::prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_OBJ);
+
+        $data = array_fill(0, 12, 0);
+        $index = $currentMonth;
+
+        foreach ($result as $item) {
+            $monthIndex = $index % 12;
+            $data[$monthIndex] = $item->Registration_Count;
+            $index++;
+        }
+        return json_encode($data);
+    }
+
 }

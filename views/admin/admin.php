@@ -1,6 +1,8 @@
 <?php
 /** @var $this app\core\view */
 
+use app\models\Child;
+use app\models\Mother;
 use app\models\User;
 
 $this->title = 'Admin Dashboard';
@@ -10,40 +12,51 @@ $this->title = 'Admin Dashboard';
         height: 40vh;
         margin-top: 15px;
     }
+    .quick-access{
+        align-items: center;
+    }
+    .two-rows{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        justify-content: space-between;
+
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
 </style>
 <h1>Admin Dashboard</h1>
-<div>
+<div class="two-rows">
     <div class="column first-column">
         <div class="lineChart">
-            Total Mothers: 450
+            Mother Registrations
             <canvas id="lineChart"></canvas>
         </div>
         <div class="lineChart">
-            Total Borns: 450
+            Child Registrations
             <canvas id="lineChart2"></canvas>
         </div>
         <div class="lineChart">
-            Total Registrations: 450
+            User Registrations
             <canvas id="lineChart3"></canvas>
         </div>
     </div>
     <div class="column second-column">
         <div class="user-control">
             User Distribution
-            <canvas id="myPieChart" width="300" height="300"></canvas>
+            <canvas id="myBarChart" width="300" height="300"></canvas>
         </div>
         <div class="quick-access">
             <div class="user-control addButtons">
-                <button class="addButton">Add a Clinic</button>
-                <button class="addButton">Transfer a Doctor</button>
-                <button class="addButton">Add a Doctor</button>
-                <button class="addButton">Add a Midwife</button>
+                <button class="addButton"><a href="/motherRegistrations">Mother Registrations</a></button>
+                <button class="addButton"><a href="/users">Restrict a User</a></button>
             </div>
             <div class="user-control addButtons">
-                <button class="addButton">Restrict a User</button>
-                <button class="addButton">Add an Admin</button>
-                <button class="addButton">Transfer a Midwife</button>
-                <button class="addButton">Add a Midwife</button>
+                <button class="addButton"><a href="/childBorn">Child Registrations</a></button>
+
+                <button class="addButton"><a href="/ManageAdmins">Add an Admin</a></button>
             </div>
         </div>
 
@@ -100,14 +113,38 @@ $this->title = 'Admin Dashboard';
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    // Sample data for the line chart
-    var data = {
-        labels: ["January", "February", "March", "April", "May"],
+    var dataarrayMother = <?php echo (new Mother)->getMotherCountForAdmin() ?>;
+    var dataarrayChild = <?php echo (new Child)->getChildCountForAdmin() ?>;
+    var dataarrayUser = <?php echo (new User)->getUsersCountForAdmin() ?>;
+    var dataDistribution = <?php echo (new User)->getUsersCountForAdminByRole() ?>;
+
+    var dataMother = {
+        labels: ["November","December","January", "February", "March", "April"],
         datasets: [{
-            label: "Daily New Borns",
+            label: "New Borns",
             borderColor: "#1F2B6C",
             backgroundColor: "rgba(75, 192, 192, 0.2)",
-            data: [65, 59, 80, 81, 56]
+            data: dataarrayMother
+        }]
+    };
+
+    var dataChild = {
+        labels: ["November","December","January", "February", "March", "April"],
+        datasets: [{
+            label: "New Borns",
+            borderColor: "#1F2B6C",
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            data: dataarrayChild
+        }]
+    };
+
+    var dataUser = {
+        labels: ["November","December","January", "February", "March", "April"],
+        datasets: [{
+            label: "New Borns",
+            borderColor: "#1F2B6C",
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            data: dataarrayUser
         }]
     };
 
@@ -122,30 +159,31 @@ $this->title = 'Admin Dashboard';
     var ctx = document.getElementById('lineChart').getContext('2d');
     var myLineChart = new Chart(ctx, {
         type: 'line',
-        data: data,
+        data: dataMother,
         options: options
     });
 
     var ctx = document.getElementById('lineChart2').getContext('2d');
     var myLineChart = new Chart(ctx, {
         type: 'line',
-        data: data,
+        data: dataChild,
         options: options
     });
 
     var ctx = document.getElementById('lineChart3').getContext('2d');
     var myLineChart = new Chart(ctx, {
         type: 'line',
-        data: data,
+        data: dataUser,
         options: options
     });
 
-    var ctxDoughnut = document.getElementById('myPieChart').getContext('2d');
+    var ctxBar = document.getElementById('myBarChart').getContext('2d');
 
-    var dataDoughnut = {
-        labels: ['Volunteers', 'Doctors', 'Midwives', 'Prenatal Mothers', 'Postnatal Mothers'],
+    var dataBar = {
+        labels: ['Volunteers', 'Admin', 'Doctor', 'Prenatal Mothers','MidWife'],
         datasets: [{
-            data: [20, 15, 10, 30, 25],
+            label: 'Number of Individuals',
+            data: dataDistribution,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.5)',
                 'rgba(54, 162, 235, 0.5)',
@@ -164,14 +202,22 @@ $this->title = 'Admin Dashboard';
         }]
     };
 
-    var optionsDoughnut = {
+    var optionsBar = {
         responsive: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     };
 
-    var myDoughnutChart = new Chart(ctxDoughnut, {
-        type: 'pie', //
-        data: dataDoughnut,
-        options: optionsDoughnut
+    var myBarChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: dataBar,
+        options: optionsBar
     });
+
 
 </script>

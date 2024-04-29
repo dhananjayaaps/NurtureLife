@@ -5,6 +5,7 @@ namespace app\models;
 use app\core\Application;
 use app\core\db\DbModel;
 use app\models\Mother;
+use PDO;
 
 class Appointments extends DbModel
 {

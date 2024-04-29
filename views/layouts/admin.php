@@ -105,13 +105,6 @@
                     <span class="tooltip">Clinics</span>
                 </li>
                 <li>
-                    <a href="/motherRegistrations">
-                        <i class="bx bx-pie-chart-alt-2"></i>
-                        <span class="links_name">Reports</span>
-                    </a>
-                    <span class="tooltip">Reports</span>
-                </li>
-                <li>
                     <a href="/doctors">
                         <i class="bx bx-plus-medical"></i>
                         <span class="links_name">Doctors</span>
@@ -119,7 +112,7 @@
                     <span class="tooltip">Doctors</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/midwife">
                         <i class="bx bx-female"></i>
                         <span class="links_name">Midwives</span>
                     </a>

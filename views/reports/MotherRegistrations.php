@@ -215,7 +215,6 @@
             }]
         };
 
-        // Chart options
         var options = {
             scales: {
                 y: {
@@ -224,19 +223,17 @@
             }
         };
 
-        // Get canvas element
         var ctx = document.getElementById('lineChart').getContext('2d');
 
-        // Destroy the existing chart to avoid duplicate charts
         if (window.myLineChart) {
             window.myLineChart.destroy();
         }
 
-        // Create the new chart
         window.myLineChart = new Chart(ctx, {
             type: 'line',
             data: chartData,
             options: options
         });
     }
+    updateChart()
 </script>
