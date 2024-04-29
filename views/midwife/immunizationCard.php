@@ -4,6 +4,7 @@
 use app\core\Application;
 use app\core\form\DropDown;
 use app\core\form\Form;
+use app\core\form\RadioButton;
 use app\models\Immunization;
 use app\models\Mother;
 
@@ -18,7 +19,7 @@ $this->title = 'Child';
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
-<link rel="stylesheet" href="./assets/styles/immunizationCard.css">
+<link rel="stylesheet" href="./assets/styles/styles.css">
 
 <style>
 
@@ -55,7 +56,8 @@ $this->title = 'Child';
         display:flex;
         gap:20px;
     }
-    .container{
+    .content{
+        margin-left: 280px;
 
     }
 
@@ -80,15 +82,11 @@ $this->title = 'Child';
 
 </style>
 
-<h1>Midwife - Immunization card</h1>
 <div class="vaccinesCards">
     <div class="vaccineBox">
-        <h1>IMMUNIZATION CARD</h1>
-
+        <h1>Child Immunization Card</h1>
         <?php $form = Form::begin('', "post")?>
-
         <h2>At Birth</h2>
-
         <div class="vaccines">
             <div class="card">
                 <div class="container">
@@ -285,19 +283,15 @@ $this->title = 'Child';
                 <input type="text" id="BatchNo1" name="BatchNo1" value=""  class="form-control ">
                 <div class="invalid-feedback"></div>
 
-                <label>Adverse effects following Immunization: </label>
-                <input type="text" id="Effects1" name="Effects1" value=""  class="form-control ">
-                <div class="invalid-feedback"></div>
-
                 <?php
-                $bcgField = new Dropdown($model, 'bcg_scars', 'BCG Scars');
-                $bcgField->setOptions([
-                    1 => 'Absent',
-                    2 => 'Present',
-
+                $radioButton = new RadioButton($model, 'Effects1', 'Adverse Effects Following Immunization:');
+                $radioButton->setOptions([
+                    '1' => 'Yes',
+                    '2' => 'No'
                 ]);
-                echo $bcgField;
+                echo $radioButton;
                 ?>
+
             </div>
         </form>
         <div class="buttonRow">

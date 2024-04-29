@@ -6,17 +6,17 @@ use app\core\db\DbModel as parentAlias;
 
 class BabySpecialCare extends parentAlias
 {
-    public int $child_id = 0;
-    public string $premature_births= '';
-    public string $low_birth_weight= '';
-    public string $neonatal_complications= '';
-    public string $congenital_disorders= '';
-    public string $acute_conditions= '';
-    public string $complementary_feeding= '';
-    public string $growth_retardation= '';
-    public string $difficulty_feeding= '';
-    public string $death_of_mother_or_father= '';
-    public string $migration_of_mother_or_father= '';
+    public int $child_id ;
+    public string $premature_births= '1';
+    public string $low_birth_weight= '1';
+    public string $neonatal_complications= '1';
+    public string $congenital_disorders= '1';
+    public string $acute_conditions= '1';
+    public string $complementary_feeding= '1';
+    public string $growth_retardation= '1';
+    public string $difficulty_feeding= '1';
+    public string $death_of_mother_or_father= '1';
+    public string $migration_of_mother_or_father= '1';
     public string $other_reasons= '';
 
     public function rules(): array
@@ -61,6 +61,17 @@ class BabySpecialCare extends parentAlias
             'migration_of_mother_or_father',
             'other_reasons',
         ];
+    }
+
+    public function save(): bool
+    {
+        $this->child_id = $this->getChildId();
+        return parent::save();
+    }
+
+    public function getChildId(): string
+    {
+        return "1";
     }
 
 }

@@ -6,42 +6,35 @@ use app\core\db\DbModel;
 
 class Immunization extends DbModel
 {
-    public int $child_id = 0;
+    public int $child_id ;
+    public string $BatchNo1 = '';
+    public string $Effects1 = '';
 
-    public int $AppointType = 1;
-    public string $AppointDate = '';
-    public string $AppointStatus = '';
-    public string $AppointRemarks = '';
 
     public function tableName(): string
     {
-        return 'appointments';
+        return 'Immunization';
     }
 
     public function attributes(): array
     {
         return [
-            'MotherId',
-            'AppointType',
-            'AppointDate',
-            'AppointStatus',
-            'AppointRemarks'
+            'BatchNo1',
+            'Effects1'
         ];
     }
 
     public function primaryKey(): string
     {
-        return 'AppointmentId';
+        return 'child_id';
     }
 
     public function rules(): array
     {
         return [
-            'MotherId' => [self::RULE_REQUIRED],
-            'AppointType' => [self::RULE_REQUIRED],
-            'AppointDate' => [self::RULE_REQUIRED],
-            'AppointStatus' => [self::RULE_REQUIRED],
-            'AppointRemarks' => [self::RULE_REQUIRED]
+            'BatchNo1' => [self::RULE_REQUIRED],
+            'Effects1' => [self::RULE_REQUIRED],
+
         ];
     }
 }
