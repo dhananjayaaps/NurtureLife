@@ -59,12 +59,12 @@ $this->title = 'Child';
 
                 <br>
                 <?php echo $form->field($model, 'birth_weight', '2. Birth Weight(g)')?>
-                <?php echo $form->field($model, 'head_circumference_at_birth', '3.Head Circumference at Birth(cm)')?>
-                <?php echo $form->field($model, 'baby_length_at_birth', '4.Baby Length at Birth(cm)')?>
+                <?php echo $form->field($model, 'head_circumference_at_birth', '3. Head Circumference at Birth(cm)')?>
+                <?php echo $form->field($model, 'baby_length_at_birth', '4. Baby Length at Birth(cm)')?>
 
 
                 <?php
-                $radioButton = new RadioButton($model, 'health_condition', '5.Health Condition');
+                $radioButton = new RadioButton($model, 'health_condition', '5. Health Condition');
                 $radioButton->setOptions([
                     '1' => 'Normal',
                     '0' => 'Needs special Care',
@@ -73,7 +73,7 @@ $this->title = 'Child';
                 ?>
 
                 <?php
-                $radioButton = new RadioButton($model, 'vitamin_k', '6.Vitamin K');
+                $radioButton = new RadioButton($model, 'vitamin_k', '6. Vitamin K');
                 $radioButton->setOptions([
                     '1' => 'Given',
                     '0' => 'Not Given',

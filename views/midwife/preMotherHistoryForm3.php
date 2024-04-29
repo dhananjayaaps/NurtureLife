@@ -4,14 +4,15 @@
 use app\core\Application;
 use app\core\form\DropDown;
 use app\core\form\Form;
+use app\models\FamilyHistoryDetails;
 use app\models\Mother;
 
 $this->title = 'Present Mother History Form1';
 ?>
 
 <?php
-/** @var $model Midwife **/
-/** @var $modelUpdate Midwife **/
+/** @var $model FamilyHistoryDetails **/
+/** @var $modelUpdate FamilyHistoryDetails **/
 //?>
 
 

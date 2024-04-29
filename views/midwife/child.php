@@ -40,12 +40,12 @@ $this->title = 'Child';
         <?php $form = Form::begin('', "post")?>
 
         <div class="form-column">
-            <?php echo $form->field($model, 'nic', 'Mother NIC Number')?>
+            <?php echo $form->field($model, 'nic', '1. Mother NIC Number')?>
 
-            <?php echo $form->field($model, 'Child_Name', 'Child Name ')?>
+            <?php echo $form->field($model, 'Child_Name', '2. Child Name ')?>
 
             <?php
-            $radioButton = new RadioButton($model, 'Gender', 'Gender');
+            $radioButton = new RadioButton($model, 'Gender', '3. Gender');
             $radioButton->setOptions([
                 '1' => 'Male',
                 '2' => 'Female'
@@ -53,11 +53,12 @@ $this->title = 'Child';
             echo $radioButton;
             ?>
 
-            <?php echo $form->dateField($model, 'Birth_Date', 'Birth Date')?>
+            <?php echo $form->dateField($model, 'Birth_Date', '4. Birth Date')?>
 
-            <?php echo $form->field($model, 'Birth_Place', 'Birth Place')?>
-            <button type="submit" class="btn-submit">Submit</button>
+            <?php echo $form->field($model, 'Birth_Place', '5. Birth Place')?>
+
     </div>
+        <button type="submit" class="btn-submit">Submit</button>
 </div>
 
 
