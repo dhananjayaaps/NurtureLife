@@ -7,6 +7,7 @@
         justify-content: flex-start;
     }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
     .shadowBox{
         height: 500px;
@@ -56,7 +57,7 @@
             </div>
         </div>
 
-        <div class="shadowBox">
+        <div class="shadowBox" id="reportBox">
 
         </div>
 
@@ -222,5 +223,46 @@
             data: chartData,
             options: options
         });
+
+        var totalRegistrationCount = registrationCounts.reduce((a, b) => a + b, 0);
+
+        // Generate report content
+        var reportContent = `
+        <h2>Mother Registrations Report</h2>
+        <p><strong>Time Period:</strong> ${startDate.toLocaleDateString()} to ${endDate.toLocaleDateString()}</p>
+        <p><strong>Total Mother Registration Count:</strong> ${totalRegistrationCount}</p>
+        <button onclick="downloadReport()">Download Report</button>
+    `;
+
+        // Update .shadowBox element with the report content
+        document.getElementById('reportBox').innerHTML = reportContent;
     }
+
+    function downloadReport() {
+        // Initialize jsPDF
+        var doc = new jsPDF();
+
+        // Generate report content
+        var reportTitle = "Mother Registrations Report";
+        var reportContent = `
+        Mother Registrations Report
+
+        Time Period: ${startDate} to ${endDate}
+
+        Total Mother Registration Count: ${totalRegistrationCount}
+    `;
+
+        // Add report content to PDF
+        doc.text(reportContent, 10, 10);
+
+        // Add chart to PDF
+        var canvas = document.querySelector('#lineChart');
+        var chartData = canvas.toDataURL('image/png');
+        doc.addImage(chartData, 'PNG', 10, 50, 180, 100);
+
+        // Save or download the PDF
+        doc.save(reportTitle + ".pdf");
+    }
+
+
 </script>
