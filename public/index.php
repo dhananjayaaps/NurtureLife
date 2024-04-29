@@ -127,7 +127,7 @@ $app->router->post('/appointments', [AppoinmetHandler::class, 'appointments']);
 $app->router->get('/about', [SiteController::class, 'about']);
 //$app->router->get('/preMotherTest', [SiteController::class, 'preMotherTest']);
 $app->router->get('/communication', [PostController::class, 'communication']);
-$app->router->get('/communication', [PostController::class, 'communication']);
+$app->router->post('/communication', [PostController::class, 'communication']);
 
 $app->router->get('/replySymptoms', [SiteController::class, 'doctorViewSymptoms']);
 $app->router->get('/checkSymptoms', [SiteController::class, 'midwifeViewSymptoms']);

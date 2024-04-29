@@ -34,7 +34,6 @@ class Post_request extends DbModel
 
     public function save(): bool
     {
-        var_dump($this->errors);
         $this->status = self::STATUS_WAITING;
         return parent::save();
     }
