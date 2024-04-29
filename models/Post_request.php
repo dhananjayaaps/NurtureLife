@@ -7,9 +7,11 @@ use app\core\db\DbModel;
 
 class Post_request extends DbModel
 {
+
     const STATUS_WAITING = 0;
     const STATUS_ACCEPTED = 1;
     const STATUS_REJECTED = 2;
+
     public string $id = '';
     public string $post_id = '';
     public string $provider_id = '';

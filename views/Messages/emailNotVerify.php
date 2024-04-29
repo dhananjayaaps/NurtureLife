@@ -66,7 +66,7 @@ $this->title = 'Verification Success';
 
 <div class="container">
     <div class="imageBox">
-        <img src="https://www.cidrap.umn.edu/sites/default/files/styles/article_detail/public/article/Pregnant%20woman%20with%20young%20child.jpg" alt="Image">
+        <img src="./assets/images/mother_baby_cover.jpeg" alt="Image">
     </div>
     <div>
         <img class="tick" src="https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png" alt="tick">

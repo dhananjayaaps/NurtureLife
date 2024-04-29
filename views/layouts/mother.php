@@ -130,7 +130,7 @@
                 </li>
                 <li>
                     <a href="/posts">
-                        <i class="bx bx-shape-circle"></i>
+                        <i class="bx bx-phone"></i>
                         <span class="links_name">Contact Midwife</span>
                     </a>
                     <span class="tooltip">Contact Midwife</span>
