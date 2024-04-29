@@ -1,5 +1,4 @@
 <?php use app\core\Application; ?>
-<?php use app\core\Session; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,37 +8,39 @@
     <title><?=$this->title?></title>
     <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
-    <link rel="stylesheet" href="./assets/styles/midwife.css">
+    <link rel="stylesheet" href="./assets/styles/content.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+    <link rel="stylesheet" href="./assets/styles/slidebarStyle.css" />
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-    <?php
-    $FlashMessage = Application::$app->session->getFlash('success');
-    $ErrorFlashMessage = Application::$app->session->getFlash('error');
+        <?php
+        $FlashMessage = Application::$app->session->getFlash('success');
+        $ErrorFlashMessage = Application::$app->session->getFlash('error');
 
-    if ($FlashMessage) {
-        echo "window.onload = function() { showSuccessToast('$FlashMessage', 'success'); };";
-    }
-    if ($ErrorFlashMessage) {
-        echo "window.onload = function() { showErrorToast('$ErrorFlashMessage', 'error'); };";
-    }
-    ?>
+        if ($FlashMessage) {
+            echo "window.onload = function() { showSuccessToast('$FlashMessage', 'success'); };";
+        }
+        if ($ErrorFlashMessage) {
+            echo "window.onload = function() { showErrorToast('$ErrorFlashMessage', 'error'); };";
+        }
+        ?>
     </script>
     <script src="./assets/scripts/toast.js"></script>
-
 </head>
 <body>
-<div id="toast" class="toast"></div>
 
-<div class="navbar">
+<div class="navbar" id="myNavbar">
     <div class="NL_logo_container">
-        <a href="/"><img src="./assets/images/nurturelife_logo.png" class="NL_logo" alt="NL_logo"></a>
+        <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
     </div>
-    <a href=" ">Home</a>
-    <a href="#about">About</a>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
 
     <div class="search-container">
         <input type="text" placeholder="Search...">
@@ -63,25 +64,6 @@
             </div>
         </div>
 
-        <div class="action">
-            <div class="profile" onclick="menuToggle();">
-                <img src="./assets/images/men_user.jpg" />
-            </div>
-            <div class="menu">
-                <h3><?php echo Application::$app->user->getDisplayName() ?></h3>
-                <ul>
-                    <li>
-                        <img src="./assets/images/icons/user.png" /><a href="#">My profile</a>
-                    </li>
-                    <li>
-                        <img src="./assets/images/icons/settings.png" /><a href="#">Setting</a>
-                    </li>
-                    <li>
-                        <img src="./assets/images/icons/log-out.png" /><a href="/logout">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <script>
             function menuToggle() {
                 const toggleMenu = document.querySelector(".menu");
@@ -93,36 +75,76 @@
 </div>
 
 <div class="content-navbar">
-    <div class="wrapper">
-        <div class="left-navbar">
-            <div class="navigations">
-                <div class="column">
-                    <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
-                </div>
-                <div class="column">
-                    <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
-                </div>
-                <div class="column">
-                    <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
-                </div>
-                <div class="column">
-                    <a href="/preMothers"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
-                </div>
-                <!--            <div class="column">-->
-                <!--                <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>-->
-                <!--            </div>-->
-                <div class="column">
-                    <a href=""><img src="assets/images/icons/user.png" alt=""> Appointments</a>
-                </div>
-                <div class="column">
-                    <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt=""> Posts</a>
-                </div>
-                <div class="column">
-                    <a href="/communication"><img src="assets/images/icons/communication.png" alt=""> Contact Mothers</a>
-                </div>
+    <div class="wrapper" style="height: fit-content">
+        <div class="sidebar">
+            <div class="logo-details">
+                <div class="logo_name">NurtureLife</div>
+                <i class="bx bx-menu" id="btn"></i>
             </div>
+            <ul class="nav-list">
+                <br><br>
+                <li>
+                    <a href="/">
+                        <i class="bx bx-grid-alt"></i>
+                        <span class="links_name">Dashboard</span>
+                    </a>
+                    <span class="tooltip">Dashboard</span>
+                </li>
+                <li>
+                    <a href="/viewChild">
+                        <i class="bx bx-user"></i>
+                        <span class="links_name">Children</span>
+                    </a>
+                    <span class="tooltip">Children</span>
+                </li>
+                <li>
+                    <a href="/clinics">
+                        <i class="bx bx-clinic"></i>
+                        <span class="links_name">Clinics</span>
+                    </a>
+                    <span class="tooltip">Clinics</span>
+                </li>
+                <li>
+                    <a href="/ManageAppointments">
+                        <i class="bx bx-plus-medical"></i>
+                        <span class="links_name">Create Appointments</span>
+                    </a>
+                    <span class="tooltip">Create Appointments</span>
+                </li>
+                <li>
+                    <a href="/appointments">
+                        <i class="bx bx-show"></i>
+                        <span class="links_name">Show Appointments</span>
+                    </a>
+                    <span class="tooltip">Show Appointments</span>
+                </li>
+                <li>
+                    <a href="/posts">
+                        <i class="bx bx-comment-dots"></i>
+                        <span class="links_name">Posts</span>
+                    </a>
+                    <span class="tooltip">Posts</span>
+                </li>
+                <li>
+                    <a href="/communication">
+                        <i class="bx bx-envelope"></i>
+                        <span class="links_name">Contact</span>
+                    </a>
+                    <span class="tooltip">Contact</span>
+                </li>
+                <li class="profile">
+                    <div class="profile-details">
+                        <img src="./assets/images/men_user.jpg" alt="profileImg" />
+                        <div class="name_job">
+                            <div class="name"><?php echo Application::$app->user->getDisplayName() ?></div>
+                            <div class="job"><?php echo Application::$app->user->getRoleName() ?></div>
+                        </div>
+                    </div>
+                    <a href="/logout"><i class="bx bx-log-out" id="log_out"></i></a>
+                </li>
+            </ul>
         </div>
-        <div class="content" style="margin-left: 220px; height: 1000px; ">
+        <div class="content">
             {{content}}
         </div>
     </div>
@@ -144,12 +166,6 @@
 </body>
 </html>
 
-<script>
-    function menuToggle() {
-        const toggleMenu = document.querySelector(".menu");
-        toggleMenu.classList.toggle("active");
-    }
-</script>
 <script>
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
@@ -194,3 +210,5 @@
         });
     });
 </script>
+
+<script src="./assets/scripts/slidebar.js"></script>

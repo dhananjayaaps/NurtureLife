@@ -7,10 +7,10 @@
     /*padding-top: 30px;*/
 }
 
-.content canvas{
-    height: 190px;
-    width: auto;
-}
+/*.content canvas{*/
+/*    height: 190px;*/
+/*    width: auto;*/
+/*}*/
 
 .content .myPieChart{
     height: 10px;

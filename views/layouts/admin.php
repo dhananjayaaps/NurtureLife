@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
     <link rel="stylesheet" href="./assets/styles/slidebarStyle.css" />
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         <?php
@@ -98,45 +99,31 @@
                 </li>
                 <li>
                     <a href="/clinics">
-                        <i class="bx fa-user-doctor"></i>
+                        <i class="bx bx-clinic"></i>
                         <span class="links_name">Clinics</span>
                     </a>
                     <span class="tooltip">Clinics</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/motherRegistrations">
                         <i class="bx bx-pie-chart-alt-2"></i>
-                        <span class="links_name">Analytics</span>
+                        <span class="links_name">Reports</span>
                     </a>
-                    <span class="tooltip">Analytics</span>
+                    <span class="tooltip">Reports</span>
+                </li>
+                <li>
+                    <a href="/doctors">
+                        <i class="bx bx-plus-medical"></i>
+                        <span class="links_name">Doctors</span>
+                    </a>
+                    <span class="tooltip">Doctors</span>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="bx bx-folder"></i>
-                        <span class="links_name">File Manager</span>
+                        <i class="bx bx-injection"></i>
+                        <span class="links_name">Midwives</span>
                     </a>
-                    <span class="tooltip">Files</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bx bx-cart-alt"></i>
-                        <span class="links_name">Order</span>
-                    </a>
-                    <span class="tooltip">Order</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bx bx-heart"></i>
-                        <span class="links_name">Saved</span>
-                    </a>
-                    <span class="tooltip">Saved</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bx bx-cog"></i>
-                        <span class="links_name">Setting</span>
-                    </a>
-                    <span class="tooltip">Setting</span>
+                    <span class="tooltip">Midwives</span>
                 </li>
                 <li class="profile">
                     <div class="profile-details">
