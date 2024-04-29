@@ -54,15 +54,19 @@ class User extends UserModel
     {
         return 'id';
     }
-    public function save(): bool
+
+    public function validate()
     {
         $ValidateUser = (new User)->findOne(User::class, ['email' => $this->email]);
 
         if ($ValidateUser) {
             $this->addError('email', 'Already a user with this email');
-            return false;
         }
+        return parent::validate();
+    }
 
+    public function save(): bool
+    {
         $this->status = self::STATUS_Email_NOT_VERIFIED;
         $this->role_id = self::ROLE_USER;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
