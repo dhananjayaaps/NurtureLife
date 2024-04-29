@@ -62,7 +62,7 @@ abstract class Model
                 }
             }
         }
-        return json_encode(empty($this->errors));
+        return empty($this->errors);
     }
     public function addErrorForRule(string $attribute,string $rule,$params = [])
     {
