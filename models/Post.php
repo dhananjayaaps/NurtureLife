@@ -120,6 +120,9 @@ class Post extends DbModel
                 ];
             }
         }
+        usort($data, function ($item1, $item2) {
+            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
+        });
         return json_encode($data);
     }
 
