@@ -1,4 +1,5 @@
 <?php use app\core\Application; ?>
+<?php use app\models\Mother; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=$this->title?></title>
     <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
+    <link rel="stylesheet" href="./assets/styles/admin.css">
+
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <link rel="stylesheet" href="./assets/styles/content.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -91,7 +94,7 @@
                     <span class="tooltip">Dashboard</span>
                 </li>
                 <li>
-                    <a href="/">
+                    <a href="/MotherSymptoms">
                         <i class="bx bx-capsule"></i>
                         <span class="links_name">Report Symptoms</span>
                     </a>
@@ -212,3 +215,40 @@
 </script>
 
 <script src="./assets/scripts/slidebar.js"></script>
+
+<script>
+    var DeliveryDate = <?php echo (new Mother())->getDeliveryDate() ?>;
+    console.log(DeliveryDate)
+    var today = new Date();
+    var RemainingTime = new Date(DeliveryDate) - today;
+    console.log(RemainingTime)
+    const fetalLinks = document.querySelectorAll('a[href="/fetalkick"]');
+    fetalLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            // Prevent the default behavior of the link
+            event.preventDefault();
+
+            if (RemainingTime < 1000*60*60*24*30*7) {
+                // If so, navigate to the link
+               window.location.href = link.href;
+           } else {
+                // If not, display an alert
+                const popupFetal = document.getElementById("popupFetal");
+
+                popupFetal.innerHTML = `
+               <div class="popup-content">
+
+                    <h3>Fetalkick reporting will be enabled only after the 28th week (7 months) of pregnancy</h3>
+                    <span class="close" id="close-popupFetal">&times;</span>
+                </div>
+                `;
+                popupFetal.style.display = "block";
+            }
+            document.addEventListener("click", function(event) {
+                if (event.target && event.target.id === "close-popupFetal") {
+                    document.getElementById("popupFetal").style.display = "none";
+               }
+            });
+        });
+    });
+</script>

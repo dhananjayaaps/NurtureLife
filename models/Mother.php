@@ -145,4 +145,62 @@ class Mother extends DbModel
         return json_encode($statement->fetchAll(PDO::FETCH_OBJ));
     }
 
+    public function getMotherId()
+    {
+        $UserId = Application::$app->user->getId();
+        $MotherData = self::findOne(Mother::class, ['user_id' => $UserId]);
+        return $MotherData->MotherId;
+    }
+
+    public function getDeliveryDate()
+    {
+        $MotherId = (new Mother())->getMotherId();
+       $MotherData = self::findOne(Mother::class, ['MotherId'=> $MotherId]);
+       if ($MotherData) {
+           return json_encode($MotherData->DeliveryDate);
+       }else{
+           return json_encode('null');
+       }
+    }
+
+    public function getMidwifeContact() {
+        $MotherId = (new Mother())->getMotherId();
+
+        $sql = self::prepare("SELECT U.firstname, U.lastname, U.email, U.contact_no
+                         FROM users AS U, midwife AS Mi, Mothers AS Mo
+                         WHERE Mo.MotherId = :motherId AND Mo.clinic_id = Mi.clinic_id AND Mi.user_id = U.id");
+
+        $sql->bindValue(":motherId", $MotherId);
+        $sql->execute();
+
+        // Fetch all rows as associative arrays
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the result as JSON
+        return json_encode($result);
+    }
+    public function getMotherClinic()
+    {
+        $UserId = Application::$app->user->getId();
+        $MotherData = self::findOne(Mother::class, ['user_id' => $UserId]);
+        return $MotherData->clinic_id;
+    }
+    public function getClinicDoctors()
+    {
+        $clinic = (new Mother())->getMotherClinic();
+
+        $sql = self::prepare("SELECT D.MOH_id , U.firstname, U.lastname
+                     From doctors AS D, users AS U
+                     WHERE D.user_id = U.id AND D.clinic_id = :clinicId");
+
+        $sql->bindValue(":clinicId", $clinic);
+        $sql->execute();
+
+        // Fetch all rows as associative arrays
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the result as JSON
+        return json_encode($result);
+    }
+
 }

@@ -4,8 +4,7 @@ namespace app\models;
 
 use app\core\Application;
 use app\core\db\DbModel;
-use mysql_xdevapi\Statement;
-use PDO;
+use app\models\Mother;
 
 class Appointments extends DbModel
 {
@@ -148,5 +147,20 @@ class Appointments extends DbModel
         $stmt->bindValue(':AppointmentId', $appointmentId);
         $stmt->execute();
         return true;
+    }
+    public function getAppointmentsByMotherId(): string
+    {
+        $MotherId = ( new Mother())->getMotherId();
+        $appointments = ( new Appointments())->findAll(self::class, ['MotherId'=>$MotherId, 'AppointStatus'=> 1 ]);
+        $data = [];
+
+        foreach ($appointments as $appointData) {
+            $data[] = [
+                'Type' => $appointData->AppointType,
+                'Date' => $appointData->AppointDate,
+                'Remarks' => $appointData->AppointRemarks
+            ];
+        }
+        return json_encode($data);
     }
 }
