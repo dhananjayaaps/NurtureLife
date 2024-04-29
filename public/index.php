@@ -13,6 +13,7 @@ use app\controllers\AdminController\UsersController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
+use app\controllers\EmergencyController;
 use app\controllers\FeedbackController;
 use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MidwifeController\ChildController;
@@ -22,6 +23,7 @@ use app\controllers\MotherController\FetalkickController;
 use app\controllers\PostController;
 use app\controllers\MotherController\PreMotherCareController;
 use app\controllers\PostRequestController;
+use app\controllers\RoleRequestController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -41,7 +43,7 @@ $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/about', [SiteController::class, 'about']);
 
 $app->router->get('/contact', [FeedbackController::class, 'feedbacks']);
-$app->router->post('/contact', [FeedbackController::class, 'handleContact']);
+$app->router->post('/contact', [FeedbackController::class, 'feedbacks']);
 
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
@@ -156,6 +158,9 @@ $app->router->post('/postsUpdate', [PostController::class, 'postsUpdate']);
 $app->router->post('/postDelete', [PostController::class, 'postDelete']);
 $app->router->get('/getPostDetails', [PostController::class, 'getPostDetails']);
 
+$app->router->post('/createPostRequest', [PostRequestController::class, 'createPostRequest']);
+$app->router->post('/postRequestUpdate', [PostRequestController::class, 'postRequestUpdate']);
+
 $app->router->get('/policy', [SiteController::class, 'policy']);
 $app->router->post('/policy', [SiteController::class, 'policy']);
 
@@ -165,6 +170,19 @@ $app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preM
 $app->router->get('/ManageAdmins', [AdminController::class, 'Admin']);
 $app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);
 
-$app->router->post('/cancel-appointment', [AppoinmetHandler::class, 'cancelAppointment']);
+$app->router->get('/nutrition', [SiteController::class, 'nutrition']);
+$app->router->post('/nutrition', [SiteController::class, 'nutrition']);
+
+$app->router->get('/communication', [postController::class, 'communication']);
+$app->router->post('/communication', [postController::class, 'communication']);
+
+$app->router->get('/roleRequest', [RoleRequestController::class, 'roleRequest']);
+$app->router->post('/roleRequest', [RoleRequestController::class, 'roleRequest']);
+
+$app->router->get('/articles', [SiteController::class, 'articles']);
+$app->router->post('/articles', [SiteController::class, 'articles']);
+
+$app->router->get('/emergency', [EmergencyController::class, 'emergency']);
+$app->router->post('/emergency', [EmergencyController::class, 'emergency']);
 
 $app->run();

@@ -19,7 +19,7 @@ $this->title = 'Volunteer';
     }
 </style>
 <link rel="stylesheet" href="assets/css/styles.css">
-<h1>Communication with Mothers</h1>
+<h1 style="margin-left: 400px">Communication with Mothers</h1>
 <!--attend confirmation popup-->
 <div id="myPopup" class="popup" style="position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 30%;height: fit-content; max-width: 600px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); padding: 20px; z-index: 1000;">
     <div class="popup-content">
@@ -60,7 +60,7 @@ $this->title = 'Volunteer';
 </div>
 
 <!--posts container-->
-<div class="shadowBox">
+<div class="shadowBox" style="margin-left: 400px">
     <div class="notification-bar" style="height: 400px; border-radius: 20px">
         <div class="notifications">
             <span style="font-size: 20px; font-weight: bold;text-align: center">Messages from Mothers in your area</span>

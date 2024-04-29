@@ -16,6 +16,11 @@ $this->title = 'Midwife - Posts';
 /** @var $modelUpdate Post **/
 /** @var $modelRequest Post_request **/
 //?>
+<style>
+    .content{
+        padding-left: 70px;
+    }
+</style>
 
 
 <link rel="stylesheet" href="./assets/styles/Form.css">

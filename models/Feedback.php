@@ -24,6 +24,7 @@ class Feedback extends DbModel
 
     public function save(): bool
     {
+        $this->created_at = date('Y-m-d H:i:s');
         return parent::save();
     }
 
@@ -67,6 +68,16 @@ class Feedback extends DbModel
     public function attributes(): array
     {
         return ['email', 'feedback', 'created_at'];
+    }
+
+    public function getFeedbacks()
+    {
+        $feedbackData = [];
+        if(Application::$app->user->getRoleName() == 'Admin'){
+            $feedbackData = (new RoleRequest())->findAll(self::class);
+            return json_encode($feedbackData);
+        }
+        return json_encode($feedbackData);
     }
 
 }
