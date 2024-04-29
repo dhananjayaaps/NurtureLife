@@ -7,9 +7,9 @@ use app\core\db\DbModel;
 
 class Post_request extends DbModel
 {
-    const  STATUS_WAITING = 0;
-    const  STATUS_ACCEPTED = 1;
-    const  STATUS_REJECTED = 2;
+    const int STATUS_WAITING = 0;
+    const int STATUS_ACCEPTED = 1;
+    const int STATUS_REJECTED = 2;
     public string $id = '';
     public string $post_id = '';
     public string $provider_id = '';
@@ -64,19 +64,19 @@ class Post_request extends DbModel
     public function getRequests(): string
     {
 
-            $joins = [
-                ['model' => User::class, 'condition' => 'post_request.provider_id = users.id'],
-                ['model' => Post::class, 'condition' => 'post_request.post_id = post.id'],
-            ];
-            $alias=['postID'=>'post.id',
-                'postReqID'=>'post_request.id',
-                'post_desc'=>'post.description',
-                'req'=>'post_request.description',
-                'req_status'=>'post_request.status',
-                'post_status'=>'post.status',
-                'req_created_at'=>'post_request.created_at',
-                ];
-            $requestData = (new Post_request())->findAllWithJoins(self::class, $joins, ['seeker_id' => Application::$app->user->getId()],$alias);
+        $joins = [
+            ['model' => User::class, 'condition' => 'post_request.provider_id = users.id'],
+            ['model' => Post::class, 'condition' => 'post_request.post_id = post.id'],
+        ];
+        $alias=['postID'=>'post.id',
+            'postReqID'=>'post_request.id',
+            'post_desc'=>'post.description',
+            'req'=>'post_request.description',
+            'req_status'=>'post_request.status',
+            'post_status'=>'post.status',
+            'req_created_at'=>'post_request.created_at',
+        ];
+        $requestData = (new Post_request())->findAllWithJoins(self::class, $joins, ['seeker_id' => Application::$app->user->getId()],$alias);
 
 //            $requestData = (new Post_request())->findAll(self::class, ['seeker_id' => Application::$app->user->getId()]);
         $roleMap=[
@@ -89,22 +89,22 @@ class Post_request extends DbModel
         ];
         $data = [];
 
-            foreach ($requestData as $post_request) {
-                $data[] = [
-                    'id' => $post_request->postReqID,
-                    'post_id' => $post_request->postID,
-                    'provider_id' => $post_request->provider_id,
-                    'seeker_id' => $post_request->seeker_id,
-                    'description' => $post_request->post_desc,
-                    'topic' => $post_request->topic,
-                    'req' => $post_request->req,
-                    'req_created_at' => $post_request->req_created_at,
-                    'req_status' => $post_request->req_status,
-                    'post_status' => $post_request->post_status,
-                    'vol_name' => ucfirst($post_request->firstname).' '.ucfirst($post_request->lastname),
-                    'role' => $roleMap[$post_request->role_id-1],
-                ];
-            }
+        foreach ($requestData as $post_request) {
+            $data[] = [
+                'id' => $post_request->postReqID,
+                'post_id' => $post_request->postID,
+                'provider_id' => $post_request->provider_id,
+                'seeker_id' => $post_request->seeker_id,
+                'description' => $post_request->post_desc,
+                'topic' => $post_request->topic,
+                'req' => $post_request->req,
+                'req_created_at' => $post_request->req_created_at,
+                'req_status' => $post_request->req_status,
+                'post_status' => $post_request->post_status,
+                'vol_name' => ucfirst($post_request->firstname).' '.ucfirst($post_request->lastname),
+                'role' => $roleMap[$post_request->role_id-1],
+            ];
+        }
         return json_encode($data);
     }
     public function getPostRequestById($RequestId): string

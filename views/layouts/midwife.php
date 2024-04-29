@@ -98,7 +98,7 @@
                     <span class="tooltip">Posts</span>
                 </li>
                 <li>
-                    <a href="/posts">
+                    <a href="/communication">
                         <i class="bx bx-phone"></i>
                         <span class="links_name">Contact Mothers</span>
                     </a>

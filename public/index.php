@@ -13,6 +13,7 @@ use app\controllers\AdminController\UsersController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
+use app\controllers\EmergencyController;
 use app\controllers\FeedbackController;
 use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MidwifeController\ChildChartController;
@@ -44,7 +45,7 @@ $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/about', [SiteController::class, 'about']);
 
 $app->router->get('/contact', [FeedbackController::class, 'feedbacks']);
-$app->router->post('/contact', [FeedbackController::class, 'handleContact']);
+$app->router->post('/contact', [FeedbackController::class, 'feedbacks']);
 
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);

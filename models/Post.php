@@ -7,10 +7,10 @@ use app\core\db\DbModel;
 
 class Post extends DbModel
 {
-    const  STATUS_PENDING = 0;
-    const  STATUS_ATTENDED = 1;
-    const  STATUS_COMPLETED = 2;
-    const  STATUS_DELETED = 2;
+    const int STATUS_PENDING = 0;
+    const int STATUS_ATTENDED = 1;
+    const int STATUS_COMPLETED = 2;
+    const int STATUS_DELETED = 2;
     public string $id = '';
 
     public string $user_id = '';
@@ -120,9 +120,6 @@ class Post extends DbModel
                 ];
             }
         }
-        usort($data, function ($item1, $item2) {
-            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
-        });
         return json_encode($data);
     }
 
