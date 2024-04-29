@@ -99,45 +99,31 @@
                 </li>
                 <li>
                     <a href="/clinics">
-                        <i class="bx fa-user-doctor"></i>
+                        <i class="bx bx-clinic"></i>
                         <span class="links_name">Clinics</span>
                     </a>
                     <span class="tooltip">Clinics</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/reports">
                         <i class="bx bx-pie-chart-alt-2"></i>
-                        <span class="links_name">Analytics</span>
+                        <span class="links_name">Reports</span>
                     </a>
-                    <span class="tooltip">Analytics</span>
+                    <span class="tooltip">Reports</span>
+                </li>
+                <li>
+                    <a href="/doctors">
+                        <i class="bx bx-plus-medical"></i>
+                        <span class="links_name">Doctors</span>
+                    </a>
+                    <span class="tooltip">Doctors</span>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="bx bx-folder"></i>
-                        <span class="links_name">File Manager</span>
+                        <i class="bx bx-injection"></i>
+                        <span class="links_name">Midwives</span>
                     </a>
-                    <span class="tooltip">Files</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bx bx-cart-alt"></i>
-                        <span class="links_name">Order</span>
-                    </a>
-                    <span class="tooltip">Order</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bx bx-heart"></i>
-                        <span class="links_name">Saved</span>
-                    </a>
-                    <span class="tooltip">Saved</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bx bx-cog"></i>
-                        <span class="links_name">Setting</span>
-                    </a>
-                    <span class="tooltip">Setting</span>
+                    <span class="tooltip">Midwives</span>
                 </li>
                 <li class="profile">
                     <div class="profile-details">
