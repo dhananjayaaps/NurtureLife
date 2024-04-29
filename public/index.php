@@ -13,6 +13,7 @@ use app\controllers\AdminController\UsersController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
+use app\controllers\EmergencyController;
 use app\controllers\FeedbackController;
 use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MidwifeController\ChildChartController;
@@ -44,7 +45,7 @@ $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/about', [SiteController::class, 'about']);
 
 $app->router->get('/contact', [FeedbackController::class, 'feedbacks']);
-$app->router->post('/contact', [FeedbackController::class, 'handleContact']);
+$app->router->post('/contact', [FeedbackController::class, 'feedbacks']);
 
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
@@ -89,6 +90,11 @@ $app->router->post('/preMotherForm', [PreMotherController::class, 'PreMother']);
 $app->router->get('/preMotherForm', [PreMotherController::class, 'PreMother']);
 $app->router->post('/preMotherForm', [PreMotherController::class, 'PreMother']);
 
+$app->router->get('/MotherSymptoms', [MotherController::class, 'MotherSymptom']);
+$app->router->post('/MotherSymptoms', [MotherController::class, 'MotherSymptom']);
+$app->router->post('/symptomsUpdate', [MotherController::class, 'MotherSymptomUpdate']);
+$app->router->post('/deleteSymptom', [MotherController::class, 'MotherSymptomDelete']);
+
 $app->router->get('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkickUpdate', [FetalkickController::class, 'fetalkickUpdate']);
@@ -119,6 +125,13 @@ $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
 $app->router->post('/appointments', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/about', [SiteController::class, 'about']);
+//$app->router->get('/preMotherTest', [SiteController::class, 'preMotherTest']);
+$app->router->get('/communication', [PostController::class, 'communication']);
+$app->router->get('/communication', [PostController::class, 'communication']);
+
+$app->router->get('/replySymptoms', [SiteController::class, 'doctorViewSymptoms']);
+$app->router->get('/checkSymptoms', [SiteController::class, 'midwifeViewSymptoms']);
+
 
 
 $app->router->get('/immunizationCard', [ChildController::class, 'ImmunizationCard']);
@@ -175,5 +188,19 @@ $app->router->post('/childweight', [ChildChartController::class, 'ChildWeightUpd
 
 $app->router->get('/childHeight', [ChildChartController::class, 'ChildHeight']);
 $app->router->post('/childHeight', [ChildChartController::class, 'ChildHeightUpdate']);
+
+$app->router->get('/roleRequest', [RoleRequestController::class, 'roleRequest']);
+$app->router->post('/roleRequest', [RoleRequestController::class, 'roleRequest']);
+
+$app->router->get('/motherRegistrations', [Registration::class, 'MotherRegistration']);
+$app->router->get('/childBorn', [Registration::class, 'childBorn']);
+
+$app->router->get('/nutrition', [SiteController::class, 'nutrition']);
+
+$app->router->get('/articles', [SiteController::class, 'articles']);
+
+$app->router->get('/motherRegistrations', [Registration::class, 'MotherRegistration']);
+$app->router->get('/childBorn', [Registration::class, 'childBorn']);
+
 
 $app->run();

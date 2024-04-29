@@ -74,10 +74,12 @@ class Feedback extends DbModel
     {
         $feedbackData = [];
         if(Application::$app->user->getRoleName() == 'Admin'){
-            $feedbackData = (new RoleRequest())->findAll(self::class);
+            $feedbackData = (new Feedback())->findAll(self::class);
             return json_encode($feedbackData);
         }
-        return json_encode($feedbackData);
+        usort($feedbackData, function ($item1, $item2) {
+            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
+        });
     }
 
 }

@@ -28,7 +28,7 @@
 
 <div class="navbar" id="myNavbar">
     <div class="NL_logo_container">
-        <a href="/"><img src="./assets/images/nurturelife_logo.png" class="NL_logo" alt="NL_logo"></a>
+        <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
     </div>
     <a href="/">Home</a>
     <a href="/about">About</a>

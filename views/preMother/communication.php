@@ -147,10 +147,10 @@ $this->title = 'Prenatal Mother-Posts';
                     <div class="myBox" id="myBox" style=" height: 250px">
                         <div class="notification emergency">
                             <div class="message-box" style="; height: fit-content">
-                                <div class="title"><?=$post_request->vol_name?> ⚬ Volunteer</div>
+                                <div class="title"><?=$post_request->vol_name?> ⚬ Mother</div>
                                 <div class="notification-content">
-                                    <h3>Post</h3>
-                                    <b><?=$post_request->topic." - ".$post_request->description?></b>
+                                    <h3>Message</h3>
+                                    <b><?=$post_request->description?></b>
                                 </div>
                                 <div class="notification-content">
                                     <h3>Reply</h3>

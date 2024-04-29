@@ -91,46 +91,46 @@
                     <span class="tooltip">Dashboard</span>
                 </li>
                 <li>
-                    <a href="/viewChild">
-                        <i class="bx bx-user"></i>
-                        <span class="links_name">Children</span>
-                    </a>
-                    <span class="tooltip">Children</span>
-                </li>
-                <li>
-                    <a href="/clinics">
-                        <i class="bx bx-clinic"></i>
-                        <span class="links_name">Clinics</span>
-                    </a>
-                    <span class="tooltip">Clinics</span>
-                </li>
-                <li>
-                    <a href="/ManageAppointments">
-                        <i class="bx bx-plus-medical"></i>
-                        <span class="links_name">Create Appointments</span>
-                    </a>
-                    <span class="tooltip">Create Appointments</span>
-                </li>
-                <li>
-                    <a href="/appointments">
-                        <i class="bx bx-show"></i>
-                        <span class="links_name">Show Appointments</span>
-                    </a>
-                    <span class="tooltip">Show Appointments</span>
-                </li>
-                <li>
                     <a href="/posts">
-                        <i class="bx bx-comment-dots"></i>
+                        <i class="bx bx-message-dots"></i>
                         <span class="links_name">Posts</span>
                     </a>
                     <span class="tooltip">Posts</span>
                 </li>
                 <li>
                     <a href="/communication">
-                        <i class="bx bx-envelope"></i>
-                        <span class="links_name">Contact</span>
+                        <i class="bx bx-phone"></i>
+                        <span class="links_name">Contact Mothers</span>
                     </a>
-                    <span class="tooltip">Contact</span>
+                    <span class="tooltip">Contact Mothers</span>
+                </li>
+                <li>
+                    <a href="/Child">
+                        <i class="bx bx-smile"></i>
+                        <span class="links_name">Add Child</span>
+                    </a>
+                    <span class="tooltip">Add Child</span>
+                </li>
+                <li>
+                    <a href="/viewChild">
+                        <i class="bx bx-smile"></i>
+                        <span class="links_name">View Children</span>
+                    </a>
+                    <span class="tooltip">View Children</span>
+                </li>
+                <li>
+                    <a href="/appointments">
+                        <i class="bx bx-notepad"></i>
+                        <span class="links_name">Manage Appointment</span>
+                    </a>
+                    <span class="tooltip">Manage Appointment</span>
+                </li>
+                <li>
+                    <a href="/ManageAppointments">
+                        <i class="bx bx-message-square-add"></i>
+                        <span class="links_name">Create Appointment</span>
+                    </a>
+                    <span class="tooltip">Create Appointment</span>
                 </li>
                 <li class="profile">
                     <div class="profile-details">

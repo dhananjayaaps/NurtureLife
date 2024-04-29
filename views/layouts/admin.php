@@ -119,11 +119,25 @@
                     <span class="tooltip">Doctors</span>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="bx bx-injection"></i>
+                    <a href="/midwife">
+                        <i class="bx bx-female"></i>
                         <span class="links_name">Midwives</span>
                     </a>
                     <span class="tooltip">Midwives</span>
+                </li>
+                <li>
+                    <a href="/roleRequest">
+                        <i class="bx bx-shape-circle"></i>
+                        <span class="links_name">Role Requests</span>
+                    </a>
+                    <span class="tooltip">Role Requests</span>
+                </li>
+                <li>
+                    <a href="/contact">
+                        <i class="bx bx-dock-top"></i>
+                        <span class="links_name">User Feedbacks</span>
+                    </a>
+                    <span class="tooltip">User Feedbacks</span>
                 </li>
                 <li class="profile">
                     <div class="profile-details">

@@ -39,11 +39,11 @@ class m0001_initial
 
 
         $SQL3 = "INSERT IGNORE INTO roles (id, name) VALUES (1, 'ROLE_USER');
-                INSERT IGNORE INTO roles (id, name) VALUES (2, 'ROLE_ADMIN');
-                INSERT IGNORE INTO roles (id, name) VALUES (3, 'ROLE_DOCTOR');
-                INSERT IGNORE INTO roles (id, name) VALUES (4, 'ROLE_PRE_MOTHER');
-                INSERT IGNORE INTO roles (id, name) VALUES (5, 'ROLE_POST_MOTHER');
-                INSERT IGNORE INTO roles (id, name) VALUES (6, 'ROLE_MIDWIFE');
+                INSERT IGNORE  INTO roles (id, name) VALUES (2, 'ROLE_ADMIN');
+                INSERT IGNORE  INTO roles (id, name) VALUES (3, 'ROLE_DOCTOR');
+                INSERT IGNORE  INTO roles (id, name) VALUES (4, 'ROLE_PRE_MOTHER');
+                INSERT IGNORE  INTO roles (id, name) VALUES (5, 'ROLE_POST_MOTHER');
+                INSERT IGNORE  INTO roles (id, name) VALUES (6, 'ROLE_MIDWIFE');
             ";
         $db->pdo->exec($SQL3);
 
@@ -63,7 +63,6 @@ class m0001_initial
             name VARCHAR(255) NOT NULL,
             district VARCHAR(255) NOT NULL,
             address VARCHAR(255) NOT NULL,
-            contactNo VARCHAR(255) NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;";
 
@@ -113,14 +112,13 @@ class m0001_initial
             diabetes_mellitus TINYINT(1),
             rubella_immunization TINYINT(1),
             emergencyNumber VARCHAR(20),
-            location VARCHAR(255),
             status INT,
-            Created_At TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (PHM_ID) REFERENCES midwife(PHM_id),
             FOREIGN KEY (clinic_id) REFERENCES clinics(id),
             FOREIGN KEY (user_id) REFERENCES users(id)
         ) ENGINE=INNODB;
         ";
+
         $db->pdo->exec($SQL9);
 
         $Trigger1 = "
@@ -140,7 +138,6 @@ class m0001_initial
             MotherId INT,
             AppointType INT,
             AppointDate DATE,
-            time TIME,
             AppointStatus VARCHAR(50),
             AppointRemarks TEXT,
             FOREIGN KEY (MotherId) REFERENCES Mothers(MotherId)
@@ -170,22 +167,29 @@ class m0001_initial
         $SQL10 = "create table IF NOT EXISTS fetalkick (
             RecordId  int auto_increment primary key,
             MotherId  int                                  not null,
-            Time      datetime default current_timestamp() not null,
+            Time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ,
             KickCount int(3)                               not null
-        );"
-        ;
+        );";
 
         $db->pdo->exec($SQL10);
 
         $SQL10 = "create table IF NOT EXISTS motherWeights (
             RecordId  int auto_increment primary key,
             MotherId  int                                  not null,
-            Date      TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
+            Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null ,
             Weight int(3)                               not null
-        );"
-        ;
+        );";
 
         $db->pdo->exec($SQL10);
+
+        $SQL13 = "CREATE TABLE IF NOT EXISTS `nurturelife`.`MotherSymptoms` ( `symptomRecNo` INT NOT NULL AUTO_INCREMENT , 
+        `MotherId` INT NOT NULL , `clinicId` INT NOT NULL , `symptomDescription` TEXT NOT NULL , 
+        `priorityLvl` VARCHAR(8) NOT NULL , `recTime` DATETIME NOT NULL , `midwifeId` INT NOT NULL , 
+        `midwifeCheck` VARCHAR(4) NOT NULL DEFAULT 'No' , `replyDocId` INT NOT NULL , `doctorReply` TEXT NULL , 
+        `replyTime` DATETIME NULL , PRIMARY KEY (`symptomRecNo`)) ENGINE = InnoDB;";
+
+        $db->pdo->exec($SQL13);
+
 
         $sql = "CREATE TABLE IF NOT EXISTS post (
                 id INT NOT NULL AUTO_INCREMENT,
@@ -287,6 +291,15 @@ class m0001_initial
             ) ENGINE=INNODB;
             ";
         $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE Immunization ( 
+                recordId INT AUTO_INCREMENT PRIMARY KEY, 
+                child_id INT NOT NULL, vac_id VARCHAR(255), 
+                BatchNo VARCHAR(255) NOT NULL, 
+                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+                FOREIGN KEY (child_id) REFERENCES child(child_id) ON DELETE CASCADE )";
+        $db->pdo->exec($sql);
+
     }
 
     public function down()

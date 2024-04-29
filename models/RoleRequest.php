@@ -8,9 +8,9 @@ use app\core\Model;
 
 class RoleRequest extends DbModel
 {
-    const int STATUS_PENDING = 0;
-    const int STATUS_ATTENDED = 1;
-    const int STATUS_COMPLETED = 2;
+    const STATUS_PENDING = 0;
+    const STATUS_ATTENDED = 1;
+    const STATUS_COMPLETED = 2;
     public string $id = '';
     public string $user_id = '';
     public string $name ='';
@@ -67,7 +67,9 @@ class RoleRequest extends DbModel
                 'status' => $roleRequests->status
             ];
         }
-        return ($data);
+        usort($data, function ($item1, $item2) {
+            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
+        });
     }
 
     public function getRoleRequests(): string
@@ -81,7 +83,9 @@ class RoleRequest extends DbModel
             $roleRequestData = (new RoleRequest())->findAll(self::class);
             return json_encode($roleRequestData);
         }
-        return json_encode($roleRequestData);
+        usort($roleRequestData, function ($item1, $item2) {
+            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
+        });
     }
 
 

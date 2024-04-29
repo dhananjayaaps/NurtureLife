@@ -35,15 +35,29 @@ $this->title = 'Child';
     .card {
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         transition: 0.3s;
-        width: 60%;
+        width: 250px;
+        height: 140px;
+        border-radius: 10px;
+    }
+
+    .btn-submit {
+        background-color: #774020;
+        color: white;
+        font-size: 10px;
     }
 
     .card:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
 
-    .container {
+    .vaccineContainer {
+        display: flex;
+        flex-direction: column;
         padding: 2px 16px;
+        margin 10px;
+        align-items: flex-start;
+        justify-content: space-around;
+        gap: 40px
     }
 
     .vaccinesCards{
@@ -80,31 +94,62 @@ $this->title = 'Child';
         padding: 10px;
     }
 
-    .vaccineBox{
-        margin-top: 400px;
-    }
-
 </style>
 
-<div >
+<?php
+$childId = isset($_GET['childid']) ? $_GET['childid'] : null;
+$vaccineNumber = isset($_GET['VaccineNumber']) ? $_GET['VaccineNumber'] : null;
+$batchNo1 = isset($_GET['BatchNo1']) ? $_GET['BatchNo1'] : null;
+
+if ($childId !== null) {
+    $immunit = new Immunization();
+    $vaccineArray = $immunit->getImmunization($childId);
+}
+?>
+
+
+
+<div class="vaccinesCards">
     <div class="vaccineBox">
         <h1>Child Immunization Card</h1>
-        <?php $form = Form::begin('', "post")?>
         <h2>At Birth</h2>
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>B.C.G 1st dose</h4>
-                    <button type="button" class="btn-submit showPopup" data-target="myPopup">Not Vaccinated</button>
+                    <?php foreach ($vaccineArray as $vaccine): ?>
+                        <?php if ($vaccine->vac_id === '1'): ?>
+                            <div>
+                                <p>Time: <?php echo $vaccine->timestamp; ?></p>
+                                <p>Batch No: <?php echo $vaccine->BatchNo; ?></p>
+                            </div>
+                            <?php break; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <?php if (!in_array('1', array_column($vaccineArray, 'vac_id'))): ?>
+                        <button type="button" class="btn-submit showPopup" data-target="myPopup" onclick="updateVaccineNumber('1')">Not Vaccinated</button>
+                    <?php endif; ?>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>B.C.G 2nd dose</h4>
-                    <button type="button" class="btn-submit showPopup" data-target="myPopup">Not Vaccinated</button>
+                    <?php foreach ($vaccineArray as $vaccine): ?>
+                        <?php if ($vaccine->vac_id === '2'): ?>
+                            <div>
+                                <p>Time: <?php echo $vaccine->timestamp; ?></p>
+                                <p>Batch No: <?php echo $vaccine->BatchNo; ?></p>
+                            </div>
+                            <?php break; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <?php if (!in_array('2', array_column($vaccineArray, 'vac_id'))): ?>
+                        <button type="button" class="btn-submit showPopup" data-target="myPopup" onclick="updateVaccineNumber('2')">Not Vaccinated</button>
+                    <?php endif; ?>
                 </div>
             </div>
+
         </div>
 
         <!-- Repeat similar structure for other vaccination stages -->
@@ -113,21 +158,21 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>DPT 1</h4>
-                    <button type="submit" class="btn-submit showPopup" data-target="myPopup">Not Vaccinated</button>
+                    <button type="submit" class="btn-submit showPopup" data-target="myPopup" onclick="updateVaccineNumber('2')">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>OPV 1</h4>
                     <button type="submit" class="btn-submit showPopup" data-target="myPopup">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>Hepatitis B1</h4>
                     <button type="submit" class="btn-submit showPopup" data-target="myPopup">Not Vaccinated</button>
                 </div>
@@ -140,21 +185,21 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>DPT 2</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>OPV 2</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>Hepatitis B2</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
@@ -166,21 +211,21 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>DPT 3</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>OPV 3</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>Hepatitis B3</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
@@ -192,14 +237,14 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>MEASLES</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>VITAMIN A</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
@@ -211,21 +256,21 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>DPT 4</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>OPV 4</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>VITAMIN A</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
@@ -237,14 +282,14 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>MEASLES & RUBELLA</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>VITAMIN A</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
@@ -256,14 +301,14 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>D.T</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>OPV 5</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
@@ -271,44 +316,50 @@ $this->title = 'Child';
 
         </div>
 
-        <?php $form = Form::end()?>
-
     </div>
 </div>
 
 <div id="myPopup" class="popup">
     <div class="popup-content">
         <h1 style="color: rgb(0, 15, 128);">Vaccination Details<br/><br/></h1>
-        <form action="">
+        <form action="" method="post">
 
             <div class="form-group">
-
+                <label>Child Id:</label>
+                <input type="text" id="childid" name="child_id" value="" class="form-control">
+                <label>Vaccine Number:</label>
+                <input type="text" id="VaccineNumber" name="vac_id" value="" class="form-control">
                 <label>Batch No:</label>
-                <input type="text" id="BatchNo1" name="BatchNo1" value=""  class="form-control ">
+                <input type="text" id="BatchNo1" name="BatchNo" value=""  class="form-control ">
                 <div class="invalid-feedback"></div>
-
-                <?php
-                $radioButton = new RadioButton($model, 'Effects1', 'Adverse Effects Following Immunization:');
-                $radioButton->setOptions([
-                    '1' => 'Yes',
-                    '2' => 'No'
-                ]);
-                echo $radioButton;
-                ?>
+                <br>
 
             </div>
+            <div class="buttonRow">
+                <button type="submit" id="updateButton" class="btn-submit">Vaccinated</button>
+                <button id="closePopup" class="btn-submit" style="background-color: brown;">Close</button>
+            </div>
         </form>
-        <div class="buttonRow">
-            <button type="submit" id="updateButton" class="btn-submit">Vaccinated</button>
-            <button id="closePopup" class="btn-submit" style="background-color: brown;">Close</button>
-        </div>
     </div>
     <br>
 </div>
 
+<script>
+    document.getElementById("closePopup").addEventListener("click", function(event) {
+        event.preventDefault();
+    });
+</script>
 
 <script>
+    var selectedVaccine = null;
+    selectedVaccine = document.getElementById('VaccineNumber');
     var popupButtons = document.querySelectorAll('.showPopup');
+    var currentChild = document.getElementById('childid');
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const childId = urlParams.get('childid');
+
+    currentChild.value = childId;
 
     popupButtons.forEach(function(button) {
         button.addEventListener("click", function () {
@@ -332,4 +383,15 @@ $this->title = 'Child';
             myPopup.classList.remove("show");
         }
     });
+    function updateVaccineNumber(number) {
+        selectedVaccine.value = number;
+    }
 </script>
+
+<?php
+$immunit = new Immunization();
+
+var_dump($immunit->getImmunization(1));
+//result like this
+//array(1) { [0]=> object(stdClass)#33 (5) { ["recordId"]=> int(1) ["child_id"]=> int(1) ["vac_id"]=> string(1) "1" ["BatchNo"]=> string(4) "1234" ["timestamp"]=> string(19) "2024-04-29 18:13:27" } }
+?>
