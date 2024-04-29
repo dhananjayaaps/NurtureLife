@@ -156,7 +156,7 @@
 
 .btn-submit:hover {
     background-color: #131941;
-    transition: background-color 1s;
+    transition: background-color 0.3s;
 }
 
 .container {

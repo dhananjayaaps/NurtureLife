@@ -9,8 +9,8 @@ use app\core\Model;
 class RoleRequest extends DbModel
 {
     const STATUS_PENDING = 0;
-    const int STATUS_ATTENDED = 1;
-    const int STATUS_COMPLETED = 2;
+    const STATUS_ATTENDED = 1;
+    const STATUS_COMPLETED = 2;
     public string $id = '';
     public string $user_id = '';
     public string $name ='';
