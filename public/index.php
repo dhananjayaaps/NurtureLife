@@ -15,6 +15,7 @@ use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
 use app\controllers\FeedbackController;
 use app\controllers\MidwifeController\AppointmentController;
+use app\controllers\MidwifeController\ChildChartController;
 use app\controllers\MidwifeController\ChildController;
 use app\controllers\MidwifeController\PreMotherController;
 use app\controllers\MotherController;
@@ -98,14 +99,14 @@ $app->router->post('/Child', [ChildController::class, 'Child']);
 
 $app->router->get('/viewChild', [ChildController::class, 'viewChild']);
 
-$app->router->get('/childCard', [ChildController::class, 'childCard']);
-$app->router->post('/childCard', [ChildController::class, 'childCard']);
+$app->router->get('/childCard', [ChildController::class, 'ChildCard']);
+$app->router->post('/childCard', [ChildController::class, 'ChildCard']);
 
-$app->router->get('/childCard1', [ChildController::class, 'childCard1']);
-$app->router->post('/childCard1', [ChildController::class, 'childCard1']);
+$app->router->get('/childCard1', [ChildController::class, 'ChildCard1']);
+$app->router->post('/childCard1', [ChildController::class, 'ChildCard1']);
 
-$app->router->get('/childCard2', [ChildController::class, 'childCard2']);
-$app->router->post('/childCard2', [ChildController::class, 'childCard2']);
+$app->router->get('/childCard2', [ChildController::class, 'ChildCard2']);
+$app->router->post('/childCard2', [ChildController::class, 'ChildCard2']);
 
 $app->router->get('/ManageAppointments', [AppointmentController::class, 'ManageAppointments']);
 $app->router->post('/ManageAppointments', [AppointmentController::class, 'ManageAppointments']);
@@ -117,8 +118,8 @@ $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
 $app->router->get('/about', [SiteController::class, 'about']);
 
 
-$app->router->get('/immunizationCard', [ChildController::class, 'immunizationCard']);
-$app->router->post('/immunizationCard', [ChildController::class, 'immunizationCard']);
+$app->router->get('/immunizationCard', [ChildController::class, 'ImmunizationCard']);
+$app->router->post('/immunizationCard', [ChildController::class, 'ImmunizationCard']);
 
 $app->router->get('/  ', [ChildController::class, 'preMotherForm1']);
 $app->router->post('/preMotherForm1', [ChildController::class, 'preMotherForm1']);
@@ -165,5 +166,11 @@ $app->router->get('/ManageAdmins', [AdminController::class, 'Admin']);
 $app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);
 
 $app->router->post('/cancel-appointment', [AppoinmetHandler::class, 'cancelAppointment']);
+
+$app->router->get('/childweight', [ChildChartController::class, 'ChildWeight']);
+$app->router->post('/childweight', [ChildChartController::class, 'ChildWeightUpdate']);
+
+$app->router->get('/childHeight', [ChildChartController::class, 'ChildHeight']);
+$app->router->post('/childHeight', [ChildChartController::class, 'ChildHeightUpdate']);
 
 $app->run();

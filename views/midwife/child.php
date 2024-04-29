@@ -33,7 +33,6 @@ $this->title = 'Child';
     }
 </style>
 
-<h1>Midwife - Child</h1>
 <div class="Child content">
 
     <div class="shadowBox">
@@ -42,20 +41,20 @@ $this->title = 'Child';
 
         <div class="form-column">
             <?php echo $form->field($model, 'nic', 'NIC Number')?>
-            <?php echo $form->field($model, 'Mother_Name', 'Mother Name')?>
+
             <?php echo $form->field($model, 'Child_Name', 'Child Name ')?>
-            <?php echo $form->field($model, 'Register_NO', 'Register NO')?>
 
             <?php
             $radioButton = new RadioButton($model, 'Gender', 'Gender');
             $radioButton->setOptions([
                 '1' => 'Male',
-                '0' => 'Female',
+                '2' => 'Female'
             ]);
             echo $radioButton;
             ?>
 
             <?php echo $form->dateField($model, 'Birth_Date', 'Birth Date')?>
+
             <?php echo $form->field($model, 'Birth_Place', 'Birth Place')?>
 
     </div>

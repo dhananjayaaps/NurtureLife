@@ -6,16 +6,13 @@ use app\core\db\DbModel as parentAlias;
 
 class BabyCare extends parentAlias
 {
-    public int $child_id = 0;
-    public string $no_of_apga ='';
+    public int $child_id ;
+    public string $no_of_apga ='1';
     public string $birth_weight = '';
     public string $head_circumference_at_birth = '';
     public string $baby_length_at_birth = '';
-    public string $health_condition = '';
-    public string $vitamin_k= '';
-
-
-
+    public string $health_condition = '1';
+    public string $vitamin_k= '1';
 
     public function rules(): array
     {
@@ -52,4 +49,14 @@ class BabyCare extends parentAlias
         ];
     }
 
+//    public function save(): bool
+//    {
+//        $this->child_id = $this->getChildId();
+//        return parent::save();
+//    }
+//
+//    public function getChildId(): string
+//    {
+//        return "1";
+//    }
 }
