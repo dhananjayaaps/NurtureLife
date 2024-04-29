@@ -6,7 +6,7 @@ use app\models\LoginModel;
 use app\models\Post;
 use app\models\User;
 
-$this->title = 'Volunteer';
+$this->title = 'Midwife-Communication';
 
 /** @var $model Post **/
 /** @var $user_model User **/
@@ -16,6 +16,15 @@ $this->title = 'Volunteer';
     .content{
         flex-direction: column;
 
+    }
+    .button:hover {
+        background-color: #0d7ca3; /* Darker shade for hover effect */
+        transform: translateY(-2px); /* Slight lift on hover */
+    }
+
+    .button:active {
+        background-color: #106b94; /* Even darker shade for active/click effect */
+        transform: translateY(1px); /* Slight press-down effect */
     }
 </style>
 <link rel="stylesheet" href="assets/css/styles.css">
@@ -86,7 +95,19 @@ $this->title = 'Volunteer';
                                         <span class="updated-date">Last Updated: <?=$post->updated_at?></span>
                                     </div>
                                     <div class="actions" style="display: flex; flex-direction: row; gap: 20px; margin: 10px">
-                                        <button class="button" style="background-color: #159EEC" onclick="attendPopup(<?=$post->id?>)">Attend</button>
+                                        <button class="button" onclick="attendPopup(<?=$post->id?>)" style="
+                                            padding: 10px 20px;
+                                            background-color: #159EEC;
+                                            color: white;
+                                            border: none;
+                                            border-radius: 5px;
+                                            cursor: pointer;
+                                            font-size: 16px;
+                                            font-weight: bold;
+                                            text-transform: uppercase;
+                                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                            transition: background-color 0.3s, transform 0.3s;
+                                        ">Attend</button>
                                     </div>
                                 </div>
                             </div>

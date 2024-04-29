@@ -176,9 +176,18 @@ $app->router->post('/childweight', [ChildChartController::class, 'ChildWeightUpd
 $app->router->get('/childHeight', [ChildChartController::class, 'ChildHeight']);
 $app->router->post('/childHeight', [ChildChartController::class, 'ChildHeightUpdate']);
 
+$app->router->get('/roleRequest', [RoleRequestController::class, 'roleRequest']);
+$app->router->post('/roleRequest', [RoleRequestController::class, 'roleRequest']);
+
 $app->router->get('/motherRegistrations', [Registration::class, 'MotherRegistration']);
 $app->router->get('/childBorn', [Registration::class, 'childBorn']);
 
+$app->router->get('/nutrition', [SiteController::class, 'nutrition']);
+
+$app->router->get('/articles', [SiteController::class, 'articles']);
+
+$app->router->get('/communication', [Registration::class, 'MotherRegistration']);
+$app->router->get('/childBorn', [Registration::class, 'childBorn']);
 
 
 $app->run();
