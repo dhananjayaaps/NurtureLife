@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     height: fit-content;
     gap: 20px;
+    justify-content: space-around;
     /*padding-top: 30px;*/
 }
 
