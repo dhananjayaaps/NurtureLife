@@ -34,6 +34,8 @@ class Post extends DbModel
     public function save(): bool
     {
         $this->status = self::STATUS_PENDING;
+        $this->user_id = Application::$app->user->getId();
+        $this->created_at = date('Y-m-d H:i:s');
         return parent::save();
     }
 

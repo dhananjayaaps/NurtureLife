@@ -7,6 +7,7 @@ use app\core\Controller;
 use app\core\Request;
 use app\models\Feedback;
 use app\models\Post;
+use app\models\RoleRequest;
 
 class FeedbackController extends Controller
 {
@@ -16,13 +17,22 @@ class FeedbackController extends Controller
         if ($request->isPost()) {
             $feedback->loadData($request->getBody());
             if ($feedback->validate() && $feedback->save()) {
-                Application::$app->session->setFlash('success', 'New feedback added successfully');
+                Application::$app->session->setFlash('success', 'New feedback send successfully');
                 Application::$app->response->redirect('/contact');
                 exit;
             }
         }
-        $this->setLayout('volunteer');
-        return $this->render('contact', ['model' => $feedback]);
+        $roleName = Application::$app->user->getRoleName();
+        if ($roleName == 'Admin'){
+            $this->layout = 'admin';
+            return $this->render('admin/feedbacks',  [
+                'model' => $feedback
+            ]);
+        }
+        else{
+            $this->setLayout('volunteer');
+            return $this->render('contact', ['model' => $feedback]);
+        }
     }
 
     public function getFeedbackDetails(Request $request): string

@@ -8,13 +8,15 @@
     <title><?=$this->title?></title>
     <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
-    <link rel="stylesheet" href="./assets/styles/admin.css">
+    <link rel="stylesheet" href="./assets/styles/content.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
     <link rel="stylesheet" href="./assets/styles/slidebarStyle.css" />
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         <?php
@@ -76,74 +78,59 @@
     <div class="wrapper" style="height: fit-content">
         <div class="sidebar">
             <div class="logo-details">
-                <i class="bx bxl-c-plus-plus icon"></i>
                 <div class="logo_name">NurtureLife</div>
                 <i class="bx bx-menu" id="btn"></i>
             </div>
             <ul class="nav-list">
                 <br><br>
                 <li>
-                    <a href="#">
+                    <a href="/">
                         <i class="bx bx-grid-alt"></i>
                         <span class="links_name">Dashboard</span>
                     </a>
                     <span class="tooltip">Dashboard</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/users">
                         <i class="bx bx-user"></i>
                         <span class="links_name">User</span>
                     </a>
                     <span class="tooltip">User</span>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="bx bx-chat"></i>
-                        <span class="links_name">Messages</span>
+                    <a href="/clinics">
+                        <i class="bx bx-clinic"></i>
+                        <span class="links_name">Clinics</span>
                     </a>
-                    <span class="tooltip">Messages</span>
+                    <span class="tooltip">Clinics</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/motherRegistrations">
                         <i class="bx bx-pie-chart-alt-2"></i>
-                        <span class="links_name">Analytics</span>
+                        <span class="links_name">Reports</span>
                     </a>
-                    <span class="tooltip">Analytics</span>
+                    <span class="tooltip">Reports</span>
+                </li>
+                <li>
+                    <a href="/doctors">
+                        <i class="bx bx-plus-medical"></i>
+                        <span class="links_name">Doctors</span>
+                    </a>
+                    <span class="tooltip">Doctors</span>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="bx bx-folder"></i>
-                        <span class="links_name">File Manager</span>
+                        <i class="bx bx-injection"></i>
+                        <span class="links_name">Midwives</span>
                     </a>
-                    <span class="tooltip">Files</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bx bx-cart-alt"></i>
-                        <span class="links_name">Order</span>
-                    </a>
-                    <span class="tooltip">Order</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bx bx-heart"></i>
-                        <span class="links_name">Saved</span>
-                    </a>
-                    <span class="tooltip">Saved</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bx bx-cog"></i>
-                        <span class="links_name">Setting</span>
-                    </a>
-                    <span class="tooltip">Setting</span>
+                    <span class="tooltip">Midwives</span>
                 </li>
                 <li class="profile">
                     <div class="profile-details">
                         <img src="./assets/images/men_user.jpg" alt="profileImg" />
                         <div class="name_job">
-                            <div class="name">Prem Shahi</div>
-                            <div class="job">Web designer</div>
+                            <div class="name"><?php echo Application::$app->user->getDisplayName() ?></div>
+                            <div class="job"><?php echo Application::$app->user->getRoleName() ?></div>
                         </div>
                     </div>
                     <a href="/logout"><i class="bx bx-log-out" id="log_out"></i></a>

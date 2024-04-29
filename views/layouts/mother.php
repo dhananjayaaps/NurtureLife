@@ -96,17 +96,17 @@
                     <a href="/reportSymptom"><img src="assets/images/icons/clinic.png" alt=""> Report Symptoms</a>
                 </div>
                 <div class="column">
-                    <a href="/reports"><img src="assets/images/icons/pregnant.png" alt=""> Reports</a>
+                    <a href="/articles"><img src="assets/images/icons/articles_icon.png" alt=""> Articles</a>
                 </div>
-                <div class="column">
-                    <a href="/calender"><img src="assets/images/icons/pregnant.png" alt=""> Calender</a>
-                </div>
+<!--                <div class="column">-->
+<!--                    <a href="/calender"><img src="assets/images/icons/pregnant.png" alt=""> Calender</a>-->
+<!--                </div>-->
                 <div class="column">
                     <a href="/nutrition"><img src="assets/images/icons/pregnant.png" alt=""> Nutritions</a>
                 </div>
-                <div class="column">
-                    <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Communication</a>
-                </div>
+<!--                <div class="column">-->
+<!--                    <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Communication</a>-->
+<!--                </div>-->
                 <div class="column">
                     <a href="/fetalkick"><img src="assets/images/icons/pregnant.png" alt=""> Report Fetal kicks</a>
                 </div>

@@ -16,9 +16,9 @@ $this->title = 'User Feedback';
     .contact_main{
         display: flex;
         flex-direction: row;
-        height: fit-content;
         /*border-style: solid;*/
         justify-content: space-between;
+        height: 75vh;
     }
     .contact_left, .contact_mid, .contact_right{
         display: flex;

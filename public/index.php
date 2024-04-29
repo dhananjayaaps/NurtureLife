@@ -23,6 +23,8 @@ use app\controllers\MotherController\FetalkickController;
 use app\controllers\PostController;
 use app\controllers\MotherController\PreMotherCareController;
 use app\controllers\PostRequestController;
+use app\controllers\ReportController\Registration;
+use app\controllers\RoleRequestController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -114,6 +116,7 @@ $app->router->post('/ManageAppointments', [AppointmentController::class, 'Manage
 $app->router->get('/mothers', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
+$app->router->post('/appointments', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/about', [SiteController::class, 'about']);
 

@@ -41,17 +41,19 @@ body{
     align-items: center;
     background: #1F2B6C;
     width: 100%;
+    opacity: 0.95;
     z-index: 1;
 }
 
 .navbar {
-    position: fixed; /* Fix the navbar position */
-    top: 0; /* Position at the top */
+    position: fixed;
+    top: 0;
     left: 0;
-    width: 100%; /* Full width */
-    color: #fff; /* Example text color */
-    padding: 10px 20px; /* Adjust padding as needed */
-    z-index: 1; /* Ensure it stays above other content */
+    width: 100%;
+    color: #fff;
+    padding: 10px 20px;
+    z-index: 1;
+    height: 80px;
 }
 
 .wrapper {
@@ -107,11 +109,11 @@ body{
     padding: 15px;
     margin-top: 8px;
     border-style: solid;
-    border-color: #ffb3b3;
+    border-color: #1F2B6C;
     border-radius: 10px;
     font-size: 20px;
     width: 250px;
-    height: 35px;
+    height: 40px;
 }
 
 .search-container button {
@@ -121,16 +123,16 @@ body{
     color: white;
     border-radius: 10px;
     border: solid;
-    background-color: #b75879;
+    background-color: #1F2B6C;
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .search-container button:hover {
-    background: #ddd;
-    color: black;
+    background: #131941;
+    color: #eeeaea;
     cursor: pointer;
-    transition: color 1s;
+    transition: color 0.3s;
 }
 .navbar_emg{
     text-align: left;

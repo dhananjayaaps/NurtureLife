@@ -82,9 +82,11 @@ class Child extends parentAlias
         return json_encode($data);
     }
 
-//    public function update() : bool
-//    {
-//        $this->status = self::STATUS_ACTIVE;
-//        return parent::update();
-//    }
-}
+    public function getDailyRegistrationCount()
+    {
+        $sql = "SELECT COUNT(*) as count FROM child WHERE Birth_Date = CURDATE()";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $data = $stmt->fetchObject();
+        return $data->count;
+    }
