@@ -7,10 +7,12 @@ use app\core\db\DbModel;
 
 class Post extends DbModel
 {
-    const int STATUS_PENDING = 0;
-    const int STATUS_ATTENDED = 1;
-    const int STATUS_COMPLETED = 2;
-    const int STATUS_DELETED = 2;
+
+    const STATUS_PENDING = 0;
+    const STATUS_ATTENDED = 1;
+    const STATUS_COMPLETED = 2;
+    const STATUS_DELETED = 2;
+
     public string $id = '';
 
     public string $user_id = '';
