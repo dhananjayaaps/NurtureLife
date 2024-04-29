@@ -11,7 +11,7 @@ $this->title = 'Login';
 /** @var $model User **/
 ?>
 
-
+<h1>Doctor - Dashboard</h1>
 <div class="content">
     <div class="column first-column">
         <div class="lineChart">

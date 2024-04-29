@@ -18,11 +18,14 @@ $this->title = 'FetalKicks';
 <link rel="stylesheet" href="./assets/styles/mother.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <div class="content">
-<div>
-    <div class="lineChart">
-         <p id="total"></p>
-        <p id="avg"></p>
-        <canvas id="lineChart" ></canvas>
+<div class="first-column">
+    <h1>Prenatal Mother - Fetal Kick Count</h1>
+    <div>
+        <div class="lineChart">
+             <p id="total"></p>
+            <p id="avg"></p>
+            <canvas id="lineChart" ></canvas>
+        </div>
     </div>
 </div>
 <div class="column-container"  >
@@ -62,7 +65,7 @@ $this->title = 'FetalKicks';
     </div>
 </div>
 
-<canvas id="lineChart" width="400" height="200"></canvas>
+<!--<canvas id="lineChart" width="400" height="200"></canvas>-->
 
 <div id="targetElement"></div>
 </div>
@@ -123,7 +126,7 @@ $this->title = 'FetalKicks';
 
 <script>
 
-    // Get the element by ID
+
     var isNew = <?php echo json_encode((new Fetalkick())->isNew()) ?>;
     console.log(isNew);
     var elementA = document.getElementById("Add_section");

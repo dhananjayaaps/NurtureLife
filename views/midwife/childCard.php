@@ -4,6 +4,8 @@
 use app\core\Application;
 use app\core\form\DropDown;
 use app\core\form\Form;
+use app\core\form\RadioButton;
+use app\models\Child;
 use app\models\Mother;
 
 $this->title = 'Child';
@@ -11,7 +13,7 @@ $this->title = 'Child';
 
 <?php
 /** @var $model Child **/
-/** @var $modelUpdate childCard **/
+
 //?>
 
 
@@ -33,24 +35,19 @@ $this->title = 'Child';
 </style>
 
 <div class="Mothers content">
-
     <div class="shadowBox">
         <h2>CARE OF NEWBORN CHILD<br><br></h2>
         <?php $form = Form::begin('', "post")?>
-
         <div class="form-column">
-
             <div class="row" style="display: flex; flex-direction: column; gap: 10px">
-                <?php echo $form->field($model, 'child_id', 'Child ID')?>
-
                 <?php
-                $apgaField = new Dropdown($model, 'no_of_apga', 'Number Of APGA');
-                $apgaField->setOptions([
+                $radioButton = new RadioButton($model, 'no_of_apga', 'Number Of APGA');
+                $radioButton->setOptions([
                     '1' => '1',
                     '5' => '5',
                     '10' => '10'
                 ]);
-                echo $apgaField;
+                echo $radioButton;
                 ?>
 
                 <br>
@@ -60,30 +57,24 @@ $this->title = 'Child';
 
 
                 <?php
-                $healthConditionField = new Dropdown($model, 'health_condition', ' Health Condition of NewBorn Baby');
-                $healthConditionField->setOptions([
-                    'normal' => 'Normal',
-                    'needs special care' => 'Needs Special Care',
+                $radioButton = new RadioButton($model, 'health_condition', 'Health Condition');
+                $radioButton->setOptions([
+                    '1' => 'Normal',
+                    '0' => 'Needs special Care',
                 ]);
-                echo $healthConditionField;
+                echo $radioButton;
                 ?>
 
                 <?php
-                $vitaminField = new Dropdown($model, 'vitamin_k', 'Vitamin K');
-                $vitaminField->setOptions([
-                    'given' => 'Given',
-                    'not given' => 'Not Given',
+                $radioButton = new RadioButton($model, 'vitamin_k', 'Vitamin K');
+                $radioButton->setOptions([
+                    '1' => 'Given',
+                    '0' => 'Not Given',
                 ]);
-                echo $vitaminField;
+                echo $radioButton;
                 ?>
-
-
-
-
-    </div>
-
-    <button type="submit" class="btn-submit">Submit</button>
+            </div>
+        <button type="submit" class="btn-submit">Submit</button>
     <?php echo Form::end()?>
 </div>
 
-</div>

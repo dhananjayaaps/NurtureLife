@@ -12,8 +12,9 @@ $this->title = 'Reply Symptoms';
 /** @var $model Doctor **/
 /** @var $modelUpdate Doctor **/
 ?>
-<link rel="stylesheet" href="./assets/styles/mother.css">
-<link rel="stylesheet" href="./assets/styles/table.css">
+<!--<link rel="stylesheet" href="./assets/styles/mother.css">-->
+<!--<link rel="stylesheet" href="./assets/styles/table.css">-->
+<link rel="stylesheet" href="./assets/styles/motherTable.css">
 
 <div id="updatePopup" class="popup">
     <div class="popup-content">
@@ -24,8 +25,10 @@ $this->title = 'Reply Symptoms';
             <div class="form-group">
                 <label for="SymptomReply">Symptom Reply:</label>
                 <input type="text" id="SymptomReply" name="SymptomReply" required>
+                <p style="font-weight: bold; color: red;">Warning!</p>
+                <p>This reply is not editable, so you have to be completely responsible for what you submit</p>
             </div>
-            <button type="submit" class="btn-submit">Update</button>
+            <button type="submit" class="btn-submit">Reply</button>
         </form>
     </div>
 </div>
@@ -90,6 +93,7 @@ $this->title = 'Reply Symptoms';
     document.addEventListener('DOMContentLoaded', function() {
 
         var data = <?php echo (new MotherSymptoms())->getSymptomsByDoctor() ?>;
+        console.log(data)
         data.sort((a, b) => b.symptomRecNo - a.symptomRecNo);
         var docNames = <?php echo (new Doctor())->getClinicDoctors()  ?>;
         var momNames = <?php echo (new Doctor())->getClinicMothers()  ?>;
@@ -239,6 +243,7 @@ $this->title = 'Reply Symptoms';
                     setTimeout(() => {
                         window.location.reload(); // Refresh the page
                     }, 1000);
+                })
         });
 
         const histButtons = document.querySelectorAll('.hist-btn');
@@ -248,8 +253,10 @@ $this->title = 'Reply Symptoms';
             button.addEventListener("click", function(event) {
                 if (event.target && event.target.classList.contains("hist-btn")) {
                     const motherId = event.target.value;
+                    console.log(motherId)
+                    console.log(data)
                     const motherSymptoms =  data.filter(item => item.MotherId === parseInt(motherId));
-                    console.log("momSymptoms", motherSymptoms);
+                    // console.log("momSymptoms", motherSymptoms);
 
                     var itemsPerPage = 10;
                     var currentPage = 1;
@@ -352,8 +359,8 @@ $this->title = 'Reply Symptoms';
         z-index: 9999; /* Sit on top */
         left: 0;
         top: 0;
-        width: 60%; /* Full width */
-        height: 80%; /* Full height */
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
         overflow: auto; /* Enable scroll if needed */
         background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
     }
@@ -364,8 +371,68 @@ $this->title = 'Reply Symptoms';
         margin: 5% auto; /* 5% from the top and centered */
         padding: 20px;
         border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
-        max-width: 500px; /* Max width */
+        width: 60%; /* Could be more or less, depending on screen size */
+        max-width: 60%; /* Max width */
         border-radius: 10px;
+        display: flex;
+
     }
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Form group styles */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* Warning message styles */
+    .warning-message {
+        font-weight: bold;
+        color: red;
+        margin-top: 10px;
+    }
+
+    /* Button styles */
+    .btn-submit {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+        background-color: #0056b3;
+    }
+
 </style>

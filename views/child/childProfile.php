@@ -71,7 +71,7 @@ $this->title = 'FetalKicks';
 
     .my-card{
         width: 200px;
-        height: 100px;
+        height: 60px;
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 10px;
@@ -121,7 +121,7 @@ $this->title = 'FetalKicks';
     }
 
     a{
-        sty
+        text-decoration: none;
     }
 
     .popup {
@@ -149,7 +149,7 @@ $this->title = 'FetalKicks';
 
 </style>
 
-
+<h1>Child Profile</h1>
 <div id="myPopup" class="popup">
     <div class="popup-content">
         <h1 style="color:green;">Mother Diagnostic Card</h1>
@@ -227,16 +227,16 @@ $this->title = 'FetalKicks';
             <br>
             <div class="card-row">
                 <div class="my-card">
-                    <h3><b><a href="/views/midwife/childCard">Care of Newborn Baby</a></b></h3>
+                    <h3><b><a href="/childCard">Care of Newborn Baby</a></b></h3>
                 </div>
                 <div class="my-card">
-                    <h3><b><a href="/views/midwife/childCard1">Reasons for Special Care</a></b></h3>
+                    <h3><b><a href="/childCard1">Reasons for Special Care</a></b></h3>
                 </div>
                 <div class="my-card">
-                    <h3><b><a href="/views/midwife/childCard2">Newborn Baby's Health Chart</a></b></h3>
+                    <h3><b><a href="/childCard2">Newborn Baby's Health Chart</a></b></h3>
                 </div>
                 <div class="my-card">
-                    <h3><b><a href="/views/midwife/immunizationCard">Immunization Card</a></b></h3>
+                    <h3><b><a href="/immunizationCard">Immunization Card</a></b></h3>
                 </div>
             </div>
         </div>

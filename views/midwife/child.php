@@ -3,6 +3,8 @@
 
 use app\core\Application;
 use app\core\form\Form;
+use app\core\form\RadioButton;
+use app\models\Child;
 use app\models\Mother;
 
 $this->title = 'Child';
@@ -31,10 +33,11 @@ $this->title = 'Child';
     }
 </style>
 
+<h1>Midwife - Child</h1>
 <div class="Child content">
 
     <div class="shadowBox">
-        <h2>Add a New Child<br></h2>
+        <h2>Add a New Child<br><br></h2>
         <?php $form = Form::begin('', "post")?>
 
         <div class="form-column">
@@ -42,12 +45,18 @@ $this->title = 'Child';
             <?php echo $form->field($model, 'Mother_Name', 'Mother Name')?>
             <?php echo $form->field($model, 'Child_Name', 'Child Name ')?>
             <?php echo $form->field($model, 'Register_NO', 'Register NO')?>
-    </div>
 
-    <div class="form-column">
-        <?php echo $form->field($model, 'Gender', 'Gender')?>
-        <?php echo $form->dateField($model, 'Birth_Date', 'Birth Date')?>
-        <?php echo $form->field($model, 'Birth_Place', 'Birth Place')?>
+            <?php
+            $radioButton = new RadioButton($model, 'Gender', 'Gender');
+            $radioButton->setOptions([
+                '1' => 'Male',
+                '0' => 'Female',
+            ]);
+            echo $radioButton;
+            ?>
+
+            <?php echo $form->dateField($model, 'Birth_Date', 'Birth Date')?>
+            <?php echo $form->field($model, 'Birth_Place', 'Birth Place')?>
 
     </div>
 </div>
@@ -55,7 +64,5 @@ $this->title = 'Child';
 
 <button type="submit" class="btn-submit">Submit</button>
 <?php echo Form::end()?>
-</div>
-
 </div>
 

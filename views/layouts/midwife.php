@@ -1,23 +1,43 @@
 <?php use app\core\Application; ?>
+<?php use app\core\Session; ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?=$this->title?></title>
+    <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.png">
     <link rel="stylesheet" href="./assets/styles/styles.css">
-    <link rel="stylesheet" href="./assets/styles/admin.css">
     <link rel="stylesheet" href="./assets/styles/midwife.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
 
+    <script>
+    <?php
+    $FlashMessage = Application::$app->session->getFlash('success');
+    $ErrorFlashMessage = Application::$app->session->getFlash('error');
+
+    if ($FlashMessage) {
+        echo "window.onload = function() { showSuccessToast('$FlashMessage', 'success'); };";
+    }
+    if ($ErrorFlashMessage) {
+        echo "window.onload = function() { showErrorToast('$ErrorFlashMessage', 'error'); };";
+    }
+    ?>
+    </script>
+    <script src="./assets/scripts/toast.js"></script>
+
 </head>
 <body>
+<div id="toast" class="toast"></div>
 
 <div class="navbar">
+    <div class="NL_logo_container">
+        <a href="/"><img src="./assets/images/nurturelife_logo.png" class="NL_logo" alt="NL_logo"></a>
+    </div>
     <a href=" ">Home</a>
     <a href="#about">About</a>
 
@@ -32,7 +52,7 @@
     <?php else: ?>
 
         <div class="dropdown">
-            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
+            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?>
                 <i class="fa fa-caret-down"></i>
             </button>
             <form id="roleChangeForm" method="POST" action="/changeRole">
@@ -74,35 +94,53 @@
 
 <div class="content-navbar">
     <div class="wrapper">
-    <div class="left-navbar">
-        <div class="navigations">
-            <div class="column">
-                <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
-            </div>
-            <div class="column">
-                <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
-            </div>
-            <div class="column">
-                <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
-            </div>
-            <div class="column">
-                <a href="/preMothers"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
-            </div>
-<!--            <div class="column">-->
-<!--                <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>-->
-<!--            </div>-->
-            <div class="column">
-                <a href=""><img src="assets/images/icons/user.png" alt=""> Appointments</a>
+        <div class="left-navbar">
+            <div class="navigations">
+                <div class="column">
+                    <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
+                </div>
+                <div class="column">
+                    <a href="/clinics"><img src="assets/images/icons/clinic.png" alt=""> Clinics</a>
+                </div>
+                <div class="column">
+                    <a href="/reports"><img src="assets/images/icons/report.png" alt=""> Get Reports</a>
+                </div>
+                <div class="column">
+                    <a href="/preMothers"><img src="assets/images/icons/pregnant.png" alt=""> Prenatal Mothers</a>
+                </div>
+                <!--            <div class="column">-->
+                <!--                <a href="#"><img src="assets/images/icons/care.png" alt=""> Postnatal Mothers</a>-->
+                <!--            </div>-->
+                <div class="column">
+                    <a href=""><img src="assets/images/icons/user.png" alt=""> Appointments</a>
+                </div>
+                <div class="column">
+                    <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt=""> Posts</a>
+                </div>
+                <div class="column">
+                    <a href="/communication"><img src="assets/images/icons/communication.png" alt=""> Contact Mothers</a>
+                </div>
             </div>
         </div>
-    </div>
-
-        <div class="content">
+        <div class="content"">
             {{content}}
         </div>
     </div>
 </div>
-
+<!--footer-->
+<div class="footer">
+    <div class="brand">
+        <div class="section_icon">
+            <img src="assets/images/nurturelife_logo_text.jpeg" alt="NL_logo_text_icon" />
+        </div>
+        <div class="section_name"> ©  2024 NurtureLife</div>
+    </div>
+    <div class="section_privacy"><a href="/policy" target="_blank">Privacy and Policy</a></div>
+    <div class="section_contact"><a href="/contact" target="_blank">Contact</a></div>
+    <div class="section_docs"><a href="https://drive.google.com/drive/folders/1tgtXQ39kbaM37BUenEuEPqWDaJT-4DAa?usp=sharing" target="_blank">Docs</a></div>
+    <div class="section_security"><a href="/policy" target="_blank">Security</a></div>
+    <div class="section_about"><a href="/about" target="_blank">About</a></div>
+</div>
 </body>
 </html>
 

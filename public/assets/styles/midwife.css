@@ -122,7 +122,7 @@
 /* clinic module */
 .content{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 20px;
     flex: 80%;
     flex-wrap: wrap;
@@ -263,6 +263,9 @@
     .left-navbar{
         display: none;
     }
+    .content{
+        margin: 0;
+    }
 }
 
 table {
@@ -330,6 +333,6 @@ th, td {
     background-color: #0056b3;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
+/*tr:nth-child(even) {background-color: #f2f2f2;}*/
 
-tr:hover {background-color: #adffec;}
+/*tr:hover {background-color: #adffec;}*/

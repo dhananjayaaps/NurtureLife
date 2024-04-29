@@ -19,10 +19,10 @@ $this->title = 'Midwifes';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
-
+<h1>Midwives Management</h1>
 <div id="myPopup" class="popup">
     <div class="popup-content">
-        <h1 style="color: rgb(0, 15, 128);">Update Clinic Details<br/><br/></h1>
+        <h1 style="color: rgb(0, 15, 128);">Update Midwife Details<br/><br/></h1>
         <form action="">
 
             <div class="form-group">
@@ -39,20 +39,34 @@ $this->title = 'Midwifes';
 
                 </div>
 
-                <label>Select new Clinic for transfer</label>
-                <input type="text" id="UpdateId" name="UpdateId" value=""  class="form-control ">
-                <div class="invalid-feedback">
+                <label for="UpdateId">Select new Clinic for transfer</label>
+                <select id="UpdateId" name="UpdateId" class="js-select2 custom-select" required>
+                    <option value="" selected disabled>Select Clinic</option>
+                    <?php foreach ((new Clinic())->getClinicsList() as $clinic): ?>
+                        <option value="<?php echo $clinic['id'] ?>"><?php echo $clinic['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
 
+
+                <style>
+                    .js-select2 {
+                        width: 110%;
+                        height: 130%;
+                        padding: 0;
+                    }
+                </style>
+
+                <div class="invalid-feedback">
                 </div>
             </div>
 
         </form>
         <div class="buttonRow">
-            <button type="submit" id="updateButton" class="btn-submit">
-                Update
-            </button>
             <button id="closePopup" class="btn-submit" style="background-color: brown;">
                 Close
+            </button>
+            <button type="submit" id="updateButton" class="btn-submit">
+                Update
             </button>
         </div>
     </div>
@@ -62,7 +76,7 @@ $this->title = 'Midwifes';
 
 <div id="myPopupRemove" class="popup">
     <div class="popup-content">
-        Do You Really Need to Remove This? That can't be undone
+        Please confirm before removing this Midwife. This action can't be undone.
         <div class="buttonRow" style="display: flex; flex-direction: row; gap: 10px;">
             <button id="closePopup" class="btn-submit">
                 Close
@@ -74,29 +88,31 @@ $this->title = 'Midwifes';
     </div>
 </div>
 
-<div class="Midwifes content">
-    <div class="shadowBox">
-        <div class="left-content">
-            <div class="search-container">
-                <input type="text" placeholder="Search Midwife...">
-                <button type="submit">Search</button>
-            </div>
-            <table class="table-data">
-                <thead>
-                <tr>
-                    <th>Midwife ID</th>
-                    <th>Name</th>
-                    <th>SLMC ID</th>
-                    <th>Clinic</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody id="tableBody">
-                <!-- Displayed rows will be added here -->
-                </tbody>
-            </table>
-            <div class="pagination" id="pagination">
-                <!-- Pagination buttons will be added here -->
+<div class="content">
+    <div class="left-content">
+        <div class="shadowBox">
+            <div class="left-content">
+                <div class="search-container">
+                    <input type="text" placeholder="Search Midwife...">
+                    <button type="submit">Search</button>
+                </div>
+                <table class="table-data">
+                    <thead>
+                    <tr>
+                        <th>Midwife ID</th>
+                        <th>Name</th>
+                        <th>SLMC ID</th>
+                        <th>Clinic</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    <!-- Displayed rows will be added here -->
+                    </tbody>
+                </table>
+                <div class="pagination" id="pagination">
+                    <!-- Pagination buttons will be added here -->
+                </div>
             </div>
         </div>
     </div>
@@ -256,7 +272,7 @@ $this->title = 'Midwifes';
     document.getElementById('updateButton').addEventListener('click', function (e) {
         e.preventDefault();
 
-        const Clinic_id = document.querySelector('input[name="UpdateId"]').value;
+        const Clinic_id = document.getElementById('UpdateId').value;
         const PHM_id = document.querySelector('input[name="MidwifeId"]').value;
 
         const formData = new FormData();

@@ -1,9 +1,6 @@
 <?php use app\core\Application; ?>
 <?php use app\models\Mother; ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,34 +70,47 @@
 <div class="popup" id="popupFetal"></div>
 
 <div class="content-navbar">
-    <div class="left-navbar">
-        <img class="NL_logo" src="./assets/images/nuturelife_logo.png" alt="nuturelife_logo">
-        <div class="navigations">
-            <div class="column">
-                <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
+    <div class="wrapper" style="height: fit-content">
+        <div class="left-navbar">
+            <div class="navigations">
+                <div class="column">
+                    <a href="/"><img src="assets/images/icons/home.png" alt=""> Home</a>
+                </div>
+                <div class="column">
+                    <a href="/MotherSymptoms"><img src="assets/images/icons/clinic.png" alt=""> Report Symptoms</a>
+                </div>
+                <div class="column">
+                    <a href="/nutrition"><img src="assets/images/icons/pregnant.png" alt=""> Nutritions</a>
+                </div>
+                <div class="column">
+                    <a href="/fetalkick"><img src="assets/images/icons/pregnant.png" alt=""> Report Fetal kicks</a>
+                </div>
+                <div class="column">
+                    <a href="/posts"><img src="assets/images/icons/forum_chat.png" alt="">Posts</a>
+                </div>
+                <div class="column">
+                    <a href="/communication"><img src="assets/images/icons/communication.png" alt=""> Contact Midwife</a>
+                </div>
             </div>
-            <div class="column">
-                <a href="/MotherSymptoms"><img src="assets/images/icons/clinic.png" alt=""> Report Symptoms</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Reports</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Calender</a>
-            </div>
-            <div class="column">
-                <a href="#"><img src="assets/images/icons/pregnant.png" alt=""> Nutritions</a>
-            </div>
-            <div class="column">
-                <a href="/communication"><img src="assets/images/icons/pregnant.png" alt=""> Communication</a>
-            </div>
-            <div class="column">
-                <a href="/fetalkick"><img src="assets/images/icons/pregnant.png" alt=""> Report Fetal kicks</a>
-            </div>
-
+        </div>
+        <div class="content">
+            {{content}}
         </div>
     </div>
-    {{content}}
+</div>
+<!--footer-->
+<div class="footer">
+    <div class="brand">
+        <div class="section_icon">
+            <img src="assets/images/nurturelife_logo_text.jpeg" alt="NL_logo_text_icon" />
+        </div>
+        <div class="section_name"> ©  2024 NurtureLife</div>
+    </div>
+    <div class="section_privacy"><a href="/policy" target="_blank">Privacy and Policy</a></div>
+    <div class="section_contact"><a href="/contact" target="_blank">Contact</a></div>
+    <div class="section_docs"><a href="https://drive.google.com/drive/folders/1tgtXQ39kbaM37BUenEuEPqWDaJT-4DAa?usp=sharing" target="_blank">Docs</a></div>
+    <div class="section_security"><a href="/policy" target="_blank">Security</a></div>
+    <div class="section_about"><a href="/about" target="_blank">About</a></div>
 </div>
 </body>
 </html>

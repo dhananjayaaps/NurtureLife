@@ -5,19 +5,24 @@
     min-height: min-content;
     justify-content: space-between;
     margin-left: 20%;
-    margin-top: 100px;
+    position: relative;
 
 }
 .first-column{
     float: left;
     flex-direction: row;
 
-
 }
 
 .second-column{
     float: left;
     flex-direction: column;
+    max-width: 35%;
+}
+.second-column .fixed-element {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 /* General styles */

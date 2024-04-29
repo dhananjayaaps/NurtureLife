@@ -4,6 +4,7 @@
 use app\core\Application;
 use app\core\form\DropDown;
 use app\core\form\Form;
+use app\core\form\RadioButton;
 use app\models\Mother;
 
 $this->title = 'Child';
@@ -41,123 +42,107 @@ $this->title = 'Child';
         <div class="form-column">
 
             <div class="row" style="display: flex; flex-direction: column; gap: 10px">
-                <?php echo $form->field($model, 'child_id', 'Child ID')?>
-
-                <?php echo $form->dateField($model, 'completion_date', 'Date of Form Completion')?>
 
                 <?php
-                $prematureField = new Dropdown($model, 'premature_births', 'Premature Births');
-                $prematureField->setOptions([
-                     'no' => 'No',
-                     'yes' => 'Yes',
-
+                $radioButton = new RadioButton($model, 'premature_births', '1.Premature Births');
+                $radioButton->setOptions([
+                    '1' => 'Yes',
+                    '2' => 'No',
                 ]);
-                echo $prematureField;
+                echo $radioButton;
                 ?>
 
                 <?php
-                $lowBirthField = new Dropdown($model, 'low_birth_weight', 'Low Birth Weight ');
-                $lowBirthField->setOptions([
-                    'no' => 'No',
-                    'yes' => 'Yes',
-
+                $radioButton = new RadioButton($model, 'low_birth_weight', '2.Low Birth Weight');
+                $radioButton->setOptions([
+                    '1' => 'Yes',
+                    '2' => 'No',
                 ]);
-                echo $lowBirthField;
+                echo $radioButton;
                 ?>
 
                 <?php
-                $NeonatalField = new Dropdown($model, 'neonatal_complications', 'Neonatal Complications ');
-                $NeonatalField->setOptions([
-                    'no' => 'No',
-                    'yes' => 'Yes',
-
+                $radioButton = new RadioButton($model, 'congenital_disorders', '3.Congenital Disorders');
+                $radioButton->setOptions([
+                    '1' => 'Yes',
+                    '2' => 'No',
                 ]);
-                echo $NeonatalField;
+                echo $radioButton;
                 ?>
 
                 <?php
-                $congenitalField = new Dropdown($model, 'congenital_disorders', 'Congenital Disoders ');
-                $congenitalField->setOptions([
-                    'no' => 'No',
-                    'yes' => 'Yes',
-
+                $radioButton = new RadioButton($model, 'neonatal_complications', '4.Neonatal Complications');
+                $radioButton->setOptions([
+                    '1' => 'Yes',
+                    '2' => 'No',
                 ]);
-                echo $congenitalField;
+                echo $radioButton;
                 ?>
 
                 <?php
-                $acuteConditionsField = new Dropdown($model, 'acute_conditions', 'Acute Conditions of the Mother after delivery  ');
-                $acuteConditionsField->setOptions([
-                    'no' => 'No',
-                    'yes' => 'Yes',
-
+                $radioButton = new RadioButton($model, 'acute_conditions', '5.Acute Conditions');
+                $radioButton->setOptions([
+                    '1' => 'Yes',
+                    '2' => 'No',
                 ]);
-                echo $acuteConditionsField;
+                echo $radioButton;
                 ?>
 
                 <?php
-                $complementaryFeedingField = new Dropdown($model, 'complementary_feeding', 'Complementary feeding during the first six months');
-                $complementaryFeedingField->setOptions([
-                    'no' => 'No',
-                    'yes' => 'Yes',
-
+                $radioButton = new RadioButton($model, 'complementary_feeding', '6.Complementary Feeding');
+                $radioButton->setOptions([
+                    '1' => 'Yes',
+                    '2' => 'No',
                 ]);
-                echo $complementaryFeedingField;
+                echo $radioButton;
+                ?>
+            </div>
+
+            <div class="row" style="display: flex; flex-direction: column; gap: 10px">
+
+                <?php
+                $radioButton = new RadioButton($model, 'growth_retardation', '7.Growth Retardation');
+                $radioButton->setOptions([
+                    '1' => 'Yes',
+                    '2' => 'No',
+                ]);
+                echo $radioButton;
                 ?>
 
                 <?php
-                $growthField = new Dropdown($model, 'growth_retardation', 'Growth Retardation');
-                $growthField->setOptions([
-                    'no' => 'No',
-                    'yes' => 'Yes',
-
-
+                $radioButton = new RadioButton($model, 'difficulty_feeding', '8.Difficulty Feeding');
+                $radioButton->setOptions([
+                    '1' => 'Yes',
+                    '2' => 'No',
                 ]);
-                echo $growthField;
+                echo $radioButton;
                 ?>
 
                 <?php
-                $difficultyFeedingField = new Dropdown($model, 'difficulty_feeding', 'Difficulty Breastfeeding/Feeding');
-                $difficultyFeedingField->setOptions([
-                    'no' => 'No',
-                    'yes' => 'Yes',
-
+                $radioButton = new RadioButton($model, 'death_of_mother_or_father', '9.Death of Mother or Father');
+                $radioButton->setOptions([
+                    '1' => 'Yes',
+                    '2' => 'No',
                 ]);
-                echo $difficultyFeedingField;
+                echo $radioButton;
                 ?>
 
                 <?php
-                $deathMoFaField = new Dropdown($model, 'death_of_mother_or_father', 'Death of Mother or Father');
-                $deathMoFaField->setOptions([
-                    '1' => 'No,Both are alive',
-                    '2' => 'Mother is dead',
-                    '3' => 'Father is dead',
-                    '4' => 'Both are dead',
-
-                ]);
-                echo $deathMoFaField;
-                ?>
-
-                <?php
-                $migrationField = new Dropdown($model, 'migration_of_mother_or_father', 'Migration of Mother or Father abraod');
-                $migrationField->setOptions([
+                $radioButton = new Dropdown($model, 'migration_of_mother_or_father', '10.Migration of Mother or Father Abraod');
+                $radioButton->setOptions([
                     '1' => 'No,Both are in the country',
                     '2' => 'Mother left the Country',
                     '3' => 'Father left the Country',
                     '4' => 'Both left the Country',
 
                 ]);
-                echo $migrationField;
+                echo $radioButton;
                 ?>
 
-                <?php echo $form->field($model, 'other_reasons', 'Other Reasons')?>
-
-
+                <?php echo $form->field($model, 'other_reasons', '11.Other Reasons')?>
 
             </div>
-
             <button type="submit" class="btn-submit">Submit</button>
             <?php echo Form::end()?>
         </div>
-
     </div>

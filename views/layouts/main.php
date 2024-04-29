@@ -11,6 +11,20 @@
     <link rel="stylesheet" href="./assets/styles/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
+    <script>
+        <?php
+        $FlashMessage = Application::$app->session->getFlash('success');
+        $ErrorFlashMessage = Application::$app->session->getFlash('error');
+
+        if ($FlashMessage) {
+            echo "window.onload = function() { showSuccessToast('$FlashMessage', 'success'); };";
+        }
+        if ($ErrorFlashMessage) {
+            echo "window.onload = function() { showErrorToast('$ErrorFlashMessage', 'error'); };";
+        }
+        ?>
+    </script>
+    <script src="./assets/scripts/toast.js"></script>
 </head>
 <body>
 
@@ -29,7 +43,7 @@
     <?php else: ?>
 
         <div class="dropdown">
-            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?> View
+            <button class="dropbtn"><?php echo Application::$app->user->getRoleName() ?>
                 <i class="fa fa-caret-down"></i>
             </button>
             <form id="roleChangeForm" method="POST" action="/changeRole">
@@ -71,39 +85,17 @@
 
 {{content}}
 <div class="footer">
-    <div class="footer-left">
-        <div class="footer-left-title">
-            <div class="brand-name">NurtureLife</div>
-            <div class="year">&#183 &#160 2024</div>
+    <div class="brand">
+        <div class="section_icon">
+            <img src="assets/images/nurturelife_logo_text.jpeg" alt="NL_logo_text_icon" />
         </div>
-        <div class="footer-left-text">
-            SUSTAINING LIFE THROUGH EMPOWERING MOTHERHOOD
-        </div>
-        <div class="policy">
-            <a href="/policy">Privacy and Policy</a>
-        </div>
+        <div class="section_name"> ©  2024 NurtureLife</div>
     </div>
-
-    <div class="footer-center">
-        <div class="follow-us">FOLLOW US ON</div>
-        <div class="social-media-icons">
-            <div class="SM-icon-container">
-                <img class="SM-icon" src="./assets/images/fb-logo.png" />
-            </div>
-            <div class="SM-icon-container">
-                <img class="SM-icon" src="./assets/images/insta-logo.png" />
-            </div>
-            <div class="SM-icon-container">
-                <img class="SM-icon" src="./assets/images/twitter-logo.png" />
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-right">
-        <div class="contact-us">Contact Us,</div>
-        <div class="tel-no">Call Us : 077 123 4678</div>
-        <div class="email">Email : admin.nurturelife@gmail.com</div>
-    </div>
+    <div class="section_privacy"><a href="/policy" target="_blank">Privacy and Policy</a></div>
+    <div class="section_contact"><a href="/contact" target="_blank">Contact</a></div>
+    <div class="section_docs"><a href="https://drive.google.com/drive/folders/1tgtXQ39kbaM37BUenEuEPqWDaJT-4DAa?usp=sharing" target="_blank">Docs</a></div>
+    <div class="section_security"><a href="/policy" target="_blank">Security</a></div>
+    <div class="section_about"><a href="/about" target="_blank">About</a></div>
 </div>
 
 <script>

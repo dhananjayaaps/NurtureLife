@@ -12,8 +12,9 @@ $this->title = 'Reply Symptoms';
 /** @var $model Midwife **/
 /** @var $modelUpdate Midwife **/
 ?>
-<link rel="stylesheet" href="./assets/styles/mother.css">
-<link rel="stylesheet" href="./assets/styles/table.css">
+<!--<link rel="stylesheet" href="./assets/styles/mother.css">-->
+<!--<link rel="stylesheet" href="./assets/styles/table.css">-->
+<link rel="stylesheet" href="./assets/styles/motherTable.css">
 
 <div id="tablePopup" class="popup">
     <div class="popup-content">
@@ -40,26 +41,28 @@ $this->title = 'Reply Symptoms';
     </div>
 </div>
 
-<div class="shadowBox">
-    <h2>Mother Symptoms</h2>
-    <table class="table-data">
-        <thead>
-        <tr>
-            <th>Record Time</th>
-            <th>Mother Name</th>
-            <th>Symptom Description</th>
-            <th>Priority Level</th>
-            <th>Midwife Check</th>
-            <th>Doctor Name</th>
-            <th>Doctor Reply</th>
-            <th>Reply Time</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody id="tableBody">
-        </tbody>
-    </table>
-    <div class="pagination" id="pagination">
+<div class="content">
+    <div class="shadowBox">
+        <h2>Mother Symptoms</h2>
+        <table class="table-data">
+            <thead>
+            <tr>
+                <th>Record Time</th>
+                <th>Mother Name</th>
+                <th>Symptom Description</th>
+                <th>Priority Level</th>
+                <th>Midwife Check</th>
+                <th>Doctor Name</th>
+                <th>Doctor Reply</th>
+                <th>Reply Time</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+        <div class="pagination" id="pagination">
+        </div>
     </div>
 </div>
 
@@ -316,29 +319,32 @@ $this->title = 'Reply Symptoms';
 </script>
 
 <style>
-    /* Popup container */
+    /* General popup styles */
     .popup {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 9999; /* Sit on top */
-        left: 0;
+        position: fixed;
+        /*margin: 20%;*/
         top: 0;
-        width: 60%; /* Full width */
-        height: 80%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
-        margin-top: 200px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* Ensure popups appear on top of other content */
+        /*padding-top: 5%;*/
+        padding-left: 15%;
     }
 
-    /* Popup content */
     .popup-content {
-        background-color: #fefefe;
-        margin: 5% auto; /* 5% from the top and centered */
+        background-color: #fff;
+        border-radius: 8px;
         padding: 20px;
-        border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
-        max-width: 500px; /* Max width */
-        border-radius: 10px;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        position: relative;
+        display: table-cell;
     }
 
     /* Close button */

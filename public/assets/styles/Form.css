@@ -80,7 +80,7 @@
 }
 
 .btn-submit {
-    background-color: #4285f4;
+    background-color: #1F2B6C;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -115,7 +115,7 @@
 }
 
 .shadowBox {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -129,7 +129,7 @@
 
 .form-column {
     float: left;
-    width: 40%;
+    width: 80%;
     box-sizing: border-box;
     padding: 0 10px;
 }
@@ -144,7 +144,7 @@
 
 /* Style for the submit button in login form*/
 .btn-submit {
-    background-color: #4CAF50;
+    background-color: #1F2B6C;
     color: white;
     font-size: 16px;
     padding: 10px 20px;
@@ -155,12 +155,11 @@
 }
 
 .btn-submit:hover {
-    background-color: #126017;
+    background-color: #131941;
     transition: background-color 1s;
 }
 
 .container {
-    margin-top: 60px;
     display: flex;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -172,7 +171,7 @@
     justify-content: center;
     align-items: center;
     width: 40%;
-    height: 40%;
+    height: 80%;
 }
 
 .imageBox img {
@@ -186,7 +185,7 @@
 }
 
 .signup_form_container {
-    width: 100%; /* Ensure the form container takes up full width */
+    width: 100%;
 }
 
 .formRow {
@@ -197,7 +196,7 @@
 }
 
 .formColumn {
-    flex-basis: calc(50% - 10px); /* 50% width with a little space between columns */
+    flex-basis: calc(50% - 10px);
 }
 
 .centeredButton {

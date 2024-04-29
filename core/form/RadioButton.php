@@ -6,12 +6,13 @@ use app\core\Model;
 
 class RadioButton extends BaseField
 {
-    public const string TYPE_RADIO = 'radio';
+    public const TYPE_RADIO = 'radio';
     public string $type;
     public string $name;
     public Model $model;
     public string $attribute;
     private array $options = [];
+    private bool $readOnly = false;
 
     /**
      * @param Model $model
@@ -34,15 +35,16 @@ class RadioButton extends BaseField
         $optionsHtml = '';
 
         foreach ($this->options as $value => $label) {
-            $selected = $this->model->{$this->attribute} == $value ? 'selected' : '';
-            $optionsHtml .= sprintf('<option value="%s" %s>%s</option>', $value, $selected, $label);
+            $checked = $this->model->{$this->attribute} == $value ? 'checked' : '';
+            $optionsHtml .= sprintf(
+                '<div><input type="radio" name="%s" value="%s" %s>%s</div>',
+                $this->attribute,
+                $value,
+                $checked,
+                $label
+            );
         }
 
-        return sprintf('<select name="%s" class="form-control %s" %s>%s</select>',
-            $this->attribute,
-            $this->model->hasError($this->attribute) ? ' is-invalid' : '',
-            $this->readOnly ? 'readonly' : '',
-            $optionsHtml
-        );
+        return $optionsHtml;
     }
 }

@@ -53,6 +53,7 @@ abstract class Model
                     $tableName = $classname::tableName();
                     $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = :attr");
                     $statement->bindValue(":attr", $value);
+                    return ($statement);
                     $statement->execute();
                     $statement->fetch();
                     $record = $statement->fetchObject();

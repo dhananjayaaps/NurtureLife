@@ -4,14 +4,16 @@
 use app\core\Application;
 use app\core\form\Form;
 use app\core\Model;
+use app\models\ChildHeight;
+use app\models\ChildWeight;
 use app\models\Fetalkick;
 use app\models\WeightGainChart;
 
 $this->title = 'Weight Gain Chart';
 ?>
 <?php
-/** @var $model WeightGainChart **/
-/** @var $modelUpdate WeightGainChart **/
+/** @var $model ChildHeight **/
+/** @var $modelUpdate ChildHeight **/
 //?>
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
@@ -20,33 +22,31 @@ $this->title = 'Weight Gain Chart';
 
 <div>
     <div class="lineChart">
-        Total Kicks: 450
+        Height(m)
         <canvas id="lineChart" ></canvas>
     </div>
 </div>
 <div class="column-container"  >
     <div id="Add_section" class="right-content">
         <div class="shadowBox">
-            <h2>Add a Record <br/><br/></h2>
+            <h2>Child Height Monthly Record <br/><br/></h2>
             <?php $form = Form::begin('', "post")?>
-            <?php echo $form->field($model, 'weight', 'Weight ')?>
+            <?php echo $form->field($model, 'value_of_height', 'Height(m) ')?>
             <button type="submit" class="btn-submit">Submit</button>
             <?php echo Form::end()?>
         </div>
-
-
     </div>
     <div id="Update_section" class="left-content">
         <div class="shadowBox">
             <div>
                 <br>
                 <form>
-                    <h2 style="color: rgb(0, 15, 128);">Update Weight<br/><br/></h2>
+                    <h2 style="color: rgb(0, 15, 128);">Update Height<br/><br/></h2>
                     <br>
 
                     <div class="form-group">
-                        <label for="UpdateKickCount">Correct Weight</label>
-                        <input type="text" id="UpdateKickCount" name="UpdateKickCount" value=""  class="form-control ">
+                        <label for="UpdateHeightCount">Correct Height</label>
+                        <input type="text" id="UpdateHeightCount" name="UpdateHeightCount" value=""  class="form-control ">
                         <div class="invalid-feedback">
                         </div>
                     </div>
@@ -74,7 +74,7 @@ $this->title = 'Weight Gain Chart';
 
 <script>
     // Sample data received from the database
-    var dbData = <?php echo $model->getWeight() ?>;
+    var dbData = <?php echo $model->getHeight() ?>;
 
 
     // Extracting dates and counts from the database data
@@ -85,7 +85,7 @@ $this->title = 'Weight Gain Chart';
     var data = {
         labels: dates,
         datasets: [{
-            label: "Daily Counts",
+            label: "Monthly Count ",
             borderColor: "#1F2B6C",
             backgroundColor: "rgba(75, 192, 192, 0.2)",
             data: counts
@@ -115,7 +115,7 @@ $this->title = 'Weight Gain Chart';
 
     <?php
     // PHP code to fetch the value
-    $fk =  new WeightGainChart();
+    $fk =  new ChildHeight();
     $new= $fk->isNew();
 
     ?>
@@ -161,14 +161,14 @@ $this->title = 'Weight Gain Chart';
     document.getElementById('updateButton').addEventListener('click', function(e) {
         e.preventDefault();
 
-        const KickCount = document.querySelector('input[name="UpdateKickCount"]').value;
+        const value_of_height = document.querySelector('input[name="UpdateHeight"]').value;
 
         const formData = new FormData();
-        formData.append('KickCount', KickCount);
-        console.log(KickCount)
+        formData.append('value_of_height', value_of_height);
+        console.log(value_of_height)
         // formData.append('MotherId', Mid);
 
-        const url = '/fetalkickUpdate';
+        const url = '/ChildHeightUpdate';
 
         fetch(url, {
             method: 'POST',

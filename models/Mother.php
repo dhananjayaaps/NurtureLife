@@ -17,16 +17,17 @@ class Mother extends DbModel
     public string $DeliveryDate = '';
     public string $Occupation = '';
     public string $Allergies = '';
-    public string $Consanguinity = '';
-    public string $history_subfertility = '';
-    public int $Hypertension = 1;
-    public int $diabetes_mellitus = 1;
-    public int $rubella_immunization = 1;
+    public string $Consanguinity = '1';
+    public string $history_subfertility = '1';
+    public string $Hypertension = '1';
+    public string $diabetes_mellitus = '1';
+    public string $rubella_immunization = '1';
     public string $emergencyNumber = '';
     public string $nic = '';
     public string $clinic_id = '';
     public int $status = 1;
     public int $MotherStatus = 1;
+    public string $location= '';
 
     public function rules(): array
     {
@@ -35,7 +36,12 @@ class Mother extends DbModel
             'MaritalStatus' => [self::RULE_REQUIRED],
             'BloodGroup' => [self::RULE_REQUIRED],
             'rubella_immunization' => [self::RULE_REQUIRED],
-            'emergencyNumber' => [self::RULE_REQUIRED]
+            'emergencyNumber' => [self::RULE_REQUIRED],
+            'Consanguinity' => [self::RULE_REQUIRED],
+            'history_subfertility' => [self::RULE_REQUIRED],
+            'Hypertension' => [self::RULE_REQUIRED],
+            'diabetes_mellitus' => [self::RULE_REQUIRED],
+            'location' => [self::RULE_REQUIRED],
         ];
     }
 
@@ -67,7 +73,9 @@ class Mother extends DbModel
             'emergencyNumber',
             'user_id',
             'clinic_id',
-            'MotherStatus'
+            'MotherStatus',
+            'DeliveryDate',
+            'location'
         ];
     }
 
@@ -80,11 +88,6 @@ class Mother extends DbModel
             return false;
         }
         else{
-//            $exitUser = (new Mother())->getUser($ValidateUser->getId());
-//            if($exitUser){
-//                $this->addError('nic', 'That user is already a Mother');
-//                return false;
-//            }
 
             $exitPHM = (new Midwife())->findOne(Midwife::class, ["user_id" => Application::$app->user->getId()]);
             if(!$exitPHM){
@@ -124,6 +127,7 @@ class Mother extends DbModel
                 'Status' => $StatusNames[(int)$mother->MotherStatus],
                 'DeliveryDate' => $mother->DeliveryDate,
                 'PHM_id' => $mother->PHM_ID,
+//                'PHM_Name' => (new Midwife())->findOne(self::class, ['PHM_id'=> $mother->PHM_ID ] )->firstname . " " . (new Midwife())->findOne(self::class, ['PHM_id'=> $mother->PHM_ID ] )->lastname
             ];
         }
         return json_encode($data);

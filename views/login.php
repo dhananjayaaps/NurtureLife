@@ -15,6 +15,9 @@ $this->title = 'Login';
     .container{
         align-items: center;
         gap: 50px;
+        width: 70vw;
+        margin: 50px 50px 50px 200px;
+        justify-content: space-between;
     }
 
     .formContent{
@@ -22,10 +25,9 @@ $this->title = 'Login';
         height: 100%;
     }
 </style>
-
 <div class="container">
     <div class="imageBox">
-        <img src="https://www.cidrap.umn.edu/sites/default/files/styles/article_detail/public/article/Pregnant%20woman%20with%20young%20child.jpg" alt="Image">
+        <img src="assets/images/mother_baby.jpeg" alt="Image">
     </div>
 
     <div class="formContent">

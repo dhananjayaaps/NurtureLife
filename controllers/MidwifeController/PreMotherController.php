@@ -5,7 +5,9 @@ namespace app\controllers\MidwifeController;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\view;
 use app\models\Mother;
+use app\models\PreMotherDetails;
 
 class PreMotherController extends Controller
 {
@@ -21,7 +23,7 @@ class PreMotherController extends Controller
             if ($mother->validate() && $mother->save()) {
                 var_dump($mother);
                 Application::$app->session->setFlash('success', 'Added a new Midwife');
-                Application::$app->response->redirect('midwife/preMotherForm');
+                Application::$app->response->redirect('midwife/Mother');
                 exit;
             }
         }
@@ -35,7 +37,7 @@ class PreMotherController extends Controller
         ]);
     }
 
-    public function PreMotherHistoryForm1(Request $request): array|false|string
+    public function preMotherHistoryForm1(Request $request): array|false|string
     {
         $this->layout = 'doctor';
         $mother = new Mother();
@@ -49,7 +51,7 @@ class PreMotherController extends Controller
             if ($mother->validate() && $mother->save()) {
                 var_dump($mother);
                 Application::$app->session->setFlash('success', 'Added a new Midwife');
-                Application::$app->response->redirect('midwife/PreMotherHistoryForm1');
+                Application::$app->response->redirect('midwife/preMotherHistoryForm1');
                 exit;
             }
         }
@@ -58,7 +60,7 @@ class PreMotherController extends Controller
             $this->layout = 'doctor';
         }
 
-        return $this->render('midwife/PreMotherHistoryForm1', [
+        return $this->render('midwife/preMotherHistoryForm1', [
             'model' => $mother, "modelUpdate" => $mother2
         ]);
     }
@@ -144,6 +146,50 @@ class PreMotherController extends Controller
         return $this->render('midwife/personalInformationForm', [
             'model' => $mother, "modelUpdate" => $mother2
         ]);
+    }
+
+    public function ChildWeight(Request $request): array|false|string
+    {
+        $childweight = new ChildWeight();
+        $childweight2 = new ChildWeight();
+        if ($request->isPost()) {
+
+            $this->setLayout('midwife');
+            $childweight->loadData($request->getBody());
+
+            if ($childweight->validate() && $childweight->save()) {
+                Application::$app->session->setFlash('success', 'Recorded the child weight');
+                Application::$app->response->redirect('/childweight');
+                exit;
+            }
+        } else if ($request->isGet()) {
+            $this->layout = 'midwife';
+
+        }
+//        var_dump(Application::$app->user->getId());
+
+        return $this->render('midwife/childweight', [
+            'model' => $childweight, "modelUpdate" => $childweight2
+        ]);
+    }
+
+    public function ChildWeightUpdate(Request $request): false|string
+    {
+        $childweight = (new ChildWeight())->findOneByChildIdAndDate(ChildWeight::class);
+
+        $this->setLayout('midwife');
+        $childweight->loadData($request->getBody());
+        $childweight->validate();
+        if ($childweight->validate()) {
+            $childweight->update();
+            header('Content-Type: application/json');
+            http_response_code(200);
+            return json_encode(['message' => 'Data updated successfully']);
+        } else {
+            header('Content-Type: application/json');
+            http_response_code(400);
+            return json_encode(['message' => 'Validation failed', 'errors' => $childweight->getErrorMessages()]);
+        }
     }
 
 

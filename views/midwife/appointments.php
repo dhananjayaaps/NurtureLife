@@ -1,32 +1,55 @@
-<link rel="stylesheet" href="./assets/styles/table.css">
-<link rel="stylesheet" href="./assets/styles/admin.css">
+<?php
+/** @var $this app\core\view */
 
-<div id="myPopup" class="popup">
-    <div class="popup-content">
-        <h1 style="color:green;">Mother Diagnostic Card</h1>
-        <label for="">Diagnosis</label>
-        <textarea name="" id="" cols="30" rows="10" style="width: 100%; height: 80px;"></textarea>
-        <label for="">Recomondations</label>
-        <textarea name="" id="" cols="30" rows="10" style="width: 100%; height: 80px;"></textarea>
-        <label for="">Tests to be done</label>
-        <textarea name="" id="" cols="30" rows="10" style="width: 100%; height: 80px;"></textarea>
-        <label for="">Prescription</label>
-        <textarea name="" id="" cols="30" rows="10" style="width: 100%; height: 80px;"></textarea>
-        <div class="buttonRow">
-            <button id="closePopup" class="btn-submit">
-                Save
-            </button>
-            <button id="closePopup" class="btn-submit" style="background-color: orange;">
-                Prioratize
-            </button>
-            <button id="closePopup" class="btn-submit" style="background-color: brown;">
-                Close
-            </button>
-        </div>
-    </div>
-</div>
+use app\core\Application;
+use app\core\form\Form;
+use app\models\Appointments;
+
+/** @var $appointmentModel Appointments **/
+
+$this->title = 'Manage Appointments';
+?>
+
+<style>
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        height: 90%;
+        width: 100%;
+        margin-top: 10px;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .shadowBox {
+        height: 80vh;
+    }
+
+    .btn-cancel{
+        background-color: brown;
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        position: relative;
+    }
+</style>
+
+<link rel="stylesheet" href="./assets/styles/table.css">
+<link rel="stylesheet" href="./assets/styles/form.css">
+
+<h1>Manage My Appointments</h1>
 
 <div id="myPopupRemove" class="popup">
+    <div class="selectedRow" id="selectedRow" style="display: none"></div>
     <div class="popup-content">
         Do You Really Need to Remove This? That can't be undone
         <div class="buttonRow" style="display: flex; flex-direction: row; gap: 10px;">
@@ -40,19 +63,18 @@
     </div>
 </div>
 
-<div class="clinics content">
+<div class="doctors content">
     <div class="shadowBox">
         <div class="left-content">
-            <div class="search-container">
-                <input type="text" placeholder="Search Mothers...">
-                <button type="submit">Search</button>
-            </div>
             <table class="table-data">
                 <thead>
                 <tr>
-                    <th>Mother ID</th>
-                    <th>Name</th>
-                    <th>Delevery Date</th>
+                    <th><input type="checkbox" id="selectAll"></th>
+                    <th>Appointment ID</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Patient Name</th>
+                    <th>Appointment Type</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -65,35 +87,33 @@
             </div>
         </div>
     </div>
-    </button>
-    <div class="right-content">
-        <div class="shadowBox">
-            <h2>Add a New Appoinment <br/><br/></h2>
 
-            <form class="form-group" action="#" method="post">
-                <label for="name">Mother ID:</label>
-                <input type="number" id="name" name="name" placeholder="Enter Mother ID" class = 'form-control' required>
-                <br><br>
+    <div class="shadowBox">
+        <div class="Right-content">
+            <h2>New Appointment Details</h2>
+            <br>
+            <?php $form = Form::begin('', "post") ?>
+            <div style="">
+                <?php echo $form->field($appointmentModel, 'AppointmentId', 'Appointment Ids') ?>
+            </div>
+            <?php echo $form->dateField($appointmentModel, 'AppointDate', 'Appointment Date') ?>
+            <?php echo $form->TimeField($appointmentModel, 'time', 'Appointment Time') ?>
+            <?php echo $form->field($appointmentModel, 'AppointRemarks', 'Remarks') ?>
 
-                <label for="email">Date:</label>
-                <input type="date" id="email" name="email" placeholder="today" class = 'form-control' required>
-                <br><br>
+            <button type="submit" class="btn-submit">Update</button>
+            <button type="button" class="btn-cancel" onclick="confirmDelete()">Cancel Appointments</button>
 
-                <input type="submit" class="btn-submit" value="Submit">
-            </form>
+            <?php echo Form::end() ?>
         </div>
     </div>
-
 </div>
 
 <script>
-    var data = [
-        { MotherId: 1, name: 'K.K. Vimala', DileveryDate: "2024/02/06", GnDivision: "Maharagama"},
-        { MotherId: 2, name: 'M.K Sumana', DileveryDate: "2024/02/06", GnDivision: "Maharagama"},
-    ];
-
-    var itemsPerPage = 10;
+    var data = <?php echo (new Appointments())->getAllAppointmentsForMidwife() ?>;
+    var itemsPerPage = 3;
     var currentPage = 1;
+
+    var selectedAppointmentIds = [];
 
     function displayTableData() {
         var startIndex = (currentPage - 1) * itemsPerPage;
@@ -105,17 +125,18 @@
             var row = data[i];
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
-                    <td>${row.MotherId}</td>
-                    <td>${row.name}</td>
-                    <td>${row.DileveryDate}</td>
-                    <td class="action-buttons">
-                        <button id="showPopUp" class="action-button update-button">Add Note</button>
-                        <button id="myPopUpRemove" class="action-button remove-button">Remove</button>
-                    </td>
-                `;
+                <td><input type="checkbox" class="tickCheckbox" data-appointmentid="${row.AppointmentId}"></td>
+                <td>${row.AppointmentId}</td>
+                <td>${row.AppointDate}</td>
+                <td>${row.time}</td>
+                <td>${row.Name}</td>
+                <td>${row.AppointType}</td>
+                <td><button class="action-button"><a href="/motherProfile?id=${row.MotherId}">View Mother</a></button></td>
+               `;
             tableBody.appendChild(newRow);
         }
     }
+
 
     function displayPagination() {
         var totalPages = Math.ceil(data.length / itemsPerPage);
@@ -135,57 +156,46 @@
         }
     }
 
-    displayTableData();
-    displayPagination();
-</script>
+    document.addEventListener("DOMContentLoaded", function () {
+        displayTableData();
+        displayPagination();
+        attachListeners();
+    });
 
-<script>
-    var myPopup = document.getElementById('myPopup');
-    var closeButton = document.getElementById('closePopup');
-    var popupButtonContainer = document.querySelector('.clinics.content');
-
-    popupButtonContainer.addEventListener("click", function (event) {
-        if (event.target.id === 'showPopUp') {
-            myPopup.classList.add("show");
+    function updateSelectedAppointments() {
+        selectedAppointmentIds = [];
+        var checkboxes = document.getElementsByClassName("tickCheckbox");
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                selectedAppointmentIds.push(parseInt(checkboxes[i].getAttribute('data-appointmentid')));
+            }
         }
-    });
-
-    closeButton.addEventListener("click", function () {
-        myPopup.classList.remove("show");
-    });
-
-    window.addEventListener("click", function (event) {
-        if (event.target == myPopup) {
-            myPopup.classList.remove("show");
-        }
-    });
-</script>
-
-<script>
-    // Function to handle the removal confirmation popup
-    function showRemovePopup() {
-        var myPopupRemove = document.getElementById('myPopupRemove');
-        myPopupRemove.classList.add("show");
+        document.getElementsByName('AppointmentId')[0].value = selectedAppointmentIds.join(',');
     }
 
-    // Event listener for the "Remove" button
-    var popupButtonContainer = document.querySelector('.clinics.content');
-    popupButtonContainer.addEventListener("click", function (event) {
-        if (event.target.classList.contains('remove-button')) {
-            showRemovePopup();
-        }
-    });
+    function attachListeners() {
+        var paginationButtons = document.querySelectorAll('.page-button');
+        paginationButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                currentPage = parseInt(this.textContent);
+                updatePagination();
+            });
+        });
 
-    var closeButtonRemove = document.getElementById('closePopupRemove');
-    closeButtonRemove.addEventListener("click", function () {
-        var myPopupRemove = document.getElementById('myPopupRemove');
-        myPopupRemove.classList.remove("show");
-    });
+        document.getElementById("selectAll").addEventListener("change", function () {
+            var checkboxes = document.getElementsByClassName("tickCheckbox");
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = this.checked;
+            }
+            updateSelectedAppointments();
+        });
 
-    window.addEventListener("click", function (event) {
-        var myPopupRemove = document.getElementById('myPopupRemove');
-        if (event.target == myPopupRemove) {
-            myPopupRemove.classList.remove("show");
+        var checkboxes = document.getElementsByClassName("tickCheckbox");
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].addEventListener('change', function () {
+                updateSelectedAppointments();
+            });
         }
-    });
+    }
+
 </script>

@@ -15,23 +15,20 @@ $this->title = 'Symptoms Reporting';
 /** @var $modelUpdate MotherSymptoms **/
 ?>
 
-<link rel="stylesheet" href="./assets/styles/Form.css">
-<link rel="stylesheet" href="./assets/styles/table.css">
-<link rel="stylesheet" href="./assets/styles/mother.css">
+<!--<link rel="stylesheet" href="./assets/styles/Form.css">-->
+<!--<link rel="stylesheet" href="./assets/styles/table.css">-->
+<link rel="stylesheet" href="./assets/styles/motherTable.css">
 
     <div class="popup" id="popupAdd">
-        <div class="shadowBox">
+        <div class="popup-content">
             <h2>Report Symptoms</h2>
-
-
             <div class="form-container">
-
                 <div class="form-column">
                     <?php $form = Form::begin('', "post")?>
                     <?php echo $form->field($model, 'symptomDescription', 'Symptoms Description');
 
 
-                    $priorityField = new Dropdown($model, 'priorityLvl', 'Priority Level');
+                    $priorityField = new Dropdown($model, 'priorityLvl', 'Priority Level: How critical your symptom is ?');
                     $priorityField->setOptions([
                         'high' => 'High',
                         'normal' => 'Normal',
@@ -73,7 +70,7 @@ $this->title = 'Symptoms Reporting';
     </div>
 
     <div id="myPopupRemove" class="popup">
-        <div class="selectedRow" id="selectedRow" style="display: none"></div>
+        <div class="selectedRow" id="selectedRow" ></div>
         <div class="popup-content">
             Do You Really Need to Remove This? That can't be undone
             <div class="buttonRow" style="display: flex; flex-direction: row; gap: 10px;">
@@ -87,10 +84,10 @@ $this->title = 'Symptoms Reporting';
 
 
 
-    <div class="Midwifes content">
-        <button id="open-popup" class="report-btn">Report Symptoms</button>
+    <div class="content">
         <div class="shadowBox">
             <h2>Mother Symptoms</h2>
+            <button id="open-popup" class="report-btn">Report Symptoms</button>
             <table class="table-data">
                 <thead>
                 <tr>
@@ -381,9 +378,10 @@ $this->title = 'Symptoms Reporting';
         // Function to open the delete popup
         function openDeletePopup(symptomId) {
             selectedRowId = symptomId;
-            document.getElementById('myPopupRemove').style.display = 'block';
+
             // Optionally, display the selected row inside the delete popup
-            document.getElementById('selectedRow').textContent = `Selected Row ID: ${symptomId}`;
+            document.getElementById('myPopupRemove').style.display = 'block';
+            document.getElementById('selectedRow').innerHTML = `Selected Row ID: ${symptomId}`;
         }
 
         // Add event listener for delete button in the table
@@ -449,82 +447,103 @@ $this->title = 'Symptoms Reporting';
 </script>
 
 <style>
-
-    /*.content{*/
-    /*    margin-top: 100px;*/
-    /*}*/
-
-    .low-priority {
-        background-color: #fff3cd; /* Light yellow */
+    /* General popup styles */
+    .popup {
+        position: fixed;
+        /*margin: 20%;*/
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* Ensure popups appear on top of other content */
+        padding-top: 15%;
+        padding-left: 35%;
     }
 
-    .medium-priority {
-        background-color: #ffc107; /* Orange */
+    .popup-content {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        position: relative;
+        display: flex;
     }
 
-    .high-priority {
-        background-color: #f8d7da; /* Light red */
+    /* Close button styles */
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 24px;
+        color: #888;
     }
-    /* Report Symptoms button */
-    .report-btn {
-        background-color: green; /* Green color for the Report Symptoms button */
+
+    .close:hover {
+        color: #555;
+    }
+
+    /* Form container styles */
+    .form-container {
+        margin-top: 20px;
+    }
+
+    .form-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Form input styles */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* Button styles */
+    .btn-submit {
+        background-color: #007bff;
         color: #fff;
-        padding: 8px 16px;
         border: none;
-        border-radius: 4px;
+        padding: 10px 20px;
+        border-radius: 5px;
         cursor: pointer;
-        transition: background-color 0.3s;
+        font-size: 16px;
     }
 
-    .report-btn:hover {
-        background-color: #5cb85c; /* Darker green on hover */
+    .btn-submit:hover {
+        background-color: #0056b3;
     }
 
-    /* Edit button */
-    .edit-btn {
-        background-color: yellow; /* Yellow color for edit button */
-        color: #000000;
-        padding: 8px 16px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
+    /* Additional styles for specific popups */
+    #myPopupRemove .buttonRow {
+        justify-content: flex-end;
     }
 
-    .edit-btn:hover {
-        background-color: #f0ad4e; /* Darker yellow on hover */
+    /* Adjustments for smaller screens */
+    @media (max-width: 600px) {
+        .popup-content {
+            padding: 10px;
+        }
     }
-
-    /* Delete button */
-    .delete-btn {
-        background-color: red; /* Red color for delete button */
-        color: #fff;
-        padding: 8px 16px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .delete-btn:hover {
-        background-color: #d9534f; /* Darker red on hover */
-    }
-
-    /* View button */
-    .view-btn {
-        background-color: blue; /* Blue color for view button */
-        color: #fff;
-        padding: 8px 16px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .view-btn:hover {
-        background-color: #286090; /* Darker blue on hover */
-    }
-
-
 
 </style>

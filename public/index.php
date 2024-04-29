@@ -5,17 +5,23 @@ require_once __DIR__ .'/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
+use app\controllers\AdminController\AdminController;
 use app\controllers\AdminController\ClinicsController;
 use app\controllers\AdminController\DoctorController;
 use app\controllers\AdminController\MidwifeController;
+use app\controllers\AdminController\UsersController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
+use app\controllers\DoctorController\PostMotherController;
+use app\controllers\FeedbackController;
 use app\controllers\MidwifeController\AppointmentController;
-use app\controllers\MidwifeController\PreMotherController;
-use app\controllers\MidwifeController\weightGainChartController;
-use app\controllers\MotherController\FetalkickController;
 use app\controllers\MidwifeController\ChildController;
+use app\controllers\MidwifeController\PreMotherController;
 use app\controllers\MotherController;
+use app\controllers\MotherController\FetalkickController;
+use app\controllers\PostController;
+use app\controllers\MotherController\PreMotherCareController;
+use app\controllers\PostRequestController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -34,8 +40,8 @@ $app = new Application(dirname(__DIR__), $config);
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/about', [SiteController::class, 'about']);
 
-$app->router->get('/contact', [SiteController::class, 'contact']);
-$app->router->post('/contact', [SiteController::class, 'handleContact']);
+$app->router->get('/contact', [FeedbackController::class, 'feedbacks']);
+$app->router->post('/contact', [FeedbackController::class, 'handleContact']);
 
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
@@ -68,6 +74,11 @@ $app->router->get('/getMidwifeDetails', [MidwifeController::class, 'getMidwifeDe
 $app->router->get('/reports', [ClinicsController::class, 'reports']);
 $app->router->post('/reports', [ClinicsController::class, 'reports']);
 
+$app->router->get('/users', [UsersController::class, 'users']);
+$app->router->post('/users', [UsersController::class, 'users']);
+
+$app->router->post('/userUpdate', [UsersController::class, 'userUpdate']);
+
 $app->router->post('/changeRole', [\app\controllers\SiteController::class, 'changeRole']);
 
 $app->router->get('/preMotherForm', [PreMotherController::class, 'PreMother']);
@@ -84,8 +95,6 @@ $app->router->get('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkick', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalkickUpdate', [FetalkickController::class, 'fetalkickUpdate']);
 
-
-$app->router->get('/appointments', [SiteController::class, 'appointments']);
 $app->router->get('/doctorClinics', [SiteController::class, 'doctorClinics']);
 $app->router->get('/doctorMothers', [SiteController::class, 'doctorMothers']);
 
@@ -109,6 +118,7 @@ $app->router->post('/ManageAppointments', [AppointmentController::class, 'Manage
 $app->router->get('/mothers', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/appointments', [AppoinmetHandler::class, 'appointments']);
+$app->router->post('/appointments', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/about', [SiteController::class, 'about']);
 //$app->router->get('/preMotherTest', [SiteController::class, 'preMotherTest']);
@@ -121,17 +131,50 @@ $app->router->get('/checkSymptoms', [SiteController::class, 'midwifeViewSymptoms
 $app->router->get('/immunizationCard', [ChildController::class, 'immunizationCard']);
 $app->router->post('/immunizationCard', [ChildController::class, 'immunizationCard']);
 
-$app->router->get('/preMotherForm1', [ChildController::class, 'preMotherForm1']);
+$app->router->get('/  ', [ChildController::class, 'preMotherForm1']);
 $app->router->post('/preMotherForm1', [ChildController::class, 'preMotherForm1']);
 
 $app->router->get('/fetalKicks', [FetalkickController::class, 'Fetalkick']);
 $app->router->post('/fetalKicks', [FetalkickController::class, 'fetalkickUpdate']);
 
+$app->router->get('/preMotherHistoryForm1', [PreMotherController::class, 'preMotherHistoryForm1']);
+$app->router->post('/preMotherHistoryForm1', [PreMotherController::class, 'preMotherHistoryForm1']);
+
+$app->router->get('/preMotherHistoryForm2', [PreMotherController::class, 'preMotherHistoryForm2']);
+$app->router->post('/preMotherHistoryForm2', [PreMotherController::class, 'preMotherHistoryForm2']);
+
+$app->router->get('/preMotherHistoryForm3', [PreMotherController::class, 'preMotherHistoryForm3']);
+$app->router->post('/preMotherHistoryForm3', [PreMotherController::class, 'preMotherHistoryForm3']);
+
+$app->router->get('/personalInformationForm', [PreMotherController::class, 'personalInformationForm']);
+$app->router->post('/personalInformationForm', [PreMotherController::class, 'personalInformationForm']);
+
 $app->router->get('/verify-email', [AuthController::class, 'verifyEmail']);
+$app->router->get('/verify', [AuthController::class, 'verifyEmail']);
 $app->router->get('/verify-phone', [AuthController::class, 'verifyPhone']);
 
 $app->router->get('/motherProfile', [MotherController\MotherProfile::class, 'motherProfile']);
 
 $app->router->get('/childProfile', [ChildController::class, 'childProfile']);
+
+$app->router->get('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
+$app->router->post('/postMotherForm1', [PostMotherController::class, 'postMotherForm1']);
+
+$app->router->get('/posts', [PostController::class, 'posts']);
+$app->router->post('/posts', [PostController::class, 'posts']);
+$app->router->post('/postsUpdate', [PostController::class, 'postsUpdate']);
+$app->router->post('/postDelete', [PostController::class, 'postDelete']);
+$app->router->get('/getPostDetails', [PostController::class, 'getPostDetails']);
+
+$app->router->get('/policy', [SiteController::class, 'policy']);
+$app->router->post('/policy', [SiteController::class, 'policy']);
+
+$app->router->get('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
+$app->router->post('/preMotherCareForm2', [PreMotherCareController::class, 'preMotherCareForm2']);
+
+$app->router->get('/ManageAdmins', [AdminController::class, 'Admin']);
+$app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);
+
+$app->router->post('/cancel-appointment', [AppoinmetHandler::class, 'cancelAppointment']);
 
 $app->run();

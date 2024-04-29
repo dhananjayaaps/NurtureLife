@@ -169,8 +169,7 @@ class m0001_initial
             MotherId  int                                  not null,
             Time      datetime default current_timestamp() not null,
             KickCount int(3)                               not null
-        );"
-        ;
+        );";
 
         $db->pdo->exec($SQL10);
 
@@ -179,8 +178,7 @@ class m0001_initial
             MotherId  int                                  not null,
             Date      date default current_timestamp() not null,
             Weight int(3)                               not null
-        );"
-        ;
+        );";
 
         $db->pdo->exec($SQL10);
 
@@ -191,10 +189,89 @@ class m0001_initial
         `replyTime` DATETIME NULL , PRIMARY KEY (`symptomRecNo`)) ENGINE = InnoDB;";
 
         $db->pdo->exec($SQL13);
+
+
+        $sql = "CREATE TABLE IF NOT EXISTS post (
+                id INT NOT NULL AUTO_INCREMENT,
+                user_id INT,
+                description TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                status TINYINT(1) DEFAULT 1,
+                PRIMARY KEY (id),
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            ) ENGINE=INNODB;
+            ";
+        $db->pdo->exec($sql);
+
+//        $sql = "ALTER TABLE post ADD topic TEXT AFTER user_id;";
+//        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS post_request (
+                id INT NOT NULL AUTO_INCREMENT,
+                post_id INT,
+                provider_id INT,
+                seeker_id INT,
+                description TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                status TINYINT(1) DEFAULT 0,
+                PRIMARY KEY (id),
+                FOREIGN KEY (provider_id) REFERENCES users(id),
+                FOREIGN KEY (seeker_id) REFERENCES users(id),
+                FOREIGN KEY (post_id) REFERENCES post(id)
+            ) ENGINE=INNODB;
+            ";
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS feedback (
+                id INT NOT NULL AUTO_INCREMENT,
+                email VARCHAR(255),
+                feedback TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id)
+            ) ENGINE=INNODB;
+            ";
+        $db->pdo->exec($sql);
+        $sql = "CREATE TABLE IF NOT EXISTS emergency (
+                id INT NOT NULL AUTO_INCREMENT,
+                user_id INT,
+                pressed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id),
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            ) ENGINE=INNODB;
+            ";
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS emailVerifications (
+                id INT NOT NULL AUTO_INCREMENT,
+                email VARCHAR(255),
+                token VARCHAR(255),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id)
+            ) ENGINE=INNODB;
+            ";
+
+        $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS passwordResets (
+                id INT NOT NULL AUTO_INCREMENT,
+                email VARCHAR(255),
+                token VARCHAR(255),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id)
+            ) ENGINE=INNODB;
+            ";
     }
+        $db->pdo->exec($sql);
 
-
-
+        $sql = "CREATE TABLE IF NOT EXISTS admins (
+                admin_id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT,
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            ) ENGINE=INNODB;
+            ";
+    }
 
     public function down()
     {

@@ -1,0 +1,179 @@
+/* Table styling */
+.table-data {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table-data th,
+.table-data td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+/* Header row */
+.table-data thead th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/*!* Alternating row colors for better readability *!*/
+/*.table-data tbody tr:nth-child(even) {*/
+/*    background-color: #f9f9f9;*/
+/*}*/
+
+/* Hover effect for rows */
+.table-data tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Button styling */
+.report-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+.report-btn:hover {
+    background-color: #5cb85c;
+}
+.edit-btn {
+    background-color: yellow; /* Yellow color for edit button */
+    color: #000000;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 2px;
+}
+
+.edit-btn:hover {
+    background-color: #f0ad4e; /* Darker yellow on hover */
+}
+
+/* Delete button */
+.delete-btn {
+    background-color: red; /* Red color for delete button */
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 2px;
+}
+
+
+.delete-btn:hover {
+    background-color: #d9534f; /* Darker red on hover */
+}
+
+/* View button */
+.view-btn {
+    background-color: blue; /* Blue color for view button */
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 2px;
+}
+
+.view-btn:hover {
+    background-color: #286090; /* Darker blue on hover */
+}
+
+.hist-btn {
+    background-color: #c801fd; /* Green */
+}
+
+.checked-btn {
+    background-color: #b2d93c; /* Red */
+}
+
+.view-btn, .hist-btn, .checked-btn {
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 2px;
+}
+
+.view-btn:hover,
+.hist-btn:hover,
+.checked-btn:hover {
+    opacity: 0.8; /* Reduce opacity on hover */
+}
+/* Button styles */
+.reply-btn {
+    background-color: #abfd31; /* Purple */
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 2px;
+}
+
+.reply-btn:hover {
+    opacity: 0.8; /* Reduce opacity on hover */
+}
+
+
+.low-priority {
+    background-color: #fbcff3; /* Light yellow */
+}
+
+.medium-priority {
+    background-color: #fcacee; /* Orange */
+}
+
+.high-priority {
+    background-color: #fc79e5; /* Light red */
+}
+
+/* Shadow box */
+.shadowBox {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Pagination styling */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+.pagination button.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
