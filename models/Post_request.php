@@ -62,9 +62,7 @@ class Post_request extends DbModel
                 'status' => $post_request->status
             ];
         }
-        usort($data, function ($item1, $item2) {
-            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
-        });
+        return ($data);
     }
     public function getRequests(): string
     {
@@ -110,9 +108,7 @@ class Post_request extends DbModel
                 'role' => $roleMap[$post_request->role_id-1],
             ];
         }
-        usort($data, function ($item1, $item2) {
-            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
-        });
+        return json_encode($data);
     }
     public function getPostRequestById($RequestId): string
     {

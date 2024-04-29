@@ -103,7 +103,7 @@ $this->title = 'Midwife - Posts';
 </div>
 
 <div class="clinics content" style="display: flex; flex-direction: row; margin: 0 10px 10px 10px; ">
-<!--    posts table-->
+    <!--    posts table-->
     <div class="shadowBox" style="max-width: 700px; height: fit-content;">
         <div class="left-content" style="margin-left: 20px">
             <div class="search-container">
@@ -129,7 +129,7 @@ $this->title = 'Midwife - Posts';
             </div>
         </div>
     </div>
-<!--    create post form-->
+    <!--    create post form-->
     <div class="shadowBox" style="height: 445px">
         <div class="right-content" style="margin-top: 10px">
             <h2>Create a new post <br/><br/></h2>
@@ -140,46 +140,46 @@ $this->title = 'Midwife - Posts';
             <?php echo Form::end()?>
         </div>
     </div>
-<!--    post request container-->
-        <div class="notification-bar" style="height: 400px; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-            <div class="notifications">
-                <span style="font-size: 20px; font-weight: bold;text-align: center">Post Replies</span>
-            </div>
-            <div class="scrollable-container" style="max-height: 500px; overflow-y: auto">
-                <?php $post_requests= json_decode($modelRequest->getRequests());
-                foreach ($post_requests as $post_request):?>
-                    <div class="myBox" id="myBox" style=" height: 250px">
-                        <div class="notification emergency">
-                            <div class="message-box" style="; height: fit-content">
-                                <div class="title"><?=$post_request->vol_name?> &#9900 Volunteer</div>
-                                <div class="notification-content">
-                                    <h3>Post</h3>
-                                    <b><?=$post_request->topic." - ".$post_request->description?></b>
+    <!--    post request container-->
+    <div class="notification-bar" style="height: 400px; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+        <div class="notifications">
+            <span style="font-size: 20px; font-weight: bold;text-align: center">Post Replies</span>
+        </div>
+        <div class="scrollable-container" style="max-height: 500px; overflow-y: auto">
+            <?php $post_requests= json_decode($modelRequest->getRequests());
+            foreach ($post_requests as $post_request):?>
+                <div class="myBox" id="myBox" style=" height: 250px">
+                    <div class="notification emergency">
+                        <div class="message-box" style="; height: fit-content">
+                            <div class="title"><?=$post_request->vol_name?> &#9900 Volunteer</div>
+                            <div class="notification-content">
+                                <h3>Post</h3>
+                                <b><?=$post_request->topic." - ".$post_request->description?></b>
+                            </div>
+                            <div class="notification-content">
+                                <h3>Request</h3>
+                                <b><?=$post_request->req?></b>
+                            </div>
+                            <div class="notification-footer">
+                                <div class="dates">
+                                    <span class="created-date">Created: <?=$post_request->req_created_at?></span><br>
                                 </div>
-                                <div class="notification-content">
-                                    <h3>Request</h3>
-                                    <b><?=$post_request->req?></b>
+                                <div class="status">
+                                    Status: <?=($post_request->req_status==0)?'Waiting':(($post_request->req_status==1)?'Accepted':'Rejected');?>
                                 </div>
-                                <div class="notification-footer">
-                                    <div class="dates">
-                                        <span class="created-date">Created: <?=$post_request->req_created_at?></span><br>
-                                    </div>
-                                    <div class="status">
-                                        Status: <?=($post_request->req_status==0)?'Waiting':(($post_request->req_status==1)?'Accepted':'Rejected');?>
-                                    </div>
-                                    <?php if($post_request->req_status==0):?>
+                                <?php if($post_request->req_status==0):?>
                                     <div class="actions" style="display: flex; flex-direction: row; gap: 20px; margin: 10px">
                                         <button class="button" style="background-color: #159EEC" onclick="postReqUpdate(<?=$post_request->id?>,1,<?=$post_request->post_id?>)">Accept</button>
                                         <button class="button" style="background-color: #ffb366" onclick="postReqUpdate(<?=$post_request->id?>,2,<?=$post_request->post_id?>)">Reject</button>
                                     </div>
-                                    <?php endif;?>
-                                </div>
+                                <?php endif;?>
                             </div>
                         </div>
                     </div>
-                <?php endforeach;?>
-            </div>
+                </div>
+            <?php endforeach;?>
         </div>
+    </div>
 
 
 </div>
@@ -333,7 +333,7 @@ $this->title = 'Midwife - Posts';
         let status = document.querySelector('input[name="radio"]:checked');
 
 
-console.log(id, description, status)
+        console.log(id, description, status)
 
         const formData = new FormData();
         formData.append('id', id);
@@ -436,10 +436,10 @@ console.log(id, description, status)
 <script>
     //post req update
     function postReqUpdate (id,status,post_id) {
-var res=0;
+        var res=0;
         if(status==1){
             if (confirm("Do you agree to share your contact details with the volunteer and accept the request?")) {
-               res=1;
+                res=1;
             }
         }else if(status==2){
             if (confirm("Are you sure you want to Reject?")) {
@@ -447,47 +447,47 @@ var res=0;
             }
         }
 
-if(res==1){
-        const formData = new FormData();
-        formData.append('id', id);
-    formData.append('status', status);
-    formData.append('post_id', post_id);
+        if(res==1){
+            const formData = new FormData();
+            formData.append('id', id);
+            formData.append('status', status);
+            formData.append('post_id', post_id);
 
-        const url = '/postRequestUpdate';
+            const url = '/postRequestUpdate';
 
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-        })
-            .then(response => {
-
-                if (response.ok) {
-                    window.location.reload();
-                } else {
-                    return response.json();
-                }
+            fetch(url, {
+                method: 'POST',
+                body: formData,
             })
-            .then(responseData => {
-                if (responseData.errors) {
-                    const invalidFeedbackElements = document.querySelectorAll('.invalid-feedback');
-                    for (const key in responseData.errors) {
-                        console.log(key)
-                        if (responseData.errors[key].length > 0) {
-                            const feedbackElement = document.querySelector(`[name="Update${key.charAt(0).toUpperCase() + key.slice(1)}"] + .invalid-feedback`);
-                            if (feedbackElement) {
-                                console.log("found");
-                                feedbackElement.innerHTML = "<svg aria-hidden=\"true\" class=\"stUf5b qpSchb\" fill=\"currentColor\" focusable=\"false\" width=\"16px\" height=\"16px\" viewBox=\"0 0 24 24\" xmlns=\"https://www.w3.org/2000/svg\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z\"></path></svg>" +
-                                    responseData.errors[key][0];
+                .then(response => {
+
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        return response.json();
+                    }
+                })
+                .then(responseData => {
+                    if (responseData.errors) {
+                        const invalidFeedbackElements = document.querySelectorAll('.invalid-feedback');
+                        for (const key in responseData.errors) {
+                            console.log(key)
+                            if (responseData.errors[key].length > 0) {
+                                const feedbackElement = document.querySelector(`[name="Update${key.charAt(0).toUpperCase() + key.slice(1)}"] + .invalid-feedback`);
+                                if (feedbackElement) {
+                                    console.log("found");
+                                    feedbackElement.innerHTML = "<svg aria-hidden=\"true\" class=\"stUf5b qpSchb\" fill=\"currentColor\" focusable=\"false\" width=\"16px\" height=\"16px\" viewBox=\"0 0 24 24\" xmlns=\"https://www.w3.org/2000/svg\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z\"></path></svg>" +
+                                        responseData.errors[key][0];
+                                }
                             }
                         }
+                    } else {
+                        console.log(responseData);
                     }
-                } else {
-                    console.log(responseData);
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
-}
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
     }
 </script>
