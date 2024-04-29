@@ -3,13 +3,15 @@
 namespace app\models;
 
 use app\core\db\DbModel;
+use PDO;
 
 class Immunization extends DbModel
 {
-    public int $child_id ;
-    public string $BatchNo1 = '';
-    public string $Effects1 = '';
-
+    public string $recordId;
+    public int $child_id;
+    public string $vac_id = '';
+    public string $BatchNo = '';
+    public string $timestamp = '';
 
     public function tableName(): string
     {
@@ -19,22 +21,31 @@ class Immunization extends DbModel
     public function attributes(): array
     {
         return [
-            'BatchNo1',
-            'Effects1'
+            'child_id',
+            'vac_id',
+            'BatchNo',
         ];
     }
 
     public function primaryKey(): string
     {
-        return 'child_id';
+        return 'recordId';
     }
 
     public function rules(): array
     {
         return [
-            'BatchNo1' => [self::RULE_REQUIRED],
-            'Effects1' => [self::RULE_REQUIRED],
-
+            'child_id' => [self::RULE_REQUIRED],
+            'BatchNo' => [self::RULE_REQUIRED],
         ];
+    }
+
+    public function getImmunization($child_id)
+    {
+        $sql = "SELECT * FROM Immunization WHERE child_id = :child_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':child_id', $child_id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }

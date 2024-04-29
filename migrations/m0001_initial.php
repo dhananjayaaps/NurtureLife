@@ -291,6 +291,15 @@ class m0001_initial
             ) ENGINE=INNODB;
             ";
         $db->pdo->exec($sql);
+
+        $sql = "CREATE TABLE Immunization ( 
+                recordId INT AUTO_INCREMENT PRIMARY KEY, 
+                child_id INT NOT NULL, vac_id VARCHAR(255), 
+                BatchNo VARCHAR(255) NOT NULL, 
+                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+                FOREIGN KEY (child_id) REFERENCES child(child_id) ON DELETE CASCADE )";
+        $db->pdo->exec($sql);
+
     }
 
     public function down()
