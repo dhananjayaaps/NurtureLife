@@ -13,6 +13,7 @@ use app\controllers\AdminController\UsersController;
 use app\controllers\AppoinmetHandler;
 use app\controllers\AuthController;
 use app\controllers\DoctorController\PostMotherController;
+use app\controllers\EmergencyController;
 use app\controllers\FeedbackController;
 use app\controllers\MidwifeController\AppointmentController;
 use app\controllers\MidwifeController\ChildChartController;
@@ -44,7 +45,7 @@ $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/about', [SiteController::class, 'about']);
 
 $app->router->get('/contact', [FeedbackController::class, 'feedbacks']);
-$app->router->post('/contact', [FeedbackController::class, 'handleContact']);
+$app->router->post('/contact', [FeedbackController::class, 'feedbacks']);
 
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
@@ -125,7 +126,9 @@ $app->router->post('/appointments', [AppoinmetHandler::class, 'appointments']);
 
 $app->router->get('/about', [SiteController::class, 'about']);
 //$app->router->get('/preMotherTest', [SiteController::class, 'preMotherTest']);
-$app->router->get('/communication', [SiteController::class, 'communication']);
+$app->router->get('/communication', [PostController::class, 'communication']);
+$app->router->get('/communication', [PostController::class, 'communication']);
+
 $app->router->get('/replySymptoms', [SiteController::class, 'doctorViewSymptoms']);
 $app->router->get('/checkSymptoms', [SiteController::class, 'midwifeViewSymptoms']);
 
@@ -196,7 +199,7 @@ $app->router->get('/nutrition', [SiteController::class, 'nutrition']);
 
 $app->router->get('/articles', [SiteController::class, 'articles']);
 
-$app->router->get('/communication', [Registration::class, 'MotherRegistration']);
+$app->router->get('/motherRegistrations', [Registration::class, 'MotherRegistration']);
 $app->router->get('/childBorn', [Registration::class, 'childBorn']);
 
 

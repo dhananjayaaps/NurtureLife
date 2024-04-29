@@ -17,7 +17,7 @@ class PostController extends \app\core\Controller
         $post_request = new Post_request();
         if ($request->isPost()) {
             $post->loadData($request->getBody());
-                $post->user_id = Application::$app->user->getId();
+            $post->user_id = Application::$app->user->getId();
             if ($post->validate() && $post->save()) {
                 Application::$app->session->setFlash('success', 'New Post created successfully');
                 Application::$app->response->redirect('/posts');
@@ -25,40 +25,40 @@ class PostController extends \app\core\Controller
             }
         }
 
-            $roleName = Application::$app->user->getRoleName();
-            if ($roleName == 'Doctor'){
-                $this->layout = 'doctor';
-                return $this->render('doctor/post',  [
-                    'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
-                ]);
-            }
-            else if ($roleName == 'Midwife'){
-                $this->layout = 'midwife';
-                return $this->render('midwife/post', [
-            'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
-        ]);
-            }
-            else if ($roleName == 'Prenatal Mother'){
-                $this->layout = 'mother';
-                return $this->render('preMother/post', [
-                    'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
-        ]);
-            }
-            else if ($roleName == 'Postnatal Mother'){
-                $this->layout = 'mother';
-                return $this->render('postMother/post', [
-                    'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
-        ]);
-            }
-            else if ($roleName == 'Volunteer'){
-                $this->layout = 'volunteer';
-                return $this->render('volunteer/post', [
-                    'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
-        ]);
-            }
-            else{
-                return $this->render('/');
-            }
+        $roleName = Application::$app->user->getRoleName();
+        if ($roleName == 'Doctor'){
+            $this->layout = 'doctor';
+            return $this->render('doctor/post',  [
+                'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
+            ]);
+        }
+        else if ($roleName == 'Midwife'){
+            $this->layout = 'midwife';
+            return $this->render('midwife/post', [
+                'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
+            ]);
+        }
+        else if ($roleName == 'Prenatal Mother'){
+            $this->layout = 'mother';
+            return $this->render('preMother/post', [
+                'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
+            ]);
+        }
+        else if ($roleName == 'Postnatal Mother'){
+            $this->layout = 'mother';
+            return $this->render('postMother/post', [
+                'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
+            ]);
+        }
+        else if ($roleName == 'Volunteer'){
+            $this->layout = 'volunteer';
+            return $this->render('volunteer/post', [
+                'model' => $post, "modelUpdate" => $post2, "modelRequest" => $post_request
+            ]);
+        }
+        else{
+            return $this->render('/');
+        }
 
     }
 

@@ -62,24 +62,26 @@ class Post_request extends DbModel
                 'status' => $post_request->status
             ];
         }
-        return ($data);
+        usort($data, function ($item1, $item2) {
+            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
+        });
     }
     public function getRequests(): string
     {
 
-            $joins = [
-                ['model' => User::class, 'condition' => 'post_request.provider_id = users.id'],
-                ['model' => Post::class, 'condition' => 'post_request.post_id = post.id'],
-            ];
-            $alias=['postID'=>'post.id',
-                'postReqID'=>'post_request.id',
-                'post_desc'=>'post.description',
-                'req'=>'post_request.description',
-                'req_status'=>'post_request.status',
-                'post_status'=>'post.status',
-                'req_created_at'=>'post_request.created_at',
-                ];
-            $requestData = (new Post_request())->findAllWithJoins(self::class, $joins, ['seeker_id' => Application::$app->user->getId()],$alias);
+        $joins = [
+            ['model' => User::class, 'condition' => 'post_request.provider_id = users.id'],
+            ['model' => Post::class, 'condition' => 'post_request.post_id = post.id'],
+        ];
+        $alias=['postID'=>'post.id',
+            'postReqID'=>'post_request.id',
+            'post_desc'=>'post.description',
+            'req'=>'post_request.description',
+            'req_status'=>'post_request.status',
+            'post_status'=>'post.status',
+            'req_created_at'=>'post_request.created_at',
+        ];
+        $requestData = (new Post_request())->findAllWithJoins(self::class, $joins, ['seeker_id' => Application::$app->user->getId()],$alias);
 
 //            $requestData = (new Post_request())->findAll(self::class, ['seeker_id' => Application::$app->user->getId()]);
         $roleMap=[
@@ -92,23 +94,25 @@ class Post_request extends DbModel
         ];
         $data = [];
 
-            foreach ($requestData as $post_request) {
-                $data[] = [
-                    'id' => $post_request->postReqID,
-                    'post_id' => $post_request->postID,
-                    'provider_id' => $post_request->provider_id,
-                    'seeker_id' => $post_request->seeker_id,
-                    'description' => $post_request->post_desc,
-                    'topic' => $post_request->topic,
-                    'req' => $post_request->req,
-                    'req_created_at' => $post_request->req_created_at,
-                    'req_status' => $post_request->req_status,
-                    'post_status' => $post_request->post_status,
-                    'vol_name' => ucfirst($post_request->firstname).' '.ucfirst($post_request->lastname),
-                    'role' => $roleMap[$post_request->role_id-1],
-                ];
-            }
-        return json_encode($data);
+        foreach ($requestData as $post_request) {
+            $data[] = [
+                'id' => $post_request->postReqID,
+                'post_id' => $post_request->postID,
+                'provider_id' => $post_request->provider_id,
+                'seeker_id' => $post_request->seeker_id,
+                'description' => $post_request->post_desc,
+                'topic' => $post_request->topic,
+                'req' => $post_request->req,
+                'req_created_at' => $post_request->req_created_at,
+                'req_status' => $post_request->req_status,
+                'post_status' => $post_request->post_status,
+                'vol_name' => ucfirst($post_request->firstname).' '.ucfirst($post_request->lastname),
+                'role' => $roleMap[$post_request->role_id-1],
+            ];
+        }
+        usort($data, function ($item1, $item2) {
+            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
+        });
     }
     public function getPostRequestById($RequestId): string
     {
