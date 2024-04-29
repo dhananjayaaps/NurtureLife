@@ -22,6 +22,7 @@ use app\controllers\MotherController\FetalkickController;
 use app\controllers\PostController;
 use app\controllers\MotherController\PreMotherCareController;
 use app\controllers\PostRequestController;
+use app\controllers\ReportController\Registration;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\models\User;
@@ -166,5 +167,7 @@ $app->router->get('/ManageAdmins', [AdminController::class, 'Admin']);
 $app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);
 
 $app->router->post('/cancel-appointment', [AppoinmetHandler::class, 'cancelAppointment']);
+
+$app->router->get('/motherRegistrations', [Registration::class, 'MotherRegistration']);
 
 $app->run();
