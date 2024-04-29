@@ -161,4 +161,21 @@ class ChildController extends Controller
         return $this->render('child/childProfile');
     }
 
+    public function childsUpdate(Request $request): false|string
+    {
+        $child = (new Child())->getAChild($request->getBody()['child_id']);
+        $this->setLayout('midwife');
+        $child->loadData($request->getBody());
+        if ($child->validate()) {
+            $child->update();
+            header('Content-Type: application/json');
+            http_response_code(200);
+            return json_encode(['message' => 'Data updated successfully']);
+        } else {
+            header('Content-Type: application/json');
+            http_response_code(400);
+            return json_encode(['message' => 'Validation failed', 'errors' => $child->getErrorMessages()]);
+        }
+    }
+
 }

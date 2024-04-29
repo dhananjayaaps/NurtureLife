@@ -21,13 +21,6 @@ use app\models\Child;
             </div>
 
             <div class="form-group">
-                <label>Mother New Name</label>
-                <input type="text" id="UpdateMName" name="UpdateMName" value=""  class="form-control ">
-                <div class="invalid-feedback">
-                </div>
-            </div>
-
-            <div class="form-group">
                 <label>Gender</label>
                 <input type="text" id="UpdateGender" name="UpdateGender" value=""  class="form-control ">
                 <div class="invalid-feedback">
@@ -58,7 +51,6 @@ use app\models\Child;
                 <thead>
                 <tr>
                     <th>Child Name</th>
-                    <th>Mother Name</th>
                     <th>Gender</th>
                     <th>Actions</th>
                 </tr>
@@ -96,8 +88,6 @@ use app\models\Child;
             }
             newRow.innerHTML = `
             <td>${row.ChildName}</td>
-<!--            <td>${row.MotherName}</td>-->
-            <td>Vishaka Devini</td>
             <td>${row.Gender}</td>
             <td class="action-buttons">
             <button id="showPopUp" onclick="UpdatePopUp('${row.MOH_ID}', '${row.Name}')" class="action-button update-button">Update</button>
@@ -153,8 +143,8 @@ use app\models\Child;
 </script>
 
 <script>
-    function getChildDetails(id) {
-        const url = `/getChildDetails?id=${id}`;
+    function getChildDetails(child_id) {
+        const url = `/getChildDetails?id=${child_id}`;
 
         return fetch(url)
             .then((response) => {
@@ -172,7 +162,7 @@ use app\models\Child;
 
         getChildDetails(child_id)
             .then((data) => {
-                var inputFieldCname, inputFieldMname, inputFieldGender
+                var inputFieldCname, inputFieldGender
                 for (var i = 0; i < labels.length; i++) {
                     if (labels[i].textContent === 'Child New Name') {
                         inputFieldCname = labels[i].nextElementSibling;
@@ -202,14 +192,11 @@ use app\models\Child;
         e.preventDefault();
 
         const Child_Name = document.querySelector('input[name="UpdateName"]').value;
-        const address = document.querySelector('input[name="UpdateAddress"]').value;
-        const contactNo = document.querySelector('input[name="UpdateContact"]').value;
+        const Gender = document.querySelector('input[name="UpdateGender"]').value;
 
         const formData = new FormData();
-        formData.append('id', id);
-        formData.append('name', name);
-        formData.append('address', address);
-        formData.append('contactNo', contactNo);
+        formData.append('Child_Name', Child_Name);
+        formData.append('Gender', Gender);
 
         const url = '/clinicsUpdate';
 
