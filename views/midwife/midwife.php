@@ -43,7 +43,7 @@ $this->title = 'Midwife Dashboard';
         <div class="quick-access">
             <div class="user-control addButtons">
 
-                <button class="addButton">Register a Mother</button>
+                <a href="/preMotherForm"><button class="addButton">Register a Mother</button></a>
                 <button class="addButton">View Mother</button>
                 <button class="addButton">Record Pregnancy Report Card</button>
                 <button class="addButton">Track Mother</button>

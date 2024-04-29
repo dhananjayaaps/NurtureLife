@@ -185,6 +185,10 @@ $this->title = 'FetalKicks';
                 <label>Blood Group</label>
                 <input type="text" class="form-control" value="A+" disabled>
             </div>
+            <div class="form-group">
+                <label>Allergies</label>
+                <input type="text" class="form-control" value="Penicillin" disabled>
+            </div>
         </div>
 
         <h2>Medical History</h2>
@@ -230,12 +234,10 @@ $this->title = 'FetalKicks';
         <div class="card-row">
             <div class="card">
                 <h3>Sineth Dhananjaya</h3><br>
-                <p>Good health condition</p><br>
                 <b>DOB : </b>2020-08-06<br><br>
             </div>
             <div class="card">
                 <h3>Sameera Dilhara</h3><br>
-                <p>Untracked</p><br>
                 <b>DOB: </b>2020-08-06<br><br>
             </div>
         </div>
