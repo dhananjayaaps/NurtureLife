@@ -88,11 +88,10 @@ body{
     margin-right: 200px;
 }
 .NL_logo{
-    width: 250px;
+    width: 150px;
     position: absolute;
-    top: -30px;
-
-
+    top: 20px;
+    left: 70px;
 }
 .search-container {
     padding: 20px;

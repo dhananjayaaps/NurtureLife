@@ -6,8 +6,6 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\models\Feedback;
-use app\models\Post;
-use app\models\RoleRequest;
 
 class FeedbackController extends Controller
 {
@@ -33,12 +31,5 @@ class FeedbackController extends Controller
             $this->setLayout('volunteer');
             return $this->render('contact', ['model' => $feedback]);
         }
-    }
-
-    public function getFeedbackDetails(Request $request): string
-    {
-        $feedback = new Post();
-        $feedback->loadData($request->getBody());
-        return $feedback->getPostById($feedback->getId());
     }
 }

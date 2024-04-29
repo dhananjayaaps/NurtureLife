@@ -74,7 +74,7 @@ class Feedback extends DbModel
     {
         $feedbackData = [];
         if(Application::$app->user->getRoleName() == 'Admin'){
-            $feedbackData = (new RoleRequest())->findAll(self::class);
+            $feedbackData = (new Feedback())->findAll(self::class);
             return json_encode($feedbackData);
         }
         return json_encode($feedbackData);
