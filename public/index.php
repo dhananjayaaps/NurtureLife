@@ -169,5 +169,6 @@ $app->router->post('/ManageAdmins', [AdminController::class, 'Admin']);
 $app->router->post('/cancel-appointment', [AppoinmetHandler::class, 'cancelAppointment']);
 
 $app->router->get('/motherRegistrations', [Registration::class, 'MotherRegistration']);
+$app->router->get('/childBorn', [Registration::class, 'childBorn']);
 
 $app->run();

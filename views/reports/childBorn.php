@@ -1,5 +1,6 @@
 <!--<h1>Admin - Reports</h1>-->
-<?php use app\models\Mother;
+<?php use app\models\Child;
+use app\models\Mother;
 ?>
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <style>
@@ -29,26 +30,26 @@
         gap: 20px;
         justify-content: space-around;
 
-    .shadowBox{
-        height: 500px;
-        width: 500px;
+        .shadowBox{
+            height: 500px;
+            width: 500px;
 
-    }
-    .mapContent{
-        height: 100%;
-        width: 100%;
-    }
+        }
+        .mapContent{
+            height: 100%;
+            width: 100%;
+        }
 
-    .dateRow{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
+        .dateRow{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
 
 </style>
 
-<h1>Mother Registrations Report</h1>
+<h1>Child Born Report</h1>
 
 <div>
     <div class="column second-column">
@@ -87,7 +88,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['MAP_API']?>&callback=initMap&libraries=visualization&v=weekly" defer></script>
 
 <script>
-    var Registrations = <?php echo (new Mother)->getDailyRegistrationCount(); ?>;
+    var Registrations = <?php echo (new Child())->getDailyRegistrationCount(); ?>;
 </script>
 
 <script>
@@ -240,3 +241,4 @@
         });
     }
 </script>
+<?php

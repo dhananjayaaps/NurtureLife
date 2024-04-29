@@ -105,7 +105,7 @@
                     <span class="tooltip">Clinics</span>
                 </li>
                 <li>
-                    <a href="/reports">
+                    <a href="/motherRegistrations">
                         <i class="bx bx-pie-chart-alt-2"></i>
                         <span class="links_name">Reports</span>
                     </a>

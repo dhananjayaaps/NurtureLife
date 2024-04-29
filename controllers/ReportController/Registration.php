@@ -11,4 +11,10 @@ class Registration extends Controller
         $this->setLayout('admin');
         return $this->render('reports/MotherRegistrations');
     }
+
+    public function childBorn(): array|false|string
+    {
+        $this->setLayout('admin');
+        return $this->render('reports/childBorn');
+    }
 }
