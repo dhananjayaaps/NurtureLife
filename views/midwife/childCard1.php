@@ -5,18 +5,17 @@ use app\core\Application;
 use app\core\form\DropDown;
 use app\core\form\Form;
 use app\core\form\RadioButton;
-use app\models\Mother;
+use app\models\BabySpecialCare;
+use app\models\Child;
+
 
 $this->title = 'Child';
 ?>
 
 <?php
-/** @var $model Child **/
-/** @var $modelUpdate childCard1 **/
+/** @var $model BabySpecialCare **/
+
 //?>
-
-
-
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
@@ -30,6 +29,14 @@ $this->title = 'Child';
 
     .clear {
         clear: both;
+    }
+
+    .shadowBox{
+        width: 600px;
+    }
+
+    .content{
+        margin-left: 280px;
     }
 </style>
 
@@ -128,7 +135,7 @@ $this->title = 'Child';
                 ?>
 
                 <?php
-                $radioButton = new Dropdown($model, 'migration_of_mother_or_father', '10.Migration of Mother or Father Abraod');
+                $radioButton = new RadioButton($model, 'migration_of_mother_or_father', '10.Migration of Mother or Father Abraod');
                 $radioButton->setOptions([
                     '1' => 'No,Both are in the country',
                     '2' => 'Mother left the Country',

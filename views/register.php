@@ -11,15 +11,31 @@ $this->title = 'Register';
 ?>
 
 <style>
-    .registration_container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
+    body{
         background-color: #f1f1f1;
     }
-    .form-group{
+
+    .registration_container{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        margin-left: 30px;
+        background-color: #f1f1f1;
     }
+    .formRow{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .shadowBox{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        max-width: 800px;
+    }
+
 </style>
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
@@ -35,16 +51,19 @@ $this->title = 'Register';
             <div class="formRow">
                 <div class="formColumn">
                     <?php echo $form->field($model, 'firstname', 'First Name')?>
-                    <?php echo $form->field($model, 'nic', 'NIC Number')?>
-
-                </div>
-                <div class="formColumn">
-                    <?php echo $form->field($model, 'password', 'Password')->passwordField()?>
                     <?php echo $form->field($model, 'lastname', 'Last Name')?>
                 </div>
                 <div class="formColumn">
-                    <?php echo $form->field($model, 'email', 'Email')?>
+                    <?php echo $form->field($model, 'password', 'Password')->passwordField()?>
                     <?php echo $form->field($model, 'confirm_password', 'Confirm Password')->passwordField()?>
+
+                </div>
+                <div class="formColumn">
+                    <?php echo $form->field($model, 'nic', 'NIC Number')?>
+                    <?php echo $form->field($model, 'email', 'Email')?>
+                </div>
+                <div class="formColumn">
+                    <?php echo $form->field($model, 'contact_no', 'Contact Number')?>
                 </div>
             </div>
             <div class="formRow">
@@ -57,9 +76,7 @@ $this->title = 'Register';
                     <?php echo $form->field($model, 'postal_code', 'Postal Code')?>
                 </div>
             </div>
-            <div class="formRow" style="justify-content: center">
-                <?php echo $form->field($model, 'contact_no', 'Contact Number')?>
-            </div>
+
             <div class="centeredButton">
                 <button type="submit" class="btn-submit">Submit</button>
             </div>

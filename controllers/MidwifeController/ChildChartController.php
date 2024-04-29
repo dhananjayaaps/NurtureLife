@@ -15,8 +15,9 @@ class ChildChartController extends \app\core\Controller
     {
         $childweight = new ChildWeight();
         $childweight2 = new ChildWeight();
-        if ($request->isPost()) {
 
+        if ($request->isPost()) {
+        exit();
             $this->setLayout('midwife');
             $childweight->loadData($request->getBody());
 
@@ -24,6 +25,10 @@ class ChildChartController extends \app\core\Controller
                 Application::$app->session->setFlash('success', 'Recorded the child weight');
                 Application::$app->response->redirect('/childweight');
                 exit;
+            }
+            else{
+                Application::$app->session->setFlash('error', 'Recorded not created');
+                Application::$app->response->redirect('/childweight');
             }
         } else if ($request->isGet()) {
             $this->layout = 'midwife';
@@ -36,23 +41,42 @@ class ChildChartController extends \app\core\Controller
         ]);
     }
 
-    public function ChildWeightUpdate(Request $request): false|string
+    public function ChildWeightUpdate(Request $request)
     {
-        $childweight = (new ChildWeight())->findOneByChildIdAndDate(ChildWeight::class);
-        var_dump($childweight);
-        $this->setLayout('midwife');
-        var_dump($request->getBody());
-        $childweight->loadData($request->getBody());
-        $childweight->validate();
-        if ($childweight->validate()) {
-            $childweight->update();
-            header('Content-Type: application/json');
-            http_response_code(200);
-            return json_encode(['message' => 'Data updated successfully']);
-        } else {
-            header('Content-Type: application/json');
-            http_response_code(400);
-            return json_encode(['message' => 'Validation failed', 'errors' => $childweight->getErrorMessages()]);
+        $childweight = new ChildWeight();
+        $childweight = $childweight->findOneByChildIdAndDate(ChildWeight::class);
+
+        if($childweight){
+            $this->setLayout('midwife');
+
+            $childweight->loadData($request->getBody());
+            $childweight->child_id = $childweight->getChildId();
+            $childweight->validate();
+            $childweight->value_of_weight = $request->getBody()['UpdateWeightCount'];
+            if ($childweight->validate()) {
+                $childweight->update();
+                Application::$app->response->redirect('/childweight');
+            } else {
+                Application::$app->response->redirect('/childweight');
+                Application::$app->session->setFlash('error', "Can't create");
+            }
+        }
+        else{
+            $childweight = new ChildWeight();
+            $this->setLayout('midwife');
+            $childweight->loadData($request->getBody());
+            $childweight->child_id = $childweight->getChildId();
+            $childweight->validate();
+            var_dump($childweight);
+            exit();
+            if ($childweight->validate() && $childweight->save()) {
+                Application::$app->response->redirect('/childweight');
+                Application::$app->session->setFlash('success', 'Recorded the child weight');
+            } else {
+                Application::$app->response->redirect('/childweight');
+                Application::$app->session->setFlash('error', "Can't create");
+                exit;
+            }
         }
     }
 

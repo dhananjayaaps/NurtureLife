@@ -26,7 +26,6 @@
     <script src="./assets/scripts/toast.js"></script>
 </head>
 <body>
-//header
 <div class="navbar" id="myNavbar">
     <div class="NL_logo_container">
         <img src="./assets/images/nurturelife_logo.png" class="NL_logo">
@@ -87,8 +86,6 @@
     </div>
 
 </div>
-
-//body content
 <div class="wrapper" style="height: fit-content">
     <div class="userHome_content">
         {{content}}

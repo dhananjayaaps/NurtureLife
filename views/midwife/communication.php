@@ -6,7 +6,7 @@ use app\models\LoginModel;
 use app\models\Post;
 use app\models\User;
 
-$this->title = 'Volunteer';
+$this->title = 'Midwife-Communication';
 
 /** @var $model Post **/
 /** @var $user_model User **/
@@ -17,9 +17,18 @@ $this->title = 'Volunteer';
         flex-direction: column;
 
     }
+    .button:hover {
+        background-color: #0d7ca3; /* Darker shade for hover effect */
+        transform: translateY(-2px); /* Slight lift on hover */
+    }
+
+    .button:active {
+        background-color: #106b94; /* Even darker shade for active/click effect */
+        transform: translateY(1px); /* Slight press-down effect */
+    }
 </style>
 <link rel="stylesheet" href="assets/css/styles.css">
-<h1>Communication with Mothers</h1>
+<h1 style="margin-left: 400px">Communication with Mothers</h1>
 <!--attend confirmation popup-->
 <div id="myPopup" class="popup" style="position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 30%;height: fit-content; max-width: 600px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); padding: 20px; z-index: 1000;">
     <div class="popup-content">
@@ -60,7 +69,7 @@ $this->title = 'Volunteer';
 </div>
 
 <!--posts container-->
-<div class="shadowBox">
+<div class="shadowBox" style="margin-left: 400px">
     <div class="notification-bar" style="height: 400px; border-radius: 20px">
         <div class="notifications">
             <span style="font-size: 20px; font-weight: bold;text-align: center">Messages from Mothers in your area</span>
@@ -86,7 +95,19 @@ $this->title = 'Volunteer';
                                         <span class="updated-date">Last Updated: <?=$post->updated_at?></span>
                                     </div>
                                     <div class="actions" style="display: flex; flex-direction: row; gap: 20px; margin: 10px">
-                                        <button class="button" style="background-color: #159EEC" onclick="attendPopup(<?=$post->id?>)">Attend</button>
+                                        <button class="button" onclick="attendPopup(<?=$post->id?>)" style="
+                                            padding: 10px 20px;
+                                            background-color: #159EEC;
+                                            color: white;
+                                            border: none;
+                                            border-radius: 5px;
+                                            cursor: pointer;
+                                            font-size: 16px;
+                                            font-weight: bold;
+                                            text-transform: uppercase;
+                                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                            transition: background-color 0.3s, transform 0.3s;
+                                        ">Attend</button>
                                     </div>
                                 </div>
                             </div>

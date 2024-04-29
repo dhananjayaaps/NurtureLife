@@ -20,7 +20,6 @@ use app\models\Child;
                 <tr>
                     <th>Child Name</th>
                     <th>Mother Name</th>
-                    <th>Registration No</th>
                     <th>Gender</th>
                     <th>Actions</th>
                 </tr>
@@ -53,10 +52,15 @@ use app\models\Child;
         for (var i = startIndex; i < endIndex && i < data.length; i++) {
             var row = data[i];
             var newRow = document.createElement('tr');
+            if(row.Gender==="1"){
+                row.Gender="male"
+            }else{
+                row.Gender="female"
+            }
             newRow.innerHTML = `
             <td>${row.ChildName}</td>
-            <td>${row.MotherName}</td>
-            <td>${row.RegistrationNo}</td>
+<!--            <td>${row.MotherName}</td>-->
+            <td>Vishaka Devini</td>
             <td>${row.Gender}</td>
             <td class="action-buttons">
             <button id="showPopUp" onclick="UpdatePopUp('${row.MOH_ID}', '${row.Name}')" class="action-button update-button">Update</button>

@@ -6,15 +6,18 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin: 10px 20px 10px 20px;
+    margin: 50px 20px 10px 20px;
 }
 .volunteer_body{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     /*border-style: solid;*/
     /*background-color: #f2b9cf;*/
-    margin: 0 10px 10px 10px;
+    margin: 0 10px 10px 60px;
     width: 100%;
+    column-gap: 5px;
+    row-gap: 20px;
+
 }
 @media (max-width: 750px){
     .volunteer_body{
@@ -71,7 +74,7 @@
     width: 45%;
 }
 .link_container{
-    padding: 5px;
+    padding: 15px;
     width: 60%;
 }
 .image_container img{
@@ -171,11 +174,10 @@ body{
     margin-right: 200px;
 }
 .NL_logo{
-    width: 250px;
+    width: 150px;
     position: absolute;
-    top: -20px;
-
-
+    top: 20px;
+    left: 70px;
 }
 .search-container {
     padding: 20px;
@@ -560,16 +562,16 @@ h1 {
 /*post button*/
 .post_button {
     padding: 0.6em 1em;
-    border: 4px solid #fa725a;
+    border: 4px solid #1F2B6C;
     transition: ease-in-out 0.3s;
     background-color: transparent;
-    color: #fa725a;
+    color: #1F2B6C;
     font-weight: bolder;
     font-size: 16px;
 }
 
 .post_button:hover {
     transform: scale(1.2) rotate(10deg);
-    background-color: #fa725a;
+    background-color: #1F2B6C;
     color: white;
 }

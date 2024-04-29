@@ -14,7 +14,6 @@ class Mother extends DbModel
     public string $MaritalStatus  = 'Married';
     public string $MarriageDate ='';
     public string $BloodGroup = '';
-    public string $DeliveryDate = '';
     public string $Occupation = '';
     public string $Allergies = '';
     public string $Consanguinity = '1';
@@ -23,6 +22,7 @@ class Mother extends DbModel
     public string $diabetes_mellitus = '1';
     public string $rubella_immunization = '1';
     public string $emergencyNumber = '';
+    public string $DeliveryDate = '';
     public string $nic = '';
     public string $clinic_id = '';
     public int $status = 1;
@@ -62,7 +62,6 @@ class Mother extends DbModel
             'MaritalStatus',
             'MarriageDate',
             'BloodGroup',
-            'DeliveryDate',
             'Occupation',
             'Allergies',
             'Consanguinity',
@@ -131,6 +130,13 @@ class Mother extends DbModel
             ];
         }
         return json_encode($data);
+    }
+
+    public function getDailyRegistrationCount()
+    {
+        $statement = self::prepare("SELECT DATE(Created_At) AS Registration_Date, COUNT(*) AS Registration_Count FROM Mothers GROUP BY DATE(Created_At) ORDER BY DATE(Created_At) ASC");
+        $statement->execute();
+        return json_encode($statement->fetchAll(PDO::FETCH_OBJ));
     }
 
     public function getMotherId()

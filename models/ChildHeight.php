@@ -50,7 +50,7 @@ class ChildHeight extends DbModel
         foreach ($HeightData as $Height) {
             $data[] = [
                 'Date' => $Height->Time,
-                'Count' => $Height->height_record_id
+                'Count' => $Height->value_of_height
             ];
         }
         return json_encode($data);

@@ -6,10 +6,6 @@ use app\core\db\DbModel;
 
 class PostMotherDetails extends DbModel
 {
-
-    public string $user_id = '';
-
-    public string $nic = '';
     public string $MotherId = '';
     public string $breast_problems = '';
     public string $abnormal_vaginal_discharge = '';
@@ -44,9 +40,6 @@ class PostMotherDetails extends DbModel
     public function attributes(): array
     {
         return [
-            'user_id',
-            'nic',
-            'MotherId',
             'breast_problems',
             'abnormal_vaginal_discharge',
             'excessive_vaginal_bleeding',

@@ -6,8 +6,10 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\view;
+use app\models\MedicalSurgicalDetails;
 use app\models\Mother;
 use app\models\PreMotherDetails;
+use app\models\PresentObstetricDetails;
 
 class PreMotherController extends Controller
 {
@@ -39,12 +41,12 @@ class PreMotherController extends Controller
 
     public function preMotherHistoryForm1(Request $request): array|false|string
     {
-        $this->layout = 'doctor';
-        $mother = new Mother();
-        $mother2 = new Mother();
+        $this->layout = 'midwife';
+        $mother = new PresentObstetricDetails();
+        $mother2 = new PresentObstetricDetails();
 
         if ($request->isPost()) {
-            $this->layout = 'doctor';
+            $this->layout = 'midwife';
             $mother->loadData($request->getBody());
 
             var_dump($mother->validate());
@@ -57,7 +59,7 @@ class PreMotherController extends Controller
         }
 
         else if ($request->isGet()) {
-            $this->layout = 'doctor';
+            $this->layout = 'midwife';
         }
 
         return $this->render('midwife/preMotherHistoryForm1', [
@@ -67,8 +69,8 @@ class PreMotherController extends Controller
     public function preMotherHistoryForm2(Request $request): array|false|string
     {
         $this->layout = 'midwife';
-        $mother = new Mother();
-        $mother2 = new Mother();
+        $mother = new MedicalSurgicalDetails();
+        $mother2 = new MedicalSurgicalDetails();
 
         if ($request->isPost()) {
             $this->layout = 'midwife';
@@ -95,8 +97,8 @@ class PreMotherController extends Controller
     public function preMotherHistoryForm3(Request $request): array|false|string
     {
         $this->layout = 'midwife';
-        $mother = new Mother();
-        $mother2 = new Mother();
+        $mother = new MedicalSurgicalDetails();
+        $mother2 = new MedicalSurgicalDetails();
 
         if ($request->isPost()) {
             $this->layout = 'midwife';
@@ -173,24 +175,24 @@ class PreMotherController extends Controller
         ]);
     }
 
-    public function ChildWeightUpdate(Request $request): false|string
-    {
-        $childweight = (new ChildWeight())->findOneByChildIdAndDate(ChildWeight::class);
-
-        $this->setLayout('midwife');
-        $childweight->loadData($request->getBody());
-        $childweight->validate();
-        if ($childweight->validate()) {
-            $childweight->update();
-            header('Content-Type: application/json');
-            http_response_code(200);
-            return json_encode(['message' => 'Data updated successfully']);
-        } else {
-            header('Content-Type: application/json');
-            http_response_code(400);
-            return json_encode(['message' => 'Validation failed', 'errors' => $childweight->getErrorMessages()]);
-        }
-    }
+//    public function ChildWeightUpdate(Request $request): false|string
+//    {
+//        $childweight = (new ChildWeight())->findOneByChildIdAndDate(ChildWeight::class);
+//
+//        $this->setLayout('midwife');
+//        $childweight->loadData($request->getBody());
+//        $childweight->validate();
+//        if ($childweight->validate()) {
+//            $childweight->update();
+//            header('Content-Type: application/json');
+//            http_response_code(200);
+//            return json_encode(['message' => 'Data updated successfully']);
+//        } else {
+//            header('Content-Type: application/json');
+//            http_response_code(400);
+//            return json_encode(['message' => 'Validation failed', 'errors' => $childweight->getErrorMessages()]);
+//        }
+//    }
 
 
 

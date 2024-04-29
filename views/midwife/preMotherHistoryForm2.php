@@ -181,7 +181,7 @@ $this->title = 'Present Mother History Form1';
                 <div class="form-column">
                     <div class="row"  style="display: flex; flex-direction: column; gap: 5px">
                         <?php
-                        $radioButton = new RadioButton($model, 'rubella_immunization', 'Rubella Immunization');
+                        $radioButton = new RadioButton($model, 'thyroid_diseases', '11. Thyroid Diseases');
                         $radioButton->setOptions([
                             '1' => 'Yes',
                             '2' => 'No',
@@ -190,7 +190,7 @@ $this->title = 'Present Mother History Form1';
                         ?>
 
                         <?php
-                        $radioButton = new RadioButton($model, 'rubella_immunization', 'Rubella Immunization');
+                        $radioButton = new RadioButton($model, 'bronchial_asthma', '12. Bronchial Asthma');
                         $radioButton->setOptions([
                             '1' => 'Yes',
                             '2' => 'No',
@@ -199,7 +199,7 @@ $this->title = 'Present Mother History Form1';
                         ?>
 
                         <?php
-                        $radioButton = new RadioButton($model, 'rubella_immunization', 'Rubella Immunization');
+                        $radioButton = new RadioButton($model, 'previous_dtv', '13. Previous DTV');
                         $radioButton->setOptions([
                             '1' => 'Yes',
                             '2' => 'No',
@@ -208,7 +208,7 @@ $this->title = 'Present Mother History Form1';
                         ?>
 
                         <?php
-                        $radioButton = new RadioButton($model, 'rubella_immunization', 'Rubella Immunization');
+                        $radioButton = new RadioButton($model, 'surgeries', '14. Surgeries other than LSCS');
                         $radioButton->setOptions([
                             '1' => 'Yes',
                             '2' => 'No',
@@ -217,55 +217,15 @@ $this->title = 'Present Mother History Form1';
                         ?>
 
                         <?php
-                        $radioButton = new RadioButton($model, 'rubella_immunization', 'Rubella Immunization');
+                        $radioButton = new RadioButton($model, 'social_risk', '15. Social risk factors');
                         $radioButton->setOptions([
                             '1' => 'Yes',
                             '2' => 'No',
                         ]);
                         echo $radioButton;
                         ?>
-                       <label>
-                           11. Thyroid Diseases:
-                           <div class="break-line"></div>
-                           <input type="radio" name="thyroid_diseases" value="Yes"> Yes
-                           <input type="radio" name="thyroid_diseases" value="No"> No
-                       </label>
-                       <label>
-                          12. Bronchial Asthma:
-                           <div class="break-line"></div>
-                           <input type="radio" name="bronchial_asthma" value="Yes"> Yes
-                           <input type="radio" name="bronchial_asthma" value="No"> No
-                       </label>
 
-                       <div class="break-line"></div>
-
-                       <label>
-                          13. Previous DTV:
-                           <div class="break-line"></div>
-                           <input type="radio" name="previous_dtv" value="Yes"> Yes
-                           <input type="radio" name="previous_dtv" value="No"> No
-                       </label>
-
-                       <div class="break-line"></div>
-
-                       <label>
-                          14. Surgeries other than LSCS:
-                           <div class="break-line"></div>
-                           <input type="radio" name="surgeries" value="Yes"> Yes
-                           <input type="radio" name="surgeries" value="No"> No
-                       </label>
-
-                       <div class="break-line"></div>
-
-                       <label>
-                          15. Social risk factors:
-                           <div class="break-line"></div>
-                           <input type="radio" name="social_risk" value="Yes"> Yes
-                           <input type="radio" name="social_risk" value="No"> No
-                       </label>
-                       <div class="break-line"></div>
-
-                       <?php echo $form->field($model, 'other', '16. Other(Specify)')?>
+                        <?php echo $form->field($model, 'other', '16. Other(Specify)')?>
 
                    </div>
                </div>

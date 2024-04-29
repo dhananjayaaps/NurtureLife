@@ -46,13 +46,14 @@ body{
 }
 
 .navbar {
-    position: fixed; /* Fix the navbar position */
-    top: 0; /* Position at the top */
+    position: fixed;
+    top: 0;
     left: 0;
-    width: 100%; /* Full width */
-    color: #fff; /* Example text color */
-    padding: 10px 20px; /* Adjust padding as needed */
-    z-index: 1; /* Ensure it stays above other content */
+    width: 100%;
+    color: #fff;
+    padding: 10px 20px;
+    z-index: 1;
+    height: 80px;
 }
 
 .wrapper {
@@ -63,7 +64,7 @@ body{
 }
 
 .content{
-    margin-left: 120px;
+    margin-left: 280px;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -88,11 +89,10 @@ body{
     margin-right: 200px;
 }
 .NL_logo{
-    width: 250px;
+    width: 150px;
     position: absolute;
-    top: -30px;
-
-
+    top: 20px;
+    left: 90px;
 }
 .search-container {
     padding: 20px;

@@ -34,6 +34,8 @@ class Post extends DbModel
     public function save(): bool
     {
         $this->status = self::STATUS_PENDING;
+        $this->user_id = Application::$app->user->getId();
+        $this->created_at = date('Y-m-d H:i:s');
         return parent::save();
     }
 
@@ -118,6 +120,9 @@ class Post extends DbModel
                 ];
             }
         }
+        usort($data, function ($item1, $item2) {
+            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
+        });
         return json_encode($data);
     }
 
