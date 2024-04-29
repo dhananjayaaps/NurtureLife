@@ -179,4 +179,9 @@ $app->router->post('/childHeight', [ChildChartController::class, 'ChildHeightUpd
 $app->router->get('/roleRequest', [RoleRequestController::class, 'roleRequest']);
 $app->router->post('/roleRequest', [RoleRequestController::class, 'roleRequest']);
 
+$app->router->get('/motherRegistrations', [Registration::class, 'MotherRegistration']);
+$app->router->get('/childBorn', [Registration::class, 'childBorn']);
+
+
+
 $app->run();
