@@ -47,6 +47,8 @@ $this->title = 'Midwife Dashboard';
 
         <div class="quick-access">
             <div class="user-control addButtons">
+
+                <a href="/checkSymptoms"> <button class="addButton">View Mother</button></a>
                 <button class="addButton"><a href="/preMotherForm">Register Mother</a></button>
                 <button class="addButton">View Mother</button>
                 <button class="addButton">Record Pregnancy Report Card</button>

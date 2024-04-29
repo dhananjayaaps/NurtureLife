@@ -333,6 +333,6 @@ th, td {
     background-color: #0056b3;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
+/*tr:nth-child(even) {background-color: #f2f2f2;}*/
 
-tr:hover {background-color: #adffec;}
+/*tr:hover {background-color: #adffec;}*/
