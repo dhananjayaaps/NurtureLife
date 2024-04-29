@@ -301,7 +301,7 @@ $this->title = 'FetalKicks';
         <h2>Child's Weight and Height Gain Charts</h2><br>
         <div class="column first-column">
             <div class="lineChart">
-               <b>Weight Gain Chart</b>
+                <b><a href="/childweight">Weight Gain Chart</a></b>
                 <canvas id="lineChart"></canvas>
             </div>
             <div class="lineChart">

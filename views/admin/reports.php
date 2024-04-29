@@ -1,124 +1,142 @@
-<!--<h1>Admin - Reports</h1>-->
+<?php
 
-<style>
-    .content{
-        justify-content: flex-start;
+namespace app\models;
+
+use app\core\Application;
+use app\core\db\DbModel;
+use PDO;
+
+class Mother extends DbModel
+{
+    public string $MotherId = '';
+    public string $user_id = '';
+    public string $PHM_ID = '';
+    public string $MaritalStatus  = 'Married';
+    public string $MarriageDate ='';
+    public string $BloodGroup = '';
+    public string $Occupation = '';
+    public string $Allergies = '';
+    public string $Consanguinity = '1';
+    public string $history_subfertility = '1';
+    public string $Hypertension = '1';
+    public string $diabetes_mellitus = '1';
+    public string $rubella_immunization = '1';
+    public string $emergencyNumber = '';
+    public string $DeliveryDate = '';
+    public string $nic = '';
+    public string $clinic_id = '';
+    public int $status = 1;
+    public int $MotherStatus = 1;
+    public string $location= '';
+
+    public function rules(): array
+    {
+        return [
+            'nic' => [self::RULE_REQUIRED],
+            'MaritalStatus' => [self::RULE_REQUIRED],
+            'BloodGroup' => [self::RULE_REQUIRED],
+            'rubella_immunization' => [self::RULE_REQUIRED],
+            'emergencyNumber' => [self::RULE_REQUIRED],
+            'Consanguinity' => [self::RULE_REQUIRED],
+            'history_subfertility' => [self::RULE_REQUIRED],
+            'Hypertension' => [self::RULE_REQUIRED],
+            'diabetes_mellitus' => [self::RULE_REQUIRED],
+            'location' => [self::RULE_REQUIRED],
+        ];
     }
-</style>
 
-<h1>Admins Management</h1>
+    public function tableName(): string
+    {
+        return 'Mothers';
+    }
 
-<div class="content">
-    <div class="column first-column">
-        <div class="quick-access">
+    public function primaryKey(): string
+    {
+        return 'MotherId';
+    }
 
-        </div>
-    </div>
-    <div class="column second-column">
-        <div class="first-row">
-            <div class="report-types">
-                <div class="report-type addButtons">
-                    <button class="addButton">New Borns</button>
-                    <button class="addButton">New Registrations</button>
-                    <button class="addButton">Mother Deaths</button>
-                    <button class="addButton">Child Deaths</button>
-                    <button class="addButton">Mother Deaths</button>
-                    <button class="addButton">Child Deaths</button>
-                </div>
-            </div>
-        </div>
+    public function attributes(): array
+    {
+        return [
+            'PHM_ID',
+            'MaritalStatus',
+            'MarriageDate',
+            'BloodGroup',
+            'Occupation',
+            'Allergies',
+            'Consanguinity',
+            'history_subfertility',
+            'Hypertension',
+            'diabetes_mellitus',
+            'rubella_immunization',
+            'emergencyNumber',
+            'user_id',
+            'clinic_id',
+            'MotherStatus',
+            'DeliveryDate',
+            'location'
+        ];
+    }
 
-        <div>
-            <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-            <link rel="stylesheet" type="text/css" href="./assets/styles/heatmap.css" />
-            <script type="module" src="./assets/scripts/Heatmap.js"></script>
-            <div id="floating-panel">
-                <button id="toggle-heatmap">Toggle Heatmap</button>
-                <button id="change-gradient">Change gradient</button>
-                <button id="change-radius">Change radius</button>
-                <button id="change-opacity">Change opacity</button>
-            </div>
-            <div id="map"></div>
+    public function save(): bool
+    {
+        $ValidateUser = (new User())->getUserByNIC($this->nic);
 
-            <script
-                    src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['MAP_API']?>&callback=initMap&libraries=visualization&v=weekly"
-                    defer
-            >
-            </script>
-        </div>
-    </div>
-</div>
-
-<script>
-    const sideWindow = document.getElementById("sideWindow");
-    const sideWindowTitle = document.getElementById("sideWindowTitle");
-    const timePeriodSelect = document.getElementById("timePeriod");
-    const dateFields = document.getElementById("dateFields");
-    const loadingMessage = document.getElementById("loadingMessage");
-    const downloadButton = document.getElementById("downloadButton");
-    const generateReportButton = document.getElementById("generateReport");
-    const resetFormButton = document.getElementById("resetForm");
-
-    generateReportButton.addEventListener("click", () => {
-    });
-
-    const secondRowButtons = document.querySelectorAll(".addButton");
-    secondRowButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            sideWindowTitle.textContent = button.textContent;
-        });
-    });
-
-    generateReportButton.addEventListener("click", () => {
-        loadingMessage.style.display = "block";
-        generateReportButton.disabled = true;
-        setTimeout(() => {
-            loadingMessage.style.display = "none";
-            downloadButton.style.display = "inline";
-        }, 2000);
-
-    });
-
-    resetFormButton.addEventListener("click", () => {
-        timePeriodSelect.value = "select";
-        dateFields.innerHTML = "";
-        loadingMessage.style.display = "none";
-        downloadButton.style.display = "none";
-        generateReportButton.disabled = false;
-    });
-
-    timePeriodSelect.addEventListener("change", () => {
-        const selectedTimePeriod = timePeriodSelect.value;
-        dateFields.innerHTML = "";
-
-        if (selectedTimePeriod === "daily") {
-            dateFields.innerHTML = `
-                    <label for="startDate">Start Date:</label>
-                    <input type="date" id="startDate">
-                    <label for="endDate">End Date:</label>
-                    <input type="date" id="endDate">
-                `;
-        } else if (selectedTimePeriod === "weekly") {
-            dateFields.innerHTML = `
-                    <label for="startWeek">Start Week:</label>
-                    <input type="week" id="startWeek">
-                    <label for="endWeek">End Week:</label>
-                    <input type="week" id="endWeek">
-                `;
-        } else if (selectedTimePeriod === "monthly") {
-            dateFields.innerHTML = `
-                    <label for="startMonth">Start Month:</label>
-                    <input type="month" id="startMonth">
-                    <label for="endMonth">End Month:</label>
-                    <input type="month" id="endMonth">
-                `;
-        } else if (selectedTimePeriod === "annual") {
-            dateFields.innerHTML = `
-                    <label for="startYear">Start Year:</label>
-                    <input type="number" id="startYear">
-                    <label for="endYear">End Year:</label>
-                    <input type="number" id="endYear">
-                `;
+        if (!$ValidateUser) {
+            $this->addError('nic', 'User does not exist with this NIC');
+            return false;
         }
-    });
-</script>
+        else{
+
+            $exitPHM = (new Midwife())->findOne(Midwife::class, ["user_id" => Application::$app->user->getId()]);
+            if(!$exitPHM){
+                $this->addError('PHM_ID', 'That Clinic no exists');
+                return false;
+            }
+            $this->MotherStatus = 1;
+            $this->PHM_ID = $exitPHM->PHM_id;
+            $this->user_id = $ValidateUser->id;
+            $this->clinic_id = $exitPHM->clinic_id;
+            $this->status = 1;
+            return parent::save();
+        }
+    }
+
+    public function getUser($id)
+    {
+        return (new Mother())->findOne(Mother::class, ['user_id' => $id]);
+    }
+
+    public function getMothers(): string
+    {
+        $joins = [
+            ['model' => User::class, 'condition' => 'Mothers.user_id = users.id'],
+            ['model' => Midwife::class, 'condition' => 'Mothers.PHM_ID = midwife.PHM_id']
+        ];
+
+        $motherData = (new Mother())->findAllWithJoins(self::class, $joins);
+
+        $data = [];
+        $StatusNames = ['Inactive', 'Prenatal', 'Postnatal', 'Both' ,'Special'];
+
+        foreach ($motherData as $mother) {
+            $data[] = [
+                'MotherId' => $mother->MotherId,
+                'Name' => $mother->firstname . " " . $mother->lastname,
+                'Status' => $StatusNames[(int)$mother->MotherStatus],
+                'DeliveryDate' => $mother->DeliveryDate,
+                'PHM_id' => $mother->PHM_ID,
+//                'PHM_Name' => (new Midwife())->findOne(self::class, ['PHM_id'=> $mother->PHM_ID ] )->firstname . " " . (new Midwife())->findOne(self::class, ['PHM_id'=> $mother->PHM_ID ] )->lastname
+            ];
+        }
+        return json_encode($data);
+    }
+
+    public function getDailyRegistrationCount()
+    {
+        $statement = self::prepare("SELECT DATE(Created_At) AS Registration_Date, COUNT(*) AS Registration_Count FROM Mothers GROUP BY DATE(Created_At) ORDER BY DATE(Created_At) ASC");
+        $statement->execute();
+        return json_encode($statement->fetchAll(PDO::FETCH_OBJ));
+    }
+
+}

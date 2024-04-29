@@ -47,12 +47,12 @@ class Clinic extends DbModel
     public function rules(): array
     {
         return [
-            'name' => [self::RULE_REQUIRED,[
-                self::RULE_UNIQUE ,'class' => self::class
-            ]],
             'district' => [self::RULE_REQUIRED],
             'address' => [self::RULE_REQUIRED ],
             'contactNo' => [self::RULE_REQUIRED],
+            'name' => [self::RULE_REQUIRED,[
+                self::RULE_UNIQUE ,'class' => self::class
+            ]],
         ];
     }
 

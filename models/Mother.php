@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\core\Application;
 use app\core\db\DbModel;
+use PDO;
 
 class Mother extends DbModel
 {
@@ -129,6 +130,13 @@ class Mother extends DbModel
             ];
         }
         return json_encode($data);
+    }
+
+    public function getDailyRegistrationCount()
+    {
+        $statement = self::prepare("SELECT DATE(Created_At) AS Registration_Date, COUNT(*) AS Registration_Count FROM Mothers GROUP BY DATE(Created_At) ORDER BY DATE(Created_At) ASC");
+        $statement->execute();
+        return json_encode($statement->fetchAll(PDO::FETCH_OBJ));
     }
 
 }

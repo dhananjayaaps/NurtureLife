@@ -120,9 +120,6 @@
                 <div class="column">
                     <a href="/communication"><img src="assets/images/icons/communication.png" alt=""> Contact Mothers</a>
                 </div>
-                <div class="column">
-                    <a href="/emergency"><img src="assets/images/icons/emergency.png" alt=""> Emergencies</a>
-                </div>
             </div>
         </div>
         <div class="content" style="margin-left: 220px; height: 1000px; ">

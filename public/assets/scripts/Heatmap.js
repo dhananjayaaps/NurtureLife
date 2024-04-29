@@ -2,7 +2,7 @@ let map, heatmap;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 13,
+        zoom: 7,
         center: { lat: 6.838579, lng: 79.948033 },
         mapTypeId: "satellite",
     });

@@ -18,7 +18,7 @@ $this->title = 'Clinics';
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
 
-<h1>Clinics centers management</h1>
+<h1>Admin - Clinics</h1>
 <div id="myPopup" class="popup">
     <div class="popup-content">
         <h1 style="color: rgb(0, 15, 128);">Update Clinic Details<br/><br/></h1>
@@ -83,8 +83,8 @@ $this->title = 'Clinics';
     <div class="shadowBox">
         <div class="left-content">
             <div class="search-container">
-                <input type="text" placeholder="Search Clinic...">
-                <button type="submit">Search</button>
+                <label for="clinicsSearchData"></label><input type="text" id="clinicsSearchData" placeholder="Search Clinic...">
+                <button type="submit" id="ClinicSearch">Search</button>
             </div>
             <table class="table-data">
                 <thead>
@@ -276,7 +276,7 @@ $this->title = 'Clinics';
                 if (response.ok) {
                     window.location.reload();
                 } else {
-                    setflash('Failed to update clinic details');
+                    return response.json();
                 }
             })
             .then(responseData => {
@@ -351,6 +351,32 @@ $this->title = 'Clinics';
         var myPopupRemove = document.getElementById('myPopupRemove');
         if (event.target == myPopupRemove) {
             myPopupRemove.classList.remove("show");
+        }
+    });
+</script>
+
+<script>
+    // Function to handle clinic search
+    function searchClinics() {
+        var searchTerm = document.getElementById('clinicsSearchData').value.toLowerCase();
+        var filteredData = data.filter(function(clinic) {
+            return clinic.name.toLowerCase().includes(searchTerm);
+        });
+
+        // Display the filtered data
+        displayTableData(filteredData);
+        displayPagination(filteredData);
+    }
+
+    // Add event listener to the search button
+    document.getElementById('ClinicSearch').addEventListener('click', function() {
+        searchClinics();
+    });
+
+    // Add event listener to handle enter key press in the search input
+    document.getElementById('clinicsSearchData').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            searchClinics();
         }
     });
 </script>
