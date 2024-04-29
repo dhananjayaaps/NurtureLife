@@ -75,7 +75,7 @@
 </div>
 
 <div class="content-navbar">
-    <div class="wrapper" style="height: fit-content">
+    <div class="wrapper">
         <div class="sidebar">
             <div class="logo-details">
                 <div class="logo_name">NurtureLife</div>
@@ -98,32 +98,11 @@
                     <span class="tooltip">User</span>
                 </li>
                 <li>
-                    <a href="/clinics">
-                        <i class="bx bx-clinic"></i>
-                        <span class="links_name">Clinics</span>
+                    <a href="/mothers">
+                        <i class="bx bx-female"></i>
+                        <span class="links_name">Mothers</span>
                     </a>
-                    <span class="tooltip">Clinics</span>
-                </li>
-                <li>
-                    <a href="/motherRegistrations">
-                        <i class="bx bx-pie-chart-alt-2"></i>
-                        <span class="links_name">Reports</span>
-                    </a>
-                    <span class="tooltip">Reports</span>
-                </li>
-                <li>
-                    <a href="/doctors">
-                        <i class="bx bx-plus-medical"></i>
-                        <span class="links_name">Doctors</span>
-                    </a>
-                    <span class="tooltip">Doctors</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bx bx-injection"></i>
-                        <span class="links_name">Midwives</span>
-                    </a>
-                    <span class="tooltip">Midwives</span>
+                    <span class="tooltip">Mothers</span>
                 </li>
                 <li class="profile">
                     <div class="profile-details">

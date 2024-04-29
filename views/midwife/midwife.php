@@ -16,6 +16,11 @@ $this->title = 'Midwife Dashboard';
         height: 40vh;
         margin-top: 15px;
     }
+    a{
+        text-decoration: none;
+        color: white;
+
+    }
 </style>
 
 <h1>Midwife - Dashboard</h1>
@@ -42,15 +47,14 @@ $this->title = 'Midwife Dashboard';
 
         <div class="quick-access">
             <div class="user-control addButtons">
-
-                <a href="/preMotherForm"><button class="addButton">Register a Mother</button></a>
+                <button class="addButton"><a href="/preMotherForm">Register Mother</a></button>
                 <button class="addButton">View Mother</button>
                 <button class="addButton">Record Pregnancy Report Card</button>
                 <button class="addButton">Track Mother</button>
             </div>
             <div class="user-control addButtons">
 
-                <button class="addButton">Register a child</button>
+                <button class="addButton"><a href="/Child">Register Child</a></button>
                 <button class="addButton">Record baby card </button>
                 <button class="addButton">View field Schedule</button>
                 <button class="addButton">View clinic schedule</button>
