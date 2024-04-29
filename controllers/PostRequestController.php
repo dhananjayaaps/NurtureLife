@@ -3,14 +3,13 @@
 namespace app\controllers;
 
 use app\core\Application;
-use app\core\Controller;
 use app\core\Request;
 use app\models\Clinic;
 use app\models\Mother;
 use app\models\Post;
 use app\models\Post_request;
 
-class PostRequestController extends Controller
+class PostRequestController extends \app\core\Controller
 {
     public function postRequestUpdate(Request $request): false|string
     {
