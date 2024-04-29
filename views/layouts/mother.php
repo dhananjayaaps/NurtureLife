@@ -91,7 +91,7 @@
                     <span class="tooltip">Dashboard</span>
                 </li>
                 <li>
-                    <a href="/#">
+                    <a href="/">
                         <i class="bx bx-capsule"></i>
                         <span class="links_name">Report Symptoms</span>
                     </a>

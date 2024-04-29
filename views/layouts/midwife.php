@@ -112,7 +112,7 @@
                     <span class="tooltip">Add Child</span>
                 </li>
                 <li>
-                    <a href="/ViewChild">
+                    <a href="/viewChild">
                         <i class="bx bx-smile"></i>
                         <span class="links_name">View Children</span>
                     </a>

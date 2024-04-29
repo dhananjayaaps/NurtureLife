@@ -35,15 +35,29 @@ $this->title = 'Child';
     .card {
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         transition: 0.3s;
-        width: 60%;
+        width: 250px;
+        height: 140px;
+        border-radius: 10px;
+    }
+
+    .btn-submit {
+        background-color: #774020;
+        color: white;
+        font-size: 10px;
     }
 
     .card:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
 
-    .container {
+    .vaccineContainer {
+        display: flex;
+        flex-direction: column;
         padding: 2px 16px;
+        margin 10px;
+        align-items: flex-start;
+        justify-content: space-around;
+        gap: 50px
     }
 
     .vaccinesCards{
@@ -89,14 +103,14 @@ $this->title = 'Child';
         <h2>At Birth</h2>
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>B.C.G 1st dose</h4>
                     <button type="button" class="btn-submit showPopup" data-target="myPopup">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>B.C.G 2nd dose</h4>
                     <button type="button" class="btn-submit showPopup" data-target="myPopup">Not Vaccinated</button>
                 </div>
@@ -109,21 +123,21 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>DPT 1</h4>
                     <button type="submit" class="btn-submit showPopup" data-target="myPopup">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>OPV 1</h4>
                     <button type="submit" class="btn-submit showPopup" data-target="myPopup">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>Hepatitis B1</h4>
                     <button type="submit" class="btn-submit showPopup" data-target="myPopup">Not Vaccinated</button>
                 </div>
@@ -136,21 +150,21 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>DPT 2</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>OPV 2</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>Hepatitis B2</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
@@ -162,21 +176,21 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>DPT 3</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>OPV 3</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>Hepatitis B3</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
@@ -188,14 +202,14 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>MEASLES</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>VITAMIN A</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
@@ -207,21 +221,21 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>DPT 4</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>OPV 4</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>VITAMIN A</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
@@ -233,14 +247,14 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>MEASLES & RUBELLA</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>VITAMIN A</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
@@ -252,14 +266,14 @@ $this->title = 'Child';
 
         <div class="vaccines">
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>D.T</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="container">
+                <div class="vaccineContainer">
                     <h4>OPV 5</h4>
                     <button type="submit" class="btn-submit">Not Vaccinated</button>
                 </div>

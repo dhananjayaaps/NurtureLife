@@ -98,6 +98,12 @@ class Mother extends DbModel
             $this->user_id = $ValidateUser->id;
             $this->clinic_id = $exitPHM->clinic_id;
             $this->status = 1;
+
+            $userRole = new UserRoles();
+            $userRole->role_id = User::ROLE_PRE_MOTHER;
+            $userRole->user_id = $ValidateUser->id;
+            $userRole->save();
+
             return parent::save();
         }
     }
