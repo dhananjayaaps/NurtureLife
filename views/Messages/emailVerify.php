@@ -66,7 +66,7 @@ $this->title = 'Verification Success';
 <h1>Email Verification</h1>
 <div class="container">
     <div class="imageBox">
-        <img src="https://www.cidrap.umn.edu/sites/default/files/styles/article_detail/public/article/Pregnant%20woman%20with%20young%20child.jpg" alt="Image">
+        <img src="./assets/images/mother_baby_cover.jpeg" alt="Image">
     </div>
     <div>
         <img class="tick" src="https://media.istockphoto.com/id/1094780808/vector/approval-symbol-check-mark-in-a-circle-drawn-by-hand-vector-green-sign-ok-approval-or.jpg?s=612x612&w=0&k=20&c=0mlB50r769kHmLkVcq_HpdNFGdHIA_Cu_tPqN4IKZbc=" alt="tick">
