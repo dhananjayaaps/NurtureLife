@@ -58,6 +58,7 @@ $this->title = 'Login';
                 <button class="addButton">Transfer a Doctor</button>
                 <button class="addButton">Add a Doctor</button>
                 <button class="addButton">Add a Midwife</button>
+                <a href="/replySymptoms"><button class="addButton">Reply Symptoms</button></a>
             </div>
 
             <div class="shadowBox">

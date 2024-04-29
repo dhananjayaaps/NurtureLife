@@ -43,11 +43,11 @@ class SiteController extends \app\core\Controller
         return $this->render('home');
     }
 
-//    public function contact(): false|array|string
-//    {
-//        $this->layout = 'volunteer';
-//        return $this->render('contact');
-//    }
+    public function contact(): false|array|string
+    {
+        $this->layout = 'volunteer';
+        return $this->render('contact');
+    }
     public function handleContact(Request $request): string
     {
         $body = $request->getBody();
@@ -80,6 +80,16 @@ class SiteController extends \app\core\Controller
     {
         $this->layout = 'doctor';
         return $this->render('doctor/mothers');
+    }
+    public function doctorViewSymptoms()
+    {
+        $this->layout = 'doctor';
+        return $this->render('doctor/replySymptoms');
+    }
+    public function midwifeViewSymptoms()
+    {
+        $this->layout = 'midwife';
+        return $this->render('midwife/checkSymptomReports');
     }
 
     public function about(): array|false|string

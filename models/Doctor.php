@@ -5,6 +5,7 @@ namespace app\models;
 use app\core\Application;
 use app\core\db\DbModel;
 use app\core\Model;
+use PDO;
 
 class Doctor extends DbModel
 {
@@ -137,6 +138,69 @@ class Doctor extends DbModel
     {
         self::deleteWhere(UserRoles::class, ['user_id' => $this->user_id, 'role_id' => 3]);
         return parent::delete();
+    }
+    public function getDocId()
+    {
+        $UserId = Application::$app->user->getId();
+        $DoctorData = self::findOne(Doctor::class, ['user_id' => $UserId]);
+        return $DoctorData->MOH_id;
+    }
+    public function getDocClinic()
+    {
+        $UserId = Application::$app->user->getId();
+        $DoctorData = self::findOne(Doctor::class, ['user_id' => $UserId]);
+        return $DoctorData->clinic_id;
+    }
+    public function getClinicDoctors()
+    {
+        $clinic = (new Doctor())->getDocClinic();
+
+         $sql = self::prepare("SELECT D.MOH_id , U.firstname, U.lastname
+                     From doctors AS D, users AS U
+                     WHERE D.user_id = U.id AND D.clinic_id = :clinicId");
+
+        $sql->bindValue(":clinicId", $clinic);
+        $sql->execute();
+
+        // Fetch all rows as associative arrays
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the result as JSON
+        return json_encode($result);
+    }
+    public function getClinicMothers()
+    {
+        $clinic = (new Doctor())->getDocClinic();
+
+        $sql = self::prepare("SELECT M.MotherId , U.firstname, U.lastname
+                     From Mothers AS M, users AS U
+                     WHERE M.user_id = U.id AND M.clinic_id = :clinicId");
+
+        $sql->bindValue(":clinicId", $clinic);
+        $sql->execute();
+
+        // Fetch all rows as associative arrays
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the result as JSON
+        return json_encode($result);
+    }
+    public function getClinicMidwiwes()
+    {
+        $clinic = (new Doctor())->getDocClinic();
+
+        $sql = self::prepare("SELECT M.PHM_id , U.firstname, U.lastname
+                     From midwife AS M, users AS U
+                     WHERE M.user_id = U.id AND M.clinic_id = :clinicId");
+
+        $sql->bindValue(":clinicId", $clinic);
+        $sql->execute();
+
+        // Fetch all rows as associative arrays
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the result as JSON
+        return json_encode($result);
     }
 
 }
