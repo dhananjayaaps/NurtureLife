@@ -50,7 +50,7 @@ $this->title = 'Midwife Dashboard';
             </div>
             <div class="user-control addButtons">
 
-                <button class="addButton">Register a child</button>
+                <button class="addButton"><a href="/Child">Register a child</a></button>
                 <button class="addButton">Record baby card </button>
                 <button class="addButton">View field Schedule</button>
                 <button class="addButton">View clinic schedule</button>

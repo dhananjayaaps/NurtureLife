@@ -80,9 +80,13 @@ $this->title = 'Child';
         padding: 10px;
     }
 
+    .vaccineBox{
+        margin-top: 400px;
+    }
+
 </style>
 
-<div class="vaccinesCards">
+<div >
     <div class="vaccineBox">
         <h1>Child Immunization Card</h1>
         <?php $form = Form::begin('', "post")?>

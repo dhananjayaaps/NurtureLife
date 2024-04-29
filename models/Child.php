@@ -9,7 +9,7 @@ class Child extends parentAlias
 {
 
 
-    public int $child_id ;
+    public int $child_id;
 
     public string $nic = '';
     public int $motherUserId;
@@ -57,8 +57,7 @@ class Child extends parentAlias
         if (!$ValidateUser) {
             $this->addError('nic', 'User does not exist with this NIC');
             return false;
-        }
-        else{
+        } else {
             $this->motherUserId = $ValidateUser->id;
 //            var_dump($this);
             return parent::save();
@@ -90,3 +89,4 @@ class Child extends parentAlias
         $data = $stmt->fetchObject();
         return $data->count;
     }
+}

@@ -75,7 +75,7 @@
 </div>
 
 <div class="content-navbar">
-    <div class="wrapper" style="height: fit-content">
+    <div class="wrapper">
         <div class="sidebar">
             <div class="logo-details">
                 <div class="logo_name">NurtureLife</div>

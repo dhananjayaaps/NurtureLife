@@ -14,7 +14,7 @@ class ChildWeight extends DbModel
     public string $child_id = '';
     public string $value_of_weight ='';
 
-//    public string $Time = '';
+    public string $Time = '';
     public function rules(): array
     {
         return[
@@ -43,6 +43,35 @@ class ChildWeight extends DbModel
 //            'Time'
         ];
     }
+    public function validate()
+    {
+        if ($this->isNewMonthRecord()) {
+            $this->addError('value_of_weight', 'A weight already exists.');
+            return false;
+        }
+
+        return parent::validate();
+    }
+
+    private function isNewMonthRecord(): bool
+    {
+        $tableName = $this->tableName();
+        $childId = $this->getChildId();
+        $currentMonth = date("Y-m"); // Get the current month in the "YYYY-MM" format
+
+        $sql = "SELECT * FROM $tableName WHERE child_id = :childId AND DATE_FORMAT(Time, '%Y-%m') = :currentMonth";
+        $statement = self::prepare($sql);
+
+        $statement->bindValue(":childId", $childId);
+        $statement->bindValue(":currentMonth", $currentMonth);
+
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        // Return true if a record exists, i.e., this is not a new month record
+        return $result !== false;
+    }
+
     public function getWeight(): string
     {
         $child_id = $this->getChildId();
