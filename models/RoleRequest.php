@@ -67,7 +67,9 @@ class RoleRequest extends DbModel
                 'status' => $roleRequests->status
             ];
         }
-        return ($data);
+        usort($data, function ($item1, $item2) {
+            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
+        });
     }
 
     public function getRoleRequests(): string
@@ -81,7 +83,9 @@ class RoleRequest extends DbModel
             $roleRequestData = (new RoleRequest())->findAll(self::class);
             return json_encode($roleRequestData);
         }
-        return json_encode($roleRequestData);
+        usort($roleRequestData, function ($item1, $item2) {
+            return $item2['id'] <=> $item1['id']; // Note the order of item2 and item1 has been swapped
+        });
     }
 
 

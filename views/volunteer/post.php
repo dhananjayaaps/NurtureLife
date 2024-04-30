@@ -186,45 +186,45 @@ $this->title = 'Volunteer';
 
 
 
-            const formData = new FormData();
-            formData.append('post_id', postId);
-            formData.append('description', req);
+        const formData = new FormData();
+        formData.append('post_id', postId);
+        formData.append('description', req);
 
-            const url = '/createPostRequest';
+        const url = '/createPostRequest';
 
-            fetch(url, {
-                method: 'POST',
-                body: formData,
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    return response.json();
+                }
             })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.reload();
-                    } else {
-                        return response.json();
-                    }
-                })
-                .then(responseData => {
-                    if (responseData.errors) {
-                        const invalidFeedbackElements = document.querySelectorAll('.invalid-feedback');
-                        for (const key in responseData.errors) {
-                            console.log(key)
-                            if (responseData.errors[key].length > 0) {
-                                const feedbackElement = document.querySelector(`[name="Update${key.charAt(0).toUpperCase() + key.slice(1)}"] + .invalid-feedback`);
-                                if (feedbackElement) {
-                                    console.log("found");
-                                    feedbackElement.innerHTML = "<svg aria-hidden=\"true\" class=\"stUf5b qpSchb\" fill=\"currentColor\" focusable=\"false\" width=\"16px\" height=\"16px\" viewBox=\"0 0 24 24\" xmlns=\"https://www.w3.org/2000/svg\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z\"></path></svg>" +
-                                        responseData.errors[key][0];
-                                }
+            .then(responseData => {
+                if (responseData.errors) {
+                    const invalidFeedbackElements = document.querySelectorAll('.invalid-feedback');
+                    for (const key in responseData.errors) {
+                        console.log(key)
+                        if (responseData.errors[key].length > 0) {
+                            const feedbackElement = document.querySelector(`[name="Update${key.charAt(0).toUpperCase() + key.slice(1)}"] + .invalid-feedback`);
+                            if (feedbackElement) {
+                                console.log("found");
+                                feedbackElement.innerHTML = "<svg aria-hidden=\"true\" class=\"stUf5b qpSchb\" fill=\"currentColor\" focusable=\"false\" width=\"16px\" height=\"16px\" viewBox=\"0 0 24 24\" xmlns=\"https://www.w3.org/2000/svg\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z\"></path></svg>" +
+                                    responseData.errors[key][0];
                             }
                         }
-                    } else {
-                        console.log(responseData);
                     }
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        }
+                } else {
+                    console.log(responseData);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
 
 
     function contactPopup (name,phone,email) {

@@ -14,8 +14,8 @@ class PostMotherController extends Controller
     public function postMotherForm1(Request $request): array|false|string
     {
         $this->layout = 'doctor';
-        $mother = new Mother();
-        $mother2 = new Mother();
+        $mother = new PostMotherDetails();
+        $mother2 = new PostMotherDetails();
 
         if ($request->isPost()) {
             $this->layout = 'doctor';
@@ -24,7 +24,7 @@ class PostMotherController extends Controller
             if ($mother->validate() && $mother->save()) {
                 var_dump($mother);
                 Application::$app->session->setFlash('success', 'Added a new Midwife');
-                Application::$app->response->redirect('doctor/Mother');
+                Application::$app->response->redirect('doctor/postMotherForm1');
                 exit;
             }
         }

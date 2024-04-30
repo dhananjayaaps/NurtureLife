@@ -74,8 +74,6 @@ class Child extends parentAlias
         foreach ($childData as $child) {
             $data[] = [
                 'ChildName' => $child->Child_Name,
-                'Birth_Date' => $child->Mother_Name,
-                'Birth_Place' => $child->Register_NO,
                 'Gender' => $child->Gender,
             ];
         }
@@ -90,6 +88,7 @@ class Child extends parentAlias
         $data = $stmt->fetchObject();
         return $data->count;
     }
+
 
     public function getMotherCountForAdmin()
     {
@@ -131,5 +130,10 @@ class Child extends parentAlias
             $index++;
         }
         return json_encode($data);
+    }
+    public function getAChild($child_id)
+    {
+        return (new Child())->findOne(self::class, ['child_id' => $child_id]);
+
     }
 }

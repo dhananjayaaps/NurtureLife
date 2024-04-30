@@ -51,12 +51,13 @@ use app\models\PostMotherDetails;
         margin-top: 20px;
     }
 
-    .break-line {
-        border-top: 1px solid #FFF;
-        margin-top: 5px;
-        margin-bottom: 5px;
+    .shadowBox{
+        width: 600px;
     }
 
+    .content{
+        margin-left: 280px;
+    }
 </style>
 
 <h1>Postnatal Mother Form</h1>
@@ -64,7 +65,7 @@ use app\models\PostMotherDetails;
 
     <div class="shadowBox">
         <div class="form-container">
-            <h2>Postnatal Clinic Care</h2>
+            <h2>Postnatal Clinic Care<br><br></h2>
             <?php $form = Form::begin('', "post")?>
             <div class="form-content">
                 <div class="form-column">
@@ -72,7 +73,7 @@ use app\models\PostMotherDetails;
                     $radioButton = new RadioButton($model, 'breast_problems', '1. Breast Problems');
                     $radioButton->setOptions([
                         '1' => 'Yes',
-                        '2' => 'No',
+                        '2' => 'No'
                     ]);
                     echo $radioButton;
                     ?>
@@ -80,7 +81,7 @@ use app\models\PostMotherDetails;
                     $radioButton = new RadioButton($model, 'abnormal_vaginal_discharge', '2. Abnormal Vaginal Discharge');
                     $radioButton->setOptions([
                         '1' => 'Yes',
-                        '2' => 'No',
+                        '2' => 'No'
                     ]);
                     echo $radioButton;
                     ?>
@@ -88,7 +89,7 @@ use app\models\PostMotherDetails;
                     $radioButton = new RadioButton($model, 'excessive_vaginal_bleeding', '3. Excessive Vaginal Bleeding');
                     $radioButton->setOptions([
                         '1' => 'Yes',
-                        '2' => 'No',
+                        '2' => 'No'
                     ]);
                     echo $radioButton;
                     ?>
@@ -96,7 +97,7 @@ use app\models\PostMotherDetails;
                     $radioButton = new RadioButton($model, 'pallor', '4. Pallor');
                     $radioButton->setOptions([
                         '1' => 'Yes',
-                        '2' => 'No',
+                        '2' => 'No'
                     ]);
                     echo $radioButton;
                     ?>
@@ -104,7 +105,15 @@ use app\models\PostMotherDetails;
                     $radioButton = new RadioButton($model, 'lcterus', '5. Lcterus');
                     $radioButton->setOptions([
                         '1' => 'Yes',
-                        '2' => 'No',
+                        '2' => 'No'
+                    ]);
+                    echo $radioButton;
+                    ?>
+                    <?php
+                    $radioButton = new RadioButton($model, 'dema', '6. Dema(ankle and/or facial)');
+                    $radioButton->setOptions([
+                        '1' => 'Yes',
+                        '2' => 'No'
                     ]);
                     echo $radioButton;
                     ?>
@@ -112,130 +121,60 @@ use app\models\PostMotherDetails;
 
                 <div class="form-column">
                     <?php
-                    $radioButton = new RadioButton($model, 'dema', '6. Dema(ankle and/or facial)');
-                    $radioButton->setOptions([
-                        '1' => 'Yes',
-                        '2' => 'No',
-                    ]);
-                    echo $radioButton;
-                    ?>
-                    <?php
                     $radioButton = new RadioButton($model, 'bp', '7. Blood Pressure');
                     $radioButton->setOptions([
                         '1' => 'Normal',
-                        '2' => 'Irregular',
+                        '2' => 'Irregular'
                     ]);
                     echo $radioButton;
                     ?>
                     <?php
                     $radioButton = new RadioButton($model, 'cardiovascular_system', '8. Cardiovascular System');
                     $radioButton->setOptions([
-                        '1' => '1',
-                        '5' => '5',
-                        '10' => '10'
+                        '1' => 'Normal',
+                        '2' => 'Unusual'
                     ]);
                     echo $radioButton;
                     ?>
                     <?php
                     $radioButton = new RadioButton($model, 'respiratory_system', '9. Respiratory System');
                     $radioButton->setOptions([
-                        '1' => '1',
-                        '5' => '5',
-                        '10' => '10'
+                        '1' => 'Normal',
+                        '2' => 'Unusual'
                     ]);
                     echo $radioButton;
                     ?>
-                    <label>
-                        6. Dema(ankle and/or facial):
-                        <div class="break-line"></div>
-                        <input type="radio" name="dema" value="Yes"> Yes
-                        <input type="radio" name="dema" value="No"> No
-                    </label>
-
-                    <div class="break-line"></div>
-
-                    <label>
-                        7. Blood Pressure:
-                        <div class="break-line"></div>
-                        <input type="radio" name="bp" value="Normal"> Normal
-                        <input type="radio" name="bp" value="Irregular"> Irregular
-                    </label>
-
-                    <div class="break-line"></div>
-
-                    <label>
-                        8. Cardiovascular System:
-                        <div class="break-line"></div>
-                        <input type="radio" name="cardiovascular_system" value="Normal"> Normal
-                        <input type="radio" name="cardiovascular_system" value="Unusual"> Unusual
-                    </label>
-
-                    <div class="break-line"></div>
-
-                    <label>
-                        9. Respiratory System:
-                        <div class="break-line"></div>
-                        <input type="radio" name="respiratory_system" value="Normal"> Normal
-                        <input type="radio" name="respiratory_system" value="Unusual"> Unusual
-                    </label>
-                </div>
 
                 <div class="form-column">
                     <?php
                     $radioButton = new RadioButton($model, 'abdominal_examination', '10. Abdominal Examination');
                     $radioButton->setOptions([
-                        '1' => '1',
-                        '5' => '5',
-                        '10' => '10'
+                        '1' => 'Normal',
+                        '2' => 'Unusual'
                     ]);
                     echo $radioButton;
                     ?>
                     <?php
                     $radioButton = new RadioButton($model, 'mental_status', '11. Mental Status');
                     $radioButton->setOptions([
-                        '1' => '1',
-                        '5' => '5',
-                        '10' => '10'
+                        '1' => 'Normal',
+                        '2' => 'Unusual'
                     ]);
                     echo $radioButton;
                     ?>
                     <?php
                     $radioButton = new RadioButton($model, 'family_planning_method', '12. Family Planning Method Chosen');
                     $radioButton->setOptions([
-                        '1' => '1',
-                        '5' => '5',
-                        '10' => '10'
+                        '1' => 'DMPA',
+                        '2' => 'IUD',
+                        '3' => 'Female Sterilization',
+                        '4' => 'Other'
                     ]);
                     echo $radioButton;
                     ?>
-                    <label>
-                        10. Abdominal Examination:
-                        <div class="break-line"></div>
-                        <input type="radio" name="abdominal_examination" value="Normal"> Normal
-                        <input type="radio" name="abdominal_examination" value="Unusual"> Unusual
-                    </label>
-
-                    <div class="break-line"></div>
-
-                    <label>
-                        11. Mental Status:
-                        <div class="break-line"></div>
-                        <input type="radio" name="mental_status" value="Normal"> Normal
-                        <input type="radio" name="mental_status" value="Unusual"> Unusual
-                    </label>
-                    <div class="break-line"></div>
-                    <label>
-                        12. Family Planning Method Chosen:
-                        <div class="break-line"></div>
-                        <input type="radio" name="family_planning_method" value="1"> DMPA <br>
-                        <input type="radio" name="family_planning_method" value="2"> IUD  <br>
-                        <input type="radio" name="family_planning_method" value="3"> Female Sterilization <br>
-                        <input type="radio" name="family_planning_method" value="4"> Other
-                    </label>
-                    <div class="break-line"></div>
+                    <button type="submit" class="btn-submit">Submit</button>
                 </div>
             </div>
-            <button type="submit" class="btn-submit">Submit</button>
         </div>
         <?php echo Form::end()?>
     </div>

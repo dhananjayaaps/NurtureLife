@@ -198,6 +198,25 @@ $motherData = (new Mother())->getMotherDetails($motherId)[0];
             </div>
         </div>
 
+        <div class="row">
+            <h2>Mother Forms</h2>
+            <br>
+            <div class="card-row">
+                <div class="my-card">
+                    <h3><b><a href="/preMotherHistoryForm1"> Present Obstetric Mother History</a></b></h3>
+                </div>
+                <div class="my-card">
+                    <h3><b><a href="/preMotherHistoryForm2">Medical and Surgical History</a></b></h3>
+                </div>
+                <div class="my-card">
+                    <h3><b><a href="/preMotherHistoryForm3">Family History</a></b></h3>
+                </div>
+                <div class="my-card">
+                    <h3><b><a href="/personalInformationForm">Personal Information</a></b></h3>
+                </div>
+            </div>
+        </div>
+
         <h2>Medical History</h2>
         <br>
         <div class="card-row">
