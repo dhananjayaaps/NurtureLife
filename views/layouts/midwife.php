@@ -150,19 +150,19 @@
     </div>
 </div>
 <!--footer-->
-<div class="footer">
-    <div class="brand">
-        <div class="section_icon">
-            <img src="assets/images/nurturelife_logo_text.jpeg" alt="NL_logo_text_icon" />
-        </div>
-        <div class="section_name"> ©  2024 NurtureLife</div>
-    </div>
-    <div class="section_privacy"><a href="/policy" target="_blank">Privacy and Policy</a></div>
-    <div class="section_contact"><a href="/contact" target="_blank">Contact</a></div>
-    <div class="section_docs"><a href="https://drive.google.com/drive/folders/1tgtXQ39kbaM37BUenEuEPqWDaJT-4DAa?usp=sharing" target="_blank">Docs</a></div>
-    <div class="section_security"><a href="/policy" target="_blank">Security</a></div>
-    <div class="section_about"><a href="/about" target="_blank">About</a></div>
-</div>
+<!--<div class="footer" style="position: relative; bottom: 0">-->
+<!--    <div class="brand">-->
+<!--        <div class="section_icon">-->
+<!--            <img src="assets/images/nurturelife_logo_text.jpeg" alt="NL_logo_text_icon" />-->
+<!--        </div>-->
+<!--        <div class="section_name"> ©  2024 NurtureLife</div>-->
+<!--    </div>-->
+<!--    <div class="section_privacy"><a href="/policy" target="_blank">Privacy and Policy</a></div>-->
+<!--    <div class="section_contact"><a href="/contact" target="_blank">Contact</a></div>-->
+<!--    <div class="section_docs"><a href="https://drive.google.com/drive/folders/1tgtXQ39kbaM37BUenEuEPqWDaJT-4DAa?usp=sharing" target="_blank">Docs</a></div>-->
+<!--    <div class="section_security"><a href="/policy" target="_blank">Security</a></div>-->
+<!--    <div class="section_about"><a href="/about" target="_blank">About</a></div>-->
+<!--</div>-->
 </body>
 </html>
 

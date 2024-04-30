@@ -40,8 +40,9 @@ $this->title = 'Manage Appointments';
         height: 80vh;
     }
 </style>
-<h1>Midwife - Appointment Creating</h1>
+
 <div class="doctors content">
+    <h1>Midwife - Appointment Creating</h1>
     <div class="shadowBox">
         <div class="left-content">
             <div class="search-container">
