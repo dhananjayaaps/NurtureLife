@@ -11,6 +11,7 @@ namespace app\models;
 
 use app\core\UserModel;
 use DateTime;
+use PDO;
 
 class User extends UserModel
 {
@@ -54,15 +55,19 @@ class User extends UserModel
     {
         return 'id';
     }
-    public function save(): bool
+
+    public function validate()
     {
         $ValidateUser = (new User)->findOne(User::class, ['email' => $this->email]);
 
         if ($ValidateUser) {
             $this->addError('email', 'Already a user with this email');
-            return false;
         }
+        return parent::validate();
+    }
 
+    public function save(): bool
+    {
         $this->status = self::STATUS_Email_NOT_VERIFIED;
         $this->role_id = self::ROLE_USER;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
@@ -256,7 +261,6 @@ class User extends UserModel
                 'user_id' => $user->id,
                 'name' => $user->firstname . ' ' . $user->lastname,
                 'email' => $user->email,
-                'email' => $user->email,
                 'contact_no' => $user->contact_no,
                 'role_id' => $user->role_id
             ];
@@ -267,4 +271,42 @@ class User extends UserModel
     {
         return $this->nic;
     }
+    public function getUsersCountForAdmin(): false|string
+    {
+        // Get the current month
+        $currentMonth = date('n');
+
+        $sql = "SELECT COUNT(*) AS Registration_Count, MONTH(Created_At) AS Registration_Month FROM users WHERE Created_At BETWEEN DATE_SUB(NOW(), INTERVAL 12 MONTH) AND NOW() GROUP BY MONTH(Created_At)";
+        $statement = self::prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_OBJ);
+
+        $data = array_fill(0, 12, 0);
+        $index = $currentMonth;
+
+        foreach ($result as $item) {
+            $monthIndex = $index % 12;
+            $data[$monthIndex] = $item->Registration_Count;
+            $index++;
+        }
+        return json_encode($data);
+    }
+
+    //return user count for each role
+    public function getUsersCountForAdminByRole(): false|string
+    {
+        $sql = "SELECT COUNT(*) AS Registration_Count, role_id FROM users WHERE Created_At BETWEEN DATE_SUB(NOW(), INTERVAL 12 MONTH) AND NOW() GROUP BY role_id";
+        $statement = self::prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_OBJ);
+
+        $data = [];
+        foreach ($result as $item) {
+            $data[] = [
+                $item->Registration_Count
+            ];
+        }
+        return json_encode($data);
+    }
+
 }

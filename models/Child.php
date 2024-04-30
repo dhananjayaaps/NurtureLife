@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\core\db\DbModel as parentAlias;
 Use app\models\User;
+use PDO;
 
 class Child extends parentAlias
 {
@@ -87,8 +88,52 @@ class Child extends parentAlias
         $data = $stmt->fetchObject();
         return $data->count;
     }
+
+
+    public function getMotherCountForAdmin()
+    {
+        // Get the current month
+        $currentMonth = date('n');
+
+        $sql = "SELECT COUNT(*) AS Registration_Count, MONTH(Created_At) AS Registration_Month FROM child WHERE Created_At BETWEEN DATE_SUB(NOW(), INTERVAL 12 MONTH) AND NOW() GROUP BY MONTH(Created_At) ORDER BY MONTH(Created_At) ASC";
+        $statement = self::prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_OBJ);
+
+        $data = array_fill(0, 12, 0); // Initialize an array with zeros for each month
+        $index = $currentMonth; // Start from the current month
+
+        foreach ($result as $item) {
+            $monthIndex = $index % 12; // Get the array index by using modulo to loop around
+            $data[$monthIndex] = $item->Registration_Count;
+            $index++;
+        }
+        return json_encode($data);
+    }
+
+    public function getChildCountForAdmin(): false|string
+    {
+        // Get the current month
+        $currentMonth = date('n');
+
+        $sql = "SELECT COUNT(*) AS Registration_Count, MONTH(Created_At) AS Registration_Month FROM child WHERE Created_At BETWEEN DATE_SUB(NOW(), INTERVAL 12 MONTH) AND NOW() GROUP BY MONTH(Created_At)";
+        $statement = self::prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_OBJ);
+
+        $data = array_fill(0, 12, 0);
+        $index = $currentMonth;
+
+        foreach ($result as $item) {
+            $monthIndex = $index % 12;
+            $data[$monthIndex] = $item->Registration_Count;
+            $index++;
+        }
+        return json_encode($data);
+    }
     public function getAChild($child_id)
     {
         return (new Child())->findOne(self::class, ['child_id' => $child_id]);
+
     }
 }

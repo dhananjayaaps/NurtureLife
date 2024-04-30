@@ -8,6 +8,7 @@ use app\models\Mother;
         justify-content: flex-start;
     }
 </style>
+
 <style>
     /*.column .second-column{*/
     /*    width: 100%;*/
@@ -97,7 +98,7 @@ use app\models\Mother;
         {"Registration_Date": "2024-04-07", "Registration_Count": 1},
         {"Registration_Date": "2024-04-09", "Registration_Count": 2},
         {"Registration_Date": "2024-04-25", "Registration_Count": 1},
-        {"Registration_Date": "2024-04-26", "Registration_Count": 1},
+        {"Registration_Date": "2024-04-26", "Registration_Count": 3},
         {"Registration_Date": "2024-04-27", "Registration_Count": 1}
     ];
 
@@ -240,5 +241,6 @@ use app\models\Mother;
             options: options
         });
     }
+    updateChart();
 </script>
 <?php

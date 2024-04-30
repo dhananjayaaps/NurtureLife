@@ -203,4 +203,76 @@ class Mother extends DbModel
         return json_encode($result);
     }
 
+    public function getMotherCountForAdmin()
+    {
+        // Get the current month
+        $currentMonth = date('n');
+
+        $sql = "SELECT COUNT(*) AS Registration_Count, MONTH(Created_At) AS Registration_Month FROM Mothers WHERE Created_At BETWEEN DATE_SUB(NOW(), INTERVAL 12 MONTH) AND NOW() GROUP BY MONTH(Created_At)";
+        $statement = self::prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_OBJ);
+
+        $data = array_fill(0, 12, 0);
+        $index = $currentMonth;
+
+        foreach ($result as $item) {
+            $monthIndex = $index % 12;
+            $data[$monthIndex] = $item->Registration_Count;
+            $index++;
+        }
+        return json_encode($data);
+    }
+
+    //i need to get all details of the mother
+    public function getMotherDetails($MotherId)
+    {
+        $sql = "SELECT m.MotherId, m.user_id, m.PHM_ID, m.clinic_id, m.MotherStatus, m.MaritalStatus, m.MarriageDate, m.BloodGroup, m.DeliveryDate, m.Occupation, m.Allergies, m.Consanguinity, m.history_subfertility, m.Hypertension, m.diabetes_mellitus, m.rubella_immunization, m.emergencyNumber, m.location, m.status AS MotherStatus, m.Created_At AS MotherCreated, u.id AS UserId, u.email, u.firstname, u.lastname, u.nic, u.status AS UserStatus, u.created_at AS UserCreated, u.contact_no, u.home_number, u.lane, u.city, u.postal_code, u.DOB, u.gender FROM Mothers m JOIN users u ON m.user_id = u.id WHERE m.MotherId = :MotherId";
+        $statement = self::prepare($sql);
+        $statement->bindValue(":MotherId", $MotherId);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    }
+
+    //get all childs names for a mother
+    public function getMotherChildren($MotherId)
+    {
+        $motherUserId = (new Mother())->findOne(Mother::class, ['MotherId' => $MotherId])->user_id;
+        $sql = "SELECT child_id, Child_Name, Birth_Date 
+            FROM child 
+            WHERE motherUserId = :MotherId";
+
+        $statement = self::prepare($sql);
+
+        $statement->bindValue(":MotherId", $motherUserId);
+
+        $statement->execute();
+
+        $childrenDetails = $statement->fetchAll(PDO::FETCH_OBJ);
+
+        return $childrenDetails;
+    }
+
+    public function getMotherChildrenHTML($MotherId)
+    {
+        $childrenDetails = $this->getMotherChildren($MotherId);
+
+        $html = '<h2>Children</h2><br><div class="card-row">';
+
+        foreach ($childrenDetails as $child) {
+            $html .= '<div class="card">';
+            $html .= '<h3>' . $child->Child_Name . '</h3><br>';
+            $html .= '<b>DOB: </b>' . $child->Birth_Date . '<br><br>';
+            $html .= '</div>';
+        }
+
+        // Close the card-row div
+        $html .= '</div>';
+
+        return $html;
+    }
+
+
+
 }

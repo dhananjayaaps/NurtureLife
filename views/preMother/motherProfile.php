@@ -5,8 +5,9 @@ use app\core\Application;
 use app\core\form\Form;
 use app\core\Model;
 use app\models\Fetalkick;
+use app\models\Mother;
 
-$this->title = 'FetalKicks';
+$this->title = 'Mother Profile';
 ?>
 <?php
 /** @var $model Fetalkick **/
@@ -120,6 +121,12 @@ $this->title = 'FetalKicks';
 
 </style>
 
+<?php
+$motherId = isset($_GET['id']) ? $_GET['id'] : null;
+$motherData = (new Mother())->getMotherDetails($motherId)[0];
+?>
+
+<div>
 <h1>Prenatal Mother - Profile</h1>
 <div id="myPopup" class="popup">
     <div class="popup-content">
@@ -146,25 +153,25 @@ $this->title = 'FetalKicks';
 
 <div class="MotherProfile">
     <div class="row">
-        <h2>Vishaka Devini</h2>
+        <h2><?php echo $motherData->firstname ?> <?php echo $motherData->lastname ?></h2>
         <br>
         <img class="rounded-image" src="./assets/images/men_user.jpg" alt="profile"/>
         <br>
         <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" value="vishaka108@gmail.com" disabled>
+            <input type="text" class="form-control" value=<?php echo $motherData->email?> disabled>
         </div>
         <div class="form-group">
             <label>Phone Number</label>
-            <input type="text" class="form-control" value="0712345678" disabled>
+            <input type="text" class="form-control" value=<?php echo $motherData->contact_no?> disabled>
         </div>
         <div class="form-group">
             <label>Address</label>
-            <input type="text" class="form-control" value="515, Matara Road, Middeniya" disabled>
+            <input type="text" class="form-control" value=<?php echo $motherData->home_number; echo ', '; echo $motherData->lane; echo ', '; echo $motherData->city;?> , <?php echo $motherData->lane; echo $motherData->city ?>  disabled>
         </div>
         <div class="form-group">
             <label>Date of Birth</label>
-            <input type="date" class="form-control" value="2000-02-09" disabled>
+            <input type="date" class="form-control" value=<?php echo $motherData->DOB?> disabled>
         </div>
     </div>
 
@@ -174,20 +181,20 @@ $this->title = 'FetalKicks';
         <div class="oneRow">
             <br>
             <div class="form-group">
-                <label>Height</label>
-                <input type="text" class="form-control" value="5.5" disabled>
+                <label>Weight</label>
+                <input type="text" class="form-control" value='64.5Kg' disabled>
             </div>
             <div class="form-group">
-                <label>Weight</label>
-                <input type="text" class="form-control" value="60Kg" disabled>
+                <label>Diabetes Mellitus</label>
+                <input type="text" class="form-control" value=<?php echo $motherData->diabetes_mellitus?> disabled>
             </div>
             <div class="form-group">
                 <label>Blood Group</label>
-                <input type="text" class="form-control" value="A+" disabled>
+                <input type="text" class="form-control" value=<?php echo $motherData->BloodGroup?> disabled>
             </div>
             <div class="form-group">
                 <label>Allergies</label>
-                <input type="text" class="form-control" value="Penicillin" disabled>
+                <input type="text" class="form-control" value=<?php echo $motherData->Allergies?> disabled>
             </div>
         </div>
 
@@ -249,19 +256,21 @@ $this->title = 'FetalKicks';
         </div>
         <h5>See More ...</h5>
         <br>
-        <h2>Children</h2><br>
-        <div class="card-row">
-            <div class="card">
-                <h3>Sineth Dhananjaya</h3><br>
-                <b>DOB : </b>2020-08-06<br><br>
-            </div>
-            <div class="card">
-                <h3>Sameera Dilhara</h3><br>
-                <b>DOB: </b>2020-08-06<br><br>
-            </div>
-        </div>
+        <?php echo (new Mother())->getMotherChildrenHTML($motherId);?>
+<!--        <h2>Children</h2><br>-->
+<!--        <div class="card-row">-->
+<!--            <div class="card">-->
+<!--                <h3>Sineth Dhananjaya</h3><br>-->
+<!--                <b>DOB : </b>2020-08-06<br><br>-->
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <h3>Sameera Dilhara</h3><br>-->
+<!--                <b>DOB: </b>2020-08-06<br><br>-->
+<!--            </div>-->
+<!--        </div>-->
 
     </div>
+</div>
 </div>
 
 <script>
