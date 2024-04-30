@@ -48,18 +48,13 @@ $this->title = 'Midwife Dashboard';
         <div class="quick-access">
             <div class="user-control addButtons">
 
-                <a href="/checkSymptoms"> <button class="addButton">View Mother</button></a>
+                <button class="addButton"><a href="/checkSymptoms"> Check Symptoms</a></button>
                 <button class="addButton"><a href="/preMotherForm">Register Mother</a></button>
-                <button class="addButton">View Mother</button>
-                <button class="addButton">Record Pregnancy Report Card</button>
-                <button class="addButton">Track Mother</button>
             </div>
             <div class="user-control addButtons">
 
                 <button class="addButton"><a href="/Child">Register Child</a></button>
-                <button class="addButton">Record baby card </button>
-                <button class="addButton">View field Schedule</button>
-                <button class="addButton">View clinic schedule</button>
+                <button class="addButton"><a href="/viewChild">View Child</a> </button>
 
             </div>
 

@@ -73,6 +73,7 @@ class Child extends parentAlias
 
         foreach ($childData as $child) {
             $data[] = [
+                'ChildId' => $child->child_id,
                 'ChildName' => $child->Child_Name,
                 'Gender' => $child->Gender,
             ];

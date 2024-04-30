@@ -7,6 +7,8 @@ use app\models\Child;
 
 //?>
 
+<link rel="stylesheet" href="./assets/styles/table.css">
+
 <!--<h1>Midwife - Child</h1>-->
 <div id="myPopup" class="popup">
     <div class="popup-content">
@@ -91,7 +93,7 @@ use app\models\Child;
             <td>${row.Gender}</td>
             <td class="action-buttons">
             <button id="showPopUp" onclick="UpdatePopUp('${row.MOH_ID}', '${row.Name}')" class="action-button update-button">Update</button>
-             <button type="submit" class="btn-submit"><a href="/childProfile">View Profile</a></button>
+             <button type="submit" class="btn-submit"><a href="/childProfile?id=${row.ChildId}">View Profile</a></button>
         `;
             tableBody.appendChild(newRow);
         }

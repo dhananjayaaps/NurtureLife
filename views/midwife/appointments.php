@@ -101,7 +101,7 @@ $this->title = 'Manage Appointments';
             <?php echo $form->field($appointmentModel, 'AppointRemarks', 'Remarks') ?>
 
             <button type="submit" class="btn-submit">Update</button>
-            <button type="button" class="btn-cancel" onclick="confirmDelete()">Cancel Appointments</button>
+<!--            <button type="button" class="btn-cancel" onclick="confirmDelete()">Cancel Appointments</button>-->
 
             <?php echo Form::end() ?>
         </div>
@@ -110,7 +110,7 @@ $this->title = 'Manage Appointments';
 
 <script>
     var data = <?php echo (new Appointments())->getAllAppointmentsForMidwife() ?>;
-    var itemsPerPage = 3;
+    var itemsPerPage = 5;
     var currentPage = 1;
 
     var selectedAppointmentIds = [];

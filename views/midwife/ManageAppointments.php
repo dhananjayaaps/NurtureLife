@@ -40,9 +40,8 @@ $this->title = 'Manage Appointments';
         height: 80vh;
     }
 </style>
-
+<h1>Midwife - Appointment Creating</h1>
 <div class="doctors content">
-    <h1>Midwife - Appointment Creating</h1>
     <div class="shadowBox">
         <div class="left-content">
             <div class="search-container">
@@ -104,7 +103,7 @@ $this->title = 'Manage Appointments';
 
 <script>
     var data = <?php echo (new Appointments())->getMothersForMidwife()?>;
-    var itemsPerPage = 3;
+    var itemsPerPage = 5;
     var currentPage = 1;
 
     var selectedIdNumbers = document.getElementsByName('MotherId')[0].value.split(',').map(Number);

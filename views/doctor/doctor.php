@@ -1,4 +1,3 @@
-
 <?php
 /** @var $this app\core\view */
 
@@ -11,23 +10,25 @@ $this->title = 'Login';
 /** @var $model User **/
 ?>
 
-<h1>Doctor - Dashboard</h1>
-<div class="content">
-    <div class="column first-column">
-        <div class="lineChart">
-            Total Prnatal Mothers: 450
-            <canvas id="lineChart"></canvas>
-        </div>
-        <div class="lineChart">
-            Total Postnatal Mothers: 450
-            <canvas id="lineChart2"></canvas>
-        </div>
-        <div class="lineChart">
-            Total Babies: 200
-            <canvas id="lineChart3"></canvas>
+
+<div class="grid-container">
+    <div class="item1">
+        <div class="column first-column">
+            <div class="lineChart">
+                Total Prnatal Mothers: 450
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="lineChart">
+                Total Postnatal Mothers: 450
+                <canvas id="lineChart2"></canvas>
+            </div>
+            <div class="lineChart">
+                Total Babies: 200
+                <canvas id="lineChart3"></canvas>
+            </div>
         </div>
     </div>
-    <div class="column second-column">
+    <div class="item2">
         <div class="right-content" style="width:100%">
             <div class="shadowBox">
                 <div class="clinic-details">
@@ -52,6 +53,8 @@ $this->title = 'Login';
                 </div>
             </div>
         </div>
+    </div>
+    <div class="item3">
         <div class="quick-access">
             <div class="user-control addButtons">
                 <button class="addButton">Add a Clinic</button>
@@ -105,87 +108,114 @@ $this->title = 'Login';
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+    <div class="item4"><h1>Doctor - Dashboard</h1></div>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Sample data for the line chart
+    var data = {
+        labels: ["January", "February", "March", "April", "May"],
+        datasets: [{
+            label: "Daily New Borns",
+            borderColor: "#1F2B6C",
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            data: [65, 59, 80, 81, 56]
+        }]
+    };
 
-    <script>
-        // Sample data for the line chart
-        var data = {
-            labels: ["January", "February", "March", "April", "May"],
-            datasets: [{
-                label: "Daily New Borns",
-                borderColor: "#1F2B6C",
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                data: [65, 59, 80, 81, 56]
-            }]
-        };
-
-        var options = {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+    var options = {
+        scales: {
+            y: {
+                beginAtZero: true
             }
-        };
+        }
+    };
 
-        var ctx = document.getElementById('lineChart').getContext('2d');
-        var myLineChart = new Chart(ctx, {
-            type: 'line',
-            data: data,
-            options: options
-        });
+    var ctx = document.getElementById('lineChart').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: options
+    });
 
-        var ctx = document.getElementById('lineChart2').getContext('2d');
-        var myLineChart = new Chart(ctx, {
-            type: 'line',
-            data: data,
-            options: options
-        });
+    var ctx = document.getElementById('lineChart2').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: options
+    });
 
-        var ctx = document.getElementById('lineChart3').getContext('2d');
-        var myLineChart = new Chart(ctx, {
-            type: 'line',
-            data: data,
-            options: options
-        });
+    var ctx = document.getElementById('lineChart3').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: options
+    });
 
-        var ctxDoughnut = document.getElementById('myPieChart').getContext('2d');
+    var ctxDoughnut = document.getElementById('myPieChart').getContext('2d');
 
-        var dataDoughnut = {
-            labels: ['Volunteers', 'Doctors', 'Midwives', 'Prenatal Mothers', 'Postnatal Mothers'],
-            datasets: [{
-                data: [20, 15, 10, 30, 25],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)'
-                ],
-                borderWidth: 1
-            }]
-        };
+    var dataDoughnut = {
+        labels: ['Volunteers', 'Doctors', 'Midwives', 'Prenatal Mothers', 'Postnatal Mothers'],
+        datasets: [{
+            data: [20, 15, 10, 30, 25],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
 
-        var optionsDoughnut = {
-            responsive: false,
-        };
+    var optionsDoughnut = {
+        responsive: false,
+    };
 
-        var myDoughnutChart = new Chart(ctxDoughnut, {
-            type: 'pie', //
-            data: dataDoughnut,
-            options: optionsDoughnut
-        });
+    var myDoughnutChart = new Chart(ctxDoughnut, {
+        type: 'pie', //
+        data: dataDoughnut,
+        options: optionsDoughnut
+    });
 
-    </script>
+</script>
+<style>
+    .item1 { grid-area: chart; }
+    .item2 { grid-area: clinic; }
+    .item3 { grid-area: quick; }
+    .item4 { grid-area: header; }
 
+
+    .grid-container {
+        display: grid;
+        grid-template-areas:
+    'header header'
+    'chart chart'
+    'clinic quick';
+        gap: 10px;
+        background-color: whitesmoke;
+        padding: 10px;
+    }
+
+    .user-control button {
+        background-color: #1F2B6C;
+        color: #FFFFFF;
+        padding: 26px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 2px;
+    }
+</style>

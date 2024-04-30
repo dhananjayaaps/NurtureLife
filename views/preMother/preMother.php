@@ -15,93 +15,94 @@ $this->title = 'Prenatal Mother';
 <div class="popup" id="popup"></div>
 
 
-    <div class="first-column">
-        <div class="mother_header">
-            <h1>Prenatal Mother - Dashboard</h1>
-        <div class="DeliveryTimer"></div>
-        <div class="quick-access">
+<div class="first-column">
+    <div class="mother_header">
+        <h1>Prenatal Mother - Dashboard</h1>
+    </div>
+    <div class="DeliveryTimer"></div>
+    <div class="quick-access">
 
-            <div class="user-control addButtons">
+        <div class="user-control addButtons">
 
-                <button class="addButton">Report Symptoms</button>
-                <button class="addButton">View Reports</button>
-                <button class="addButton">View Schedules</button>
+            <button class="addButton">Report Symptoms</button>
+            <button class="addButton">View Reports</button>
+            <button class="addButton">View Schedules</button>
 
+        </div>
+        <div class="user-control addButtons">
+
+            <button class="addButton">Nutrition Guidelines</button>
+            <button class="addButton">Communicate to  Officers</button>
+            <a href="/fetalkick"> <button class="addButton " style="width: 225px">Record Fetalkicks</button></a>
+        </div>
+
+        <!--            </div>-->
+
+    </div>
+
+</div>
+<div class="second-column">
+
+    <div class="shadowBox">
+        <div class="notification-bar">
+            <div class="notifications">
+                <span style="font-size: 20px; font-weight: bold;">Notifications</span>
             </div>
-            <div class="user-control addButtons">
+            <div class="myBox">
+                <div class="notification emergency">
+                    <div class="message-box">
+                        <div class="title">Appointment Alert</div>
+                        <div class="notification-content">
+                            Midwife shceduled a new appointment. View it here
+                        </div>
+                    </div>
+                </div>
 
-                <button class="addButton">Nutrition Guidelines</button>
-                <button class="addButton">Communicate to  Officers</button>
-                <a href="/fetalkick"> <button class="addButton " style="width: 205px">Record Fetalkicks</button></a>
+                <div class="notification">
+                    <div class="message-box">
+                        <div class="title">Doctor Replied</div>
+                        <div class="notification-content">
+                            Your clinic doctor replied to your Symptom Report. View reply here
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification warning">
+                    <div class="message-box">
+                        <div class="title">Fetalkick recording activated</div>
+                        <div class="notification-content">
+                            You have completed 28 weeks of pregnancy. Now you can report Fetalkicks here
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification">
+                    <div class="message-box">
+                        <div class="title">Emergency Alert</div>
+                        <div class="notification-content">
+                            Pressed the Emergency Elarm by Kamala Wijethunga
+                        </div>
+                    </div>
+                </div>
             </div>
-
-<!--            </div>-->
-
+        </div>
+    </div>
+    <div>
+        <div class="calendar-container">
+            <div class="header">
+                <button class="prev-month">&lt;</button>
+                <h2 class="month-year">November 2023</h2>
+                <button class="next-month">&gt;</button>
+            </div>
+            <div class="calendar-grid">
+                <!-- Calendar dates will be inserted here dynamically with JavaScript -->
+            </div>
         </div>
 
     </div>
-    <div class="second-column fixed-element">
 
-        <div class="shadowBox">
-            <div class="notification-bar">
-                <div class="notifications">
-                    <span style="font-size: 20px; font-weight: bold;">Notifications</span>
-                </div>
-                <div class="myBox">
-                    <div class="notification emergency">
-                        <div class="message-box">
-                            <div class="title">Appointment Alert</div>
-                            <div class="notification-content">
-                                Midwife shceduled a new appointment. View it here
-                            </div>
-                        </div>
-                    </div>
+</div>
 
-                    <div class="notification">
-                        <div class="message-box">
-                            <div class="title">Doctor Replied</div>
-                            <div class="notification-content">
-                                Your clinic doctor replied to your Symptom Report. View reply here
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="notification warning">
-                        <div class="message-box">
-                            <div class="title">Fetalkick recording activated</div>
-                            <div class="notification-content">
-                                You have completed 28 weeks of pregnancy. Now you can report Fetalkicks here
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="notification">
-                        <div class="message-box">
-                            <div class="title">Emergency Alert</div>
-                            <div class="notification-content">
-                                Pressed the Emergency Elarm by Kamala Wijethunga
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="calendar-container">
-                <div class="header">
-                    <button class="prev-month">&lt;</button>
-                    <h2 class="month-year">November 2023</h2>
-                    <button class="next-month">&gt;</button>
-                </div>
-                <div class="calendar-grid">
-                    <!-- Calendar dates will be inserted here dynamically with JavaScript -->
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-<!--</div>-->
 
 <script>
     const DeliveryTimer = document.querySelector('.DeliveryTimer');
@@ -112,7 +113,7 @@ $this->title = 'Prenatal Mother';
     var RemainingTime1 = new Date(DeliveryDate1) - today1;
     var remainingDays = Math.floor(RemainingTime1 / (1000 * 60 * 60 * 24));
     var remainingMonths = Math.floor(remainingDays / 30);
-    DeliveryTimer.innerHTML = '<span style="font-weight: bold; color: blue;">' + remainingMonths + '</span> month and <span style="font-weight: bold; color: red;">' + (remainingDays % 30) + '</span> days until Delivery';
+    DeliveryTimer.innerHTML = '<span style="font-weight: bold; color: blue;">' + remainingMonths + '</span> month and <span style="font-weight: bold; color: red;">' + (remainingDays % 30) + '</span> days to Delivery';
 
 
     if (RemainingTime1<1000*60*60*22){
@@ -262,7 +263,7 @@ $this->title = 'Prenatal Mother';
             // Check if an appointment is found for the selected date
             if (appointment) {
                 // Build appointment details string
-                const appointmentDetails = `Type: ${appointment.Type}, Remarks: ${appointment.Remarks}`;
+                const appointmentDetails = Type: ${appointment.Type}, Remarks: ${appointment.Remarks};
                 return appointmentDetails;
             } else {
                 return "No appointment for this day";
@@ -310,6 +311,6 @@ $this->title = 'Prenatal Mother';
         margin-bottom: 5px;
     }
     .quick-access {
-        margin-left: 25%;
+        margin-left: 18%;
     }
 </style>
