@@ -51,8 +51,8 @@ class ChildChartController extends \app\core\Controller
 
             $childweight->loadData($request->getBody());
             $childweight->child_id = $childweight->getChildId();
-            $childweight->validate();
             $childweight->value_of_weight = $request->getBody()['UpdateWeightCount'];
+
             if ($childweight->validate()) {
                 $childweight->update();
                 Application::$app->response->redirect('/childweight');
@@ -63,47 +63,51 @@ class ChildChartController extends \app\core\Controller
         }
         else{
             $childweight = new ChildWeight();
+            $childweight2 = new ChildWeight();
             $this->setLayout('midwife');
             $childweight->loadData($request->getBody());
             $childweight->child_id = $childweight->getChildId();
             $childweight->validate();
-            var_dump($childweight);
-            exit();
+
             if ($childweight->validate() && $childweight->save()) {
                 Application::$app->response->redirect('/childweight');
                 Application::$app->session->setFlash('success', 'Recorded the child weight');
             } else {
-                Application::$app->response->redirect('/childweight');
-                Application::$app->session->setFlash('error', "Can't create");
+                return $this->render('midwife/childweight', [
+                    'model' => $childweight, "modelUpdate" => $childweight2
+                ]);
                 exit;
             }
         }
     }
 
-    public function ChildHeight(Request $request): array|false|string
-    {
-        $childheight = new ChildHeight();
-        $childheight2 = new ChildHeight();
-        if ($request->isPost()) {
-
-            $this->setLayout('midwife');
-            $childheight->loadData($request->getBody());
-
-            if ($childheight->validate() && $childheight->save()) {
-                Application::$app->session->setFlash('success', 'Recorded the child height');
-                Application::$app->response->redirect('/childHeight');
-                exit;
-            }
-        } else if ($request->isGet()) {
-            $this->layout = 'midwife';
-
-        }
-//        var_dump(Application::$app->user->getId());
-
-        return $this->render('midwife/childHeight', [
-            'model' => $childheight, "modelUpdate" => $childheight2
-        ]);
-    }
+//    public function ChildHeight(Request $request): array|false|string
+//    {
+//        $childheight = new ChildHeight();
+//        $childheight2 = new ChildHeight();
+//        if ($request->isPost()) {
+//
+//            $this->setLayout('midwife');
+//            $childheight->loadData($request->getBody());
+//
+//            if ($childheight->validate() && $childheight->save()) {
+//                Application::$app->session->setFlash('success', 'Recorded the child height');
+//                Application::$app->response->redirect('/childHeight');
+//                exit;
+//            } else{
+//                var_dump("100");
+//                exit();
+//                return $this->render('midwife/childHeight', [
+//                    'model' => $childheight, "modelUpdate" => $childheight2
+//                ]);
+//            }
+//        } else if ($request->isGet()) {
+//            $this->layout = 'midwife';
+//        }
+//        return $this->render('midwife/childHeight', [
+//            'model' => $childheight, "modelUpdate" => $childheight2
+//        ]);
+//    }
 
     public function ChildHeightUpdate(Request $request): false|string
     {

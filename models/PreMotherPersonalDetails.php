@@ -6,7 +6,7 @@ use app\core\db\DbModel;
 
 class PreMotherPersonalDetails extends DbModel
 {
-    public string $MotherId = '';
+    public int $MotherId;
     public string $age = '';
     public string $education_level = '';
     public string $occuption = '';
@@ -16,6 +16,10 @@ class PreMotherPersonalDetails extends DbModel
     public function rules(): array
     {
         return [
+            'age' => [self::RULE_REQUIRED],
+            'occuption' => [self::RULE_REQUIRED],
+            'age1' => [self::RULE_REQUIRED],
+            'occuption1' => [self::RULE_REQUIRED],
 
         ];
     }

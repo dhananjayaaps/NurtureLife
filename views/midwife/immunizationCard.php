@@ -160,7 +160,18 @@ if ($childId !== null) {
             <div class="card">
                 <div class="vaccineContainer">
                     <h4>DPT 1</h4>
-                    <button type="submit" class="btn-submit showPopup" data-target="myPopup" onclick="updateVaccineNumber('2')">Not Vaccinated</button>
+                    <?php foreach ($vaccineArray as $vaccine): ?>
+                        <?php if ($vaccine->vac_id === '3'): ?>
+                            <div>
+                                <p>Time: <?php echo $vaccine->timestamp; ?></p>
+                                <p>Batch No: <?php echo $vaccine->BatchNo; ?></p>
+                            </div>
+                            <?php break; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <?php if (!in_array('3', array_column($vaccineArray, 'vac_id'))): ?>
+                        <button type="button" class="btn-submit showPopup" data-target="myPopup" onclick="updateVaccineNumber('2')">Not Vaccinated</button>
+                    <?php endif; ?>
                 </div>
             </div>
 

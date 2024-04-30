@@ -6,30 +6,42 @@ use app\core\db\DbModel;
 
 class PostMotherDetails extends DbModel
 {
-    public string $MotherId = '';
-    public string $breast_problems = '';
-    public string $abnormal_vaginal_discharge = '';
-    public string $excessive_vaginal_bleeding = '';
-    public string $pallor = '';
-    public string $lcterus = '';
-    public string $dema = '';
-    public string $bp = '';
-    public string $cardiovascular_system = '';
-    public string $respiratory_system = '';
-    public string $abdominal_examination = '';
-    public string $mental_status = '';
-    public string $family_planning_method = '';
+    public int $MotherId;
+    public string $breast_problems = '1';
+    public string $abnormal_vaginal_discharge = '1';
+    public string $excessive_vaginal_bleeding = '1';
+    public string $pallor = '1';
+    public string $lcterus = '1';
+    public string $dema = '1';
+    public string $bp = '1';
+    public string $cardiovascular_system = '1';
+    public string $respiratory_system = '1';
+    public string $abdominal_examination = '1';
+    public string $mental_status = '1';
+    public string $family_planning_method = '1';
 
     public function rules(): array
     {
         return [
+            'breast_problems' => [self::RULE_REQUIRED],
+            'abnormal_vaginal_discharge' => [self::RULE_REQUIRED],
+            'excessive_vaginal_bleeding' => [self::RULE_REQUIRED],
+            'pallor' => [self::RULE_REQUIRED],
+            'lcterus' => [self::RULE_REQUIRED],
+            'dema' => [self::RULE_REQUIRED],
+            'bp' => [self::RULE_REQUIRED],
+            'cardiovascular_system' => [self::RULE_REQUIRED],
+            'respiratory_system' => [self::RULE_REQUIRED],
+            'abdominal_examination' => [self::RULE_REQUIRED],
+            'mental_status' => [self::RULE_REQUIRED],
+            'family_planning_method' => [self::RULE_REQUIRED],
 
         ];
     }
 
     public function tableName(): string
     {
-        return 'Mothers';
+        return 'PostMotherDetails';
     }
 
     public function primaryKey(): string
@@ -56,24 +68,4 @@ class PostMotherDetails extends DbModel
 
         ];
     }
-
-    public function save(): bool
-    {
-        $ValidateUser = (new User())->getUserByNIC($this->nic);
-
-        if (!$ValidateUser) {
-            $this->addError('nic', 'User does not exist with this NIC');
-            return false;
-        } else {
-            $exitUser = (new Mother())->getUser($ValidateUser->getId());
-
-
-            $this->user_id = $ValidateUser->id;
-            var_dump("errors", $this->errors);
-            return parent::save();
-        }
-        return parent::save();
-
-    }
-
 }
