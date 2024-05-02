@@ -110,7 +110,7 @@ $this->title = 'Manage Appointments';
 
 <script>
     var data = <?php echo (new Appointments())->getAllAppointmentsForMidwife() ?>;
-    var itemsPerPage = 3;
+    var itemsPerPage = 5;
     var currentPage = 1;
 
     var selectedAppointmentIds = [];
@@ -197,5 +197,32 @@ $this->title = 'Manage Appointments';
             });
         }
     }
+</script>
 
+<script>
+    function confirmDelete(){
+        // console.log("hi");
+        var idSet = document.getElementsByName('AppointmentId')[0].value;
+        // console.log(idSet);
+
+        const formData = new FormData();
+        formData.append('AppointmentId', idSet);
+
+        const url = '/deleteAppointments';
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => {
+                if (response.ok) {
+                    // window.location.reload();
+                } else {
+                    return response.json();
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
 </script>

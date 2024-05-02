@@ -23,7 +23,6 @@ $this->title = 'Child';
 <style>
     .form-column {
         float: left;
-        width: 50%;
         box-sizing: border-box;
         padding: 0 10px;
     }

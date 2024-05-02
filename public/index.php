@@ -202,5 +202,7 @@ $app->router->get('/articles', [SiteController::class, 'articles']);
 $app->router->get('/motherRegistrations', [Registration::class, 'MotherRegistration']);
 $app->router->get('/childBorn', [Registration::class, 'childBorn']);
 
+$app->router->post('/deleteAppointments', [AppoinmetHandler::class, 'deleteAppointments']);
+
 
 $app->run();

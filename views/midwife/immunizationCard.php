@@ -400,9 +400,4 @@ if ($childId !== null) {
 </script>
 
 <?php
-$immunit = new Immunization();
 
-var_dump($immunit->getImmunization(1));
-//result like this
-//array(1) { [0]=> object(stdClass)#33 (5) { ["recordId"]=> int(1) ["child_id"]=> int(1) ["vac_id"]=> string(1) "1" ["BatchNo"]=> string(4) "1234" ["timestamp"]=> string(19) "2024-04-29 18:13:27" } }
-?>

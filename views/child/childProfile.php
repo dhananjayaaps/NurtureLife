@@ -6,7 +6,7 @@ use app\core\form\Form;
 use app\core\Model;
 use app\models\Fetalkick;
 
-$this->title = 'FetalKicks';
+$this->title = 'Child Profile';
 ?>
 <?php
 /** @var $model Fetalkick **/
@@ -71,7 +71,7 @@ $this->title = 'FetalKicks';
 
     .my-card{
         width: 200px;
-        height: 60px;
+        height: 80px;
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 10px;
@@ -236,67 +236,11 @@ $this->title = 'FetalKicks';
                     <h3><b><a href="/childCard2">Newborn Baby's Health Chart</a></b></h3>
                 </div>
                 <div class="my-card">
-                    <h3><b><a href="/immunizationCard">Immunization Card</a></b></h3>
+                    <h3><b><a href="/immunizationCard?childid=<?php echo $_GET['id']?>">Immunization Card</a></b></h3>
                 </div>
             </div>
         </div>
 
-
-        <div class="row" >
-            <h2>Child's Medical Report History</h2>
-            <br>
-            <div class="card-row">
-                <div class="card plus-card" id="addNoteCard">
-                    <span class="plus-icon">+</span>
-                    <p>Add a Note</p>
-                </div>
-                <div class="card">
-                    <h3><b>2024-11-12</b></h3><br>
-                    <div class="card medical-card">
-                    <p>Medical Reports</p>
-                    </div>
-                    <div class="card medical-card">
-                        <p>Medicines</p>
-                    </div>
-                    <div class="card medical-card">
-                        <p>Recommendations</p>
-                    </div>
-                    <br>
-                    <b>Conclusion: Normal</b>
-                </div>
-                <div class="card">
-                    <h3><b>2024-10-12</b></h3><br>
-                    <div class="card medical-card">
-                        <p>Medical Reports</p>
-                    </div>
-                    <div class="card medical-card">
-                        <p>Medicines</p>
-                    </div>
-                    <div class="card medical-card">
-                        <p>Recommendations</p>
-                    </div>
-                    <br>
-                    <b>Conclusion: Normal</b>
-                </div>
-                <div class="card">
-                    <h3><b>2024-09-12</b></h3><br>
-                    <div class="card medical-card">
-                        <p>Medical Reports</p>
-                    </div>
-                    <div class="card medical-card">
-                        <p>Medicines</p>
-                    </div>
-                    <div class="card medical-card">
-                        <p>Recommendations</p>
-                    </div>
-                    <br>
-                    <b>Conclusion: Good</b>
-                </div>
-            </div>
-        </div>
-
-
-        <h5>See More ...</h5>
         <br>
         <h2>Child's Weight and Height Gain Charts</h2><br>
         <div class="column first-column">

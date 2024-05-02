@@ -217,44 +217,6 @@ $motherData = (new Mother())->getMotherDetails($motherId)[0];
             </div>
         </div>
 
-        <h2>Medical History</h2>
-        <br>
-        <div class="card-row">
-            <div class="card plus-card" id="addNoteCard">
-                <span class="plus-icon">+</span>
-                <p>Add a Note</p>
-            </div>
-            <div class="card">
-                <h3>2024-12-18</h3><br>
-                <b>Reminders</b><br>
-                <p>Please ensure the patient is properly prepared for the colonoscopy.</p>
-            </div>
-
-
-            <div class="card">
-                <h3>2024-11-03</h3><br>
-                <b>Tests to be done: </b><br>
-                <div style="background-color: #f2f2f2; padding: 5px; margin-bottom: 5px;">
-                    <span>Eye exam</span><br>
-                    <span>Thyroid function test</span><br>
-                    <span>Liver function test</span>
-                </div>
-                <b>Reminders</b><br>
-                <p>Check for any contraindications before prescribing calcium supplements.</p>
-            </div>
-
-            <div class="card">
-                <h3>2024-10-12</h3><br>
-                <b>Tests to be done: </b><br>
-                <div style="background-color: #f2f2f2; padding: 5px; margin-bottom: 5px;">
-                    <span>Blood pressure test</span><br>
-                </div>
-                <b>Reminders</b><br>
-                <p>Monitor the patient's blood pressure regularly if beta-blockers are prescribed.</p>
-            </div>
-
-        </div>
-        <h5>See More ...</h5>
         <br>
         <?php echo (new Mother())->getMotherChildrenHTML($motherId);?>
 <!--        <h2>Children</h2><br>-->
