@@ -101,7 +101,7 @@ $this->title = 'Manage Appointments';
             <?php echo $form->field($appointmentModel, 'AppointRemarks', 'Remarks') ?>
 
             <button type="submit" class="btn-submit">Update</button>
-<!--            <button type="button" class="btn-cancel" onclick="confirmDelete()">Cancel Appointments</button>-->
+            <button type="button" class="btn-cancel" onclick="confirmDelete()">Cancel Appointments</button>
 
             <?php echo Form::end() ?>
         </div>
@@ -197,5 +197,32 @@ $this->title = 'Manage Appointments';
             });
         }
     }
+</script>
 
+<script>
+    function confirmDelete(){
+        // console.log("hi");
+        var idSet = document.getElementsByName('AppointmentId')[0].value;
+        // console.log(idSet);
+
+        const formData = new FormData();
+        formData.append('AppointmentId', idSet);
+
+        const url = '/deleteAppointments';
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => {
+                if (response.ok) {
+                    // window.location.reload();
+                } else {
+                    return response.json();
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
 </script>

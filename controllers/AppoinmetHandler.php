@@ -76,4 +76,63 @@ class AppoinmetHandler extends Controller
 
     }
 
+    public function deleteAppointments(Request $request, Response $response)
+    {
+        $model = new Mother();
+        $appointmentModel = new Appointments();
+        $appointment = new Appointments();
+        $appointmentUpdate = new Appointments();
+
+//        var_dump($request->getBody());
+//        exit();
+
+        if ($request->isPost()){
+            $appointmentUpdate->loadData($request->getBody());
+            $appointmentModel->loadData($request->getBody());
+
+            $appointmentIds = explode(',', $appointmentModel->AppointmentId);
+            $appointmentIds = array_map('intval', $appointmentIds);
+
+//            var_dump($appointmentIds);
+//            exit();
+            foreach ($appointmentIds as $appointmentId) {
+//                var_dump($appointmentId);
+//                exit();
+                $appointment = $appointment->findOne(Appointments::class, ['AppointmentId' => $appointmentId]);
+//                var_dump($appointment);
+//                exit();
+                if ($appointment) {
+                    $appointment->delete();
+//                    $appointmentUpdate->update();
+                }
+                else {
+                    Application::$app->session->setFlash('error', 'Failed to Cancel Appointment');
+                }
+            }
+            Application::$app->session->setFlash('success', 'Appointments Deleted Successfully');
+            Application::$app->response->redirect('/appointments');
+            exit;
+        }
+        $roleName = Application::$app->user->getRoleName();
+
+        if ($roleName == 'Doctor'){
+            $this->layout = 'doctor';
+            return $this->render('doctor/appointments', ['model' => $model]);
+        }
+
+        else if ($roleName == 'Midwife'){
+            $this->layout = 'midwife';
+            return $this->render('midwife/appointments', [
+                'model' => $model,
+                'appointmentModel' => $appointmentModel
+            ]);
+        }
+        else{
+            return $this->render('/', [
+                'model' => $model
+            ]);
+        }
+
+    }
+
 }

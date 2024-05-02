@@ -2,6 +2,7 @@
 /** @var $this app\core\view */
 
 use app\core\Application;
+use app\core\form\DropDown;
 use app\core\form\Form;
 use app\core\Model;
 use app\models\Clinic;
@@ -13,7 +14,7 @@ $this->title = 'Clinics';
 /** @var $model Clinic **/
 /** @var $modelUpdate Clinic **/
 //?>
-
+<sc
 
 <link rel="stylesheet" href="./assets/styles/Form.css">
 <link rel="stylesheet" href="./assets/styles/table.css">
@@ -111,7 +112,16 @@ $this->title = 'Clinics';
             <h2>Add a New Clinic <br/><br/></h2>
             <?php $form = Form::begin('', "post")?>
             <?php echo $form->field($model, 'name', 'Name')?>
-            <?php echo $form->field($model, 'district', 'District')?>
+            <?php
+            $appointmentType = new Dropdown($model, 'district', 'District');
+            $appointmentType->setOptions([
+                'Matara' => 'Matara',
+                'Galle' => 'Galle',
+                'Hambantota' => 'Well baby Clinic',
+                'Colombo' => 'Colombo',
+            ]);
+            echo $appointmentType;
+            ?>
             <?php echo $form->field($model, 'address', 'Address')?>
             <?php echo $form->field($model, 'contactNo', 'Contact No')?>
             <button type="submit" class="btn-submit">Submit</button>
